@@ -5,12 +5,46 @@ import {
   type OpenId4VpRequest,
 } from '@ssw/openid4vc';
 import { ageOver18Policy, toDcql } from '@ssw/presentation-policy';
+import {
+  evaluateIssuerTrust,
+  StatusCache,
+  type StatusTransport,
+  type TrustBundle,
+} from '@ssw/credential-domain';
 
 export const appName = 'verifier-demo';
 export const runtimeBoundary = 'synthetic local verifier only';
 export const VERIFIER_CLIENT_ID = 'https://verifier.example';
 export const RESPONSE_URI = `${VERIFIER_CLIENT_ID}/callback`;
 export const MAX_REQUEST_BYTES = 16_384;
+
+export const syntheticTrustBundle: TrustBundle = Object.freeze({
+  version: 1,
+  generatedAt: Date.UTC(2026, 6, 29),
+  expiresAt: Date.UTC(2027, 6, 29),
+  issuers: [
+    {
+      issuer: 'https://issuer.example',
+      keyIds: ['synthetic-local-issuer-2026-07'],
+      statusListOrigins: ['https://issuer.example'],
+    },
+  ],
+});
+
+export function evaluateSyntheticIssuer(keyId: string) {
+  return evaluateIssuerTrust(
+    syntheticTrustBundle,
+    'https://issuer.example',
+    keyId,
+  );
+}
+
+export async function evaluateSyntheticStatus(
+  statusUrl: string,
+  transport: StatusTransport,
+) {
+  return new StatusCache(transport).lookup(statusUrl);
+}
 
 export type VerifierFixture =
   | 'valid'

@@ -13,6 +13,7 @@
     "vitest": "4.1.10"
   },
   "dependencies": {
+    "@ssw/credential-domain": "workspace:*",
     "@ssw/openid4vc": "workspace:*",
     "@ssw/presentation-policy": "workspace:*"
   }
