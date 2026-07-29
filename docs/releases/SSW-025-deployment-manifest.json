@@ -26,7 +26,8 @@
   },
   "testnet": {
     "status": "opt-in",
-    "configuration": "SSW_RC_TESTNET=1 plus SSW_RC_* variables",
+    "configuration": "SSW_RC_TESTNET=1, SSW_RC_NETWORK=<non-local label>, plus SSW_RC_* variables",
+    "localBoundary": "SSW_RC_NETWORK=anvil/local/localhost and chainId 31337 are rejected; Anvil is local evidence only",
     "requiredPins": [
       "chainId",
       "rpcUrl",
