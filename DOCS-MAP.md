@@ -27,6 +27,7 @@
 ## Planned features
 
 - [Credential exchange](working/features/credential-exchange.md)
+- [SD-JWT VC adapter](docs/protocols/sd-jwt-vc-adapter.md)
 - [Encrypted vault](working/features/encrypted-vault.md)
 - [Smart account and passkeys](working/features/smart-account-and-passkeys.md)
 - [Identity and holder binding](working/features/identity-and-holder-binding.md)

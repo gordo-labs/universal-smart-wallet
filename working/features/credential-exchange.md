@@ -35,6 +35,11 @@ predicate proof.
   state/nonce, holder binding, and disclosure constraints.
 - No protocol test depends on a hosted issuer or verifier.
 
+SSW-008 provides the pinned draft-16 `dc+sd-jwt` issue/present/verify
+boundary. It uses synthetic `AgeCredential` fixtures, issuer-signed
+`is_over_18: true`, bounded disclosures, and holder key binding. JOSE and
+SD-JWT decoding remain delegated to maintained pinned dependencies.
+
 ## Tasks
 
 `SSW-003`, `SSW-004`, `SSW-005`, `SSW-008`–`SSW-014`.
