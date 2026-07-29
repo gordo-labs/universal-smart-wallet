@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "releaseCandidate": "SSW-025",
+  "dataPolicy": "synthetic credentials only",
+  "networkPolicy": "local Anvil and explicitly configured EVM testnets only",
+  "mainnet": false,
+  "local": {
+    "network": "anvil",
+    "chainId": 31337,
+    "contractsManifest": "contracts/deployments.json",
+    "contractsManifestSha256": "31071e5633549c47098842fa30ebd18e5eda01ca3b4755f329599a06c2e1b71c",
+    "entryPoint": {
+      "address": "0x4337084d9e255ff0702461cf8895ce9e3b5ff108",
+      "codeHash": null,
+      "status": "external-address-only; local harness does not deploy EntryPoint"
+    },
+    "deterministicFixture": {
+      "runtimeCodeHash": "0x548e123c1edc2305824127817d1960c9f74c9a7d348e007f7b272c9d7e4a9f4c",
+      "sourceFilesSha256": {
+        "contracts/src/DeterministicDeploymentHarness.sol": "ba3f5ca2227b080b19bc16fada9a4ff9f146aa8955c709a14f837660b691aba5",
+        "contracts/src/ERC7579CompatibilityHarness.sol": "a5aa90679487a522a0682c4eb71af780037aa608a53fac6e8c383e3aafffc2f9",
+        "contracts/src/OnChainAttestationConsumer.sol": "ba82abc39ce62fb362329ac6bfefb1f41419ba03354872a4b32ae746295a7df6",
+        "contracts/src/RecoveryHarness.sol": "f4004760caae3fe1fc3fe561ae1e26c530e999fc6996921acf2047c2b3cfc8bb"
+      }
+    }
+  },
+  "testnet": {
+    "status": "opt-in",
+    "configuration": "SSW_RC_TESTNET=1 plus SSW_RC_* variables",
+    "requiredPins": [
+      "chainId",
+      "rpcUrl",
+      "entryPoint address and runtime code hash",
+      "account address and runtime code hash",
+      "attestation consumer address and runtime code hash"
+    ],
+    "deployment": null
+  }
+}

@@ -7,6 +7,120 @@ export const credentialDomainPort: CredentialDomainPort = {
   kind: 'credential-domain',
 };
 
+/**
+ * A deliberately small, versioned bridge from an off-chain verification
+ * result to an on-chain access decision.  `subject` is a nullifier-style
+ * binding; it must never contain a DID, credential, or claim value.
+ */
+export const ONCHAIN_ATTESTATION_VERSION = 1 as const;
+export type Hex = `0x${string}`;
+export type OnChainAttestation = {
+  readonly version: 1;
+  readonly chainId: number;
+  readonly consumer: Hex;
+  readonly policy: Hex;
+  readonly subject: Hex;
+  readonly nonce: Hex;
+  readonly issuedAt: number;
+  readonly expiresAt: number;
+  readonly attestor: Hex;
+  readonly attestorVersion: Hex;
+  readonly signature: Hex;
+};
+
+export type AttestationSigner = (input: {
+  readonly digest: Hex;
+  readonly attestation: Omit<OnChainAttestation, 'signature'>;
+}) => Promise<Hex> | Hex;
+export type AttestationVerifier = (input: {
+  readonly digest: Hex;
+  readonly signature: Hex;
+  readonly attestor: Hex;
+}) => Promise<boolean> | boolean;
+
+const hex32 = (value: string, name: string): Hex => {
+  if (!/^0x[0-9a-fA-F]{64}$/u.test(value))
+    throw new Error(`${name} must be bytes32`);
+  return value as Hex;
+};
+const address = (value: string, name: string): Hex => {
+  if (!/^0x[0-9a-fA-F]{40}$/u.test(value) || /^0x0+$/u.test(value))
+    throw new Error(`${name} must be a non-zero address`);
+  return value as Hex;
+};
+
+/** Canonical field ordering shared by signer implementations and Solidity. */
+export function attestationSigningPayload(
+  value: Omit<OnChainAttestation, 'signature'>,
+): string {
+  validateAttestation(value);
+  return [
+    'ssw-onchain-attestation-v1',
+    value.version,
+    value.chainId,
+    value.consumer.toLowerCase(),
+    value.policy.toLowerCase(),
+    value.subject.toLowerCase(),
+    value.nonce.toLowerCase(),
+    value.issuedAt,
+    value.expiresAt,
+    value.attestor.toLowerCase(),
+    value.attestorVersion.toLowerCase(),
+  ].join('|');
+}
+
+/** Structural and privacy boundary; cryptographic verification is delegated. */
+export function validateAttestation(
+  value: Omit<OnChainAttestation, 'signature'> | OnChainAttestation,
+): void {
+  if (value.version !== ONCHAIN_ATTESTATION_VERSION)
+    throw new Error('unsupported attestation version');
+  if (!Number.isSafeInteger(value.chainId) || value.chainId <= 0)
+    throw new Error('invalid chain id');
+  address(value.consumer, 'consumer');
+  hex32(value.policy, 'policy');
+  hex32(value.subject, 'subject');
+  hex32(value.nonce, 'nonce');
+  if (
+    !Number.isSafeInteger(value.issuedAt) ||
+    !Number.isSafeInteger(value.expiresAt) ||
+    value.expiresAt <= value.issuedAt
+  )
+    throw new Error('invalid attestation lifetime');
+  address(value.attestor, 'attestor');
+  hex32(value.attestorVersion, 'attestor version');
+  if ('signature' in value && !/^0x[0-9a-fA-F]{130}$/u.test(value.signature))
+    throw new Error('signature must be 65 bytes');
+}
+
+export async function signAttestation(
+  value: Omit<OnChainAttestation, 'signature'>,
+  signer: AttestationSigner,
+  hash: (payload: string) => Hex,
+): Promise<OnChainAttestation> {
+  validateAttestation(value);
+  const digest = hash(attestationSigningPayload(value));
+  const signature = await signer({ digest, attestation: value });
+  const result = { ...value, signature };
+  validateAttestation(result);
+  return result;
+}
+
+export async function verifyAttestation(
+  value: OnChainAttestation,
+  verifier: AttestationVerifier,
+  hash: (payload: string) => Hex,
+  now = Date.now(),
+): Promise<boolean> {
+  validateAttestation(value);
+  if (now < value.issuedAt || now >= value.expiresAt) return false;
+  return verifier({
+    digest: hash(attestationSigningPayload(value)),
+    signature: value.signature,
+    attestor: value.attestor,
+  });
+}
+
 export interface ClockPort {
   now(): number;
 }

@@ -18,7 +18,7 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-011 | Done | P1 | apps | Build the synthetic OpenID4VCI issuer demo | [task](tasks/SSW-011-issuer-demo.md) |
 | SSW-012 | Done | P0 | apps | Build the wallet web demo | [task](tasks/SSW-012-wallet-web-demo.md) |
 | SSW-013 | Done | P0 | apps | Build the OpenID4VP verifier demo | [task](tasks/SSW-013-verifier-demo.md) |
-| SSW-014 | Todo | P0 | integration | Integrate the deterministic local vertical slice | [task](tasks/SSW-014-local-vertical-slice-e2e.md) |
+| SSW-014 | Done | P0 | integration | Integrate the deterministic local vertical slice | [task](tasks/SSW-014-local-vertical-slice-e2e.md) |
 | SSW-015 | Done | P0 | account | Select the smart-account base and build the Foundry harness | [task](tasks/SSW-015-smart-account-adr-foundry.md) |
 | SSW-016 | Done | P0 | account | Implement the local passkey smart account and ERC-1271 flow | [task](tasks/SSW-016-passkey-account-erc1271.md) |
 | SSW-017 | Done | P1 | account | Add the opt-in ERC-4337 testnet adapter | [task](tasks/SSW-017-erc4337-testnet-adapter.md) |
@@ -26,13 +26,13 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-019 | Done | P1 | identity | Decide and implement DID control and holder binding | [task](tasks/SSW-019-did-holder-binding.md) |
 | SSW-020 | Done | P0 | verification | Implement issuer trust and credential status/revocation | [task](tasks/SSW-020-trust-status-revocation.md) |
 | SSW-021 | Done | P0 | recovery | Implement account recovery and encrypted vault backup/restore | [task](tasks/SSW-021-recovery-encrypted-backup.md) |
-| SSW-022 | Todo | P0 | security-ux | Harden consent, phishing resistance, and privacy UX | [task](tasks/SSW-022-consent-privacy-hardening.md) |
-| SSW-023 | Todo | P1 | onchain | Build the short-lived on-chain attestation and access demo | [task](tasks/SSW-023-onchain-attestation-demo.md) |
-| SSW-024 | Todo | P0 | quality | Add adversarial, property, fuzz, and redaction hardening | [task](tasks/SSW-024-adversarial-hardening.md) |
-| SSW-025 | Todo | P0 | integration | Integrate the full local and testnet release candidate | [task](tasks/SSW-025-testnet-release-candidate.md) |
-| SSW-026 | Todo | P0 | security | Prepare the independent security and privacy review packet | [task](tasks/SSW-026-audit-readiness.md) |
+| SSW-022 | Done | P0 | security-ux | Harden consent, phishing resistance, and privacy UX | [task](tasks/SSW-022-consent-privacy-hardening.md) |
+| SSW-023 | Done | P1 | onchain | Build the short-lived on-chain attestation and access demo | [task](tasks/SSW-023-onchain-attestation-demo.md) |
+| SSW-024 | Done | P0 | quality | Add adversarial, property, fuzz, and redaction hardening | [task](tasks/SSW-024-adversarial-hardening.md) |
+| SSW-025 | Doing | P0 | integration | Integrate the full local and testnet release candidate | [task](tasks/SSW-025-testnet-release-candidate.md) |
+| SSW-026 | Done | P0 | security | Prepare the independent security and privacy review packet | [task](tasks/SSW-026-audit-readiness.md) |
 | SSW-027 | Todo | P1 | release | Publish the first open-source alpha release | [task](tasks/SSW-027-open-source-alpha-release.md) |
-| SSW-028 | Todo | P3 | research | Research a future ZK predicate-proof path | [task](tasks/SSW-028-zk-predicate-research.md) |
+| SSW-028 | Done | P3 | research | Research a future ZK predicate-proof path | [task](tasks/SSW-028-zk-predicate-research.md) |
 
 ## Status rules
 

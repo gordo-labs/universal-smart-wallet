@@ -7,6 +7,7 @@ import {
   issuePreAuthorizedCredential,
   parseCredentialOffer,
   parseOpenId4VpRequest,
+  OpenId4VpError,
   type CredentialOffer,
   type HttpTransport,
   type OpenId4VpRequest,
@@ -54,7 +55,9 @@ export type WalletErrorCode =
   | 'rejected-offer'
   | 'cancelled-presentation'
   | 'corrupt-vault'
-  | 'unsupported-prf';
+  | 'unsupported-prf'
+  | 'unsafe-request'
+  | 'ambiguous-verifier';
 
 export class WalletUiError extends Error {
   constructor(
@@ -72,7 +75,31 @@ export type OfferReview = Readonly<{
   purpose: string;
   claims: readonly string[];
   expiry?: string;
+  readonly exactDisclosures: readonly string[];
   offer: CredentialOffer;
+}>;
+
+export type RequestTrust = Readonly<{
+  /** Whether the request was carried by a signed request object/request URI. */
+  signedRequest: boolean;
+  requestUri?: string;
+  /** A same-origin HTTPS check is a useful local signal, never remote HTML. */
+  verifierOrigin: string;
+  identity: 'confirmed' | 'same-origin' | 'ambiguous';
+  level: 'trusted' | 'review' | 'blocked';
+  warning?: string;
+}>;
+
+export type ConsentRiskState = Readonly<{
+  requester: string;
+  requesterOrigin: string;
+  requestedData: readonly string[];
+  sharedData: readonly string[];
+  purpose: string;
+  expiry?: string;
+  trust: RequestTrust;
+  /** Approval is disabled for ambiguous or unsafe requests. */
+  canApprove: boolean;
 }>;
 
 export type PresentationReview = Readonly<{
@@ -82,7 +109,66 @@ export type PresentationReview = Readonly<{
   matchingCredentials: readonly VaultIndexMetadata[];
   request: OpenId4VpRequest;
   policy: PresentationPolicy;
+  consent: ConsentRiskState;
 }>;
+
+const safeRemoteText = (value: string, max = 256): string =>
+  value
+    .replace(/[\u0000-\u001f\u007f]/gu, '')
+    .replace(/<[^>]*>/gu, '')
+    .trim()
+    .slice(0, max);
+
+/** Remote metadata is text-only: callers must not inject it as HTML. */
+export const sanitizeRemoteText = safeRemoteText;
+
+const originOf = (value: string): string => {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' ? url.origin : '';
+  } catch {
+    return '';
+  }
+};
+
+const trustForRequest = (
+  request: OpenId4VpRequest,
+  hooks: Parameters<typeof parseOpenId4VpRequest>[1],
+): RequestTrust => {
+  const verifierOrigin = originOf(request.client_id);
+  const responseOrigin = originOf(request.response_uri);
+  const sameOrigin = !!verifierOrigin && verifierOrigin === responseOrigin;
+  const signedRequest = Boolean(request.request_uri);
+  const identity = hooks?.resolveVerifier
+    ? 'confirmed'
+    : sameOrigin
+      ? 'same-origin'
+      : 'ambiguous';
+  const level =
+    identity === 'ambiguous'
+      ? 'blocked'
+      : signedRequest && identity === 'confirmed'
+        ? 'trusted'
+        : 'review';
+  return {
+    signedRequest,
+    ...(request.request_uri ? { requestUri: request.request_uri } : {}),
+    verifierOrigin,
+    identity,
+    level,
+    ...(level === 'blocked'
+      ? {
+          warning:
+            'Verifier identity and response origin could not be confirmed.',
+        }
+      : level === 'review'
+        ? {
+            warning:
+              'Unsigned request; verify the verifier origin before approving.',
+          }
+        : {}),
+  };
+};
 
 const secretBytes = (secret: string): Uint8Array => {
   if (!secret || secret.length < 8 || secret.length > 512)
@@ -142,10 +228,11 @@ export class WalletController {
         typeof offer === 'string' ? JSON.parse(offer) : offer,
       );
       const review: OfferReview = {
-        issuer: parsed.credential_issuer,
-        credentialType: parsed.credential_configuration_ids[0],
-        purpose,
+        issuer: safeRemoteText(parsed.credential_issuer),
+        credentialType: safeRemoteText(parsed.credential_configuration_ids[0]),
+        purpose: safeRemoteText(purpose),
         claims: ['is_over_18: true'],
+        exactDisclosures: ['is_over_18: true'],
         offer: parsed,
       };
       this.pendingOffer = review;
@@ -225,19 +312,49 @@ export class WalletController {
         (candidate) => metadata.find((item) => item.id === candidate.id)!,
       );
       const review: PresentationReview = {
-        verifier: request.client_id,
-        purpose: policy.purpose,
+        verifier: safeRemoteText(request.client_id),
+        purpose: safeRemoteText(policy.purpose),
         requestedClaims: policy.credentials.flatMap((credential) =>
           credential.claims.map((claim) => claim.path.join('.')),
         ),
         matchingCredentials: matches,
         request,
         policy,
+        consent: {
+          requester: safeRemoteText(request.client_id),
+          requesterOrigin: originOf(request.client_id),
+          requestedData: policy.credentials.flatMap((credential) =>
+            credential.claims.map((claim) => claim.path.join('.')),
+          ),
+          sharedData: matches.flatMap(() =>
+            policy.credentials.flatMap((credential) =>
+              credential.claims
+                .filter((claim) => claim.requiredDisclosure)
+                .map((claim) => claim.path.join('.')),
+            ),
+          ),
+          purpose: safeRemoteText(policy.purpose),
+          expiry: matches
+            .map((item) => item.expiresAt)
+            .find((value): value is string => typeof value === 'string'),
+          trust: trustForRequest(request, hooks),
+          canApprove: trustForRequest(request, hooks).level !== 'blocked',
+        },
       };
       this.pendingPresentation = review;
       this.screen = 'presentation-review';
       return review;
-    } catch {
+    } catch (error) {
+      if (error instanceof OpenId4VpError) {
+        const code =
+          error.code === 'ambiguous_verifier' ||
+          error.code === 'untrusted_request' ||
+          error.code === 'insecure_origin' ||
+          error.code === 'invalid_transaction_data'
+            ? 'unsafe-request'
+            : 'corrupt-vault';
+        throw new WalletUiError(code, 'Request could not be safely reviewed');
+      }
       throw new WalletUiError(
         'corrupt-vault',
         'Request or vault data could not be safely opened',
@@ -260,7 +377,22 @@ export class WalletController {
         'cancelled-presentation',
         'No presentation is awaiting approval',
       );
+    if (!this.pendingPresentation.consent.canApprove)
+      throw new WalletUiError(
+        'unsafe-request',
+        'Verifier identity must be confirmed before approval',
+      );
     return this.pendingPresentation;
+  }
+
+  /** Deny without exposing whether any hidden claim matched. */
+  denyPresentation(): WalletUiError {
+    this.pendingPresentation = undefined;
+    this.screen = this.secret ? 'credentials' : 'locked';
+    return new WalletUiError(
+      'cancelled-presentation',
+      'Presentation cancelled; no disclosure was sent',
+    );
   }
 
   /** Submit only the exact credential set approved in the review screen. */
@@ -328,4 +460,14 @@ export const walletUiCopy = Object.freeze({
   warning: 'Local synthetic demo. Review every claim before disclosure.',
   prfFallback:
     'WebAuthn PRF is unavailable; use the approved encrypted passphrase fallback.',
+  consentLabels: Object.freeze({
+    requester: 'Requester',
+    requestedData: 'Requested data',
+    sharedData: 'Data to share',
+    purpose: 'Purpose',
+    expiry: 'Expires',
+    trust: 'Request trust',
+  }),
+  unsafeRequest: 'This request is unsafe or ambiguous and cannot be approved.',
+  denial: 'Presentation cancelled; no disclosure was sent.',
 });

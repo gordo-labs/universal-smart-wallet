@@ -13,6 +13,23 @@ export const syntheticAgeCredential = {
   expiresAt: 2_000_000_000,
 };
 
+/**
+ * The canonical local presentation fixture.  It deliberately contains only
+ * the derived age claim; birthdate and other identity attributes never enter
+ * the verifier request or response body.
+ */
+export const syntheticAgePresentation = Object.freeze({
+  issuer: syntheticAgeCredential.issuer,
+  vct: 'urn:ssw:age-over-18',
+  claims: { is_over_18: true as const },
+});
+
+export const SYNTHETIC_WALLET_PASSPHRASE = 'synthetic-local-recovery-factor-v1';
+export const SYNTHETIC_CREDENTIAL_ID = 'credential-age-over-18';
+
+/** Stable marker used by the local E2E reset command. */
+export const LOCAL_FIXTURE_VERSION = 'ssw-local-vertical-slice-v1' as const;
+
 export async function createSyntheticKeyMaterial() {
   const issuer = await generateKeyPair('ES256');
   const holder = await generateKeyPair('ES256');
