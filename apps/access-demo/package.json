@@ -6,6 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "pretypecheck": "pnpm --filter @ssw/credential-domain build",
     "typecheck": "tsc --noEmit",
     "test": "pnpm build && node --test test/*.test.mjs"
   },
