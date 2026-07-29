@@ -18,7 +18,7 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-011 | Done | P1 | apps | Build the synthetic OpenID4VCI issuer demo | [task](tasks/SSW-011-issuer-demo.md) |
 | SSW-012 | Done | P0 | apps | Build the wallet web demo | [task](tasks/SSW-012-wallet-web-demo.md) |
 | SSW-013 | Done | P0 | apps | Build the OpenID4VP verifier demo | [task](tasks/SSW-013-verifier-demo.md) |
-| SSW-014 | Todo | P0 | integration | Integrate the deterministic local vertical slice | [task](tasks/SSW-014-local-vertical-slice-e2e.md) |
+| SSW-014 | Done | P0 | integration | Integrate the deterministic local vertical slice | [task](tasks/SSW-014-local-vertical-slice-e2e.md) |
 | SSW-015 | Done | P0 | account | Select the smart-account base and build the Foundry harness | [task](tasks/SSW-015-smart-account-adr-foundry.md) |
 | SSW-016 | Done | P0 | account | Implement the local passkey smart account and ERC-1271 flow | [task](tasks/SSW-016-passkey-account-erc1271.md) |
 | SSW-017 | Done | P1 | account | Add the opt-in ERC-4337 testnet adapter | [task](tasks/SSW-017-erc4337-testnet-adapter.md) |

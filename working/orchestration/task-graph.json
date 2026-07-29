@@ -242,7 +242,7 @@
       "id": "SSW-014",
       "slug": "local-vertical-slice-e2e",
       "title": "Integrate the deterministic local vertical slice",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P0",
       "wave": 7,
       "lane": "integration",
