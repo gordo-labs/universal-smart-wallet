@@ -42,3 +42,15 @@ address, runtime code hash, and EntryPoint compatibility before trust. The
 Foundry harness proves deterministic CREATE2 deployment and code-hash checks
 using a test-only external-code fixture; it does not implement an account,
 passkey verifier, module, recovery path, or UserOperation.
+
+## SSW-016 local passkey/ERC-1271 boundary (2026-07-29)
+
+The adapter requires exact origin, RP ID, challenge, and account matches before
+invoking an external pinned P-256 verifier callback; rejected and empty
+signatures fail closed. It accepts assertion bytes only and has no private-key
+or vault-decryption API. Cancellation and unsupported authenticators are
+classified explicitly. A deterministic local account path derives an address
+from chain ID, factory, RP ID, and credential ID with the
+`ssw-local-account-v1` domain. The Foundry fixture covers positive and negative
+ERC-1271 responses while production remains the upstream Safe deployment.
+Playwright and cross-browser coverage remain follow-up integration work.
