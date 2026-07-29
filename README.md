@@ -5,10 +5,9 @@ privacy-preserving wallet for verifiable credentials.
 
 ## Current state
 
-This repository is a **construction-ready planning scaffold**. It contains the
-feasibility review, architecture, threat boundaries, dependency graph, atomic
-tasks, and copy/paste prompts for implementation agents. It does **not** yet
-contain a runnable wallet.
+This repository contains a synthetic, local release candidate. It is not a
+production wallet: real credentials, valuable assets, mainnet deployments, and
+production-security claims remain out of scope.
 
 The first validated product slice is:
 
@@ -49,6 +48,19 @@ holder-binding failures, and encrypted backup restore after a wallet restart.
 Child processes and temporary data are removed on success or failure. The
 fixture contains no real identity data, secrets, hosted endpoints, RPC, or
 network assets; no screenshots or unsanitized traces are retained.
+
+Run the complete release-candidate gate (local flow, recovery/status/provider
+failure scenarios, Foundry checks, SBOM/license/secret/dependency/code-hash
+evidence) with:
+
+```bash
+pnpm verify:rc
+```
+
+The testnet lane is opt-in and requires the pinned variables documented in the
+[SSW-025 support matrix](docs/releases/SSW-025-support-matrix.md). A local run
+reports `LOCAL_PASS_TESTNET_NOT_REQUESTED`; it must not be read as a testnet or
+production release approval.
 
 ## Core architectural choice
 

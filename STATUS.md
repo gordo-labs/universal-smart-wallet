@@ -36,5 +36,5 @@
 
 ## Next
 
-1. `SSW-025` — full local and testnet release candidate.
+1. `SSW-025` — local release gate is implemented; run the opt-in testnet lane before marking alpha-testnet green.
 2. `SSW-026` — independent security and privacy review packet.
