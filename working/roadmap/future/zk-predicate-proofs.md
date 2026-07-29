@@ -20,3 +20,22 @@ on an issuer-provided boolean and without disclosing the source value?
 `SSW-028` may recommend an implementation only after comparing maintained
 proof systems, circuit auditability, proof size/cost, setup assumptions,
 revocation binding, correlation, and browser performance on real fixtures.
+
+## Chain sequencing decision (2026-07-29)
+
+- **Initial deployment target:** Base Sepolia, preserving the current EVM,
+  Safe, ERC-4337, and EIP-1271 integration surface.
+- **Privacy boundary:** VC payloads remain off-chain. On-chain consumers may
+  receive only a proof, commitment, nullifier, issuer/schema binding, audience,
+  and expiry.
+- **Second target:** Scroll Sepolia, if a ZK-rollup security/portability lane is
+  required after the Base flow is stable. This should reuse the same proof
+  envelope and policy semantics, with a separate deployment profile and
+  verifier address.
+- **Longer-term privacy target:** keep an Aztec adapter as a separate,
+  privacy-native path rather than coupling the EVM core to a single chain.
+
+This sequencing does not claim that Base provides native private state. It
+keeps the application ZK-ready at the verifier and proof-envelope boundary
+while deferring a privacy-native chain migration until the predicate design
+and threat model justify it.

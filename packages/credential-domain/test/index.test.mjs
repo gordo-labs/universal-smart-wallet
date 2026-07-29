@@ -161,4 +161,49 @@ describe('issuer trust and status cache', () => {
       'stale',
     );
   });
+
+  it('rejects expired or malformed status responses instead of caching them as valid', async () => {
+    let calls = 0;
+    const cache = new StatusCache(
+      async () => {
+        calls += 1;
+        return {
+          status: 200,
+          body: JSON.stringify({ status: 'valid', expiresAt: 999 }),
+        };
+      },
+      { clock: () => 1_000 },
+    );
+    expect((await cache.lookup('https://issuer.example/expired')).code).toBe(
+      'invalid_response',
+    );
+    expect((await cache.lookup('https://issuer.example/expired')).code).toBe(
+      'invalid_response',
+    );
+    expect(calls).toBe(2);
+    const malformed = new StatusCache(
+      async () => ({
+        status: 200,
+        body: JSON.stringify({ status: 'valid', expiresAt: 'never' }),
+      }),
+      { clock: () => 1_000 },
+    );
+    expect(
+      (await malformed.lookup('https://issuer.example/malformed')).code,
+    ).toBe('invalid_response');
+  });
+
+  it('blocks cloud metadata, carrier NAT, and credential-bearing status URLs', async () => {
+    const transport = async () => {
+      throw new Error('must not be called');
+    };
+    const cache = new StatusCache(transport);
+    for (const url of [
+      'http://169.254.169.254/latest/meta-data',
+      'http://100.100.100.100/status',
+      'https://user:password@issuer.example/status',
+    ]) {
+      expect((await cache.lookup(url)).code).toBe('ssrf_blocked');
+    }
+  });
 });
