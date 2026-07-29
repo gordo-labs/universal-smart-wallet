@@ -67,4 +67,18 @@ describe('synthetic OpenID4VCI issuer routes', () => {
     expect(issuerDemoUi.warning).toMatch(/no real identity/i);
     expect(issuerDemoUi.warning).not.toMatch(/enter|provide|upload|submit/i);
   });
+
+  it.each(['suspended', 'stale', 'unavailable', 'rotated-key'])(
+    'exposes %s status/key fixture without holder identifiers',
+    (fixture) => {
+      const issuer = createSyntheticIssuer(fixture);
+      const status = issuer.route('/status/7');
+      if (fixture === 'unavailable') expect(status.status).toBe(503);
+      else expect(status.body).not.toMatch(/holder|credentialId|subject/i);
+      if (fixture === 'rotated-key')
+        expect(issuer.route('/public-key').body).toContain(
+          'synthetic-untrusted-rotation',
+        );
+    },
+  );
 });
