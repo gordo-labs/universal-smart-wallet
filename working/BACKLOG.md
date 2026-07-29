@@ -10,7 +10,7 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-003 | Done   | P0       | architecture      | Pin the standards and dependency compatibility baseline       | [task](tasks/SSW-003-standards-dependency-baseline.md)    |
 | SSW-004 | Todo   | P0       | credential-core   | Implement shared runtime schemas and DCQL policy mapping      | [task](tasks/SSW-004-shared-schemas-dcql-policy.md)       |
 | SSW-005 | Todo   | P0       | credential-core   | Implement nonce, replay, and verification-result domain logic | [task](tasks/SSW-005-nonce-replay-verification-domain.md) |
-| SSW-006 | Todo   | P0       | vault             | Design and prove the vault key-management boundary            | [task](tasks/SSW-006-vault-key-management-adr.md)         |
+| SSW-006 | Done   | P0       | vault             | Design and prove the vault key-management boundary            | [task](tasks/SSW-006-vault-key-management-adr.md)         |
 | SSW-007 | Todo   | P0       | vault             | Implement the encrypted vault and IndexedDB adapter           | [task](tasks/SSW-007-encrypted-vault-indexeddb.md)        |
 | SSW-008 | Todo   | P0       | credential-format | Implement the version-pinned SD-JWT VC adapter                | [task](tasks/SSW-008-sd-jwt-vc-adapter.md)                |
 | SSW-009 | Todo   | P0       | protocol          | Implement the OpenID4VCI issuance flow                        | [task](tasks/SSW-009-openid4vci-flow.md)                  |

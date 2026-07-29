@@ -19,6 +19,9 @@ Credentials never enter blockchain state or plaintext logs.
 - IndexedDB migrations, corruption detection, deletion, and bounded metadata
   indexing.
 
+SSW-006 establishes the key boundary in
+[`docs/decisions/SSW-006-vault-key-management.md`](../../docs/decisions/SSW-006-vault-key-management.md): random DEK + AES-GCM, explicit PRF/HKDF or PBKDF2 wrapping, and no silent PRF downgrade. Loss, sync theft, and rollback consequences are recorded in the [threat model](../../docs/threat-model/SSW-006-vault-key-management.md).
+
 ## Constraints
 
 Passkey signing and vault encryption are separate concerns. Smart-account

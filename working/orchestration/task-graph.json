@@ -98,7 +98,7 @@
       "id": "SSW-006",
       "slug": "vault-key-management-adr",
       "title": "Design and prove the vault key-management boundary",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P0",
       "wave": 2,
       "lane": "vault",

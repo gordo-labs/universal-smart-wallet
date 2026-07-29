@@ -10,7 +10,7 @@
   "lastActionDescription": "Aligned public CI with the executable monorepo checks and verified repository governance.",
   "nextNeeds": [
     "SSW-004: Implement shared runtime schemas and DCQL policy mapping",
-    "SSW-006: Design and prove the vault key-management boundary",
+    "SSW-007: Implement the encrypted vault and IndexedDB adapter",
     "SSW-015: Select the smart-account base and build the Foundry harness"
   ],
   "blocking": null,
