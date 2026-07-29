@@ -260,7 +260,7 @@
       "id": "SSW-015",
       "slug": "smart-account-adr-foundry",
       "title": "Select the smart-account base and build the Foundry harness",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P0",
       "wave": 2,
       "lane": "account",

@@ -6,12 +6,12 @@
   "lifecycle": "planning",
   "frequency": "weekly",
   "description": "Open-source smart wallet for passkey-controlled smart accounts and privacy-preserving verifiable credentials.",
-  "lastAction": "2026-07-29T13:05:00+02:00",
-  "lastActionDescription": "Aligned public CI with the executable monorepo checks and verified repository governance.",
+  "lastAction": "2026-07-29T13:06:57+02:00",
+  "lastActionDescription": "Integrated the vault key-management and smart-account baseline spikes with passing local checks.",
   "nextNeeds": [
     "SSW-004: Implement shared runtime schemas and DCQL policy mapping",
     "SSW-007: Implement the encrypted vault and IndexedDB adapter",
-    "SSW-015: Select the smart-account base and build the Foundry harness"
+    "SSW-016: Implement the local passkey smart account and ERC-1271 flow"
   ],
   "blocking": null,
   "license": "Apache-2.0",
