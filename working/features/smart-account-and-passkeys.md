@@ -32,3 +32,13 @@ adapter. The ADR—not this planning assumption—selects the dependency.
 ## Tasks
 
 `SSW-015`–`SSW-018`, `SSW-021`, `SSW-024`.
+
+## SSW-015 decision and harness (2026-07-29)
+
+SSW-015 selects Safe Protocol Kit `8.0.4` as the replaceable account boundary
+for ERC-1271, ERC-4337, and the passkey path. EntryPoint `0.8.0` remains pinned
+to the SSW-003 canonical address. `packages/account-adapter` validates chain,
+address, runtime code hash, and EntryPoint compatibility before trust. The
+Foundry harness proves deterministic CREATE2 deployment and code-hash checks
+using a test-only external-code fixture; it does not implement an account,
+passkey verifier, module, recovery path, or UserOperation.

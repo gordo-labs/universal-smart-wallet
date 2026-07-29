@@ -2,13 +2,13 @@
 
 > Generated from `working/orchestration/task-graph.json`. Edit the graph and rerun `node scripts/render-task-prompts.mjs`.
 
-| Field | Value |
-| --- | --- |
-| Status | Todo |
-| Priority | P0 |
-| Wave | 2 |
-| Lane | account |
-| Dependencies | SSW-003 |
+| Field         | Value                                                              |
+| ------------- | ------------------------------------------------------------------ |
+| Status        | Done (branch `docs/SSW-015-smart-account-adr-foundry`)             |
+| Priority      | P0                                                                 |
+| Wave          | 2                                                                  |
+| Lane          | account                                                            |
+| Dependencies  | SSW-003                                                            |
 | Primary paths | `docs/decisions/**`, `packages/account-adapter/**`, `contracts/**` |
 
 ## Active feature context
