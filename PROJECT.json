@@ -1,0 +1,44 @@
+{
+  "name": "Sovereign Smart Wallet",
+  "slug": "sovereign-smart-wallet",
+  "type": "public-app",
+  "status": "active",
+  "lifecycle": "planning",
+  "frequency": "weekly",
+  "description": "Open-source smart wallet for passkey-controlled smart accounts and privacy-preserving verifiable credentials.",
+  "lastAction": "2026-07-29T12:00:00+02:00",
+  "lastActionDescription": "Created the feasibility review, target architecture, dependency graph, and atomic agent task catalog.",
+  "nextNeeds": [
+    "SSW-001: Bootstrap the executable pnpm monorepo",
+    "SSW-003: Pin the standards and dependency compatibility baseline",
+    "SSW-002: Publish the initial repository to a public GitHub remote after explicit approval"
+  ],
+  "blocking": null,
+  "license": "Apache-2.0",
+  "safety": {
+    "productionReady": false,
+    "allowedData": "Synthetic credentials only until independent security and privacy review",
+    "allowedNetworks": "Local Anvil and explicitly configured EVM testnets only",
+    "mainnet": false
+  },
+  "git": {
+    "enabled": true,
+    "defaultBranch": "main",
+    "remote": null,
+    "plannedRemote": "https://github.com/gordo-labs/sovereign-smart-wallet",
+    "plannedVisibility": "public",
+    "publicationState": "local scaffold only"
+  },
+  "telegram": {
+    "hasTopic": false
+  },
+  "tags": [
+    "identity-wallet",
+    "verifiable-credentials",
+    "openid4vc",
+    "sd-jwt-vc",
+    "account-abstraction",
+    "passkeys",
+    "open-source"
+  ]
+}
