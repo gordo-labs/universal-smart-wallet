@@ -405,7 +405,15 @@ const isPrivateHost = (hostname: string): boolean => {
   const host = hostname.toLowerCase();
   if (host === 'localhost' || host.endsWith('.localhost') || host === '::1')
     return true;
-  if (/^127\./u.test(host) || /^10\./u.test(host) || /^192\.168\./u.test(host))
+  // Block loopback, RFC1918, link-local and carrier-grade NAT ranges. Status
+  // endpoints are attacker-controlled input and must not be an SSRF primitive.
+  if (
+    /^127\./u.test(host) ||
+    /^10\./u.test(host) ||
+    /^192\.168\./u.test(host) ||
+    /^169\.254\./u.test(host) ||
+    /^100\.(?:6[4-9]|[7-9]\d|1[01]\d|12[0-7])\./u.test(host)
+  )
     return true;
   const match = host.match(/^172\.(\d{1,3})\./u);
   return Boolean(match && Number(match[1]) >= 16 && Number(match[1]) <= 31);
@@ -418,7 +426,12 @@ const boundedStatusUrl = (value: string): URL => {
   } catch {
     throw new Error('ssrf_blocked');
   }
-  if (url.protocol !== 'https:' || isPrivateHost(url.hostname))
+  if (
+    url.protocol !== 'https:' ||
+    isPrivateHost(url.hostname) ||
+    url.username.length > 0 ||
+    url.password.length > 0
+  )
     throw new Error('ssrf_blocked');
   return url;
 };
@@ -470,7 +483,9 @@ export class StatusCache {
       const parsed = JSON.parse(response.body) as Partial<StatusRecord>;
       if (
         !['valid', 'revoked', 'suspended'].includes(parsed.status ?? '') ||
-        !Number.isFinite(parsed.expiresAt)
+        typeof parsed.expiresAt !== 'number' ||
+        !Number.isSafeInteger(parsed.expiresAt) ||
+        parsed.expiresAt <= now
       )
         throw new Error('invalid_response');
       const record = {
@@ -486,6 +501,8 @@ export class StatusCache {
         cached: false,
       };
     } catch (error) {
+      if (error instanceof Error && error.message === 'invalid_response')
+        return { ok: false, code: 'invalid_response', cached: false };
       if (cached)
         return {
           ok: false,

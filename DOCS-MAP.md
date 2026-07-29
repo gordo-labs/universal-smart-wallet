@@ -3,6 +3,7 @@
 ## Overview
 
 - [README.md](README.md)
+- [Next.js documentation app](apps/docs/README.md)
 - [PROJECT.json](PROJECT.json)
 - [STATUS.md](STATUS.md)
 - [START_HERE.md](START_HERE.md)
