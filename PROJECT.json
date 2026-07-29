@@ -9,7 +9,8 @@
   "lastAction": "2026-07-29T14:05:00+02:00",
   "lastActionDescription": "Integrated wallet and verifier demos with local VP submission and fail-closed validation.",
   "nextNeeds": [
-    "SSW-020: Implement issuer trust and credential status/revocation"
+    "SSW-022: Harden consent, phishing resistance, and privacy UX",
+    "SSW-023: Build the short-lived on-chain attestation and access demo"
   ],
   "blocking": null,
   "license": "Apache-2.0",
