@@ -36,5 +36,5 @@
 
 ## Next
 
-1. `SSW-012` — wallet web demo.
-2. `SSW-020` — issuer trust and credential status/revocation.
+1. `SSW-020` — issuer trust and credential status/revocation.
+2. `SSW-022` — consent, phishing resistance, and privacy UX (after SSW-020).
