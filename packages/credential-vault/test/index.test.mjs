@@ -9,6 +9,8 @@ import {
   InMemoryVaultStore,
   FakeIndexedDbVaultStore,
   VaultStoreError,
+  createVaultBackup,
+  openVaultBackup,
 } from '../dist/index.js';
 
 const bytes = (length, seed = 1) =>
@@ -165,4 +167,56 @@ test('metadata tampering and failed migration retain no partial plaintext', asyn
     metadata,
     credential: { secret: 'synthetic-only' },
   });
+});
+
+test('encrypted backup round-trips, rejects wrong passphrases, rollback, and partial records', async () => {
+  const store = new InMemoryVaultStore();
+  const metadata = {
+    id: 'backup-1',
+    credentialType: 'Synthetic',
+    issuer: 'https://issuer.invalid',
+  };
+  await store.put(
+    metadata,
+    { secret: 'synthetic-only' },
+    {
+      strategy: 'passphrase',
+      passphrase: 'synthetic recovery factor',
+      randomBytes,
+    },
+  );
+  const backup = await store.exportBackup({
+    strategy: 'passphrase',
+    passphrase: 'backup recovery factor',
+    sequence: 2,
+    createdAt: '2026-07-29T00:00:00Z',
+    randomBytes,
+  });
+  assert.equal(JSON.stringify(backup).includes('synthetic-only'), false);
+  await assert.rejects(
+    () => openVaultBackup(backup, 'wrong recovery factor'),
+    /operation|decrypt|corrupt/i,
+  );
+  await assert.rejects(
+    () =>
+      openVaultBackup(backup, 'backup recovery factor', { minimumSequence: 3 }),
+    /rollback/,
+  );
+  const restored = new InMemoryVaultStore();
+  await restored.restoreBackup(backup, 'backup recovery factor', {
+    minimumSequence: 2,
+  });
+  assert.deepEqual(
+    (await restored.get(metadata.id, 'synthetic recovery factor')).credential,
+    { secret: 'synthetic-only' },
+  );
+  const partial = structuredClone(backup);
+  const payload = await openVaultBackup(backup, 'backup recovery factor');
+  partial.payload.ciphertext =
+    backup.payload.ciphertext.slice(0, -1) +
+    (backup.payload.ciphertext.endsWith('A') ? 'B' : 'A');
+  await assert.rejects(() =>
+    openVaultBackup(partial, 'backup recovery factor'),
+  );
+  assert.equal(payload.entries.length, 1);
 });

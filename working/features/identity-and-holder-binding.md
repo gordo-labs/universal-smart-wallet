@@ -39,3 +39,6 @@ recovery are separate state machines.
 ## Tasks
 
 `SSW-019`, `SSW-021`, `SSW-023`.
+
+SSW-021 preserves controller/account identity while rotating signer control;
+vault restore is separately authenticated and does not alter DID derivation.

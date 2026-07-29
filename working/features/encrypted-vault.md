@@ -38,6 +38,15 @@ Passkey signing and vault encryption are separate concerns. Smart-account
 recovery does not recover the vault unless the encrypted backup flow also
 succeeds.
 
+## SSW-021 backup/restore boundary (2026-07-29)
+
+`createVaultBackup` exports a versioned outer AES-GCM envelope whose payload
+contains only already-encrypted vault records. PBKDF2 work remains bounded and
+the backup sequence is authenticated; `openVaultBackup` rejects wrong factors,
+corruption, and sequence rollback. Restore replaces records atomically in the
+local adapters. Account recovery and vault restore remain independently
+authenticated state machines.
+
 ## Tasks
 
 `SSW-006`, `SSW-007`, `SSW-012`, `SSW-021`, `SSW-024`.
