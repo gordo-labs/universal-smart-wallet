@@ -2,13 +2,13 @@
 
 > Generated from `working/orchestration/task-graph.json`. Edit the graph and rerun `node scripts/render-task-prompts.mjs`.
 
-| Field         | Value                                                                          |
-| ------------- | ------------------------------------------------------------------------------ |
-| Status        | Done                                                                           |
-| Priority      | P0                                                                             |
-| Wave          | 3                                                                              |
-| Lane          | credential-format                                                              |
-| Dependencies  | SSW-003, SSW-004                                                               |
+| Field | Value |
+| --- | --- |
+| Status | Done |
+| Priority | P0 |
+| Wave | 3 |
+| Lane | credential-format |
+| Dependencies | SSW-003, SSW-004 |
 | Primary paths | `packages/sd-jwt-adapter/**`, `packages/test-fixtures/**`, `docs/protocols/**` |
 
 ## Active feature context

@@ -101,14 +101,3 @@ Documentation and handoff:
 2. Return a pass/fail table for every acceptance criterion, exact commands/results, changed files, mocks/external dependencies, security/privacy implications, and next unblocked task IDs.
 3. Do not claim completion if a required check was skipped or blocked.
 ```
-
-## Completion evidence (2026-07-29)
-
-- Acceptance 1: **Pass** — default challenges use 32 random bytes and reject
-  configured entropy below 16 bytes; deterministic encoding round-trip tested.
-- Acceptance 2: **Pass** — consume marks before return and reuse test proves a
-  challenge is accepted at most once.
-- Acceptance 3: **Pass** — unknown, expired, wrong-audience, and reused codes
-  are distinct; replay-store exceptions return `REPLAY_STORE_FAILURE`.
-- Checks: package build (pass), package tests (4, pass), `pnpm typecheck`
-  (pass).
