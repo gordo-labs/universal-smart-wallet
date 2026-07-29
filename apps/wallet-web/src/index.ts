@@ -263,6 +263,38 @@ export class WalletController {
     return this.pendingPresentation;
   }
 
+  /** Submit only the exact credential set approved in the review screen. */
+  async submitPresentation(input: {
+    readonly approvedCredentialIds: readonly string[];
+    readonly present: (credential: unknown, request: OpenId4VpRequest) => Promise<string>;
+    readonly transport: HttpTransport;
+  }): Promise<{ readonly vpToken: string; readonly responseUri: string }> {
+    const secret = this.requireUnlocked();
+    const review = this.requirePresentationApproval();
+    const expected = review.matchingCredentials.map((item) => item.id).sort();
+    const approved = [...input.approvedCredentialIds].sort();
+    if (expected.length !== approved.length || expected.some((id, index) => id !== approved[index]))
+      throw new WalletUiError('cancelled-presentation', 'Approval does not match the reviewed disclosure set');
+    const opened = await Promise.all(
+      approved.map((id) => this.vault.get(id, secret)),
+    );
+    if (opened.length !== 1)
+      throw new WalletUiError('cancelled-presentation', 'This demo requires one approved credential');
+    const vpToken = await input.present(opened[0].credential, review.request);
+    if (!vpToken || vpToken.length > 32768)
+      throw new WalletUiError('cancelled-presentation', 'Presentation was rejected before sending');
+    const response = await input.transport(review.request.response_uri, {
+      method: 'POST',
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ vp_token: vpToken, state: review.request.state }).toString(),
+    });
+    if (response.status < 200 || response.status >= 300)
+      throw new WalletUiError('cancelled-presentation', 'Verifier did not accept the presentation');
+    this.pendingPresentation = undefined;
+    this.screen = 'credentials';
+    return { vpToken, responseUri: review.request.response_uri };
+  }
+
   private requireUnlocked(): Uint8Array {
     if (!this.secret)
       throw new WalletUiError('locked', 'Unlock the wallet to continue');
