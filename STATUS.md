@@ -11,7 +11,7 @@
   optional on-chain attestations.
 - **Execution:** 28 atomic tasks with explicit dependencies, parallel waves,
   acceptance criteria, validation, and agent prompts. `SSW-001`–`SSW-013`,
-  `SSW-015`–`SSW-021` are Done.
+  `SSW-015`–`SSW-024`, and `SSW-028` are Done.
 - **GitHub:** the public repository is at
   `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.
@@ -36,5 +36,5 @@
 
 ## Next
 
-1. `SSW-020` — issuer trust and credential status/revocation.
-2. `SSW-022` — consent, phishing resistance, and privacy UX (after SSW-020).
+1. `SSW-025` — local release gate is implemented; run the opt-in testnet lane before marking alpha-testnet green.
+2. `SSW-027` — open-source alpha release (requires explicit release approval).

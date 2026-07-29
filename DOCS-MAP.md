@@ -65,6 +65,12 @@
 - [Security review](working/procedures/SECURITY-REVIEW.md)
 - [Release workflow](working/procedures/RELEASE-WORKFLOW.md)
 
+## Release candidate
+
+- [SSW-025 acceptance report](docs/releases/SSW-025-acceptance-report.md)
+- [SSW-025 support matrix](docs/releases/SSW-025-support-matrix.md)
+- [SSW-025 deployment manifest](docs/releases/SSW-025-deployment-manifest.json)
+
 ## History and memory
 
 - [July 2026 history](working/history/2026/2026-07.md)

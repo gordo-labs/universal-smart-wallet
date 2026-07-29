@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   createSyntheticVpToken,
   createVerifierDemo,
+  summarizeVerifierRequest,
   verifierDemoUi,
 } from '../src/index.ts';
 
@@ -86,5 +87,32 @@ describe('OpenID4VP verifier demo', () => {
     expect(verifierDemoUi.rejection).not.toMatch(
       /date|birth|claim|is_over_18/i,
     );
+  });
+
+  it('exposes request trust without treating ambiguous origins as trusted', () => {
+    const { request } = setup();
+    expect(summarizeVerifierRequest(request)).toMatchObject({
+      requester: 'https://verifier.example',
+      responseOrigin: 'https://verifier.example',
+      signedRequest: false,
+      identity: 'same-origin',
+      level: 'review',
+    });
+    const ambiguous = summarizeVerifierRequest({
+      ...request,
+      response_uri: 'https://other.example/callback',
+    });
+    expect(ambiguous).toMatchObject({
+      identity: 'ambiguous',
+      level: 'blocked',
+    });
+    expect(verifierDemoUi.consent).toMatchObject({
+      requester: 'Requester',
+      requestedData: 'Requested data',
+      sharedData: 'Data received',
+      purpose: 'Purpose',
+      expiry: 'Session expiry',
+      trust: 'Request trust',
+    });
   });
 });
