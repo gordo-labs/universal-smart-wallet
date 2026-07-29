@@ -34,3 +34,17 @@ transaction. ZK predicates remain later research.
 ## Tasks
 
 `SSW-023`, then `SSW-028` for future ZK research.
+
+## SSW-023 implementation boundary
+
+The MVP uses an EIP-712 attestor signature over a version-1 envelope containing
+only `chainId`, consumer address, policy hash, nullifier-style subject, nonce,
+issued-at/expiry, attestor address, and an explicit attestor-key version. The
+consumer contract rejects wrong chain/audience/policy, expiry, nonce reuse,
+invalid signatures, and inactive or rotated attestors before emitting a
+PII-free access event. Rotation and revocation are owner-gated and versioned.
+
+The `@ssw/credential-domain` ports intentionally delegate hashing and signing
+to the host wallet/attestor SDK; the access demo's signer is a deterministic
+synthetic fixture and is not suitable for a testnet. A failed on-chain consume
+does not mutate the off-chain verification result.

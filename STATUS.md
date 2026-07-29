@@ -11,7 +11,7 @@
   optional on-chain attestations.
 - **Execution:** 28 atomic tasks with explicit dependencies, parallel waves,
   acceptance criteria, validation, and agent prompts. `SSW-001`–`SSW-013`,
-  `SSW-015`–`SSW-021` are Done.
+  `SSW-015`–`SSW-021`, and `SSW-023` are Done.
 - **GitHub:** the public repository is at
   `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.
@@ -37,4 +37,4 @@
 ## Next
 
 1. `SSW-022` — consent, phishing resistance, and privacy UX.
-2. `SSW-023` — short-lived on-chain attestation and access demo.
+2. `SSW-024` — adversarial, property, fuzz, and redaction hardening.
