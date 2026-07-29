@@ -2,13 +2,13 @@
 
 > Generated from `working/orchestration/task-graph.json`. Edit the graph and rerun `node scripts/render-task-prompts.mjs`.
 
-| Field         | Value                                                                                                 |
-| ------------- | ----------------------------------------------------------------------------------------------------- |
-| Status        | Done                                                                                                  |
-| Priority      | P1                                                                                                    |
-| Wave          | 8                                                                                                     |
-| Lane          | onchain                                                                                               |
-| Dependencies  | SSW-017, SSW-019, SSW-020                                                                             |
+| Field | Value |
+| --- | --- |
+| Status | Done |
+| Priority | P1 |
+| Wave | 8 |
+| Lane | onchain |
+| Dependencies | SSW-017, SSW-019, SSW-020 |
 | Primary paths | `contracts/**`, `packages/credential-domain/**`, `packages/account-adapter/**`, `apps/access-demo/**` |
 
 ## Active feature context
