@@ -6,12 +6,12 @@
   "lifecycle": "planning",
   "frequency": "weekly",
   "description": "Open-source smart wallet for passkey-controlled smart accounts and privacy-preserving verifiable credentials.",
-  "lastAction": "2026-07-29T12:00:00+02:00",
-  "lastActionDescription": "Created the feasibility review, target architecture, dependency graph, and atomic agent task catalog.",
+  "lastAction": "2026-07-29T12:37:06+02:00",
+  "lastActionDescription": "Published the planning scaffold to the public GitHub repository and started the governance baseline.",
   "nextNeeds": [
     "SSW-001: Bootstrap the executable pnpm monorepo",
     "SSW-003: Pin the standards and dependency compatibility baseline",
-    "SSW-002: Publish the initial repository to a public GitHub remote after explicit approval"
+    "SSW-002: Complete CI alignment after the executable foundation exists"
   ],
   "blocking": null,
   "license": "Apache-2.0",
@@ -24,10 +24,10 @@
   "git": {
     "enabled": true,
     "defaultBranch": "main",
-    "remote": null,
+    "remote": "https://github.com/gordo-labs/sovereign-smart-wallet",
     "plannedRemote": "https://github.com/gordo-labs/sovereign-smart-wallet",
     "plannedVisibility": "public",
-    "publicationState": "local scaffold only"
+    "publicationState": "public planning scaffold"
   },
   "codex": {
     "primaryThreadId": "019fad60-2d17-7512-acaf-0c740b4a670a",
