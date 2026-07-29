@@ -458,7 +458,7 @@
       "id": "SSW-026",
       "slug": "audit-readiness",
       "title": "Prepare the independent security and privacy review packet",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P0",
       "wave": 11,
       "lane": "security",

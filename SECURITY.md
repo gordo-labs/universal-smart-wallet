@@ -6,6 +6,10 @@ Sovereign Smart Wallet is experimental and has not been independently audited.
 Do not use it for production identity credentials, personal data, mainnet
 assets, or decisions with legal or financial effect.
 
+The SSW-026 review packet in
+[`docs/audit/SSW-026-review-packet.md`](docs/audit/SSW-026-review-packet.md)
+lists reproducible evidence and open gaps; it is not an independent audit.
+
 ## Reporting
 
 Report suspected vulnerabilities through

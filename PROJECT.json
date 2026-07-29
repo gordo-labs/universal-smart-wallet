@@ -10,7 +10,7 @@
   "lastActionDescription": "Added the versioned EIP-712 on-chain attestation consumer and synthetic access demo with replay, expiry, scope, and attestor rotation checks.",
   "nextNeeds": [
     "SSW-025: Integrate the full local and testnet release candidate",
-    "SSW-026: Prepare the independent security and privacy review packet"
+    "SSW-027: Publish the first open-source alpha release (requires explicit approval)"
   ],
   "blocking": null,
   "license": "Apache-2.0",
