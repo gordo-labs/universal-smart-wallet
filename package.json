@@ -14,6 +14,7 @@
     "typecheck": "pnpm -r --if-present typecheck",
     "test": "pnpm build && node scripts/unit-smoke.mjs",
     "e2e": "node scripts/e2e-smoke.mjs",
+    "e2e:local": "pnpm build && node scripts/e2e-local.mjs",
     "validate:toolchain": "node scripts/check-toolchain.mjs"
   },
   "devDependencies": {
