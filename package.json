@@ -1,0 +1,23 @@
+{
+  "name": "sovereign-smart-wallet",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@11.5.1",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter './apps/*' dev",
+    "build": "pnpm -r --if-present build",
+    "lint": "prettier --check package.json pnpm-workspace.yaml tsconfig.base.json scripts/check-toolchain.mjs scripts/e2e-smoke.mjs scripts/unit-smoke.mjs apps packages",
+    "format": "prettier --write .",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test": "pnpm build && node scripts/unit-smoke.mjs",
+    "e2e": "node scripts/e2e-smoke.mjs",
+    "validate:toolchain": "node scripts/check-toolchain.mjs"
+  },
+  "devDependencies": {
+    "prettier": "3.6.2",
+    "typescript": "5.9.2"
+  }
+}

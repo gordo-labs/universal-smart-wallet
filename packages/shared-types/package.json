@@ -1,0 +1,10 @@
+{
+  "name": "@ssw/shared-types",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  }
+}

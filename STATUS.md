@@ -2,7 +2,7 @@
 
 ## Current
 
-- **Lifecycle:** planning; no executable product yet.
+- **Lifecycle:** planning; executable monorepo foundation bootstrapped on `feat/SSW-001-monorepo-foundation`.
 - **Feasibility:** high for a synthetic local/testnet vertical slice; medium for
   a production wallet until conformance, recovery, browser portability,
   privacy, and independent security review are complete.
@@ -35,7 +35,8 @@
 
 ## Next
 
-1. `SSW-001` — executable monorepo foundation.
-2. `SSW-003` — standards and dependency pinning spike.
-3. `SSW-002` — finish CI alignment after `SSW-001`; public repository bootstrap
+1. `SSW-003` — standards and dependency pinning spike.
+2. `SSW-006` — vault key-management boundary ADR.
+3. `SSW-015` — smart-account selection and Foundry harness.
+4. `SSW-002` — finish CI alignment after `SSW-001`; public repository bootstrap
    is complete.
