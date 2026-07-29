@@ -25,7 +25,18 @@ importers:
         specifier: 4.1.10
         version: 4.1.10(vite@8.1.5(esbuild@0.28.1))
 
-  apps/verifier-demo: {}
+  apps/verifier-demo:
+    dependencies:
+      '@ssw/openid4vc':
+        specifier: workspace:*
+        version: link:../../packages/openid4vc
+      '@ssw/presentation-policy':
+        specifier: workspace:*
+        version: link:../../packages/presentation-policy
+    devDependencies:
+      vitest:
+        specifier: 4.1.10
+        version: 4.1.10(vite@8.1.5(esbuild@0.28.1))
 
   apps/wallet-web: {}
 
