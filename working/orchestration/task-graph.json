@@ -495,7 +495,7 @@
       "id": "SSW-028",
       "slug": "zk-predicate-research",
       "title": "Research a future ZK predicate-proof path",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P3",
       "wave": 12,
       "lane": "research",
