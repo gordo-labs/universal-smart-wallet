@@ -165,6 +165,52 @@ export function toDcql(policy: PresentationPolicy): DcqlQuery {
     })),
   };
 }
+
+export interface PresentationCandidate {
+  readonly id: string;
+  readonly format: 'dc+sd-jwt';
+  readonly vct: string;
+  readonly claims: Readonly<Record<string, unknown>>;
+  readonly disclosures: readonly string[];
+}
+
+/** Select only credentials satisfying every DCQL claim, returning an exact disclosure set. */
+export function selectPresentationCandidates(
+  policy: PresentationPolicy,
+  candidates: readonly PresentationCandidate[],
+  approvedIds?: readonly string[],
+): PresentationCandidate[] {
+  const parsed = parsePresentationPolicy(policy);
+  const allowed = approvedIds ? new Set(approvedIds) : undefined;
+  if (approvedIds && approvedIds.some((id) => typeof id !== 'string'))
+    return fail('invalid approved credential ids');
+  return parsed.credentials.flatMap((query) =>
+    candidates
+      .filter((candidate) => {
+        if (
+          candidate.format !== query.format ||
+          candidate.vct !== query.vct ||
+          candidate.id !== query.id
+        )
+          return false;
+        if (allowed && !allowed.has(candidate.id)) return false;
+        return query.claims.every((requirement) => {
+          let current: unknown = candidate.claims;
+          for (const segment of requirement.path) {
+            if (!record(current) || !(segment in current)) return false;
+            current = current[segment];
+          }
+          return (
+            requirement.operator === 'equals' && current === requirement.value
+          );
+        });
+      })
+      .map((candidate) => ({
+        ...candidate,
+        disclosures: [...candidate.disclosures],
+      })),
+  );
+}
 export function fromDcql(
   value: unknown,
   purpose = 'DCQL presentation',
