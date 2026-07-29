@@ -5,6 +5,7 @@ import { createHash } from 'node:crypto';
 import process from 'node:process';
 
 const required = [
+  'SSW_RC_NETWORK',
   'SSW_RC_CHAIN_ID',
   'SSW_RC_RPC_URL',
   'SSW_RC_ENTRY_POINT',
@@ -18,6 +19,9 @@ const required = [
 const normalizeHash = (value) => value.toLowerCase().replace(/^0x/u, '');
 const sha256 = (value) => createHash('sha256').update(value).digest('hex');
 const isAddress = (value) => /^0x[0-9a-fA-F]{40}$/u.test(value);
+const isLocalNetwork = (value) => /^(?:anvil|local|localhost)$/iu.test(value);
+const isMainnetNetwork = (value) =>
+  /(?:mainnet|homestead|ethereum\s*main)/iu.test(value);
 
 async function rpc(url, method, params = []) {
   const response = await fetch(url, {
@@ -48,6 +52,20 @@ async function main() {
   const chainId = Number(process.env.SSW_RC_CHAIN_ID);
   if (!Number.isSafeInteger(chainId) || chainId <= 0)
     throw new Error('invalid SSW_RC_CHAIN_ID');
+  if (isLocalNetwork(process.env.SSW_RC_NETWORK) || chainId === 31_337) {
+    console.error(
+      'TESTNET RC: LOCAL_NETWORK_NOT_TESTNET (Anvil/chain 31337 belongs to the local RC lane; configure a disposable non-local testnet)',
+    );
+    process.exitCode = 2;
+    return;
+  }
+  if (isMainnetNetwork(process.env.SSW_RC_NETWORK) || chainId === 1) {
+    console.error(
+      'TESTNET RC: UNSUPPORTED_NETWORK (mainnet is prohibited by the release policy)',
+    );
+    process.exitCode = 2;
+    return;
+  }
   for (const key of [
     'SSW_RC_ENTRY_POINT',
     'SSW_RC_ACCOUNT',
