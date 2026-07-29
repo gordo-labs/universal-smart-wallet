@@ -84,8 +84,22 @@ const fail = (message: string): never => {
   throw new SdJwtVerificationError(message);
 };
 
-const b64u = (value: Uint8Array): string =>
-  Buffer.from(value).toString('base64url');
+const b64u = (value: Uint8Array): string => {
+  let binary = '';
+  for (const byte of value) binary += String.fromCharCode(byte);
+  return btoa(binary)
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=+$/u, '');
+};
+const utf8FromB64u = (value: string): string => {
+  const base64 = value.replace(/-/g, '+').replace(/_/g, '/');
+  const padded = base64.padEnd(Math.ceil(base64.length / 4) * 4, '=');
+  const binary = atob(padded);
+  return new TextDecoder().decode(
+    Uint8Array.from(binary, (character) => character.charCodeAt(0)),
+  );
+};
 const utf8 = (value: string): Uint8Array => new TextEncoder().encode(value);
 const hashBytes = async (value: string): Promise<Uint8Array> =>
   new Uint8Array(
@@ -115,7 +129,7 @@ const encodeDisclosure = (salt: string, key: string, value: unknown): string =>
 
 const disclosureKey = (disclosure: string): string => {
   try {
-    const parsed = JSON.parse(Buffer.from(disclosure, 'base64url').toString());
+    const parsed = JSON.parse(utf8FromB64u(disclosure));
     if (
       !Array.isArray(parsed) ||
       parsed.length !== 3 ||
