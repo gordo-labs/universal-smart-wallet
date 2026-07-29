@@ -2,13 +2,13 @@
 
 > Generated from `working/orchestration/task-graph.json`. Edit the graph and rerun `node scripts/render-task-prompts.mjs`.
 
-| Field         | Value                   |
-| ------------- | ----------------------- |
-| Status        | Done                    |
-| Priority      | P0                      |
-| Wave          | 5                       |
-| Lane          | apps                    |
-| Dependencies  | SSW-010                 |
+| Field | Value |
+| --- | --- |
+| Status | Done |
+| Priority | P0 |
+| Wave | 5 |
+| Lane | apps |
+| Dependencies | SSW-010 |
 | Primary paths | `apps/verifier-demo/**` |
 
 ## Active feature context
@@ -48,17 +48,6 @@ Build a minimal verifier that generates a DCQL request for is_over_18, tracks st
 1. `Route and domain integration tests`
 2. `Replay and concurrent callback tests`
 3. `Accessibility smoke check`
-
-## Completion evidence
-
-- Implemented `apps/verifier-demo` request and direct-post callback routes with
-  DCQL generated from the age-over-18 policy.
-- Added bounded synthetic VP fixtures for signature, expiry, revocation,
-  status, audience/nonce, disclosure, claim, and consent failures.
-- Successful verification creates a short-lived access session that is
-  consumed once; all rejection paths use stable privacy-safe reason codes.
-- Tests: `pnpm --filter @ssw/verifier-demo test` (13 passed), typecheck and
-  build passed.
 
 ## Agent prompt
 
