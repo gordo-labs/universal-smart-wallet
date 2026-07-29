@@ -2,13 +2,13 @@
 
 > Generated from `working/orchestration/task-graph.json`. Edit the graph and rerun `node scripts/render-task-prompts.mjs`.
 
-| Field         | Value                                                                       |
-| ------------- | --------------------------------------------------------------------------- |
-| Status        | Done                                                                        |
-| Priority      | P0                                                                          |
-| Wave          | 2                                                                           |
-| Lane          | vault                                                                       |
-| Dependencies  | SSW-003                                                                     |
+| Field | Value |
+| --- | --- |
+| Status | Done |
+| Priority | P0 |
+| Wave | 2 |
+| Lane | vault |
+| Dependencies | SSW-003 |
 | Primary paths | `docs/decisions/**`, `packages/credential-vault/**`, `docs/threat-model/**` |
 
 ## Active feature context
