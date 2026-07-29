@@ -29,6 +29,8 @@
 - [Credential exchange](working/features/credential-exchange.md)
 - [SD-JWT VC adapter](docs/protocols/sd-jwt-vc-adapter.md)
 - [OpenID4VCI issuance](docs/protocols/openid4vci-issuance.md)
+- [OpenID4VP presentation](working/features/credential-exchange.md)
+- [Synthetic issuer demo](apps/issuer-demo/src/index.ts)
 - [DID control and holder binding ADR](docs/decisions/SSW-019-did-holder-binding.md)
 - [Encrypted vault](working/features/encrypted-vault.md)
 - [Smart account and passkeys](working/features/smart-account-and-passkeys.md)

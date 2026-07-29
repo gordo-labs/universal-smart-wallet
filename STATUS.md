@@ -36,6 +36,6 @@
 
 ## Next
 
-1. `SSW-010` — OpenID4VP and DCQL presentation flow.
-2. `SSW-011` — synthetic OpenID4VCI issuer demo.
+1. `SSW-010` — OpenID4VP and DCQL presentation flow (implementation on `feat/SSW-010-openid4vp-flow`).
+2. `SSW-011` — synthetic OpenID4VCI issuer demo (in progress on `feat/SSW-011-issuer-demo`).
 3. `SSW-020` — issuer trust and credential status/revocation.
