@@ -13,10 +13,14 @@
     "format": "prettier --write .",
     "typecheck": "pnpm -r --if-present typecheck",
     "test": "pnpm build && node scripts/unit-smoke.mjs",
+    "test:security": "pnpm build && node --test tests/security/*.test.mjs && pnpm exec forge test --root contracts && node tests/security/redaction-scan.mjs",
     "e2e": "node scripts/e2e-smoke.mjs",
-    "validate:toolchain": "node scripts/check-toolchain.mjs"
+    "e2e:local": "pnpm build && node scripts/e2e-local.mjs",
+    "validate:toolchain": "node scripts/check-toolchain.mjs",
+    "verify:rc": "node scripts/verify-rc.mjs"
   },
   "devDependencies": {
+    "jose": "6.2.4",
     "prettier": "3.6.2",
     "typescript": "5.9.2"
   }

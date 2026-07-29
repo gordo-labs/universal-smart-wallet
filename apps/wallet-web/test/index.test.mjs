@@ -3,7 +3,10 @@ import {
   WalletController,
   WalletUiError,
   detectPasskeyCapability,
+  sanitizeRemoteText,
 } from '../dist/index.js';
+import { buildOpenId4VpRequest } from '@ssw/openid4vc';
+import { toDcql, ageOver18Policy } from '@ssw/presentation-policy';
 
 const offer = {
   credential_issuer: 'https://issuer.example',
@@ -41,5 +44,41 @@ describe('wallet web controller', () => {
       available: false,
       reason: 'webauthn-unsupported',
     });
+  });
+
+  it('exposes an explicit consent summary and blocks ambiguous origins', async () => {
+    const wallet = new WalletController();
+    wallet.setup('correct horse battery staple');
+    const request = buildOpenId4VpRequest({
+      clientId: 'https://verifier.example',
+      responseUri: 'https://other.example/callback',
+      nonce: 'nonce',
+      state: 'state',
+      dcqlQuery: toDcql(ageOver18Policy()),
+    });
+    const review = await wallet.reviewPresentation(request);
+    expect(review.consent).toMatchObject({
+      requester: 'https://verifier.example',
+      requesterOrigin: 'https://verifier.example',
+      requestedData: ['is_over_18'],
+      purpose: 'Verifier request',
+      canApprove: false,
+      trust: { identity: 'ambiguous', level: 'blocked' },
+    });
+    expect(() => wallet.requirePresentationApproval()).toThrow(
+      expect.objectContaining({ code: 'unsafe-request' }),
+    );
+  });
+
+  it('denies without revealing hidden claim matching and strips remote markup', () => {
+    const wallet = new WalletController();
+    wallet.setup('correct horse battery staple');
+    expect(sanitizeRemoteText('<img src=x>Verifier\u0000')).toBe('Verifier');
+    const error = wallet.denyPresentation();
+    expect(error).toMatchObject({
+      code: 'cancelled-presentation',
+      message: 'Presentation cancelled; no disclosure was sent',
+    });
+    expect(error.message).not.toMatch(/claim|is_over_18|birth/i);
   });
 });

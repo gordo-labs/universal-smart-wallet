@@ -70,6 +70,47 @@ export type AccessSession = {
   readonly expiresAt: number;
 };
 
+export type VerifierTrustIndicator = Readonly<{
+  requester: string;
+  responseOrigin: string;
+  signedRequest: boolean;
+  requestUri?: string;
+  identity: 'confirmed' | 'same-origin' | 'ambiguous';
+  level: 'trusted' | 'review' | 'blocked';
+}>;
+
+const httpsOrigin = (value: string): string => {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' ? url.origin : '';
+  } catch {
+    return '';
+  }
+};
+
+/** Build a text-only trust badge; remote verifier metadata is never HTML. */
+export function summarizeVerifierRequest(
+  request: OpenId4VpRequest,
+): VerifierTrustIndicator {
+  const requester = httpsOrigin(request.client_id);
+  const responseOrigin = httpsOrigin(request.response_uri);
+  const sameOrigin = requester !== '' && requester === responseOrigin;
+  const signedRequest = Boolean(request.request_uri);
+  return {
+    requester,
+    responseOrigin,
+    signedRequest,
+    ...(request.request_uri ? { requestUri: request.request_uri } : {}),
+    identity: sameOrigin ? 'same-origin' : 'ambiguous',
+    level:
+      sameOrigin && signedRequest
+        ? 'trusted'
+        : sameOrigin
+          ? 'review'
+          : 'blocked',
+  };
+}
+
 export type VerificationResult =
   | { readonly ok: true; readonly session: AccessSession }
   | { readonly ok: false; readonly code: string };
@@ -227,6 +268,15 @@ export const verifierDemoUi = Object.freeze({
   title: 'Synthetic age verification',
   purpose: 'Confirm is_over_18 without revealing a date of birth.',
   rejection: 'Presentation could not be verified.',
+  consent: Object.freeze({
+    requester: 'Requester',
+    requestedData: 'Requested data',
+    sharedData: 'Data received',
+    purpose: 'Purpose',
+    expiry: 'Session expiry',
+    trust: 'Request trust',
+  }),
+  denial: 'Presentation could not be verified.',
 });
 
 export function createVerifierDemo(): VerifierDemo {
