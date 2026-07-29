@@ -6,8 +6,8 @@
   "lifecycle": "planning",
   "frequency": "weekly",
   "description": "Open-source smart wallet for passkey-controlled smart accounts and privacy-preserving verifiable credentials.",
-  "lastAction": "2026-07-29T14:05:00+02:00",
-  "lastActionDescription": "Integrated wallet and verifier demos with local VP submission and fail-closed validation.",
+  "lastAction": "2026-07-29T14:15:00+02:00",
+  "lastActionDescription": "Integrated the deterministic local vertical slice with sanitized E2E and restart/tamper coverage.",
   "nextNeeds": [
     "SSW-022: Harden consent, phishing resistance, and privacy UX",
     "SSW-023: Build the short-lived on-chain attestation and access demo"

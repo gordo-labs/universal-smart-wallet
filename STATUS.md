@@ -36,5 +36,5 @@
 
 ## Next
 
-1. `SSW-020` — issuer trust and credential status/revocation.
-2. `SSW-022` — consent, phishing resistance, and privacy UX (after SSW-020).
+1. `SSW-022` — consent, phishing resistance, and privacy UX.
+2. `SSW-023` — short-lived on-chain attestation and access demo.
