@@ -38,7 +38,21 @@ importers:
         specifier: 4.1.10
         version: 4.1.10(vite@8.1.5(esbuild@0.28.1))
 
-  apps/wallet-web: {}
+  apps/wallet-web:
+    dependencies:
+      '@ssw/credential-vault':
+        specifier: workspace:*
+        version: link:../../packages/credential-vault
+      '@ssw/openid4vc':
+        specifier: workspace:*
+        version: link:../../packages/openid4vc
+      '@ssw/presentation-policy':
+        specifier: workspace:*
+        version: link:../../packages/presentation-policy
+    devDependencies:
+      vitest:
+        specifier: 4.1.10
+        version: 4.1.10(vite@8.1.5(esbuild@0.28.1))
 
   packages/account-adapter: {}
 
