@@ -5,6 +5,10 @@
 The verifier turns a presentation into a typed result only after cryptographic,
 protocol, status, trust, replay, holder-binding, and disclosure checks pass.
 
+Shared verification results and policy objects carry schema versions and reject
+unknown fields, unsupported operators/formats, oversized strings, and unbounded
+arrays before later verification stages run.
+
 ## Owner surfaces
 
 - `packages/credential-domain`

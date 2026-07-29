@@ -41,6 +41,10 @@ contracts (independent ABI boundary)
 `credential-domain`, `shared-types`, and core verification tests must not import
 Next.js, IndexedDB, Safe SDKs, RPC clients, or hosted service clients.
 
+SSW-004 keeps `shared-types` dependency-free and places the supported DCQL
+subset in `presentation-policy`; mapping is deterministic and fails closed on
+operators, formats, paths, or disclosure shapes outside that subset.
+
 SSW-015 adds `contracts/deployments.json` as the chain/address/hash manifest and
 `contracts/test/SmartAccountHarness.t.sol` as a local-only deterministic
 deployment proof. No hosted provider is required.

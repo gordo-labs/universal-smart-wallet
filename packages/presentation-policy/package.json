@@ -2,9 +2,19 @@
   "name": "@ssw/presentation-policy",
   "private": true,
   "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "pretest": "pnpm --filter @ssw/shared-types build",
     "typecheck": "tsc --noEmit",
+    "pretypecheck": "pnpm --filter @ssw/shared-types build",
     "test": "vitest run"
+  },
+  "dependencies": {
+    "@ssw/shared-types": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "4.1.10"
   }
 }
