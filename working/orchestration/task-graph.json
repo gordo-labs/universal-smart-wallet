@@ -422,7 +422,7 @@
       "id": "SSW-024",
       "slug": "adversarial-hardening",
       "title": "Add adversarial, property, fuzz, and redaction hardening",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P0",
       "wave": 9,
       "lane": "quality",

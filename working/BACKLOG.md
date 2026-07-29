@@ -28,7 +28,7 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-021 | Done | P0 | recovery | Implement account recovery and encrypted vault backup/restore | [task](tasks/SSW-021-recovery-encrypted-backup.md) |
 | SSW-022 | Done | P0 | security-ux | Harden consent, phishing resistance, and privacy UX | [task](tasks/SSW-022-consent-privacy-hardening.md) |
 | SSW-023 | Done | P1 | onchain | Build the short-lived on-chain attestation and access demo | [task](tasks/SSW-023-onchain-attestation-demo.md) |
-| SSW-024 | Todo | P0 | quality | Add adversarial, property, fuzz, and redaction hardening | [task](tasks/SSW-024-adversarial-hardening.md) |
+| SSW-024 | Done | P0 | quality | Add adversarial, property, fuzz, and redaction hardening | [task](tasks/SSW-024-adversarial-hardening.md) |
 | SSW-025 | Todo | P0 | integration | Integrate the full local and testnet release candidate | [task](tasks/SSW-025-testnet-release-candidate.md) |
 | SSW-026 | Todo | P0 | security | Prepare the independent security and privacy review packet | [task](tasks/SSW-026-audit-readiness.md) |
 | SSW-027 | Todo | P1 | release | Publish the first open-source alpha release | [task](tasks/SSW-027-open-source-alpha-release.md) |
