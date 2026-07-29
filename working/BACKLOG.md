@@ -23,7 +23,7 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-016 | Done | P0 | account | Implement the local passkey smart account and ERC-1271 flow | [task](tasks/SSW-016-passkey-account-erc1271.md) |
 | SSW-017 | Done | P1 | account | Add the opt-in ERC-4337 testnet adapter | [task](tasks/SSW-017-erc4337-testnet-adapter.md) |
 | SSW-018 | Done | P1 | account | Integrate and test the pinned ERC-7579 compatibility path | [task](tasks/SSW-018-erc7579-compatibility.md) |
-| SSW-019 | Todo | P1 | identity | Decide and implement DID control and holder binding | [task](tasks/SSW-019-did-holder-binding.md) |
+| SSW-019 | Done | P1 | identity | Decide and implement DID control and holder binding | [task](tasks/SSW-019-did-holder-binding.md) |
 | SSW-020 | Todo | P0 | verification | Implement issuer trust and credential status/revocation | [task](tasks/SSW-020-trust-status-revocation.md) |
 | SSW-021 | Todo | P0 | recovery | Implement account recovery and encrypted vault backup/restore | [task](tasks/SSW-021-recovery-encrypted-backup.md) |
 | SSW-022 | Todo | P0 | security-ux | Harden consent, phishing resistance, and privacy UX | [task](tasks/SSW-022-consent-privacy-hardening.md) |

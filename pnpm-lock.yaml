@@ -31,7 +31,11 @@ importers:
 
   packages/credential-vault: {}
 
-  packages/identity-adapter: {}
+  packages/identity-adapter:
+    devDependencies:
+      vitest:
+        specifier: 4.1.10
+        version: 4.1.10(vite@8.1.5)
 
   packages/openid4vc:
     devDependencies:
