@@ -33,7 +33,11 @@ importers:
 
   packages/identity-adapter: {}
 
-  packages/openid4vc: {}
+  packages/openid4vc:
+    devDependencies:
+      vitest:
+        specifier: 4.1.10
+        version: 4.1.10(vite@8.1.5)
 
   packages/presentation-policy:
     dependencies:
