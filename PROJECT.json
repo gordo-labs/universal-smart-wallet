@@ -9,8 +9,8 @@
   "lastAction": "2026-07-29T14:15:00+02:00",
   "lastActionDescription": "Added the versioned EIP-712 on-chain attestation consumer and synthetic access demo with replay, expiry, scope, and attestor rotation checks.",
   "nextNeeds": [
-    "SSW-022: Harden consent, phishing resistance, and privacy UX",
-    "SSW-024: Add adversarial, property, fuzz, and redaction hardening"
+    "SSW-024: Add adversarial, property, fuzz, and redaction hardening",
+    "SSW-028: Integrate and verify the access-demo attestation path"
   ],
   "blocking": null,
   "license": "Apache-2.0",
