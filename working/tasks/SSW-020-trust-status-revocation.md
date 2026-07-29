@@ -2,13 +2,13 @@
 
 > Generated from `working/orchestration/task-graph.json`. Edit the graph and rerun `node scripts/render-task-prompts.mjs`.
 
-| Field         | Value                                                                                                    |
-| ------------- | -------------------------------------------------------------------------------------------------------- |
-| Status        | Done                                                                                                     |
-| Priority      | P0                                                                                                       |
-| Wave          | 5                                                                                                        |
-| Lane          | verification                                                                                             |
-| Dependencies  | SSW-009, SSW-010                                                                                         |
+| Field | Value |
+| --- | --- |
+| Status | Done |
+| Priority | P0 |
+| Wave | 5 |
+| Lane | verification |
+| Dependencies | SSW-009, SSW-010 |
 | Primary paths | `packages/credential-domain/**`, `packages/openid4vc/**`, `apps/issuer-demo/**`, `apps/verifier-demo/**` |
 
 ## Active feature context
@@ -48,17 +48,6 @@ Implement a versioned local trust policy and the pinned status mechanism with bo
 1. `Trust and status unit/contract tests`
 2. `Cache/clock/rotation boundary tests`
 3. `SSRF, response-size, and timeout tests`
-
-## Implementation evidence
-
-- `@ssw/credential-domain` now exposes a versioned trust bundle evaluator and a
-  bounded, fail-closed `StatusCache` (HTTPS-only, private-address rejection,
-  response-size/timeout limits, and no holder identifiers in cache keys).
-- Issuer fixtures cover valid, revoked, suspended, stale, unavailable, and
-  rotated-key responses; verifier fixtures pin the issuer key and status origin.
-- Narrow validation: `pnpm --filter @ssw/credential-domain build`,
-  `pnpm --filter @ssw/credential-domain test`, issuer/verifier tests and
-  typechecks pass on the implementation branch.
 
 ## Agent prompt
 

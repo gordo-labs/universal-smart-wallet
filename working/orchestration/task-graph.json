@@ -350,7 +350,7 @@
       "id": "SSW-020",
       "slug": "trust-status-revocation",
       "title": "Implement issuer trust and credential status/revocation",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P0",
       "wave": 5,
       "lane": "verification",
