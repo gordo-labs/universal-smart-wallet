@@ -22,6 +22,9 @@ adapter. The ADR—not this planning assumption—selects the dependency.
 - Never implement the base account or P-256 verifier from scratch.
 - Local tests are independent of RPC/bundler/paymaster vendors.
 - Pin EntryPoint, modules, deployments, chain IDs, and contract code hashes.
+- Baseline: [`ADR SSW-003`](../../docs/decisions/SSW-003-standards-dependency-baseline.md)
+  records EntryPoint 0.8.0 and the Safe Protocol Kit 8.0.4 spike candidate;
+  ERC-7579 remains a replaceable Draft adapter.
 - ERC-7579 is an optional Draft-standard adapter after the core flow.
 - Module installation, removal, recovery, and denial-of-service paths require
   tests.

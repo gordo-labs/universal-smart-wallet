@@ -44,7 +44,7 @@
       "id": "SSW-003",
       "slug": "standards-dependency-baseline",
       "title": "Pin the standards and dependency compatibility baseline",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P0",
       "wave": 1,
       "lane": "architecture",

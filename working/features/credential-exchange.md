@@ -24,6 +24,8 @@ predicate proof.
 ## Constraints
 
 - Pin the SD-JWT VC draft behavior.
+- Baseline: [`ADR SSW-003`](../../docs/decisions/SSW-003-standards-dependency-baseline.md)
+  pins SD-JWT VC draft 16 (`dc+sd-jwt`) and OpenID4VC 1.0/VP 1.0 errata URLs.
 - Use DCQL rather than legacy Presentation Exchange as the core 1.0 path.
 - Validate issuer signature/key discovery, type, expiry, status, audience,
   state/nonce, holder binding, and disclosure constraints.
