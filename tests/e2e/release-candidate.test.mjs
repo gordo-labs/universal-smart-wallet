@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 import test from 'node:test';
 
 import {
@@ -51,4 +52,29 @@ test('attestation expiry and replay boundaries are explicit', async () => {
   };
   assert.equal(consumeOnce(attestation.nonce), true);
   assert.equal(consumeOnce(attestation.nonce), false);
+});
+
+test('the opt-in testnet gate rejects the local Anvil lane', () => {
+  const result = spawnSync(process.execPath, ['scripts/testnet-rc.mjs'], {
+    cwd: new URL('../..', import.meta.url),
+    env: {
+      ...process.env,
+      SSW_RC_TESTNET: '1',
+      SSW_RC_NETWORK: 'anvil',
+      SSW_RC_CHAIN_ID: '31337',
+      SSW_RC_RPC_URL: 'http://127.0.0.1:8545',
+      SSW_RC_ENTRY_POINT: address('1'),
+      SSW_RC_ENTRY_POINT_CODE_HASH: hex32('1'),
+      SSW_RC_ACCOUNT: address('2'),
+      SSW_RC_ACCOUNT_CODE_HASH: hex32('2'),
+      SSW_RC_ATTESTATION_CONSUMER: address('3'),
+      SSW_RC_ATTESTATION_CONSUMER_CODE_HASH: hex32('3'),
+    },
+    encoding: 'utf8',
+  });
+  assert.equal(result.status, 2);
+  assert.match(
+    `${result.stdout}${result.stderr}`,
+    /LOCAL_NETWORK_NOT_TESTNET/u,
+  );
 });
