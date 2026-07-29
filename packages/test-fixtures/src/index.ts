@@ -25,3 +25,26 @@ export async function createSyntheticKeyMaterial() {
     holderJwk: await exportJWK(holder.publicKey),
   };
 }
+
+/** Deterministic OpenID4VCI 1.0 documents used by protocol tests. */
+export const syntheticOpenId4Vci = {
+  issuerMetadata: {
+    credential_issuer: 'https://issuer.example',
+    credential_endpoint: 'https://issuer.example/credential',
+    token_endpoint: 'https://issuer.example/oauth/token',
+    credential_configurations_supported: {
+      age: { format: 'dc+sd-jwt' as const, vct: 'AgeCredential' },
+    },
+  },
+  credentialOffer: {
+    credential_issuer: 'https://issuer.example',
+    credential_configuration_ids: ['age'] as const,
+    grants: {
+      'urn:ietf:params:oauth:grant-type:pre-authorized_code': {
+        'pre-authorized_code': 'synthetic-pre-authorized-code',
+      },
+    },
+  },
+  proofJwt: 'synthetic-proof',
+  credential: 'synthetic-unverified-token',
+} as const;

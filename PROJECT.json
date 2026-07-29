@@ -6,12 +6,12 @@
   "lifecycle": "planning",
   "frequency": "weekly",
   "description": "Open-source smart wallet for passkey-controlled smart accounts and privacy-preserving verifiable credentials.",
-  "lastAction": "2026-07-29T13:30:00+02:00",
-  "lastActionDescription": "Integrated replay, SD-JWT VC, and opt-in ERC-4337 adapter tasks with local validation.",
+  "lastAction": "2026-07-29T13:45:00+02:00",
+  "lastActionDescription": "Integrated OpenID4VCI, ERC-7579, and DID holder-binding adapters with local validation.",
   "nextNeeds": [
-    "SSW-009: Implement the OpenID4VCI issuance flow",
     "SSW-010: Implement the OpenID4VP and DCQL presentation flow",
-    "SSW-018: Integrate the pinned ERC-7579 compatibility path"
+    "SSW-011: Build the synthetic OpenID4VCI issuer demo",
+    "SSW-020: Implement issuer trust and credential status/revocation"
   ],
   "blocking": null,
   "license": "Apache-2.0",
