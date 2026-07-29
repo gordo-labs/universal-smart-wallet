@@ -2,7 +2,7 @@
 
 ## Current
 
-- **Lifecycle:** planning; executable monorepo foundation bootstrapped on `feat/SSW-001-monorepo-foundation`.
+- **Lifecycle:** planning; executable monorepo foundation and public governance baseline complete on task branches.
 - **Feasibility:** high for a synthetic local/testnet vertical slice; medium for
   a production wallet until conformance, recovery, browser portability,
   privacy, and independent security review are complete.
@@ -10,8 +10,8 @@
   replaceable OpenID4VC and SD-JWT adapters, smart-account control plane, and
   optional on-chain attestations.
 - **Execution:** 28 atomic tasks with explicit dependencies, parallel waves,
-  acceptance criteria, validation, and agent prompts.
-- **GitHub:** the planning scaffold is public at
+  acceptance criteria, validation, and agent prompts. `SSW-001` and `SSW-002` are Done.
+- **GitHub:** the public repository is at
   `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.
 - **Codex:** primary thread `019fad60-2d17-7512-acaf-0c740b4a670a`, titled
@@ -38,5 +38,3 @@
 1. `SSW-003` — standards and dependency pinning spike.
 2. `SSW-006` — vault key-management boundary ADR.
 3. `SSW-015` — smart-account selection and Foundry harness.
-4. `SSW-002` — finish CI alignment after `SSW-001`; public repository bootstrap
-   is complete.
