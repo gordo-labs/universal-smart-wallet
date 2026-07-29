@@ -6,12 +6,12 @@
   "lifecycle": "planning",
   "frequency": "weekly",
   "description": "Open-source smart wallet for passkey-controlled smart accounts and privacy-preserving verifiable credentials.",
-  "lastAction": "2026-07-29T13:06:57+02:00",
-  "lastActionDescription": "Integrated the vault key-management and smart-account baseline spikes with passing local checks.",
+  "lastAction": "2026-07-29T13:15:00+02:00",
+  "lastActionDescription": "Integrated schemas, encrypted vault, and local passkey account tasks with passing root checks.",
   "nextNeeds": [
-    "SSW-004: Implement shared runtime schemas and DCQL policy mapping",
+    "SSW-005: Implement nonce, replay, and verification-result domain logic",
     "SSW-008: Implement the version-pinned SD-JWT VC adapter",
-    "SSW-016: Implement the local passkey smart account and ERC-1271 flow"
+    "SSW-017: Add the opt-in ERC-4337 testnet adapter"
   ],
   "blocking": null,
   "license": "Apache-2.0",
