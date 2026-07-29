@@ -14,8 +14,9 @@ their narrow boundaries.
 | `apps/verifier-demo`           | DCQL request and off-chain verification               | Local challenge/replay store            |
 | `apps/access-demo`             | Optional on-chain policy consumer                     | Testnet/local chain only                |
 | `packages/shared-types`        | Versioned runtime schemas                             | No app imports                          |
-| `packages/credential-domain`   | Ports and credential lifecycle                        | No browser or chain imports             |
+| `packages/credential-domain`   | Credential lifecycle, challenge and replay ports      | No browser or chain imports             |
 | `packages/credential-vault`    | Encryption envelope and stores                        | Crypto and storage adapters             |
+| `packages/account-adapter`     | Passkey account + ERC-4337 provider-neutral ports     | Explicit testnet deployment metadata    |
 | `packages/sd-jwt-adapter`      | Version-pinned credential format                      | Narrow third-party adapter              |
 | `packages/openid4vc`           | Issuance and presentation protocol adapters           | HTTP and JOSE ports                     |
 | `packages/presentation-policy` | Internal policy and DCQL mapping                      | Runtime schemas                         |

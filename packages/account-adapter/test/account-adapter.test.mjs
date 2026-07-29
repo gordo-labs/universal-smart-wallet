@@ -6,6 +6,9 @@ import {
   PasskeyBoundaryError,
   createPasskeySigner,
   deriveDeterministicAccountAddress,
+  parseErc4337Config,
+  submitUserOperation,
+  UserOperationAdapterError,
 } from '../dist/index.js';
 
 const valid = {
@@ -122,4 +125,98 @@ test('derives a stable account address from documented public inputs', async () 
   assert.match(first, /^0x[0-9a-f]{40}$/);
   assert.equal(first, second);
   assert.notEqual(first, changed);
+});
+
+test('opt-in config skips cleanly unless explicitly enabled', () => {
+  assert.equal(parseErc4337Config({}), null);
+  assert.throws(
+    () => parseErc4337Config({ SSW_4337_ENABLED: '1' }),
+    /Missing SSW_4337_CHAIN_ID/,
+  );
+});
+
+const flowConfig = {
+  chainId: 11155111,
+  rpcUrl: 'https://rpc.test.invalid',
+  bundlerUrl: 'https://bundler.test.invalid',
+  entryPoint: ENTRY_POINT_V08,
+  entryPointVersion: '0.8.0',
+  account: valid.account,
+  accountCodeHash: valid.accountCodeHash,
+};
+const operation = {
+  sender: valid.account,
+  nonce: 0n,
+  callData: '0x',
+  callGasLimit: 1n,
+  verificationGasLimit: 1n,
+  preVerificationGas: 1n,
+  maxFeePerGas: 1n,
+  maxPriorityFeePerGas: 1n,
+  signature: '0x01',
+};
+const receipt = {
+  userOperationHash: '0x' + 'aa'.repeat(32),
+  transactionHash: '0x' + 'bb'.repeat(32),
+  blockNumber: 5n,
+  success: true,
+  entryPoint: ENTRY_POINT_V08,
+  chainId: 11155111,
+  sender: valid.account,
+};
+
+test('simulates, sponsors, submits once, and links an exact receipt', async () => {
+  let sends = 0;
+  const bundler = {
+    async simulateUserOperation() {
+      return {};
+    },
+    async sendUserOperation() {
+      sends += 1;
+      return receipt.userOperationHash;
+    },
+    async getUserOperationReceipt() {
+      return receipt;
+    },
+  };
+  const result = await submitUserOperation(
+    flowConfig,
+    bundler,
+    operation,
+    undefined,
+    { pollIntervalMs: 0 },
+  );
+  assert.deepEqual(result, receipt);
+  assert.equal(sends, 1);
+});
+
+test('provider and paymaster failures are actionable and never retried', async () => {
+  const denied = {
+    async sponsorUserOperation() {
+      throw new Error('denied');
+    },
+  };
+  const bundler = {
+    async simulateUserOperation() {
+      return {};
+    },
+    async sendUserOperation() {
+      throw new Error('offline');
+    },
+    async getUserOperationReceipt() {
+      return null;
+    },
+  };
+  await assert.rejects(
+    submitUserOperation(flowConfig, bundler, operation, denied),
+    (error) =>
+      error instanceof UserOperationAdapterError &&
+      error.code === 'PAYMASTER_DENIED',
+  );
+  await assert.rejects(
+    submitUserOperation(flowConfig, bundler, operation),
+    (error) =>
+      error instanceof UserOperationAdapterError &&
+      error.code === 'BUNDLER_UNAVAILABLE',
+  );
 });

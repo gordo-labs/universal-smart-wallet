@@ -54,3 +54,12 @@ from chain ID, factory, RP ID, and credential ID with the
 `ssw-local-account-v1` domain. The Foundry fixture covers positive and negative
 ERC-1271 responses while production remains the upstream Safe deployment.
 Playwright and cross-browser coverage remain follow-up integration work.
+
+## SSW-017 ERC-4337 adapter (2026-07-29)
+
+`@ssw/account-adapter` now exposes provider-neutral bundler/paymaster ports and
+an opt-in simulation → sponsorship → single submission → receipt flow. Chain,
+EntryPoint 0.8.0, account address, and runtime code hash are mandatory; no
+provider or chain fallback exists. Missing environment skips the smoke gate,
+while simulation, paymaster, transport, and receipt mismatches are typed and
+actionable. Testnet use remains explicitly configured and non-production.
