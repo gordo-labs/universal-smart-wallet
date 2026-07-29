@@ -33,6 +33,16 @@ Trust registries define governance and acceptable issuers; they are not merely
 lists of addresses. Remote metadata and status retrieval must resist SSRF,
 oversized responses, stale caches, and outage ambiguity.
 
+## Replay-domain boundary (SSW-005)
+
+`@ssw/credential-domain` owns challenge lifecycle without HTTP, issuer, or
+signature-verification dependencies. Challenges use an injectable secure-random
+port (32 bytes by default, 16-byte minimum), bounded 1–300 second TTLs, and a
+30-second explicit clock-skew allowance. `InMemoryReplayStore.consume` marks a
+challenge before returning, so synchronous reuse can succeed at most once. It
+returns stable non-sensitive codes for unknown, expired, wrong-audience, reused,
+and replay-store failures; storage failures fail closed.
+
 ## Tasks
 
 `SSW-004`, `SSW-005`, `SSW-010`, `SSW-013`, `SSW-020`, `SSW-022`, `SSW-024`.

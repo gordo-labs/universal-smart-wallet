@@ -6,12 +6,12 @@
   "lifecycle": "planning",
   "frequency": "weekly",
   "description": "Open-source smart wallet for passkey-controlled smart accounts and privacy-preserving verifiable credentials.",
-  "lastAction": "2026-07-29T13:15:00+02:00",
-  "lastActionDescription": "Integrated schemas, encrypted vault, and local passkey account tasks with passing root checks.",
+  "lastAction": "2026-07-29T13:30:00+02:00",
+  "lastActionDescription": "Integrated replay, SD-JWT VC, and opt-in ERC-4337 adapter tasks with local validation.",
   "nextNeeds": [
-    "SSW-005: Implement nonce, replay, and verification-result domain logic",
-    "SSW-008: Implement the version-pinned SD-JWT VC adapter",
-    "SSW-017: Add the opt-in ERC-4337 testnet adapter"
+    "SSW-009: Implement the OpenID4VCI issuance flow",
+    "SSW-010: Implement the OpenID4VP and DCQL presentation flow",
+    "SSW-018: Integrate the pinned ERC-7579 compatibility path"
   ],
   "blocking": null,
   "license": "Apache-2.0",

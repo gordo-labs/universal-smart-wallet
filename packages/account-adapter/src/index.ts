@@ -214,3 +214,238 @@ export async function deriveDeterministicAccountAddress(input: {
   const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', encoded));
   return `0x${Array.from(digest.slice(12), (byte) => byte.toString(16).padStart(2, '0')).join('')}`;
 }
+
+export type Hex = `0x${string}`;
+
+/** ERC-4337 UserOperation boundary. Bigints stay typed and are serialized by providers. */
+export type UserOperation = {
+  sender: `0x${string}`;
+  nonce: bigint;
+  callData: Hex;
+  callGasLimit: bigint;
+  verificationGasLimit: bigint;
+  preVerificationGas: bigint;
+  maxFeePerGas: bigint;
+  maxPriorityFeePerGas: bigint;
+  signature: Hex;
+  factory?: `0x${string}`;
+  factoryData?: Hex;
+  paymaster?: `0x${string}`;
+  paymasterData?: Hex;
+  paymasterVerificationGasLimit?: bigint;
+  paymasterPostOpGasLimit?: bigint;
+};
+
+export type UserOperationReceipt = {
+  userOperationHash: Hex;
+  transactionHash: Hex;
+  blockNumber: bigint;
+  success: boolean;
+  entryPoint: `0x${string}`;
+  chainId: number;
+  sender: `0x${string}`;
+};
+
+export type SimulationResult = {
+  preVerificationGas?: bigint;
+  [key: string]: unknown;
+};
+export type PaymasterContext = {
+  paymaster?: `0x${string}`;
+  paymasterData?: Hex;
+  [key: string]: unknown;
+};
+
+export interface BundlerPort {
+  simulateUserOperation(
+    operation: UserOperation,
+    entryPoint: `0x${string}`,
+  ): Promise<SimulationResult>;
+  sendUserOperation(
+    operation: UserOperation,
+    entryPoint: `0x${string}`,
+  ): Promise<Hex>;
+  getUserOperationReceipt(hash: Hex): Promise<UserOperationReceipt | null>;
+}
+
+export interface PaymasterPort {
+  sponsorUserOperation(
+    operation: UserOperation,
+    entryPoint: `0x${string}`,
+  ): Promise<PaymasterContext>;
+}
+
+export class UserOperationAdapterError extends Error {
+  constructor(
+    readonly code:
+      | 'CONFIG_MISSING'
+      | 'CHAIN_MISMATCH'
+      | 'ENTRY_POINT_MISMATCH'
+      | 'SIMULATION_FAILED'
+      | 'PAYMASTER_DENIED'
+      | 'BUNDLER_UNAVAILABLE'
+      | 'RECEIPT_TIMEOUT',
+    message: string,
+  ) {
+    super(message);
+    this.name = 'UserOperationAdapterError';
+  }
+}
+
+export type Erc4337Config = {
+  chainId: number;
+  rpcUrl: string;
+  bundlerUrl: string;
+  entryPoint: `0x${string}`;
+  entryPointVersion: '0.8.0';
+  account: `0x${string}`;
+  accountCodeHash: `0x${string}`;
+  paymasterUrl?: string;
+};
+
+const requiredEnv = (
+  env: Record<string, string | undefined>,
+  key: string,
+): string => {
+  const value = env[key]?.trim();
+  if (!value)
+    throw new UserOperationAdapterError(
+      'CONFIG_MISSING',
+      `Missing ${key}; opt-in test skipped`,
+    );
+  return value;
+};
+
+/** Parse only explicitly supplied testnet configuration; no defaults or chain fallback. */
+export function parseErc4337Config(
+  env: Record<string, string | undefined> = {},
+): Erc4337Config | null {
+  if (env.SSW_4337_ENABLED !== '1') return null;
+  const chainId = Number(requiredEnv(env, 'SSW_4337_CHAIN_ID'));
+  const entryPoint = requiredEnv(env, 'SSW_4337_ENTRY_POINT') as `0x${string}`;
+  const config: Erc4337Config = {
+    chainId,
+    rpcUrl: requiredEnv(env, 'SSW_4337_RPC_URL'),
+    bundlerUrl: requiredEnv(env, 'SSW_4337_BUNDLER_URL'),
+    entryPoint,
+    entryPointVersion: '0.8.0',
+    account: requiredEnv(env, 'SSW_4337_ACCOUNT') as `0x${string}`,
+    accountCodeHash: requiredEnv(
+      env,
+      'SSW_4337_ACCOUNT_CODE_HASH',
+    ) as `0x${string}`,
+    ...(env.SSW_4337_PAYMASTER_URL?.trim()
+      ? { paymasterUrl: env.SSW_4337_PAYMASTER_URL.trim() }
+      : {}),
+  };
+  if (!Number.isSafeInteger(chainId) || chainId <= 0)
+    throw new UserOperationAdapterError(
+      'CONFIG_MISSING',
+      'SSW_4337_CHAIN_ID must be a positive integer',
+    );
+  assertDeployment({
+    chainId,
+    account: config.account,
+    accountCodeHash: config.accountCodeHash,
+    entryPoint,
+    entryPointVersion: '0.8.0',
+  });
+  return config;
+}
+
+export type SubmitOptions = {
+  receiptTimeoutMs?: number;
+  pollIntervalMs?: number;
+};
+
+/** Simulate, optionally sponsor, submit once, and poll a receipt. Submission is never retried. */
+export async function submitUserOperation(
+  config: Erc4337Config,
+  bundler: BundlerPort,
+  operation: UserOperation,
+  paymaster?: PaymasterPort,
+  options: SubmitOptions = {},
+): Promise<UserOperationReceipt> {
+  assertDeployment({
+    chainId: config.chainId,
+    account: config.account,
+    accountCodeHash: config.accountCodeHash,
+    entryPoint: config.entryPoint,
+    entryPointVersion: config.entryPointVersion,
+  });
+  if (operation.sender.toLowerCase() !== config.account.toLowerCase())
+    throw new UserOperationAdapterError(
+      'CHAIN_MISMATCH',
+      'UserOperation sender does not match configured account',
+    );
+  let simulation: SimulationResult;
+  try {
+    simulation = await bundler.simulateUserOperation(
+      operation,
+      config.entryPoint,
+    );
+  } catch (error) {
+    throw new UserOperationAdapterError(
+      'SIMULATION_FAILED',
+      'UserOperation simulation failed; inspect provider diagnostics without exposing payloads',
+    );
+  }
+  let prepared = operation;
+  if (paymaster) {
+    try {
+      const context = await paymaster.sponsorUserOperation(
+        operation,
+        config.entryPoint,
+      );
+      prepared = {
+        ...operation,
+        ...(context.paymaster ? { paymaster: context.paymaster } : {}),
+        ...(context.paymasterData
+          ? { paymasterData: context.paymasterData }
+          : {}),
+      };
+    } catch (error) {
+      throw new UserOperationAdapterError(
+        'PAYMASTER_DENIED',
+        'Paymaster declined sponsorship; submit only after explicit user consent',
+      );
+    }
+  }
+  if (simulation.preVerificationGas && !prepared.preVerificationGas)
+    prepared = {
+      ...prepared,
+      preVerificationGas: simulation.preVerificationGas,
+    };
+  let hash: Hex;
+  try {
+    hash = await bundler.sendUserOperation(prepared, config.entryPoint);
+  } catch (error) {
+    throw new UserOperationAdapterError(
+      'BUNDLER_UNAVAILABLE',
+      'Bundler submission failed; operation was not retried to avoid duplicates',
+    );
+  }
+  const timeout = options.receiptTimeoutMs ?? 120_000;
+  const interval = options.pollIntervalMs ?? 2_000;
+  const deadline = Date.now() + timeout;
+  while (Date.now() < deadline) {
+    const receipt = await bundler.getUserOperationReceipt(hash);
+    if (receipt) {
+      if (
+        receipt.chainId !== config.chainId ||
+        receipt.entryPoint.toLowerCase() !== config.entryPoint.toLowerCase() ||
+        receipt.sender.toLowerCase() !== config.account.toLowerCase()
+      )
+        throw new UserOperationAdapterError(
+          'CHAIN_MISMATCH',
+          'Receipt does not match configured chain, EntryPoint, or account',
+        );
+      return receipt;
+    }
+    await new Promise((resolve) => setTimeout(resolve, interval));
+  }
+  throw new UserOperationAdapterError(
+    'RECEIPT_TIMEOUT',
+    `Timed out waiting for receipt of ${hash}`,
+  );
+}
