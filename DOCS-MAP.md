@@ -20,6 +20,10 @@
 - [Technical map](working/maps/TECHNICAL-MAP.md)
 - [Feature relations](working/maps/FEATURE-RELATIONS.md)
 
+## Threat model
+
+- [Vault key management](docs/threat-model/SSW-006-vault-key-management.md)
+
 ## Planned features
 
 - [Credential exchange](working/features/credential-exchange.md)
