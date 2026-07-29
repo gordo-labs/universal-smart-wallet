@@ -5,6 +5,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
+    "pretypecheck": "pnpm --filter @ssw/credential-vault build && pnpm --filter @ssw/openid4vc build && pnpm --filter @ssw/presentation-policy build",
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
   },
