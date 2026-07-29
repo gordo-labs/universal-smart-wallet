@@ -44,6 +44,17 @@ SSW-009 adds the bounded OpenID4VCI 1.0 pre-authorized-code client. Final
 metadata and offer names are parsed, deterministic HTTP fixtures enforce
 origin/SSRF/size/timeout policy, and verification precedes vault insertion.
 
+SSW-011 adds a deterministic synthetic issuer route harness. It serves issuer
+metadata, offer, token, credential, status, and public-key documents and has
+expired, reused, invalid-code, and revoked fixtures. Keys and credentials are
+test-only labels; no identity proofing or production key lifecycle is implied.
+
+SSW-010 adds the bounded same-device OpenID4VP `vp_token`/`direct_post` path.
+Authorization requests require state, nonce, audience, response URI, and a
+trusted verifier hook; request URI/signed-request and transaction-data hooks
+fail closed. Direct-post state is consumed before verification and disclosures
+must exactly match the holder-approved set.
+
 ## Tasks
 
 `SSW-003`, `SSW-004`, `SSW-005`, `SSW-008`–`SSW-014`.

@@ -1,5 +1,102 @@
 export const adapterName = 'account-adapter';
 
+export type RecoveryPolicy = {
+  readonly account: `0x${string}`;
+  readonly guardians: readonly `0x${string}`[];
+  readonly threshold: number;
+  readonly timelockBlocks: number;
+};
+export type RecoveryProposal = {
+  readonly id: `0x${string}`;
+  readonly account: `0x${string}`;
+  readonly newSigner: `0x${string}`;
+  readonly proposedAtBlock: number;
+  readonly approvals: readonly `0x${string}`[];
+};
+
+const validAddress = (value: string): value is `0x${string}` =>
+  /^0x[0-9a-fA-F]{40}$/.test(value) && !/^0x0+$/.test(value);
+const recoveryDigest = async (
+  account: string,
+  signer: string,
+  block: number,
+): Promise<`0x${string}`> => {
+  const bytes = new TextEncoder().encode(
+    `ssw-recovery-v1|${account.toLowerCase()}|${signer.toLowerCase()}|${block}`,
+  );
+  const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
+  return `0x${Array.from(digest, (byte) => byte.toString(16).padStart(2, '0')).join('')}`;
+};
+
+/** Deterministic local recovery policy model. It rotates control only after threshold + timelock. */
+export function createRecoveryController(
+  policy: RecoveryPolicy,
+  initialSigner: `0x${string}`,
+) {
+  if (!validAddress(policy.account) || !validAddress(initialSigner))
+    throw new Error('recovery account and signer are required');
+  const guardians = [
+    ...new Set(policy.guardians.map((guardian) => guardian.toLowerCase())),
+  ];
+  if (
+    guardians.some((guardian) => !validAddress(guardian)) ||
+    !Number.isSafeInteger(policy.threshold) ||
+    policy.threshold < 1 ||
+    policy.threshold > guardians.length
+  )
+    throw new Error('invalid guardian threshold');
+  if (!Number.isSafeInteger(policy.timelockBlocks) || policy.timelockBlocks < 1)
+    throw new Error('invalid recovery timelock');
+  let signer = initialSigner;
+  let pending: RecoveryProposal | undefined;
+  return {
+    get account() {
+      return policy.account;
+    },
+    get signer() {
+      return signer;
+    },
+    get pending() {
+      return pending;
+    },
+    async propose(newSigner: `0x${string}`, atBlock: number) {
+      if (
+        !validAddress(newSigner) ||
+        !Number.isSafeInteger(atBlock) ||
+        atBlock < 0
+      )
+        throw new Error('invalid recovery proposal');
+      pending = {
+        id: await recoveryDigest(policy.account, newSigner, atBlock),
+        account: policy.account,
+        newSigner,
+        proposedAtBlock: atBlock,
+        approvals: [],
+      };
+      return pending;
+    },
+    approve(guardian: `0x${string}`) {
+      if (!pending) throw new Error('no recovery proposal');
+      const normalized = guardian.toLowerCase() as `0x${string}`;
+      if (!guardians.includes(normalized))
+        throw new Error('guardian is not authorized');
+      if (!pending.approvals.includes(normalized))
+        pending = { ...pending, approvals: [...pending.approvals, normalized] };
+      return pending;
+    },
+    execute(atBlock: number) {
+      if (!pending) throw new Error('no recovery proposal');
+      if (pending.approvals.length < policy.threshold)
+        throw new Error('guardian threshold not met');
+      if (atBlock < pending.proposedAtBlock + policy.timelockBlocks)
+        throw new Error('recovery timelock not elapsed');
+      signer = pending.newSigner;
+      pending = undefined;
+      return signer;
+    },
+  };
+}
+
 /** ERC-7579 is still a Draft; this pin is metadata, not a conformance claim. */
 export const ERC7579_DRAFT_VERSION = 'erc-7579-draft-2024-03' as const;
 export const ERC7579_ADAPTER_VERSION = 'ssw-erc7579-adapter-v1' as const;

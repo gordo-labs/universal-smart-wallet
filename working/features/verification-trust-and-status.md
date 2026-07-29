@@ -46,3 +46,21 @@ and replay-store failures; storage failures fail closed.
 ## Tasks
 
 `SSW-004`, `SSW-005`, `SSW-010`, `SSW-013`, `SSW-020`, `SSW-022`, `SSW-024`.
+
+## SSW-013 implementation note
+
+The local verifier demo now builds a strict `vp_token`/`direct_post` request,
+tracks state and nonce, consumes state before validation, evaluates the exact
+`is_over_18: true` disclosure, and issues a one-shot short-lived session. The
+synthetic adapter deliberately returns one generic `verification_failed` code
+for claim, consent, signature, status, and validity failures, avoiding hidden
+claim-matching disclosure. No VP token contents are logged or persisted.
+
+## SSW-020 implementation note
+
+The local trust boundary uses a versioned issuer bundle with explicit key-ID
+pinning; a rotated key is rejected until the bundle is updated. `StatusCache`
+uses only the status URL as its cache key, requires HTTPS, blocks private/local
+addresses, bounds response size and request time, and fails closed on revoked,
+suspended, stale, or unavailable status. Synthetic issuer fixtures cover each
+state without holder-specific identifiers.

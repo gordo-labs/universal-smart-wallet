@@ -210,3 +210,176 @@ export function decodeChallenge(value: string): PresentationChallenge {
     expiresAt: candidate.expiresAt,
   };
 }
+
+/** Versioned local issuer trust and credential-status boundary. */
+export type TrustDecisionCode =
+  | 'trusted'
+  | 'unknown_issuer'
+  | 'untrusted_key'
+  | 'unsupported_version';
+
+export interface TrustedIssuer {
+  readonly issuer: string;
+  readonly keyIds: readonly string[];
+  readonly statusListOrigins?: readonly string[];
+}
+
+export interface TrustBundle {
+  readonly version: number;
+  readonly generatedAt: number;
+  readonly expiresAt: number;
+  readonly issuers: readonly TrustedIssuer[];
+}
+
+export interface TrustPolicy {
+  readonly supportedBundleVersions?: readonly number[];
+  readonly now?: () => number;
+}
+
+export function evaluateIssuerTrust(
+  bundle: TrustBundle,
+  issuer: string,
+  keyId: string,
+  policy: TrustPolicy = {},
+): { readonly ok: boolean; readonly code: TrustDecisionCode } {
+  const versions = policy.supportedBundleVersions ?? [1];
+  if (!versions.includes(bundle.version))
+    return { ok: false, code: 'unsupported_version' };
+  const now = policy.now?.() ?? Date.now();
+  if (bundle.expiresAt <= now) return { ok: false, code: 'unknown_issuer' };
+  const trusted = bundle.issuers.find((entry) => entry.issuer === issuer);
+  if (!trusted) return { ok: false, code: 'unknown_issuer' };
+  if (!trusted.keyIds.includes(keyId))
+    return { ok: false, code: 'untrusted_key' };
+  return { ok: true, code: 'trusted' };
+}
+
+export type CredentialStatus = 'valid' | 'revoked' | 'suspended';
+export type StatusDecisionCode =
+  | 'valid'
+  | 'revoked'
+  | 'suspended'
+  | 'stale'
+  | 'unavailable'
+  | 'invalid_response'
+  | 'ssrf_blocked';
+
+export interface StatusRecord {
+  readonly status: CredentialStatus;
+  readonly expiresAt: number;
+  /** Opaque status-list index; never a holder identifier. */
+  readonly index?: number;
+}
+
+export interface StatusTransportResponse {
+  readonly status: number;
+  readonly body: string;
+}
+export type StatusTransport = (
+  url: string,
+  init?: RequestInit,
+) => Promise<StatusTransportResponse>;
+
+export interface StatusLookupResult {
+  readonly ok: boolean;
+  readonly code: StatusDecisionCode;
+  readonly status?: CredentialStatus;
+  readonly cached: boolean;
+}
+
+const isPrivateHost = (hostname: string): boolean => {
+  const host = hostname.toLowerCase();
+  if (host === 'localhost' || host.endsWith('.localhost') || host === '::1')
+    return true;
+  if (/^127\./u.test(host) || /^10\./u.test(host) || /^192\.168\./u.test(host))
+    return true;
+  const match = host.match(/^172\.(\d{1,3})\./u);
+  return Boolean(match && Number(match[1]) >= 16 && Number(match[1]) <= 31);
+};
+
+const boundedStatusUrl = (value: string): URL => {
+  let url: URL;
+  try {
+    url = new URL(value);
+  } catch {
+    throw new Error('ssrf_blocked');
+  }
+  if (url.protocol !== 'https:' || isPrivateHost(url.hostname))
+    throw new Error('ssrf_blocked');
+  return url;
+};
+
+/** Bounded status cache. Cache keys are status URLs, never holder or credential IDs. */
+export class StatusCache {
+  private readonly entries = new Map<
+    string,
+    { record: StatusRecord; fetchedAt: number }
+  >();
+  constructor(
+    private readonly transport: StatusTransport,
+    private readonly options: {
+      readonly maxResponseBytes?: number;
+      readonly timeoutMs?: number;
+      readonly clock?: () => number;
+    } = {},
+  ) {}
+
+  async lookup(urlValue: string): Promise<StatusLookupResult> {
+    let url: URL;
+    try {
+      url = boundedStatusUrl(urlValue);
+    } catch {
+      return { ok: false, code: 'ssrf_blocked', cached: false };
+    }
+    const key = url.toString();
+    const now = this.options.clock?.() ?? Date.now();
+    const cached = this.entries.get(key);
+    if (cached && cached.record.expiresAt > now)
+      return {
+        ok: cached.record.status === 'valid',
+        code: cached.record.status,
+        status: cached.record.status,
+        cached: true,
+      };
+    try {
+      const timeoutMs = this.options.timeoutMs ?? 5_000;
+      const response = await Promise.race([
+        this.transport(key, { method: 'GET' }),
+        new Promise<never>((_, reject) =>
+          setTimeout(() => reject(new Error('timeout')), timeoutMs),
+        ),
+      ]);
+      if (response.status < 200 || response.status >= 300)
+        throw new Error('unavailable');
+      if (response.body.length > (this.options.maxResponseBytes ?? 32_768))
+        throw new Error('invalid_response');
+      const parsed = JSON.parse(response.body) as Partial<StatusRecord>;
+      if (
+        !['valid', 'revoked', 'suspended'].includes(parsed.status ?? '') ||
+        !Number.isFinite(parsed.expiresAt)
+      )
+        throw new Error('invalid_response');
+      const record = {
+        status: parsed.status as CredentialStatus,
+        expiresAt: parsed.expiresAt as number,
+        ...(typeof parsed.index === 'number' ? { index: parsed.index } : {}),
+      };
+      this.entries.set(key, { record, fetchedAt: now });
+      return {
+        ok: record.status === 'valid',
+        code: record.status,
+        status: record.status,
+        cached: false,
+      };
+    } catch (error) {
+      if (cached)
+        return {
+          ok: false,
+          code: 'stale',
+          status: cached.record.status,
+          cached: true,
+        };
+      return { ok: false, code: 'unavailable', cached: false };
+    }
+  }
+}

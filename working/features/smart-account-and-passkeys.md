@@ -33,6 +33,13 @@ adapter. The ADR—not this planning assumption—selects the dependency.
 
 `SSW-015`–`SSW-018`, `SSW-021`, `SSW-024`.
 
+## SSW-021 recovery boundary (2026-07-29)
+
+`createRecoveryController` models stable account identity, guardian threshold,
+and non-bypassable block timelock before signer rotation. It is a deterministic
+local policy model and test harness only; no custodial service or custom
+smart-account base is introduced.
+
 ## SSW-015 decision and harness (2026-07-29)
 
 SSW-015 selects Safe Protocol Kit `8.0.4` as the replaceable account boundary
