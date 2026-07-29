@@ -8,10 +8,11 @@ assets, or decisions with legal or financial effect.
 
 ## Reporting
 
-The public GitHub repository has not yet been created. Until it exists, do not
-publish exploit details in a public issue. After publication, enable GitHub
-private vulnerability reporting and replace this paragraph with the verified
-reporting URL and response policy.
+Report suspected vulnerabilities through
+[GitHub private vulnerability reporting](https://github.com/gordo-labs/sovereign-smart-wallet/security/advisories/new).
+Do not publish exploit details in a public issue. Maintainers aim to
+acknowledge a private report within five business days; remediation timelines
+depend on severity and project maturity.
 
 ## Non-negotiable boundaries
 

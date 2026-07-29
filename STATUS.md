@@ -11,9 +11,9 @@
   optional on-chain attestations.
 - **Execution:** 28 atomic tasks with explicit dependencies, parallel waves,
   acceptance criteria, validation, and agent prompts.
-- **GitHub:** no local project or accessible
-  `gordo-labs/sovereign-smart-wallet` repository existed at review time. The
-  public remote is planned but not created.
+- **GitHub:** the planning scaffold is public at
+  `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
+  not an alpha release or production-readiness claim.
 - **Codex:** primary thread `019fad60-2d17-7512-acaf-0c740b4a670a`, titled
   “Sovereign Smart Wallet — proyecto y orquestación”, working exclusively in
   this repository from the saved parent project `clawd`.
@@ -37,4 +37,5 @@
 
 1. `SSW-001` — executable monorepo foundation.
 2. `SSW-003` — standards and dependency pinning spike.
-3. `SSW-002` — public GitHub bootstrap after explicit publication approval.
+3. `SSW-002` — finish CI alignment after `SSW-001`; public repository bootstrap
+   is complete.

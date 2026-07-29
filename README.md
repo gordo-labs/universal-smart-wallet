@@ -47,9 +47,10 @@ Original project code and documentation are intended to use Apache-2.0. Third
 party components retain their own licenses and must pass the dependency review
 in `SSW-003`.
 
-The planned public remote is
-`https://github.com/gordo-labs/sovereign-smart-wallet`. It did not exist when
-this scaffold was created and has not been published from this session.
+The public repository is
+[`gordo-labs/sovereign-smart-wallet`](https://github.com/gordo-labs/sovereign-smart-wallet).
+Repository publication is not a product release or a production-readiness
+claim.
 
 ## Source material
 
