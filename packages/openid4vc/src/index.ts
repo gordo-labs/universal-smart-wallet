@@ -7,6 +7,304 @@ export const MAX_DOCUMENT_BYTES = 32_768;
 export const MAX_TOKEN_BYTES = 8_192;
 export const REQUEST_TIMEOUT_MS = 5_000;
 
+/** OpenID4VP 1.0 same-device/direct_post protocol boundary. */
+export const VP_TOKEN_RESPONSE_TYPE = 'vp_token' as const;
+export const DIRECT_POST_RESPONSE_MODE = 'direct_post' as const;
+export const MAX_PRESENTATION_BYTES = 32_768;
+export const MAX_REQUEST_URI_BYTES = 2_048;
+
+export class OpenId4VpError extends Error {
+  readonly code: string;
+  readonly action: 'reject' | 'inspect' | 'retry';
+  constructor(
+    code: string,
+    message: string,
+    action: OpenId4VpError['action'] = 'reject',
+  ) {
+    super(message);
+    this.name = 'OpenId4VpError';
+    this.code = code;
+    this.action = action;
+  }
+}
+
+export interface OpenId4VpRequest {
+  readonly response_type: typeof VP_TOKEN_RESPONSE_TYPE;
+  readonly response_mode: typeof DIRECT_POST_RESPONSE_MODE;
+  readonly client_id: string;
+  readonly response_uri: string;
+  readonly nonce: string;
+  readonly state: string;
+  readonly dcql_query: unknown;
+  readonly transaction_data?: readonly string[];
+  readonly request_uri?: string;
+}
+
+export interface RequestTrustHooks {
+  /** Validate a signed request JWT and return its trusted claims. */
+  readonly verifySignedRequest?: (
+    jwt: string,
+  ) => Promise<Record<string, unknown>>;
+  /** Validate a request URI and retrieve its signed request object. */
+  readonly fetchRequestUri?: (uri: string) => Promise<string>;
+  /** Resolve/confirm verifier identity before consent. */
+  readonly resolveVerifier?: (clientId: string) => Promise<boolean>;
+  readonly validateTransactionData?: (value: string) => Promise<boolean>;
+}
+
+const uniqueParam = (
+  params: URLSearchParams,
+  name: string,
+): string | undefined => {
+  const values = params.getAll(name);
+  if (values.length > 1)
+    throw new OpenId4VpError('duplicate_parameter', `${name} is duplicated`);
+  return values[0];
+};
+const requiredParam = (params: URLSearchParams, name: string): string => {
+  const value = uniqueParam(params, name);
+  if (!value || value.length > 8_192)
+    throw new OpenId4VpError('invalid_request', `${name} is required`);
+  return value;
+};
+const httpsOrigin = (value: string): URL => {
+  let url: URL;
+  try {
+    url = new URL(value);
+  } catch {
+    throw new OpenId4VpError('invalid_request', 'URL is invalid');
+  }
+  if (url.protocol !== 'https:')
+    throw new OpenId4VpError('insecure_origin', 'HTTPS is required');
+  return url;
+};
+
+/** Parse an authorization request or request_uri with strict duplicate/fail-closed handling. */
+export async function parseOpenId4VpRequest(
+  input: string | URL | Record<string, unknown>,
+  hooks: RequestTrustHooks = {},
+): Promise<OpenId4VpRequest> {
+  let claims: Record<string, unknown>;
+  if (typeof input === 'string' || input instanceof URL) {
+    const url = new URL(String(input));
+    const requestUri = uniqueParam(url.searchParams, 'request_uri');
+    const requestJwt = uniqueParam(url.searchParams, 'request');
+    if (requestUri) {
+      if (requestUri.length > MAX_REQUEST_URI_BYTES)
+        throw new OpenId4VpError(
+          'request_uri_too_large',
+          'request_uri is too large',
+        );
+      const uri = httpsOrigin(requestUri).toString();
+      if (!hooks.fetchRequestUri || !hooks.verifySignedRequest)
+        throw new OpenId4VpError(
+          'untrusted_request',
+          'Signed request trust hook is required',
+        );
+      const jwt = await hooks.fetchRequestUri(uri);
+      claims = await hooks.verifySignedRequest(jwt);
+      claims.request_uri = uri;
+    } else if (requestJwt) {
+      if (!hooks.verifySignedRequest)
+        throw new OpenId4VpError(
+          'untrusted_request',
+          'Signed request trust hook is required',
+        );
+      claims = await hooks.verifySignedRequest(requestJwt);
+    } else {
+      for (const name of [
+        'response_type',
+        'response_mode',
+        'client_id',
+        'response_uri',
+        'nonce',
+        'state',
+        'dcql_query',
+        'transaction_data',
+      ])
+        uniqueParam(url.searchParams, name);
+      claims = Object.fromEntries(url.searchParams.entries());
+      const dcql = uniqueParam(url.searchParams, 'dcql_query');
+      if (dcql) {
+        try {
+          claims.dcql_query = JSON.parse(dcql);
+        } catch {
+          throw new OpenId4VpError('invalid_dcql', 'dcql_query is invalid');
+        }
+      }
+      const transaction = uniqueParam(url.searchParams, 'transaction_data');
+      if (transaction) claims.transaction_data = [transaction];
+    }
+  } else claims = input;
+  const responseType = claims.response_type;
+  const responseMode = claims.response_mode;
+  if (
+    responseType !== VP_TOKEN_RESPONSE_TYPE ||
+    responseMode !== DIRECT_POST_RESPONSE_MODE
+  )
+    throw new OpenId4VpError(
+      'unsupported_request',
+      'Only vp_token/direct_post is supported',
+    );
+  const clientId = typeof claims.client_id === 'string' ? claims.client_id : '';
+  const responseUri =
+    typeof claims.response_uri === 'string' ? claims.response_uri : '';
+  const nonce = typeof claims.nonce === 'string' ? claims.nonce : '';
+  const state = typeof claims.state === 'string' ? claims.state : '';
+  if (!clientId || !nonce || !state || !claims.dcql_query)
+    throw new OpenId4VpError(
+      'invalid_request',
+      'Required request fields are missing',
+    );
+  httpsOrigin(responseUri);
+  if (hooks.resolveVerifier && !(await hooks.resolveVerifier(clientId)))
+    throw new OpenId4VpError(
+      'ambiguous_verifier',
+      'Verifier identity could not be confirmed',
+    );
+  const transactionData = claims.transaction_data;
+  if (
+    transactionData !== undefined &&
+    (!Array.isArray(transactionData) ||
+      transactionData.some(
+        (item) => typeof item !== 'string' || item.length > 4_096,
+      ))
+  )
+    throw new OpenId4VpError(
+      'invalid_transaction_data',
+      'transaction_data is invalid',
+    );
+  if (transactionData && hooks.validateTransactionData) {
+    for (const item of transactionData)
+      if (!(await hooks.validateTransactionData(item)))
+        throw new OpenId4VpError(
+          'invalid_transaction_data',
+          'transaction_data is not recognized',
+        );
+  } else if (transactionData && !hooks.validateTransactionData) {
+    throw new OpenId4VpError(
+      'invalid_transaction_data',
+      'transaction_data trust hook is required',
+    );
+  }
+  return {
+    response_type: VP_TOKEN_RESPONSE_TYPE,
+    response_mode: DIRECT_POST_RESPONSE_MODE,
+    client_id: clientId,
+    response_uri: responseUri,
+    nonce,
+    state,
+    dcql_query: claims.dcql_query,
+    ...(transactionData
+      ? { transaction_data: transactionData as string[] }
+      : {}),
+    ...(typeof claims.request_uri === 'string'
+      ? { request_uri: claims.request_uri }
+      : {}),
+  };
+}
+
+export interface VerifierRequestInput {
+  readonly clientId: string;
+  readonly responseUri: string;
+  readonly nonce: string;
+  readonly state: string;
+  readonly dcqlQuery: unknown;
+  readonly transactionData?: readonly string[];
+}
+export function buildOpenId4VpRequest(
+  input: VerifierRequestInput,
+): OpenId4VpRequest {
+  if (!input.clientId || !input.nonce || !input.state)
+    throw new OpenId4VpError(
+      'invalid_request',
+      'client_id, nonce and state are required',
+    );
+  httpsOrigin(input.responseUri);
+  if (input.transactionData?.some((v) => !v || v.length > 4_096))
+    throw new OpenId4VpError(
+      'invalid_transaction_data',
+      'transaction_data is invalid',
+    );
+  return {
+    response_type: VP_TOKEN_RESPONSE_TYPE,
+    response_mode: DIRECT_POST_RESPONSE_MODE,
+    client_id: input.clientId,
+    response_uri: input.responseUri,
+    nonce: input.nonce,
+    state: input.state,
+    dcql_query: input.dcqlQuery,
+    ...(input.transactionData
+      ? { transaction_data: [...input.transactionData] }
+      : {}),
+  };
+}
+
+export interface DirectPostVerifyInput {
+  readonly body: string | URLSearchParams | Record<string, unknown>;
+  readonly expected: Pick<
+    OpenId4VpRequest,
+    'state' | 'nonce' | 'client_id' | 'response_uri'
+  >;
+  readonly consumeState: (state: string) => boolean;
+  readonly verifyVpToken: (
+    vpToken: string,
+    expected: { audience: string; nonce: string },
+  ) => Promise<{
+    readonly disclosures: readonly string[];
+    readonly claims: Readonly<Record<string, unknown>>;
+  }>;
+  readonly expectedDisclosures?: readonly string[];
+}
+export async function verifyOpenId4VpDirectPost(
+  input: DirectPostVerifyInput,
+): Promise<{
+  readonly claims: Readonly<Record<string, unknown>>;
+  readonly vpToken: string;
+}> {
+  const params =
+    typeof input.body === 'string'
+      ? new URLSearchParams(input.body)
+      : input.body instanceof URLSearchParams
+        ? input.body
+        : new URLSearchParams(
+            Object.entries(input.body).map(([k, v]) => [k, String(v)]),
+          );
+  const state = requiredParam(params, 'state');
+  const vpToken = requiredParam(params, 'vp_token');
+  if (
+    params.getAll('state').length !== 1 ||
+    params.getAll('vp_token').length !== 1
+  )
+    throw new OpenId4VpError(
+      'duplicate_parameter',
+      'Response parameters are duplicated',
+    );
+  if (state !== input.expected.state)
+    throw new OpenId4VpError('state_mismatch', 'state mismatch');
+  if (vpToken.length > MAX_PRESENTATION_BYTES)
+    throw new OpenId4VpError('response_too_large', 'vp_token is too large');
+  if (!input.consumeState(state))
+    throw new OpenId4VpError('replay', 'state was already consumed');
+  const result = await input.verifyVpToken(vpToken, {
+    audience: input.expected.client_id,
+    nonce: input.expected.nonce,
+  });
+  if (input.expectedDisclosures) {
+    const actual = [...result.disclosures].sort();
+    const expected = [...input.expectedDisclosures].sort();
+    if (
+      actual.length !== expected.length ||
+      actual.some((value, index) => value !== expected[index])
+    )
+      throw new OpenId4VpError(
+        'disclosure_mismatch',
+        'Disclosure set is not exactly the approved set',
+      );
+  }
+  return { claims: result.claims, vpToken };
+}
+
 export type HttpResponse = {
   readonly status: number;
   readonly headers?: Headers;

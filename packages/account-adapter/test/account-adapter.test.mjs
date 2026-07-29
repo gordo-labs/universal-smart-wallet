@@ -13,6 +13,7 @@ import {
   ERC7579_ADAPTER_VERSION,
   assertERC7579Policy,
   createERC7579Lifecycle,
+  createRecoveryController,
 } from '../dist/index.js';
 
 const valid = {
@@ -129,6 +130,55 @@ test('derives a stable account address from documented public inputs', async () 
   assert.match(first, /^0x[0-9a-f]{40}$/);
   assert.equal(first, second);
   assert.notEqual(first, changed);
+});
+
+test('recovery rotates signer while preserving stable account and enforcing threshold/timelock', async () => {
+  const account = valid.account;
+  const guardianA = '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+  const guardianB = '0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb';
+  const controller = createRecoveryController(
+    {
+      account,
+      guardians: [guardianA, guardianB],
+      threshold: 2,
+      timelockBlocks: 5,
+    },
+    guardianA,
+  );
+  const proposal = await controller.propose(
+    '0xcccccccccccccccccccccccccccccccccccccccc',
+    100,
+  );
+  assert.throws(() => controller.execute(105), /threshold/);
+  controller.approve(guardianA);
+  controller.approve(guardianA);
+  assert.throws(() => controller.execute(105), /threshold/);
+  controller.approve(guardianB);
+  assert.throws(() => controller.execute(104), /timelock/);
+  assert.equal(
+    controller.execute(105),
+    '0xcccccccccccccccccccccccccccccccccccccccc',
+  );
+  assert.equal(controller.account, account);
+  assert.equal(controller.pending, undefined);
+  assert.equal(proposal.account, account);
+});
+
+test('colluding unauthorized guardian cannot approve recovery', async () => {
+  const controller = createRecoveryController(
+    {
+      account: valid.account,
+      guardians: ['0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'],
+      threshold: 1,
+      timelockBlocks: 1,
+    },
+    '0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+  );
+  await controller.propose('0xcccccccccccccccccccccccccccccccccccccccc', 1);
+  assert.throws(
+    () => controller.approve('0xdddddddddddddddddddddddddddddddddddddd'),
+    /not authorized/,
+  );
 });
 
 test('opt-in config skips cleanly unless explicitly enabled', () => {

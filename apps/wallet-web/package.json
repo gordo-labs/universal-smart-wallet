@@ -5,7 +5,16 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
+    "pretypecheck": "pnpm --filter @ssw/credential-vault build && pnpm --filter @ssw/openid4vc build && pnpm --filter @ssw/presentation-policy build",
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
+  },
+  "dependencies": {
+    "@ssw/credential-vault": "workspace:*",
+    "@ssw/openid4vc": "workspace:*",
+    "@ssw/presentation-policy": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "4.1.10"
   }
 }
