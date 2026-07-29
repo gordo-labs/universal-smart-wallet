@@ -16,7 +16,11 @@ export type IssuerFixture =
   | 'expired'
   | 'reused'
   | 'invalid-code'
-  | 'revoked';
+  | 'revoked'
+  | 'suspended'
+  | 'stale'
+  | 'unavailable'
+  | 'rotated-key';
 export type IssuerRouteRequest = {
   readonly method?: string;
   readonly body?: string;
@@ -91,9 +95,28 @@ export class SyntheticIssuer {
       method === 'GET' &&
       (path === '/.well-known/jwks.json' || path === '/public-key')
     )
-      return json({ keys: [syntheticPublicKey] });
-    if (method === 'GET' && path === '/status/revoked')
-      return json({ status: 'revoked', fixture: 'synthetic' });
+      return json({
+        keys: [
+          this.fixture === 'rotated-key'
+            ? {
+                ...syntheticPublicKey,
+                kid: 'synthetic-untrusted-rotation-2026-07',
+              }
+            : syntheticPublicKey,
+        ],
+      });
+    if (method === 'GET' && path.startsWith('/status/')) {
+      const status =
+        this.fixture === 'revoked'
+          ? 'revoked'
+          : this.fixture === 'suspended'
+            ? 'suspended'
+            : 'valid';
+      if (this.fixture === 'unavailable')
+        return error(503, 'status_unavailable');
+      const expiresAt = Date.now() + (this.fixture === 'stale' ? -1 : 60_000);
+      return json({ status, expiresAt, index: 7, fixture: 'synthetic' });
+    }
     if (method === 'POST' && path === '/oauth/token')
       return this.token(request.body ?? '');
     if (method === 'POST' && path === '/credential')
@@ -139,6 +162,11 @@ export class SyntheticIssuer {
       return json({
         format: 'dc+sd-jwt',
         credential: 'synthetic-revoked-age-credential',
+      });
+    if (this.fixture === 'suspended')
+      return json({
+        format: 'dc+sd-jwt',
+        credential: 'synthetic-suspended-age-credential',
       });
     return json({
       format: 'dc+sd-jwt',

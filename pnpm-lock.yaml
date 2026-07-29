@@ -27,6 +27,9 @@ importers:
 
   apps/verifier-demo:
     dependencies:
+      '@ssw/credential-domain':
+        specifier: workspace:*
+        version: link:../../packages/credential-domain
       '@ssw/openid4vc':
         specifier: workspace:*
         version: link:../../packages/openid4vc
