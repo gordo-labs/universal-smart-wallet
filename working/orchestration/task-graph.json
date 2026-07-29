@@ -314,7 +314,7 @@
       "id": "SSW-018",
       "slug": "erc7579-compatibility",
       "title": "Integrate and test the pinned ERC-7579 compatibility path",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P1",
       "wave": 4,
       "lane": "account",

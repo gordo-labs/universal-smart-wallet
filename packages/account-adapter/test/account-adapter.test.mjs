@@ -9,6 +9,10 @@ import {
   parseErc4337Config,
   submitUserOperation,
   UserOperationAdapterError,
+  ERC7579_DRAFT_VERSION,
+  ERC7579_ADAPTER_VERSION,
+  assertERC7579Policy,
+  createERC7579Lifecycle,
 } from '../dist/index.js';
 
 const valid = {
@@ -218,5 +222,79 @@ test('provider and paymaster failures are actionable and never retried', async (
     (error) =>
       error instanceof UserOperationAdapterError &&
       error.code === 'BUNDLER_UNAVAILABLE',
+  );
+});
+
+const modulePolicy = {
+  draft: ERC7579_DRAFT_VERSION,
+  adapter: ERC7579_ADAPTER_VERSION,
+  modules: [
+    {
+      address: '0x3333333333333333333333333333333333333333',
+      type: 'executor',
+      version: '1.0.0',
+      codeHash: '0x' + '33'.repeat(32),
+      delegateCall: false,
+      draft: ERC7579_DRAFT_VERSION,
+    },
+  ],
+};
+
+test('ERC-7579 policy pins draft, module version, and runtime code hash', () => {
+  assert.doesNotThrow(() => assertERC7579Policy(modulePolicy));
+  assert.throws(
+    () =>
+      assertERC7579Policy({
+        ...modulePolicy,
+        modules: [
+          { ...modulePolicy.modules[0], codeHash: '0x' + '00'.repeat(32) },
+        ],
+      }),
+    /code hash/,
+  );
+  assert.throws(
+    () =>
+      assertERC7579Policy({
+        ...modulePolicy,
+        modules: [{ ...modulePolicy.modules[0], delegateCall: true }],
+      }),
+    /fail-closed/,
+  );
+});
+
+test('ERC-7579 lifecycle installs, uses, uninstalls, and recovers without delegatecall', () => {
+  const lifecycle = createERC7579Lifecycle(modulePolicy);
+  const module = modulePolicy.modules[0];
+  lifecycle.install(module);
+  assert.deepEqual(
+    [...lifecycle.use(module.address, new Uint8Array([7]))],
+    [7],
+  );
+  assert.deepEqual(lifecycle.installed(), [module.address.toLowerCase()]);
+  lifecycle.uninstall(module.address);
+  assert.deepEqual(lifecycle.installed(), []);
+  assert.throws(() => lifecycle.use(module.address), /not installed/);
+  lifecycle.install(module);
+  lifecycle.recoverUninstall(module.address);
+  assert.deepEqual(lifecycle.installed(), []);
+});
+
+test('ERC-7579 lifecycle rejects unpinned and malicious modules', () => {
+  const lifecycle = createERC7579Lifecycle(modulePolicy);
+  assert.throws(
+    () =>
+      lifecycle.install({
+        ...modulePolicy.modules[0],
+        codeHash: '0x' + '44'.repeat(32),
+      }),
+    /code-hash/,
+  );
+  assert.throws(
+    () =>
+      lifecycle.install({
+        ...modulePolicy.modules[0],
+        address: '0x4444444444444444444444444444444444444444',
+      }),
+    /code-hash/,
   );
 });
