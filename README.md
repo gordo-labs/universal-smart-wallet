@@ -33,6 +33,23 @@ security claims are allowed before the documented review gates are complete.
 5. [Execution plan](working/orchestration/EXECUTION-PLAN.md)
 6. [Atomic backlog](working/BACKLOG.md)
 
+### Deterministic local vertical slice
+
+After installing the pinned toolchain, run the complete synthetic issuer →
+wallet → verifier flow with:
+
+```bash
+pnpm e2e:local
+```
+
+The command builds the workspace, starts three loopback-only app processes,
+resets a temporary fixture directory, exercises issuance, encrypted vault
+storage, minimal `is_over_18` presentation, verification, replay/expiry/status/
+holder-binding failures, and encrypted backup restore after a wallet restart.
+Child processes and temporary data are removed on success or failure. The
+fixture contains no real identity data, secrets, hosted endpoints, RPC, or
+network assets; no screenshots or unsanitized traces are retained.
+
 ## Core architectural choice
 
 The credential flow is off-chain by default. The smart account is a control
