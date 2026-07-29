@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 pragma solidity ^0.8.24;
 
-import {DeterministicDeploymentHarness, ExternalDeploymentFixture} from '../src/DeterministicDeploymentHarness.sol';
+import {DeterministicDeploymentHarness, ExternalDeploymentFixture, ERC1271BoundaryFixture} from '../src/DeterministicDeploymentHarness.sol';
 
 contract SmartAccountHarnessTest {
     bytes32 internal constant SALT = keccak256('sovereign-smart-wallet/SSW-015');
@@ -27,6 +27,15 @@ contract SmartAccountHarnessTest {
         ExternalDeploymentFixture fixture = new ExternalDeploymentFixture();
         require(fixture.ERC1271_MAGICVALUE() == 0x1626ba7e, 'ERC-1271 boundary missing');
         require(ENTRY_POINT_V08 == bytes20(0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108), 'EntryPoint pin drift');
+    }
+
+    function test_erc1271_accepts_only_the_expected_digest_and_signature() public {
+        bytes32 digest = keccak256('local-passkey-operation');
+        ERC1271BoundaryFixture account = new ERC1271BoundaryFixture(digest);
+        bytes memory validSignature = abi.encode(digest);
+        require(account.isValidSignature(digest, validSignature) == 0x1626ba7e, 'valid ERC-1271 signature rejected');
+        require(account.isValidSignature(keccak256('wrong'), validSignature) == 0xffffffff, 'wrong digest accepted');
+        require(account.isValidSignature(digest, abi.encode(keccak256('wrong'))) == 0xffffffff, 'wrong signature accepted');
     }
 
     function _create2Address(address deployer, bytes32 salt, bytes32 initHash) internal pure returns (address) {

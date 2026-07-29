@@ -6,6 +6,9 @@ import {
   migrateVaultEnvelope,
   openVaultEnvelope,
   requirePrfCapability,
+  InMemoryVaultStore,
+  FakeIndexedDbVaultStore,
+  VaultStoreError,
 } from '../dist/index.js';
 
 const bytes = (length, seed = 1) =>
@@ -94,4 +97,72 @@ test('PRF capability is optional but never silently downgraded', async () => {
     () => createVaultEnvelope(new Uint8Array([1]), { strategy: 'prf' }),
     /no silent downgrade/,
   );
+});
+
+test('vault stores only encrypted payloads and authenticates bounded index metadata', async () => {
+  for (const Store of [InMemoryVaultStore, FakeIndexedDbVaultStore]) {
+    const store = new Store();
+    const metadata = {
+      id: 'cred-1',
+      credentialType: 'SyntheticAgeCredential',
+      issuer: 'https://issuer.invalid',
+      expiresAt: '2030-01-01T00:00:00Z',
+    };
+    const credential = {
+      vc: {
+        type: ['VerifiableCredential'],
+        credentialSubject: { is_over_18: true },
+      },
+    };
+    await store.put(metadata, credential, {
+      strategy: 'prf',
+      prfOutput: bytes(32, 7),
+      randomBytes,
+    });
+    assert.deepEqual(await store.list(), [metadata]);
+    assert.deepEqual(
+      (await store.get('cred-1', bytes(32, 7))).credential,
+      credential,
+    );
+    const record = store.entries?.get?.('cred-1');
+    if (record)
+      assert.equal(JSON.stringify(record).includes('is_over_18'), false);
+    await assert.rejects(
+      () => store.get('cred-1', bytes(32, 8)),
+      (error) =>
+        error instanceof VaultStoreError && error.kind === 'recoverable',
+    );
+    await store.delete('cred-1');
+    await assert.rejects(() => store.get('cred-1', bytes(32, 7)), /not found/);
+  }
+});
+
+test('metadata tampering and failed migration retain no partial plaintext', async () => {
+  const store = new InMemoryVaultStore();
+  const metadata = {
+    id: 'cred-2',
+    credentialType: 'Synthetic',
+    issuer: 'https://issuer.invalid',
+  };
+  await store.put(
+    metadata,
+    { secret: 'synthetic-only' },
+    { strategy: 'prf', prfOutput: bytes(32, 3), randomBytes },
+  );
+  store.entries.get('cred-2').issuer = 'https://tampered.invalid';
+  await assert.rejects(() => store.get('cred-2', bytes(32, 3)), /corrupt/);
+  store.entries.get('cred-2').issuer = metadata.issuer;
+  await assert.rejects(
+    () =>
+      store.migrate('cred-2', bytes(32, 4), {
+        strategy: 'prf',
+        prfOutput: bytes(32, 9),
+        randomBytes,
+      }),
+    /migration failed/,
+  );
+  assert.deepEqual(await store.get('cred-2', bytes(32, 3)), {
+    metadata,
+    credential: { secret: 'synthetic-only' },
+  });
 });

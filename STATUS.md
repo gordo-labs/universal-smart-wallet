@@ -10,8 +10,8 @@
   replaceable OpenID4VC and SD-JWT adapters, smart-account control plane, and
   optional on-chain attestations.
 - **Execution:** 28 atomic tasks with explicit dependencies, parallel waves,
-  acceptance criteria, validation, and agent prompts. `SSW-001`–`SSW-003`,
-  `SSW-006`, and `SSW-015` are Done.
+  acceptance criteria, validation, and agent prompts. `SSW-001`–`SSW-007`,
+  `SSW-015`, and `SSW-016` are Done.
 - **GitHub:** the public repository is at
   `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.
@@ -36,7 +36,6 @@
 
 ## Next
 
-1. `SSW-004` — shared runtime schemas and DCQL policy mapping.
-2. `SSW-007` — encrypted vault and IndexedDB adapter (depends on SSW-006).
-3. `SSW-016` — local passkey smart account and ERC-1271 flow (depends on
-   SSW-015).
+1. `SSW-005` — nonce, replay, and verification-result domain logic.
+2. `SSW-008` — version-pinned SD-JWT VC adapter.
+3. `SSW-017` — opt-in ERC-4337 testnet adapter.

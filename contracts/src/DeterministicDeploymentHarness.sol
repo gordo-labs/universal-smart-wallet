@@ -23,3 +23,22 @@ contract DeterministicDeploymentHarness {
 contract ExternalDeploymentFixture {
     bytes4 public constant ERC1271_MAGICVALUE = 0x1626ba7e;
 }
+
+/// @dev Test-only ERC-1271 boundary fixture. Production accounts remain the
+/// upstream Safe deployment selected by SSW-015; this is not an account base.
+contract ERC1271BoundaryFixture {
+    bytes4 internal constant MAGICVALUE = 0x1626ba7e;
+    bytes4 internal constant INVALID = 0xffffffff;
+    bytes32 public immutable approvedDigest;
+
+    constructor(bytes32 digest) {
+        approvedDigest = digest;
+    }
+
+    function isValidSignature(bytes32 hash, bytes calldata signature) external view returns (bytes4) {
+        if (hash == approvedDigest && keccak256(signature) == keccak256(abi.encode(approvedDigest))) {
+            return MAGICVALUE;
+        }
+        return INVALID;
+    }
+}
