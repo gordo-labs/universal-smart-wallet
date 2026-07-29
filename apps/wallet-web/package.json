@@ -1,0 +1,11 @@
+{
+  "name": "@ssw/wallet-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  }
+}

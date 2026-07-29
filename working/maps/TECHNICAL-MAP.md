@@ -2,6 +2,11 @@
 
 ## Planned code surfaces
 
+The executable foundation now provides TypeScript package shells for each
+planned adapter/domain surface and three network-free app shells. These shells
+contain no credential, browser, RPC, or smart-account logic; later tasks fill
+their narrow boundaries.
+
 | Surface | Purpose | Default dependencies |
 | --- | --- | --- |
 | `apps/wallet-web` | Passkey, vault, issuance intake, presentation consent | Browser APIs plus project packages |

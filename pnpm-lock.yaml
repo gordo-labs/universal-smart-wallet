@@ -1,0 +1,56 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    devDependencies:
+      prettier:
+        specifier: 3.6.2
+        version: 3.6.2
+      typescript:
+        specifier: 5.9.2
+        version: 5.9.2
+
+  apps/issuer-demo: {}
+
+  apps/verifier-demo: {}
+
+  apps/wallet-web: {}
+
+  packages/account-adapter: {}
+
+  packages/credential-domain: {}
+
+  packages/credential-vault: {}
+
+  packages/identity-adapter: {}
+
+  packages/openid4vc: {}
+
+  packages/presentation-policy: {}
+
+  packages/sd-jwt-adapter: {}
+
+  packages/shared-types: {}
+
+packages:
+
+  prettier@3.6.2:
+    resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
+    engines: {node: '>=14'}
+    hasBin: true
+
+  typescript@5.9.2:
+    resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+snapshots:
+
+  prettier@3.6.2: {}
+
+  typescript@5.9.2: {}
