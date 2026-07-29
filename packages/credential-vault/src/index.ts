@@ -335,6 +335,108 @@ export interface VaultEntry extends VaultIndexMetadata {
   readonly envelope: VaultEnvelope;
 }
 
+export const VAULT_BACKUP_VERSION = 1 as const;
+export interface VaultBackupEnvelope extends VaultEnvelope {
+  readonly backupVersion: typeof VAULT_BACKUP_VERSION;
+  readonly kind: 'ssw-credential-vault-backup';
+  readonly sequence: number;
+  readonly createdAt: string;
+}
+
+type BackupPayload = { readonly entries: readonly VaultEntry[] };
+const backupAad = (sequence: number, createdAt: string): Uint8Array =>
+  new TextEncoder().encode(
+    JSON.stringify({
+      kind: 'ssw-credential-vault-backup',
+      backupVersion: VAULT_BACKUP_VERSION,
+      sequence,
+      createdAt,
+    }),
+  );
+const isVaultEntry = (value: unknown): value is VaultEntry => {
+  if (!value || typeof value !== 'object') return false;
+  const entry = value as Partial<VaultEntry> & { credential?: unknown };
+  return (
+    !('credential' in entry) &&
+    typeof entry.id === 'string' &&
+    typeof entry.credentialType === 'string' &&
+    typeof entry.issuer === 'string' &&
+    !!entry.envelope &&
+    entry.envelope.version === VAULT_ENVELOPE_VERSION &&
+    entry.envelope.algorithm === 'AES-GCM-256'
+  );
+};
+
+/** Export only already-encrypted records; plaintext credentials and keys never enter the backup payload. */
+export async function createVaultBackup(
+  entries: readonly VaultEntry[],
+  options: EnvelopeOptions & {
+    readonly sequence: number;
+    readonly createdAt?: string;
+  },
+): Promise<VaultBackupEnvelope> {
+  if (!Number.isSafeInteger(options.sequence) || options.sequence < 1)
+    throw new Error('backup sequence must be a positive integer');
+  const createdAt = options.createdAt ?? new Date().toISOString();
+  if (Number.isNaN(Date.parse(createdAt)))
+    throw new Error('invalid backup timestamp');
+  if (!entries.every(isVaultEntry))
+    throw new Error('backup entries must contain encrypted envelopes');
+  const outer = await createVaultEnvelope(
+    new TextEncoder().encode(
+      JSON.stringify({ entries } satisfies BackupPayload),
+    ),
+    { ...options, associatedData: backupAad(options.sequence, createdAt) },
+  );
+  return {
+    ...outer,
+    backupVersion: VAULT_BACKUP_VERSION,
+    kind: 'ssw-credential-vault-backup',
+    sequence: options.sequence,
+    createdAt,
+  };
+}
+
+export async function openVaultBackup(
+  envelope: VaultBackupEnvelope,
+  secret: Uint8Array | string,
+  options: { readonly minimumSequence?: number } = {},
+): Promise<{
+  sequence: number;
+  createdAt: string;
+  entries: readonly VaultEntry[];
+}> {
+  if (
+    envelope.kind !== 'ssw-credential-vault-backup' ||
+    envelope.backupVersion !== VAULT_BACKUP_VERSION ||
+    !Number.isSafeInteger(envelope.sequence) ||
+    envelope.sequence < 1
+  )
+    throw new Error('Unsupported or corrupt vault backup version');
+  if (
+    options.minimumSequence !== undefined &&
+    envelope.sequence < options.minimumSequence
+  )
+    throw new Error('Vault backup rollback detected');
+  const bytes = await openVaultEnvelope(envelope, secret);
+  if (envelope.aad !== b64(backupAad(envelope.sequence, envelope.createdAt)))
+    throw new Error('Vault backup integrity metadata mismatch');
+  let payload: unknown;
+  try {
+    payload = JSON.parse(new TextDecoder().decode(bytes));
+  } catch {
+    throw new Error('Vault backup payload is corrupt');
+  }
+  const entries = (payload as BackupPayload)?.entries;
+  if (!Array.isArray(entries) || !entries.every(isVaultEntry))
+    throw new Error('Vault backup payload is corrupt');
+  return {
+    sequence: envelope.sequence,
+    createdAt: envelope.createdAt,
+    entries: entries.map(clone),
+  };
+}
+
 export type VaultStoreErrorKind = 'recoverable' | 'terminal';
 export class VaultStoreError extends Error {
   readonly kind: VaultStoreErrorKind;
@@ -384,6 +486,17 @@ export interface CredentialVaultStore {
     id: string,
     currentSecret: Uint8Array | string,
     next: EnvelopeOptions,
+  ): Promise<void>;
+  exportBackup(
+    options: EnvelopeOptions & {
+      readonly sequence: number;
+      readonly createdAt?: string;
+    },
+  ): Promise<VaultBackupEnvelope>;
+  restoreBackup(
+    envelope: VaultBackupEnvelope,
+    secret: Uint8Array | string,
+    options?: { readonly minimumSequence?: number },
   ): Promise<void>;
 }
 
@@ -456,6 +569,26 @@ export class InMemoryVaultStore implements CredentialVaultStore {
         'Vault migration failed; previous entry retained',
       );
     }
+  }
+  async exportBackup(
+    options: EnvelopeOptions & {
+      readonly sequence: number;
+      readonly createdAt?: string;
+    },
+  ): Promise<VaultBackupEnvelope> {
+    return createVaultBackup([...this.entries.values()].map(clone), options);
+  }
+  async restoreBackup(
+    envelope: VaultBackupEnvelope,
+    secret: Uint8Array | string,
+    options: { readonly minimumSequence?: number } = {},
+  ): Promise<void> {
+    const backup = await openVaultBackup(envelope, secret, options);
+    const next = new Map(
+      backup.entries.map((entry) => [entry.id, clone(entry)] as const),
+    );
+    this.entries.clear();
+    for (const [id, entry] of next) this.entries.set(id, entry);
   }
 }
 
@@ -595,6 +728,28 @@ export class IndexedDbVaultStore implements CredentialVaultStore {
         'Vault migration failed; previous entry retained',
       );
     }
+  }
+  async exportBackup(
+    options: EnvelopeOptions & {
+      readonly sequence: number;
+      readonly createdAt?: string;
+    },
+  ): Promise<VaultBackupEnvelope> {
+    const entries = (await this.tx<VaultEntry[]>('readonly', (store) =>
+      store.getAll(),
+    )) as VaultEntry[];
+    return createVaultBackup(entries, options);
+  }
+  async restoreBackup(
+    envelope: VaultBackupEnvelope,
+    secret: Uint8Array | string,
+    options: { readonly minimumSequence?: number } = {},
+  ): Promise<void> {
+    const backup = await openVaultBackup(envelope, secret, options);
+    await this.tx('readwrite', (store) => {
+      store.clear();
+      for (const entry of backup.entries) store.put(entry);
+    });
   }
 }
 
