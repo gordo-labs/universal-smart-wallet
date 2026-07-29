@@ -5,6 +5,10 @@
 The wallet receives a synthetic SD-JWT VC through OpenID4VCI 1.0 and presents
 the minimum approved claims through OpenID4VP 1.0 with DCQL.
 
+SSW-004 provides versioned runtime schemas and a narrow, fail-closed DCQL
+mapping for `dc+sd-jwt`. The MVP age policy requests only the issuer-signed
+`is_over_18: true` claim, never a hidden birthdate predicate.
+
 ## Owner surfaces
 
 - `apps/issuer-demo`
