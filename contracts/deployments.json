@@ -14,6 +14,13 @@
     "address": null,
     "codeHash": null
   },
+  "erc7579": {
+    "draft": "erc-7579-draft-2024-03",
+    "adapter": "ssw-erc7579-adapter-v1",
+    "modules": [],
+    "delegateCall": false,
+    "status": "local-compatibility-harness-only; pin address/version/codeHash before testnet"
+  },
   "deterministicFixture": {
     "salt": "0x9d80d252a6afbe7dde075717d96dc4c1ab5c8288ac0e722d907be2641ca201f4",
     "runtimeCodeHash": "0x548e123c1edc2305824127817d1960c9f74c9a7d348e007f7b272c9d7e4a9f4c",

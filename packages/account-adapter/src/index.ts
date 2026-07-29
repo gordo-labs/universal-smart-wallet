@@ -1,5 +1,115 @@
 export const adapterName = 'account-adapter';
 
+/** ERC-7579 is still a Draft; this pin is metadata, not a conformance claim. */
+export const ERC7579_DRAFT_VERSION = 'erc-7579-draft-2024-03' as const;
+export const ERC7579_ADAPTER_VERSION = 'ssw-erc7579-adapter-v1' as const;
+
+export type ModuleType =
+  | 'validator'
+  | 'executor'
+  | 'fallback'
+  | 'hook'
+  | 'attester';
+export type ERC7579ModuleManifest = {
+  address: `0x${string}`;
+  type: ModuleType;
+  version: string;
+  codeHash: `0x${string}`;
+  delegateCall: false;
+  draft: typeof ERC7579_DRAFT_VERSION;
+};
+
+export type ERC7579Policy = {
+  draft: typeof ERC7579_DRAFT_VERSION;
+  adapter: typeof ERC7579_ADAPTER_VERSION;
+  modules: readonly ERC7579ModuleManifest[];
+};
+
+const assertCodeHash = (hash: string): void => {
+  if (!/^0x[0-9a-fA-F]{64}$/.test(hash) || /^0x0+$/.test(hash))
+    throw new Error('module code hash is required');
+};
+
+/** Fail-closed policy check. Addresses, versions, and runtime hashes are all pinned. */
+export function assertERC7579Policy(policy: ERC7579Policy): void {
+  if (
+    policy.draft !== ERC7579_DRAFT_VERSION ||
+    policy.adapter !== ERC7579_ADAPTER_VERSION
+  )
+    throw new Error('unsupported ERC-7579 adapter pin');
+  const seen = new Set<string>();
+  for (const module of policy.modules) {
+    if (
+      !/^0x[0-9a-fA-F]{40}$/.test(module.address) ||
+      /^0x0+$/.test(module.address)
+    )
+      throw new Error('module address is required');
+    if (
+      !module.version ||
+      module.draft !== ERC7579_DRAFT_VERSION ||
+      module.delegateCall !== false
+    )
+      throw new Error('module policy is not fail-closed');
+    assertCodeHash(module.codeHash);
+    const key = `${module.address.toLowerCase()}:${module.type}`;
+    if (seen.has(key)) throw new Error('duplicate module policy');
+    seen.add(key);
+  }
+}
+
+export type ModuleLifecycle = {
+  install(module: ERC7579ModuleManifest): void;
+  use(module: `0x${string}`, input?: Uint8Array): Uint8Array;
+  uninstall(module: `0x${string}`): void;
+  recoverUninstall(module: `0x${string}`): void;
+  installed(): readonly `0x${string}`[];
+};
+
+/** Local deterministic lifecycle model used by compatibility tests; no delegatecall or assets. */
+export function createERC7579Lifecycle(policy: ERC7579Policy): ModuleLifecycle {
+  assertERC7579Policy(policy);
+  const records = new Map<string, ERC7579ModuleManifest>();
+  const denied = new Set<string>();
+  return {
+    install(module) {
+      const allowed = policy.modules.find(
+        (candidate) =>
+          candidate.address.toLowerCase() === module.address.toLowerCase() &&
+          candidate.type === module.type,
+      );
+      if (
+        !allowed ||
+        allowed.codeHash.toLowerCase() !== module.codeHash.toLowerCase() ||
+        allowed.version !== module.version
+      )
+        throw new Error('module is not allowed by code-hash policy');
+      records.set(module.address.toLowerCase(), module);
+    },
+    use(module, input = new Uint8Array()) {
+      const record = records.get(module.toLowerCase());
+      if (!record || record.delegateCall)
+        throw new Error('module is not installed');
+      if (denied.has(module.toLowerCase()))
+        throw new Error('module execution denied');
+      return input.slice();
+    },
+    uninstall(module) {
+      if (!records.has(module.toLowerCase()))
+        throw new Error('module is not installed');
+      if (denied.has(module.toLowerCase()))
+        throw new Error('module uninstall denied; use recovery');
+      records.delete(module.toLowerCase());
+    },
+    recoverUninstall(module) {
+      records.delete(module.toLowerCase());
+      denied.delete(module.toLowerCase());
+    },
+    installed() {
+      return [...records.keys()] as `0x${string}`[];
+    },
+  };
+}
+
 export const ENTRY_POINT_V08 =
   '0x4337084d9e255ff0702461cf8895ce9e3b5ff108' as const;
 

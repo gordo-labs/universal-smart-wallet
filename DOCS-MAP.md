@@ -28,8 +28,11 @@
 
 - [Credential exchange](working/features/credential-exchange.md)
 - [SD-JWT VC adapter](docs/protocols/sd-jwt-vc-adapter.md)
+- [OpenID4VCI issuance](docs/protocols/openid4vci-issuance.md)
+- [DID control and holder binding ADR](docs/decisions/SSW-019-did-holder-binding.md)
 - [Encrypted vault](working/features/encrypted-vault.md)
 - [Smart account and passkeys](working/features/smart-account-and-passkeys.md)
+- [ERC-7579 compatibility ADR](docs/decisions/SSW-018-erc7579-compatibility.md)
 - [Identity and holder binding](working/features/identity-and-holder-binding.md)
 - [Verification, trust, and status](working/features/verification-trust-and-status.md)
 - [On-chain attestations](working/features/onchain-attestations.md)

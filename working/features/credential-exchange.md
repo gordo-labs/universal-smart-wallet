@@ -40,6 +40,10 @@ boundary. It uses synthetic `AgeCredential` fixtures, issuer-signed
 `is_over_18: true`, bounded disclosures, and holder key binding. JOSE and
 SD-JWT decoding remain delegated to maintained pinned dependencies.
 
+SSW-009 adds the bounded OpenID4VCI 1.0 pre-authorized-code client. Final
+metadata and offer names are parsed, deterministic HTTP fixtures enforce
+origin/SSRF/size/timeout policy, and verification precedes vault insertion.
+
 ## Tasks
 
 `SSW-003`, `SSW-004`, `SSW-005`, `SSW-008`–`SSW-014`.

@@ -63,3 +63,13 @@ EntryPoint 0.8.0, account address, and runtime code hash are mandatory; no
 provider or chain fallback exists. Missing environment skips the smoke gate,
 while simulation, paymaster, transport, and receipt mismatches are typed and
 actionable. Testnet use remains explicitly configured and non-production.
+
+## SSW-018 ERC-7579 compatibility (2026-07-29)
+
+The optional adapter is pinned to `erc-7579-draft-2024-03` and
+`ssw-erc7579-adapter-v1`. A module manifest requires address, type, version,
+and runtime code hash; delegatecall is forbidden. Local lifecycle tests cover
+install/use/uninstall, reverting and reentrant modules, and owner-only recovery
+removal. Safe remains the external account base and credentials do not depend
+on modules. Draft migration and per-chain deployment pinning remain required
+before testnet use.
