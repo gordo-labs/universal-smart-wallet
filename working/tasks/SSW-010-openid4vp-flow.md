@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| Status | Done (implementation committed; integration pending) |
+| Status | Done |
 | Priority | P0 |
 | Wave | 4 |
 | Lane | protocol |

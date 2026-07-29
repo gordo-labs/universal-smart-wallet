@@ -14,8 +14,8 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-007 | Done | P0 | vault | Implement the encrypted vault and IndexedDB adapter | [task](tasks/SSW-007-encrypted-vault-indexeddb.md) |
 | SSW-008 | Done | P0 | credential-format | Implement the version-pinned SD-JWT VC adapter | [task](tasks/SSW-008-sd-jwt-vc-adapter.md) |
 | SSW-009 | Done | P0 | protocol | Implement the OpenID4VCI issuance flow | [task](tasks/SSW-009-openid4vci-flow.md) |
-| SSW-010 | Doing | P0 | protocol | Implement the OpenID4VP and DCQL presentation flow | [task](tasks/SSW-010-openid4vp-flow.md) |
-| SSW-011 | Doing | P1 | apps | Build the synthetic OpenID4VCI issuer demo | [task](tasks/SSW-011-issuer-demo.md) |
+| SSW-010 | Done | P0 | protocol | Implement the OpenID4VP and DCQL presentation flow | [task](tasks/SSW-010-openid4vp-flow.md) |
+| SSW-011 | Done | P1 | apps | Build the synthetic OpenID4VCI issuer demo | [task](tasks/SSW-011-issuer-demo.md) |
 | SSW-012 | Todo | P0 | apps | Build the wallet web demo | [task](tasks/SSW-012-wallet-web-demo.md) |
 | SSW-013 | Todo | P0 | apps | Build the OpenID4VP verifier demo | [task](tasks/SSW-013-verifier-demo.md) |
 | SSW-014 | Todo | P0 | integration | Integrate the deterministic local vertical slice | [task](tasks/SSW-014-local-vertical-slice-e2e.md) |
