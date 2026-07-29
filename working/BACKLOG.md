@@ -5,8 +5,8 @@ in [task-graph.json](orchestration/task-graph.json).
 
 | ID | Status | Priority | Lane | Title | Detail |
 | --- | --- | --- | --- | --- | --- |
-| SSW-001 | Done (branch ready for review) | P0 | foundation | Bootstrap the executable monorepo foundation | [task](tasks/SSW-001-monorepo-foundation.md) |
-| SSW-002 | Doing | P0 | governance | Create the public GitHub repository and governance baseline | [task](tasks/SSW-002-public-repository-governance.md) |
+| SSW-001 | Done | P0 | foundation | Bootstrap the executable monorepo foundation | [task](tasks/SSW-001-monorepo-foundation.md) |
+| SSW-002 | Done | P0 | governance | Create the public GitHub repository and governance baseline | [task](tasks/SSW-002-public-repository-governance.md) |
 | SSW-003 | Todo | P0 | architecture | Pin the standards and dependency compatibility baseline | [task](tasks/SSW-003-standards-dependency-baseline.md) |
 | SSW-004 | Todo | P0 | credential-core | Implement shared runtime schemas and DCQL policy mapping | [task](tasks/SSW-004-shared-schemas-dcql-policy.md) |
 | SSW-005 | Todo | P0 | credential-core | Implement nonce, replay, and verification-result domain logic | [task](tasks/SSW-005-nonce-replay-verification-domain.md) |

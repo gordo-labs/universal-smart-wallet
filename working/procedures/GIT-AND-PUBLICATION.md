@@ -31,12 +31,13 @@ production-readiness claim remain separate approval gates.
 ## Current governance
 
 - Public visibility and `main` as the default branch.
-- Planning validation on pushes to `main` and pull requests.
+- Executable validation on pushes to `main` and pull requests: toolchain check,
+  frozen pnpm install, lint, typecheck, unit test, build, e2e smoke, and Foundry
+  test.
 - Dependabot updates for pinned GitHub Actions.
 - GitHub secret scanning, push protection, dependency alerts, automated
   security fixes, and private vulnerability reporting.
-- Protected `main`; required product checks will be expanded after `SSW-001`
-  adds the executable root toolchain.
+- Protected `main`; the required status check is `Validate executable foundation`.
 
 Code releases are separate from repository publication and follow
 `RELEASE-WORKFLOW.md`.

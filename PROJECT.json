@@ -6,12 +6,12 @@
   "lifecycle": "planning",
   "frequency": "weekly",
   "description": "Open-source smart wallet for passkey-controlled smart accounts and privacy-preserving verifiable credentials.",
-  "lastAction": "2026-07-29T12:37:06+02:00",
-  "lastActionDescription": "Published the planning scaffold to the public GitHub repository and started the governance baseline.",
+  "lastAction": "2026-07-29T13:05:00+02:00",
+  "lastActionDescription": "Aligned public CI with the executable monorepo checks and verified repository governance.",
   "nextNeeds": [
-    "SSW-001: Bootstrap the executable pnpm monorepo",
     "SSW-003: Pin the standards and dependency compatibility baseline",
-    "SSW-002: Complete CI alignment after the executable foundation exists"
+    "SSW-006: Design and prove the vault key-management boundary",
+    "SSW-015: Select the smart-account base and build the Foundry harness"
   ],
   "blocking": null,
   "license": "Apache-2.0",
