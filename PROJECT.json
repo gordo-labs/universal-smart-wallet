@@ -10,7 +10,7 @@
   "lastActionDescription": "Integrated the vault key-management and smart-account baseline spikes with passing local checks.",
   "nextNeeds": [
     "SSW-004: Implement shared runtime schemas and DCQL policy mapping",
-    "SSW-007: Implement the encrypted vault and IndexedDB adapter",
+    "SSW-008: Implement the version-pinned SD-JWT VC adapter",
     "SSW-016: Implement the local passkey smart account and ERC-1271 flow"
   ],
   "blocking": null,

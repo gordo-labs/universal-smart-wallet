@@ -116,7 +116,7 @@
       "id": "SSW-007",
       "slug": "encrypted-vault-indexeddb",
       "title": "Implement the encrypted vault and IndexedDB adapter",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P0",
       "wave": 3,
       "lane": "vault",

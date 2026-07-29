@@ -19,6 +19,16 @@ Credentials never enter blockchain state or plaintext logs.
 - IndexedDB migrations, corruption detection, deletion, and bounded metadata
   indexing.
 
+## SSW-007 implementation
+
+`@ssw/credential-vault` now exposes AES-GCM-256 versioned envelopes with
+authenticated metadata (AES-GCM additional data), bounded index records, an
+in-memory adapter, and an IndexedDB adapter using one transactional object
+store. The IndexedDB adapter creates schema version 1 atomically; migrations
+decrypt and re-encrypt before replacing the old record, so failed migrations
+retain the previous ciphertext. Corruption and wrong-key failures are surfaced
+as recoverable `VaultStoreError`s without including plaintext.
+
 SSW-006 establishes the key boundary in
 [`docs/decisions/SSW-006-vault-key-management.md`](../../docs/decisions/SSW-006-vault-key-management.md): random DEK + AES-GCM, explicit PRF/HKDF or PBKDF2 wrapping, and no silent PRF downgrade. Loss, sync theft, and rollback consequences are recorded in the [threat model](../../docs/threat-model/SSW-006-vault-key-management.md).
 
