@@ -11,7 +11,7 @@
   optional on-chain attestations.
 - **Execution:** 28 atomic tasks with explicit dependencies, parallel waves,
   acceptance criteria, validation, and agent prompts. `SSW-001`–`SSW-008`,
-  `SSW-015`–`SSW-017` are Done.
+  `SSW-015`–`SSW-019` are Done.
 - **GitHub:** the public repository is at
   `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.
@@ -38,4 +38,4 @@
 
 1. `SSW-009` — OpenID4VCI issuance flow.
 2. `SSW-010` — OpenID4VP and DCQL presentation flow.
-3. `SSW-018` — pinned ERC-7579 compatibility path.
+3. `SSW-020` — issuer trust and credential status/revocation.

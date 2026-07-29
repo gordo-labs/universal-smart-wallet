@@ -19,6 +19,17 @@ recovery without forcing a globally reused identifier into every presentation.
   issuer policy allow.
 - Prove account/DID control only when a relying party actually needs it.
 
+## Implemented boundary (SSW-019)
+
+- `@ssw/identity-adapter` exposes `did:pkh`/`did:ethr` constructors, parser,
+  resolver and control-proof ports, and typed fail-closed errors.
+- Credential-scoped and verifier-pairwise holder identifiers are deterministic
+  SHA-256 digests that do not expose the account address.
+- `disabledIdentityAdapter()` makes the DID opt-out explicit; SD-JWT key
+  binding remains sufficient for the base credential flow.
+- The controller DID is derived from the stable smart-account address, so
+  passkey rotation does not change public identity.
+
 ## Constraints
 
 DID is not required for the base OpenID4VC flow. Resolver outages cannot break
