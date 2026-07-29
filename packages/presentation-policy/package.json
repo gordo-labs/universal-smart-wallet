@@ -6,7 +6,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "pretest": "pnpm --filter @ssw/shared-types build",
     "typecheck": "tsc --noEmit",
+    "pretypecheck": "pnpm --filter @ssw/shared-types build",
     "test": "vitest run"
   },
   "dependencies": {
