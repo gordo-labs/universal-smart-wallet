@@ -29,6 +29,13 @@
     "plannedVisibility": "public",
     "publicationState": "local scaffold only"
   },
+  "codex": {
+    "primaryThreadId": "019fad60-2d17-7512-acaf-0c740b4a670a",
+    "hostId": "slingshot:env_e_6a08403649e88325b41272589868ea9b",
+    "title": "Sovereign Smart Wallet — proyecto y orquestación",
+    "savedProject": "clawd",
+    "workingDirectory": "/Users/sergiogordo/clawd/projects/sovereign-smart-wallet"
+  },
   "telegram": {
     "hasTopic": false
   },

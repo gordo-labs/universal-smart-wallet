@@ -14,6 +14,9 @@
 - **GitHub:** no local project or accessible
   `gordo-labs/sovereign-smart-wallet` repository existed at review time. The
   public remote is planned but not created.
+- **Codex:** primary thread `019fad60-2d17-7512-acaf-0c740b4a670a`, titled
+  “Sovereign Smart Wallet — proyecto y orquestación”, working exclusively in
+  this repository from the saved parent project `clawd`.
 
 ## Decisions promoted on 2026-07-29
 
