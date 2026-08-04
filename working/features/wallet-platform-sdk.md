@@ -37,6 +37,11 @@ The stable controller DID is derived locally as
 wallet creation and is disclosed only when a policy requires it. Pairwise
 holder identifiers remain the default for credential presentations.
 
+The identity adapter's private lifecycle enforces this boundary at runtime:
+creation reports no registration or disclosure, vendor/signer rotation keeps
+the same controller, and explicit control exports are the only path that
+returns a DID reference alongside a proof.
+
 ## Initial platform boundary
 
 - Base Sepolia first; Scroll Sepolia is a later portability/security lane.

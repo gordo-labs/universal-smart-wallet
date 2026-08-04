@@ -30,6 +30,21 @@ recovery without forcing a globally reused identifier into every presentation.
 - The controller DID is derived from the stable smart-account address, so
   passkey rotation does not change public identity.
 
+## SSW-037 private lifecycle boundary (2026-08-04)
+
+`createPrivateDidLifecycle(account)` creates the default local controller
+reference (`did:pkh:eip155:<chainId>:<safe-address>`) without contacting a
+resolver, registering on-chain, or disclosing a public identifier. The
+lifecycle exposes explicit `pairwise()` and `exportControl()` operations;
+pairwise holder identifiers remain the default and the controller is only
+included in an export when the caller supplies an explicit control proof.
+
+Signer, passkey, recovery, and vendor rotation preserve the DID because they
+do not change the Safe controller account. Rotation fails closed for a chain or
+address change. A forged DID/controller pair is rejected before binding or
+control verification. Resolver failures remain isolated to `resolveDid()` and
+cannot affect base credential flows.
+
 ## Constraints
 
 DID is not required for the base OpenID4VC flow. Resolver outages cannot break

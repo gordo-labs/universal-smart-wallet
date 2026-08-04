@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   createHolderBinding,
+  createPrivateDidLifecycle,
   didEthr,
   didPkh,
   disabledIdentityAdapter,
@@ -15,6 +16,40 @@ const account = {
 };
 
 describe('DID and holder-binding adapter', () => {
+  it('creates a local private DID without registration or implicit disclosure', async () => {
+    const lifecycle = createPrivateDidLifecycle(account);
+    expect(lifecycle.did.did).toBe(
+      'did:pkh:eip155:31337:0xabcdefabcdefabcdefabcdefabcdefabcdefabcd',
+    );
+    expect(lifecycle.created).toEqual({ registeredOnChain: false, disclosed: false });
+    expect(lifecycle.exportControl({ fixture: 'explicit-control' })).toMatchObject({
+      version: 1,
+      registration: 'local-only',
+      did: lifecycle.did,
+    });
+    const pairwise = await lifecycle.pairwise({
+      credentialId: 'cred-1',
+      verifier: 'verifier-a',
+    });
+    expect(pairwise.holderId).not.toContain(account.address.slice(2).toLowerCase());
+  });
+
+  it('preserves DID across signer/vendor rotation and fails closed on chain changes', () => {
+    const lifecycle = createPrivateDidLifecycle(account);
+    const rotated = lifecycle.rotateControl({
+      chainId: account.chainId,
+      address: `0x${account.address.slice(2).toUpperCase()}`,
+    });
+    expect(rotated.did.did).toBe(lifecycle.did.did);
+    expect(() => lifecycle.rotateControl({ ...account, chainId: 1 })).toThrowError(
+      expect.objectContaining({ code: 'CHAIN_MISMATCH' }),
+    );
+    expect(() => lifecycle.rotateControl({
+      ...account,
+      address: '0x1111111111111111111111111111111111111111',
+    })).toThrowError(expect.objectContaining({ code: 'CONTROL_PROOF_REJECTED' }));
+  });
+
   it('keeps controller DID stable across passkey rotation', async () => {
     const controller = didPkh(account);
     const before = await createHolderBinding({
@@ -95,6 +130,30 @@ describe('DID and holder-binding adapter', () => {
         },
       }),
     ).rejects.toMatchObject({ code: 'RESOLVER_UNAVAILABLE' });
+  });
+
+  it('rejects forged DID references instead of silently using the public controller', async () => {
+    const forged = {
+      method: 'did:pkh',
+      did: 'did:pkh:eip155:31337:0x1111111111111111111111111111111111111111',
+      controller: didPkh(account).controller,
+    };
+    await expect(
+      createHolderBinding({
+        mode: 'pairwise',
+        credentialId: 'cred-1',
+        verifier: 'verifier-a',
+        controller: forged,
+      }),
+    ).rejects.toMatchObject({ code: 'INVALID_DID' });
+    await expect(
+      verifyControlProof({
+        did: forged,
+        expectedAccount: account,
+        proof: {},
+        control: { verify: async () => true },
+      }),
+    ).rejects.toMatchObject({ code: 'INVALID_DID' });
   });
 
   it('verifies a deterministic control fixture', async () => {
