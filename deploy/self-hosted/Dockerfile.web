@@ -1,0 +1,12 @@
+FROM node:22-alpine
+ARG APP
+WORKDIR /repo
+RUN corepack enable
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY apps ./apps
+COPY packages ./packages
+RUN pnpm install --frozen-lockfile && pnpm --filter "@ssw/${APP}" build
+WORKDIR /repo/apps/${APP}
+ENV NODE_ENV=production
+EXPOSE 3000
+CMD ["pnpm", "start", "-p", "3000"]
