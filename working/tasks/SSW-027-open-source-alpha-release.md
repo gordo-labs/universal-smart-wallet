@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| Status | Todo |
+| Status | Blocked |
 | Priority | P1 |
 | Wave | 12 |
 | Lane | release |

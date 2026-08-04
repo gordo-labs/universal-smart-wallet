@@ -39,6 +39,6 @@
 ## Next
 
 1. `SSW-025` — local release gate is implemented; run the opt-in testnet lane before marking alpha-testnet green.
-2. `SSW-027` — open-source alpha release (requires explicit release approval).
+2. `SSW-027` — release evidence is prepared but publication is blocked pending explicit release approval and a final candidate selection.
 3. `SSW-030`–`SSW-048` — assign the remaining documented Wallet Platform tasks
    by dependency wave.
