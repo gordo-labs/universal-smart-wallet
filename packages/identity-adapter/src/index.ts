@@ -102,6 +102,8 @@ const normalizeAccount = (account: AccountController): AccountController => {
 };
 
 const assertDidReference = (reference: DidReference): DidReference => {
+  if (reference.method !== 'did:pkh' && reference.method !== 'did:ethr')
+    throw new IdentityAdapterError('INVALID_DID', 'unsupported DID method');
   const normalized =
     reference.method === 'did:pkh'
       ? didPkh(reference.controller)
@@ -203,6 +205,8 @@ export function createPrivateDidLifecycle(
   account: AccountController,
   method: DidMethod = 'did:pkh',
 ): PrivateDidLifecycle {
+  if (method !== 'did:pkh' && method !== 'did:ethr')
+    throw new IdentityAdapterError('INVALID_DID', 'unsupported DID method');
   const controller = method === 'did:pkh' ? didPkh(account) : didEthr(account);
   const lifecycle: PrivateDidLifecycle = {
     did: controller,
