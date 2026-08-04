@@ -37,7 +37,7 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-030 | Done | P0 | platform-core | Implement platform schemas and opaque wallet locators | [task](tasks/SSW-030-platform-schemas-wallet-locators.md) |
 | SSW-031 | Done | P0 | platform-storage | Implement multi-tenant storage and redacted audit events | [task](tasks/SSW-031-platform-store-tenancy-audit.md) |
 | SSW-032 | Done | P0 | account | Implement the Safe wallet-service adapter | [task](tasks/SSW-032-safe-service-adapter.md) |
-| SSW-033 | Doing | P0 | authorization | Implement scoped operational-signer policies | [task](tasks/SSW-033-signer-policy-engine.md) |
+| SSW-033 | Done | P0 | authorization | Implement scoped operational-signer policies | [task](tasks/SSW-033-signer-policy-engine.md) |
 | SSW-034 | Todo | P0 | authentication | Build the modular passkey authentication adapter | [task](tasks/SSW-034-passkey-auth-module.md) |
 | SSW-035 | Todo | P0 | authentication | Build the self-hosted email OTP module | [task](tasks/SSW-035-email-otp-auth-module.md) |
 | SSW-036 | Todo | P1 | authentication | Build the provider-neutral social OIDC module | [task](tasks/SSW-036-social-oidc-auth-module.md) |

@@ -1366,7 +1366,7 @@
       "id": "SSW-033",
       "slug": "signer-policy-engine",
       "title": "Implement scoped operational-signer policies",
-      "status": "Doing",
+      "status": "Done",
       "priority": "P0",
       "wave": 16,
       "lane": "authorization",

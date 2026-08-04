@@ -113,6 +113,16 @@ importers:
         specifier: 4.1.10
         version: 4.1.10(@types/node@22.15.30)(vite@8.1.5(@types/node@22.15.30)(esbuild@0.28.1))
 
+  packages/platform-store:
+    dependencies:
+      '@ssw/platform-types':
+        specifier: workspace:*
+        version: link:../platform-types
+    devDependencies:
+      vitest:
+        specifier: 4.1.10
+        version: 4.1.10(@types/node@22.15.30)(vite@8.1.5(@types/node@22.15.30)(esbuild@0.28.1))
+
   packages/platform-types:
     devDependencies:
       vitest:
@@ -149,6 +159,8 @@ importers:
       vitest:
         specifier: 4.1.10
         version: 4.1.10(@types/node@22.15.30)(vite@8.1.5(@types/node@22.15.30)(esbuild@0.28.1))
+
+  packages/signer-policy: {}
 
   packages/test-fixtures:
     dependencies:
