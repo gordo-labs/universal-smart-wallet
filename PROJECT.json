@@ -6,11 +6,12 @@
   "lifecycle": "planning",
   "frequency": "weekly",
   "description": "Open-source smart wallet for passkey-controlled smart accounts and privacy-preserving verifiable credentials.",
-  "lastAction": "2026-07-29T14:15:00+02:00",
-  "lastActionDescription": "Added the versioned EIP-712 on-chain attestation consumer and synthetic access demo with replay, expiry, scope, and attestor rotation checks.",
+  "lastAction": "2026-08-04T13:19:41+02:00",
+  "lastActionDescription": "Documented the modular Wallet Platform SDK, self-hosted service, authentication, portability, apps, examples, and future identity expansions as tasks SSW-029 through SSW-048.",
   "nextNeeds": [
     "SSW-025: Integrate the full local and testnet release candidate",
-    "SSW-027: Publish the first open-source alpha release (requires explicit approval)"
+    "SSW-027: Publish the first open-source alpha release (requires explicit approval)",
+    "SSW-029–SSW-048: Assign the documented Wallet Platform expansion prompts by dependency wave"
   ],
   "blocking": null,
   "license": "Apache-2.0",
