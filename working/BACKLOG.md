@@ -29,12 +29,12 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-022 | Done | P0 | security-ux | Harden consent, phishing resistance, and privacy UX | [task](tasks/SSW-022-consent-privacy-hardening.md) |
 | SSW-023 | Done | P1 | onchain | Build the short-lived on-chain attestation and access demo | [task](tasks/SSW-023-onchain-attestation-demo.md) |
 | SSW-024 | Done | P0 | quality | Add adversarial, property, fuzz, and redaction hardening | [task](tasks/SSW-024-adversarial-hardening.md) |
-| SSW-025 | Blocked | P0 | integration | Integrate the full local and testnet release candidate | [task](tasks/SSW-025-testnet-release-candidate.md) |
+| SSW-025 | Doing | P0 | integration | Integrate the full local and testnet release candidate | [task](tasks/SSW-025-testnet-release-candidate.md) |
 | SSW-026 | Done | P0 | security | Prepare the independent security and privacy review packet | [task](tasks/SSW-026-audit-readiness.md) |
 | SSW-027 | Blocked | P1 | release | Publish the first open-source alpha release | [task](tasks/SSW-027-open-source-alpha-release.md) |
 | SSW-028 | Done | P3 | research | Research a future ZK predicate-proof path | [task](tasks/SSW-028-zk-predicate-research.md) |
 | SSW-029 | Done | P0 | architecture | Define the modular Wallet Platform architecture | [task](tasks/SSW-029-wallet-platform-architecture.md) |
-| SSW-030 | Doing | P0 | platform-core | Implement platform schemas and opaque wallet locators | [task](tasks/SSW-030-platform-schemas-wallet-locators.md) |
+| SSW-030 | Done | P0 | platform-core | Implement platform schemas and opaque wallet locators | [task](tasks/SSW-030-platform-schemas-wallet-locators.md) |
 | SSW-031 | Todo | P0 | platform-storage | Implement multi-tenant storage and redacted audit events | [task](tasks/SSW-031-platform-store-tenancy-audit.md) |
 | SSW-032 | Todo | P0 | account | Implement the Safe wallet-service adapter | [task](tasks/SSW-032-safe-service-adapter.md) |
 | SSW-033 | Todo | P0 | authorization | Implement scoped operational-signer policies | [task](tasks/SSW-033-signer-policy-engine.md) |
