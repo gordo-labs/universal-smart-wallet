@@ -1641,7 +1641,7 @@
       "id": "SSW-040",
       "slug": "wallet-service-rest-openapi",
       "title": "Build the self-hosted Wallet Service API",
-      "status": "Todo",
+      "status": "Doing",
       "priority": "P0",
       "wave": 19,
       "lane": "service",
