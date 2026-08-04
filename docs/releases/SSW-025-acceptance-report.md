@@ -14,7 +14,7 @@ support boundary is in [`SSW-025-support-matrix.md`](SSW-025-support-matrix.md).
 | ------------------------------------------------------------- | -------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | Local flow without external configuration                     | `pnpm verify:rc` → build, `pnpm e2e:local`, release scenarios, security, Foundry | **PASS**                                                          |
 | Recovery, revoked status, provider outage, attestation replay | `e2e-local`, `tests/e2e/release-candidate.test.mjs`, Foundry replay/expiry tests | **PASS**                                                          |
-| SBOM, license, secret, dependency lock, contract hashes       | `node scripts/rc-evidence.mjs`                                                   | **PASS** (54 packages; allowed SPDX licenses only)                |
+| SBOM, license, secret, dependency lock, contract hashes       | `node scripts/rc-evidence.mjs`                                                   | **PASS** (75 packages; allowed SPDX licenses only)                |
 | Opt-in testnet matrix                                         | `SSW_RC_TESTNET=1 pnpm verify:rc`                                                | **NOT REQUESTED** in the local run; RC is not alpha-testnet green |
 
 `verify:rc` exits successfully for a local run only with the explicit status
@@ -39,3 +39,9 @@ used to claim the alpha-testnet criterion.
 
 All fixtures use synthetic values. Logs and generated artifacts are scanned for
 private keys, JWTs, birth dates, recovery factors, and undisclosed claims.
+
+The adversarial JOSE mutation test changes a non-padding base64url character so
+that the negative assertion remains deterministic across generated signatures.
+The license gate includes the permissive transitive build licenses reported by
+the current Next.js/sharp toolchain (`0BSD`, `CC-BY-4.0`, and
+`LGPL-3.0-or-later`) for manual dependency review.

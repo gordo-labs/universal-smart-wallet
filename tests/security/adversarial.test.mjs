@@ -110,7 +110,15 @@ test('JOSE rejects every deterministic mutation of a presentation', async () => 
   for (const index of [0, parts.length - 1]) {
     const mutated = [...parts];
     const value = mutated[index];
-    mutated[index] = `${value.slice(0, -1)}${value.endsWith('A') ? 'B' : 'A'}`;
+    // Mutate a non-padding character. Changing the final base64url character
+    // can leave the decoded bytes unchanged when only unused padding bits
+    // differ, which makes this adversarial check flaky.
+    const mutationOffset = Math.floor(value.length / 2);
+    const mutation = value[mutationOffset] === 'A' ? 'B' : 'A';
+    mutated[index] =
+      value.slice(0, mutationOffset) +
+      mutation +
+      value.slice(mutationOffset + 1);
     await assert.rejects(
       verify({
         presentation: mutated.join('~'),

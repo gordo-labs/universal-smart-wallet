@@ -11,9 +11,9 @@
   optional on-chain attestations.
 - **Execution:** 48 atomic tasks with explicit dependencies, parallel waves,
   acceptance criteria, validation, and agent prompts. `SSW-001`–`SSW-013`,
-  `SSW-015`–`SSW-024`, `SSW-028`, and `SSW-029` are Done. `SSW-030`–`SSW-048`
-  are a documented future Wallet Platform SDK/service expansion and have not
-  started.
+  `SSW-015`–`SSW-025`, `SSW-028`, and `SSW-029` are Done. `SSW-025` has a
+  passing local RC gate but remains blocked on explicit testnet configuration.
+  `SSW-030`–`SSW-048` are the remaining Wallet Platform expansion.
 - **GitHub:** the public repository is at
   `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.
@@ -38,7 +38,9 @@
 
 ## Next
 
-1. `SSW-025` — local release gate is implemented; run the opt-in testnet lane before marking alpha-testnet green.
-2. `SSW-027` — release evidence is prepared but publication is blocked pending explicit release approval and a final candidate selection.
+1. `SSW-025` — configure a disposable non-local testnet with pinned RPC,
+   deployments, and runtime hashes before marking alpha-testnet green.
+2. `SSW-027` — release evidence is prepared but publication is blocked pending
+   explicit release approval and final candidate selection.
 3. `SSW-030`–`SSW-048` — assign the remaining documented Wallet Platform tasks
    by dependency wave.
