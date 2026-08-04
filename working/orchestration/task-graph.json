@@ -1765,7 +1765,7 @@
       "id": "SSW-043",
       "slug": "consumer-wallet-app",
       "title": "Build the modular consumer wallet application",
-      "status": "Doing",
+      "status": "Done",
       "priority": "P0",
       "wave": 22,
       "lane": "apps",
