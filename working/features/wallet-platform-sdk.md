@@ -95,3 +95,21 @@ account, identity-provider and verifier boundaries.
 - Inventing a smart-account base, cryptography, MPC, KMS, bundler, or paymaster.
 - Claiming that email/social login alone provides self-custody.
 - Shipping every credential format or DID method in the initial SDK.
+
+## Email authentication module (SSW-035)
+
+`@ssw/auth-email` is a provider-neutral, self-hosted OTP boundary. It exposes
+an injectable `EmailTransportPort`, an SMTP adapter around an injected client,
+and an in-memory Mailpit fixture for local tests. OTPs are six-digit random
+codes generated with rejection sampling, salted and SHA-256 hashed, single-use,
+expiring, attempt-limited, and rate-limited. Transport failures leave a
+challenge undeliverable and cannot mint a session.
+
+The service stores only a salted subject hash for an email identity. Raw email
+addresses exist only during the transport call and are never returned in a
+wallet locator, `EmailSession`, identity record, audit event, or chain payload.
+Login and recovery sessions are short-lived operational signer sessions with
+`requiresStepUp: true`; passkey/recovery evidence is mandatory for owner
+rotation, export, migration, and module installation. Email change confirms a
+new address through a separate OTP and revokes every prior session for the
+principal.
