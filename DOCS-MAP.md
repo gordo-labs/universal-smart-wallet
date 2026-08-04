@@ -27,6 +27,7 @@
 
 ## Planned features
 
+- [Wallet Platform SDK and self-hosted service](working/features/wallet-platform-sdk.md)
 - [Credential exchange](working/features/credential-exchange.md)
 - [SD-JWT VC adapter](docs/protocols/sd-jwt-vc-adapter.md)
 - [OpenID4VCI issuance](docs/protocols/openid4vci-issuance.md)
@@ -44,6 +45,7 @@
 ## Orchestration
 
 - [Execution plan](working/orchestration/EXECUTION-PLAN.md)
+- [Wallet Platform execution plan](working/orchestration/WALLET-PLATFORM-EXECUTION-PLAN.md)
 - [Parallel waves](working/orchestration/PARALLEL-WAVES.md)
 - [Dependency graph](working/orchestration/DEPENDENCY-GRAPH.md)
 - [Prompt catalog](working/orchestration/PROMPT-CATALOG.md)
@@ -57,6 +59,7 @@
 - [NEXT](working/roadmap/NEXT.md)
 - [LATER](working/roadmap/LATER.md)
 - [Future ZK predicates](working/roadmap/future/zk-predicate-proofs.md)
+- [Future identity and platform expansions](working/roadmap/future/identity-platform-expansions.md)
 
 ## Procedures
 
@@ -75,6 +78,7 @@
 ## History and memory
 
 - [July 2026 history](working/history/2026/2026-07.md)
+- [August 2026 history](working/history/2026/2026-08.md)
 - [Project memory](working/memory/README.md)
 
 ## Global workspace

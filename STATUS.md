@@ -9,9 +9,10 @@
 - **Architecture:** off-chain credential core, encrypted local vault,
   replaceable OpenID4VC and SD-JWT adapters, smart-account control plane, and
   optional on-chain attestations.
-- **Execution:** 28 atomic tasks with explicit dependencies, parallel waves,
+- **Execution:** 48 atomic tasks with explicit dependencies, parallel waves,
   acceptance criteria, validation, and agent prompts. `SSW-001`–`SSW-013`,
-  `SSW-015`–`SSW-024`, and `SSW-028` are Done.
+  `SSW-015`–`SSW-024`, and `SSW-028` are Done. `SSW-029`–`SSW-048` are a
+  documented future Wallet Platform SDK/service expansion and have not started.
 - **GitHub:** the public repository is at
   `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.
@@ -38,3 +39,5 @@
 
 1. `SSW-025` — local release gate is implemented; run the opt-in testnet lane before marking alpha-testnet green.
 2. `SSW-027` — open-source alpha release (requires explicit release approval).
+3. `SSW-029`–`SSW-048` — manually assign the documented Wallet Platform tasks
+   by dependency wave; no subagents were launched from this documentation turn.

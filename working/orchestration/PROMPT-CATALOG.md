@@ -14,6 +14,7 @@ copy/paste prompt. The documents are generated from
 
 Do not send only a task title. The full prompt carries scope, non-goals, error
 handling, validation, security boundaries, and handoff requirements.
+
 ## Generated task links
 
 - [SSW-001 — Bootstrap the executable monorepo foundation](../../working/tasks/SSW-001-monorepo-foundation.md)
@@ -44,3 +45,23 @@ handling, validation, security boundaries, and handoff requirements.
 - [SSW-026 — Prepare the independent security and privacy review packet](../../working/tasks/SSW-026-audit-readiness.md)
 - [SSW-027 — Publish the first open-source alpha release](../../working/tasks/SSW-027-open-source-alpha-release.md)
 - [SSW-028 — Research a future ZK predicate-proof path](../../working/tasks/SSW-028-zk-predicate-research.md)
+- [SSW-029 — Define the modular Wallet Platform architecture](../../working/tasks/SSW-029-wallet-platform-architecture.md)
+- [SSW-030 — Implement platform schemas and opaque wallet locators](../../working/tasks/SSW-030-platform-schemas-wallet-locators.md)
+- [SSW-031 — Implement multi-tenant storage and redacted audit events](../../working/tasks/SSW-031-platform-store-tenancy-audit.md)
+- [SSW-032 — Implement the Safe wallet-service adapter](../../working/tasks/SSW-032-safe-service-adapter.md)
+- [SSW-033 — Implement scoped operational-signer policies](../../working/tasks/SSW-033-signer-policy-engine.md)
+- [SSW-034 — Build the modular passkey authentication adapter](../../working/tasks/SSW-034-passkey-auth-module.md)
+- [SSW-035 — Build the self-hosted email OTP module](../../working/tasks/SSW-035-email-otp-auth-module.md)
+- [SSW-036 — Build the provider-neutral social OIDC module](../../working/tasks/SSW-036-social-oidc-auth-module.md)
+- [SSW-037 — Add the default private DID lifecycle](../../working/tasks/SSW-037-default-private-did-lifecycle.md)
+- [SSW-038 — Implement in-place rotation and full wallet portability](../../working/tasks/SSW-038-wallet-portability-protocol.md)
+- [SSW-039 — Implement native, token, and NFT wallet actions](../../working/tasks/SSW-039-wallet-asset-actions.md)
+- [SSW-040 — Build the self-hosted Wallet Service API](../../working/tasks/SSW-040-wallet-service-rest-openapi.md)
+- [SSW-041 — Build the browser and server TypeScript Wallet SDK](../../working/tasks/SSW-041-typescript-wallet-sdk.md)
+- [SSW-042 — Build framework-neutral React wallet bindings](../../working/tasks/SSW-042-react-wallet-sdk.md)
+- [SSW-043 — Build the modular consumer wallet application](../../working/tasks/SSW-043-consumer-wallet-app.md)
+- [SSW-044 — Build the Wallet Platform administration console](../../working/tasks/SSW-044-wallet-admin-console.md)
+- [SSW-045 — Build executable Wallet Platform use-case examples](../../working/tasks/SSW-045-wallet-use-case-gallery.md)
+- [SSW-046 — Build the self-hosted reference stack](../../working/tasks/SSW-046-self-hosted-reference-stack.md)
+- [SSW-047 — Integrate and adversarially test the Wallet Platform](../../working/tasks/SSW-047-wallet-platform-security-e2e.md)
+- [SSW-048 — Publish complete local Wallet Platform documentation](../../working/tasks/SSW-048-wallet-platform-documentation.md)

@@ -13,13 +13,41 @@
       "lane": "foundation",
       "dependsOn": [],
       "featureDocs": ["working/maps/TECHNICAL-MAP.md"],
-      "touchPaths": ["package.json", "pnpm-workspace.yaml", "pnpm-lock.yaml", "tsconfig*", "apps/**", "packages/**", "contracts/**"],
+      "touchPaths": [
+        "package.json",
+        "pnpm-workspace.yaml",
+        "pnpm-lock.yaml",
+        "tsconfig*",
+        "apps/**",
+        "packages/**",
+        "contracts/**"
+      ],
       "objective": "Create a minimal installable pnpm monorepo with strict TypeScript, one formatting strategy, root validation scripts, three web app shells, packages, and a Foundry workspace without fictitious contract implementations.",
-      "deliverables": ["Pinned runtime/toolchain policy and package-manager metadata", "Root dev, build, lint, typecheck, test, and e2e scripts", "Minimal compilable app/package shells and Foundry test harness"],
-      "nonGoals": ["Credential logic", "Smart-account integration", "Remote deployment or GitHub publication"],
-      "acceptance": ["A clean clone can install with the documented command", "Root lint, typecheck, unit tests, builds, and Foundry tests pass", "No app requires secrets or network access to validate the baseline"],
-      "validation": ["pnpm install --frozen-lockfile", "pnpm lint && pnpm typecheck && pnpm test && pnpm build", "forge test --root contracts"],
-      "failureModes": ["Unsupported Node or pnpm versions fail with an actionable message", "Missing optional environment values do not break baseline tests", "No empty Solidity contracts are added only to satisfy the target tree"]
+      "deliverables": [
+        "Pinned runtime/toolchain policy and package-manager metadata",
+        "Root dev, build, lint, typecheck, test, and e2e scripts",
+        "Minimal compilable app/package shells and Foundry test harness"
+      ],
+      "nonGoals": [
+        "Credential logic",
+        "Smart-account integration",
+        "Remote deployment or GitHub publication"
+      ],
+      "acceptance": [
+        "A clean clone can install with the documented command",
+        "Root lint, typecheck, unit tests, builds, and Foundry tests pass",
+        "No app requires secrets or network access to validate the baseline"
+      ],
+      "validation": [
+        "pnpm install --frozen-lockfile",
+        "pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+        "forge test --root contracts"
+      ],
+      "failureModes": [
+        "Unsupported Node or pnpm versions fail with an actionable message",
+        "Missing optional environment values do not break baseline tests",
+        "No empty Solidity contracts are added only to satisfy the target tree"
+      ]
     },
     {
       "id": "SSW-002",
@@ -32,13 +60,39 @@
       "dependsOn": ["SSW-001"],
       "externalWrite": true,
       "featureDocs": ["working/procedures/GIT-AND-PUBLICATION.md"],
-      "touchPaths": [".github/**", "README.md", "SECURITY.md", "CONTRIBUTING.md", "PROJECT.json"],
+      "touchPaths": [
+        ".github/**",
+        "README.md",
+        "SECURITY.md",
+        "CONTRIBUTING.md",
+        "PROJECT.json"
+      ],
       "objective": "After explicit publication approval, create the public gordo-labs repository, push the reviewed foundation, and configure minimum open-source and security governance.",
-      "deliverables": ["Verified public remote and default branch", "CI, dependency update, secret scanning, and private vulnerability reporting configuration", "Accurate repository URLs and publication state in project docs"],
-      "nonGoals": ["Product release", "Production-readiness claim", "Publishing npm packages or deployments"],
-      "acceptance": ["Repository visibility is verified as public", "CI runs the same required root checks as local development", "Secret scan and repository governance settings are recorded"],
-      "validation": ["gh repo view gordo-labs/sovereign-smart-wallet", "gh workflow list", "Inspect branch protection and private vulnerability reporting"],
-      "failureModes": ["Stop before any external write if approval is absent", "Do not weaken security settings merely to make CI green", "No secrets, real credentials, or local backups enter Git history"]
+      "deliverables": [
+        "Verified public remote and default branch",
+        "CI, dependency update, secret scanning, and private vulnerability reporting configuration",
+        "Accurate repository URLs and publication state in project docs"
+      ],
+      "nonGoals": [
+        "Product release",
+        "Production-readiness claim",
+        "Publishing npm packages or deployments"
+      ],
+      "acceptance": [
+        "Repository visibility is verified as public",
+        "CI runs the same required root checks as local development",
+        "Secret scan and repository governance settings are recorded"
+      ],
+      "validation": [
+        "gh repo view gordo-labs/sovereign-smart-wallet",
+        "gh workflow list",
+        "Inspect branch protection and private vulnerability reporting"
+      ],
+      "failureModes": [
+        "Stop before any external write if approval is absent",
+        "Do not weaken security settings merely to make CI green",
+        "No secrets, real credentials, or local backups enter Git history"
+      ]
     },
     {
       "id": "SSW-003",
@@ -50,13 +104,39 @@
       "lane": "architecture",
       "dependsOn": ["SSW-001"],
       "featureDocs": ["working/research/standards-baseline-2026-07-29.md"],
-      "touchPaths": ["docs/decisions/**", "working/research/standards-baseline-*.md", "package.json", "pnpm-lock.yaml", "contracts/foundry.toml"],
+      "touchPaths": [
+        "docs/decisions/**",
+        "working/research/standards-baseline-*.md",
+        "package.json",
+        "pnpm-lock.yaml",
+        "contracts/foundry.toml"
+      ],
       "objective": "Re-check official sources, evaluate maintained libraries, and record exact compatible versions and replaceable adapter boundaries before protocol or account code is written.",
-      "deliverables": ["ADR covering toolchain and credential libraries", "Compatibility matrix for OpenID4VC, SD-JWT VC, Safe/Kernel, EntryPoint, ERC-7579, browsers, and Foundry", "License and maintenance-risk notes for every selected dependency"],
-      "nonGoals": ["Implementing protocol flows", "Deploying contracts", "Claiming conformance without tests"],
-      "acceptance": ["Every unstable standard has an exact pinned revision", "Every selected library has license, maintenance, and replacement notes", "Known version conflicts and unsupported browsers/chains are explicit"],
-      "validation": ["Verify versions against official docs and package registries", "pnpm install --frozen-lockfile", "Run dependency license and vulnerability reports"],
-      "failureModes": ["Reject abandoned or incompatible dependencies", "Do not silently mix draft-era and final OpenID4VC field names", "Do not treat ERC-7579 or SD-JWT VC as final"]
+      "deliverables": [
+        "ADR covering toolchain and credential libraries",
+        "Compatibility matrix for OpenID4VC, SD-JWT VC, Safe/Kernel, EntryPoint, ERC-7579, browsers, and Foundry",
+        "License and maintenance-risk notes for every selected dependency"
+      ],
+      "nonGoals": [
+        "Implementing protocol flows",
+        "Deploying contracts",
+        "Claiming conformance without tests"
+      ],
+      "acceptance": [
+        "Every unstable standard has an exact pinned revision",
+        "Every selected library has license, maintenance, and replacement notes",
+        "Known version conflicts and unsupported browsers/chains are explicit"
+      ],
+      "validation": [
+        "Verify versions against official docs and package registries",
+        "pnpm install --frozen-lockfile",
+        "Run dependency license and vulnerability reports"
+      ],
+      "failureModes": [
+        "Reject abandoned or incompatible dependencies",
+        "Do not silently mix draft-era and final OpenID4VC field names",
+        "Do not treat ERC-7579 or SD-JWT VC as final"
+      ]
     },
     {
       "id": "SSW-004",
@@ -67,14 +147,40 @@
       "wave": 2,
       "lane": "credential-core",
       "dependsOn": ["SSW-003"],
-      "featureDocs": ["working/features/credential-exchange.md", "working/features/verification-trust-and-status.md"],
-      "touchPaths": ["packages/shared-types/**", "packages/presentation-policy/**"],
+      "featureDocs": [
+        "working/features/credential-exchange.md",
+        "working/features/verification-trust-and-status.md"
+      ],
+      "touchPaths": [
+        "packages/shared-types/**",
+        "packages/presentation-policy/**"
+      ],
       "objective": "Define versioned runtime-validated types for internal presentation policies, verification results, credential metadata, and a narrow mapping to and from OpenID4VP 1.0 DCQL.",
-      "deliverables": ["Schemas with unknown-field and size policy", "Age-over-18 policy using is_over_18 rather than hidden birthdate comparison", "Positive and negative DCQL mapping fixtures"],
-      "nonGoals": ["Cryptographic verification", "Network requests", "Legacy Presentation Exchange support"],
-      "acceptance": ["Invalid types, operators, paths, and disclosure requests are rejected", "Round-trip mappings are deterministic for the supported subset", "Schema versions are included in persisted or exchanged project-owned objects"],
-      "validation": ["pnpm --filter shared-types test", "pnpm --filter presentation-policy test", "pnpm typecheck"],
-      "failureModes": ["Fail closed on unsupported operators or formats", "Bound nesting, array counts, and string sizes", "Never infer a predicate proof from selective disclosure"]
+      "deliverables": [
+        "Schemas with unknown-field and size policy",
+        "Age-over-18 policy using is_over_18 rather than hidden birthdate comparison",
+        "Positive and negative DCQL mapping fixtures"
+      ],
+      "nonGoals": [
+        "Cryptographic verification",
+        "Network requests",
+        "Legacy Presentation Exchange support"
+      ],
+      "acceptance": [
+        "Invalid types, operators, paths, and disclosure requests are rejected",
+        "Round-trip mappings are deterministic for the supported subset",
+        "Schema versions are included in persisted or exchanged project-owned objects"
+      ],
+      "validation": [
+        "pnpm --filter shared-types test",
+        "pnpm --filter presentation-policy test",
+        "pnpm typecheck"
+      ],
+      "failureModes": [
+        "Fail closed on unsupported operators or formats",
+        "Bound nesting, array counts, and string sizes",
+        "Never infer a predicate proof from selective disclosure"
+      ]
     },
     {
       "id": "SSW-005",
@@ -86,13 +192,36 @@
       "lane": "credential-core",
       "dependsOn": ["SSW-004"],
       "featureDocs": ["working/features/verification-trust-and-status.md"],
-      "touchPaths": ["packages/credential-domain/**", "packages/shared-types/**"],
+      "touchPaths": [
+        "packages/credential-domain/**",
+        "packages/shared-types/**"
+      ],
       "objective": "Build infrastructure-free challenge generation, state/nonce lifecycle, atomic single-use replay protection, verification-result construction, and stable error codes.",
-      "deliverables": ["Cryptographically strong challenge generator behind an injectable port", "TTL-aware atomic replay store interface plus in-memory adapter", "Verification pipeline result and failure taxonomy"],
-      "nonGoals": ["HTTP endpoints", "Credential signature verification", "Persistent production database"],
-      "acceptance": ["Challenges provide at least 128 bits of entropy", "Concurrent reuse consumes a challenge at most once", "Expired, wrong-audience, unknown, and reused challenges produce distinct safe errors"],
-      "validation": ["Unit and concurrency tests with deterministic clock/random ports", "Property tests for challenge encoding and TTL boundaries", "pnpm typecheck"],
-      "failureModes": ["Never log raw presentation tokens or secrets", "Clock skew policy is explicit and bounded", "Storage failure cannot turn a rejected replay into acceptance"]
+      "deliverables": [
+        "Cryptographically strong challenge generator behind an injectable port",
+        "TTL-aware atomic replay store interface plus in-memory adapter",
+        "Verification pipeline result and failure taxonomy"
+      ],
+      "nonGoals": [
+        "HTTP endpoints",
+        "Credential signature verification",
+        "Persistent production database"
+      ],
+      "acceptance": [
+        "Challenges provide at least 128 bits of entropy",
+        "Concurrent reuse consumes a challenge at most once",
+        "Expired, wrong-audience, unknown, and reused challenges produce distinct safe errors"
+      ],
+      "validation": [
+        "Unit and concurrency tests with deterministic clock/random ports",
+        "Property tests for challenge encoding and TTL boundaries",
+        "pnpm typecheck"
+      ],
+      "failureModes": [
+        "Never log raw presentation tokens or secrets",
+        "Clock skew policy is explicit and bounded",
+        "Storage failure cannot turn a rejected replay into acceptance"
+      ]
     },
     {
       "id": "SSW-006",
@@ -104,13 +233,37 @@
       "lane": "vault",
       "dependsOn": ["SSW-003"],
       "featureDocs": ["working/features/encrypted-vault.md"],
-      "touchPaths": ["docs/decisions/**", "packages/credential-vault/**", "docs/threat-model/**"],
+      "touchPaths": [
+        "docs/decisions/**",
+        "packages/credential-vault/**",
+        "docs/threat-model/**"
+      ],
       "objective": "Decide and prototype versioned vault key wrapping for WebAuthn PRF-capable and non-PRF browsers without treating a passkey signature as encryption material.",
-      "deliverables": ["ADR for data-encryption keys, wrapping keys, salts, KDF parameters, and recovery factors", "Capability-detection prototype for WebAuthn PRF", "Deterministic crypto test vectors and migration envelope"],
-      "nonGoals": ["Full IndexedDB vault", "Smart-account deployment", "Inventing cryptographic primitives"],
-      "acceptance": ["PRF absence has a documented secure fallback", "No wrapping key or recovery secret is persisted plaintext", "Backup and device-loss consequences are explicit for every strategy"],
-      "validation": ["WebCrypto unit vectors for encrypt/decrypt/tamper", "Browser capability checks on the supported matrix", "Threat-model review against loss, sync, theft, and rollback"],
-      "failureModes": ["Unsupported PRF never downgrades silently", "Authentication-tag or envelope-version failures are terminal", "KDF parameters are bounded against resource exhaustion"]
+      "deliverables": [
+        "ADR for data-encryption keys, wrapping keys, salts, KDF parameters, and recovery factors",
+        "Capability-detection prototype for WebAuthn PRF",
+        "Deterministic crypto test vectors and migration envelope"
+      ],
+      "nonGoals": [
+        "Full IndexedDB vault",
+        "Smart-account deployment",
+        "Inventing cryptographic primitives"
+      ],
+      "acceptance": [
+        "PRF absence has a documented secure fallback",
+        "No wrapping key or recovery secret is persisted plaintext",
+        "Backup and device-loss consequences are explicit for every strategy"
+      ],
+      "validation": [
+        "WebCrypto unit vectors for encrypt/decrypt/tamper",
+        "Browser capability checks on the supported matrix",
+        "Threat-model review against loss, sync, theft, and rollback"
+      ],
+      "failureModes": [
+        "Unsupported PRF never downgrades silently",
+        "Authentication-tag or envelope-version failures are terminal",
+        "KDF parameters are bounded against resource exhaustion"
+      ]
     },
     {
       "id": "SSW-007",
@@ -124,11 +277,31 @@
       "featureDocs": ["working/features/encrypted-vault.md"],
       "touchPaths": ["packages/credential-vault/**"],
       "objective": "Implement credential encryption, authenticated metadata, indexing, deletion, corruption handling, and versioned IndexedDB migrations behind storage and crypto ports.",
-      "deliverables": ["In-memory and IndexedDB stores", "AES-GCM versioned envelope with authenticated metadata", "Migration, deletion, and corruption-recovery tests"],
-      "nonGoals": ["Credential protocol parsing", "User-interface polish", "Cloud synchronization"],
-      "acceptance": ["Raw credentials are never stored plaintext", "Index metadata is minimized and documented", "Tampering, partial writes, old versions, and failed migrations do not expose partial plaintext"],
-      "validation": ["Unit tests with WebCrypto", "Fake IndexedDB migration and transaction tests", "Browser persistence smoke test"],
-      "failureModes": ["Use atomic transactions for writes and migrations", "Surface recoverable versus terminal vault errors", "Never include decrypted credentials in exception messages"]
+      "deliverables": [
+        "In-memory and IndexedDB stores",
+        "AES-GCM versioned envelope with authenticated metadata",
+        "Migration, deletion, and corruption-recovery tests"
+      ],
+      "nonGoals": [
+        "Credential protocol parsing",
+        "User-interface polish",
+        "Cloud synchronization"
+      ],
+      "acceptance": [
+        "Raw credentials are never stored plaintext",
+        "Index metadata is minimized and documented",
+        "Tampering, partial writes, old versions, and failed migrations do not expose partial plaintext"
+      ],
+      "validation": [
+        "Unit tests with WebCrypto",
+        "Fake IndexedDB migration and transaction tests",
+        "Browser persistence smoke test"
+      ],
+      "failureModes": [
+        "Use atomic transactions for writes and migrations",
+        "Surface recoverable versus terminal vault errors",
+        "Never include decrypted credentials in exception messages"
+      ]
     },
     {
       "id": "SSW-008",
@@ -140,13 +313,37 @@
       "lane": "credential-format",
       "dependsOn": ["SSW-003", "SSW-004"],
       "featureDocs": ["working/features/credential-exchange.md"],
-      "touchPaths": ["packages/sd-jwt-adapter/**", "packages/test-fixtures/**", "docs/protocols/**"],
+      "touchPaths": [
+        "packages/sd-jwt-adapter/**",
+        "packages/test-fixtures/**",
+        "docs/protocols/**"
+      ],
       "objective": "Wrap a maintained SD-JWT implementation for the pinned SD-JWT VC draft subset, including issuance, disclosure, key binding, issuer metadata, status references, and negative fixtures.",
-      "deliverables": ["Narrow issue, present, and verify adapter interfaces", "Synthetic AgeCredential fixtures with is_over_18", "Draft/version metadata and upgrade notes"],
-      "nonGoals": ["All credential formats", "General ZK predicates", "Production issuer trust"],
-      "acceptance": ["Undisclosed claims cannot be reconstructed from the presentation", "Signature, digest, key-binding, algorithm, type, and expiry failures are rejected", "Fixtures identify exact draft and media type behavior"],
-      "validation": ["Official or upstream test vectors where license permits", "Mutation tests for disclosures and JOSE headers", "Cross-package typecheck"],
-      "failureModes": ["Allowlist algorithms and key types", "Bound token/disclosure sizes and counts", "Fail closed on an unrecognized draft/profile version"]
+      "deliverables": [
+        "Narrow issue, present, and verify adapter interfaces",
+        "Synthetic AgeCredential fixtures with is_over_18",
+        "Draft/version metadata and upgrade notes"
+      ],
+      "nonGoals": [
+        "All credential formats",
+        "General ZK predicates",
+        "Production issuer trust"
+      ],
+      "acceptance": [
+        "Undisclosed claims cannot be reconstructed from the presentation",
+        "Signature, digest, key-binding, algorithm, type, and expiry failures are rejected",
+        "Fixtures identify exact draft and media type behavior"
+      ],
+      "validation": [
+        "Official or upstream test vectors where license permits",
+        "Mutation tests for disclosures and JOSE headers",
+        "Cross-package typecheck"
+      ],
+      "failureModes": [
+        "Allowlist algorithms and key types",
+        "Bound token/disclosure sizes and counts",
+        "Fail closed on an unrecognized draft/profile version"
+      ]
     },
     {
       "id": "SSW-009",
@@ -158,13 +355,37 @@
       "lane": "protocol",
       "dependsOn": ["SSW-008"],
       "featureDocs": ["working/features/credential-exchange.md"],
-      "touchPaths": ["packages/openid4vc/**", "packages/test-fixtures/**", "docs/protocols/**"],
+      "touchPaths": [
+        "packages/openid4vc/**",
+        "packages/test-fixtures/**",
+        "docs/protocols/**"
+      ],
       "objective": "Implement the bounded OpenID4VCI 1.0 pre-authorized-code flow needed by the demo, with metadata validation, proof handling, and deterministic HTTP fixtures.",
-      "deliverables": ["Issuer metadata and credential-offer parsers", "Wallet client state machine and issuer-side test adapter", "Success, OAuth error, timeout, malformed metadata, and proof-failure fixtures"],
-      "nonGoals": ["Every optional grant or wallet attestation", "Hosted authorization server", "Real identity proofing"],
-      "acceptance": ["The supported flow follows final 1.0 names and endpoints", "Redirects and remote metadata obey SSRF/origin/size/time policies", "The issued credential is verified before vault insertion"],
-      "validation": ["Protocol unit tests with deterministic HTTP adapter", "Issuer-wallet contract tests", "No-network test run"],
-      "failureModes": ["Do not follow arbitrary redirects or private-network metadata URLs", "OAuth errors map to safe user actions", "Never persist an unverified credential as valid"]
+      "deliverables": [
+        "Issuer metadata and credential-offer parsers",
+        "Wallet client state machine and issuer-side test adapter",
+        "Success, OAuth error, timeout, malformed metadata, and proof-failure fixtures"
+      ],
+      "nonGoals": [
+        "Every optional grant or wallet attestation",
+        "Hosted authorization server",
+        "Real identity proofing"
+      ],
+      "acceptance": [
+        "The supported flow follows final 1.0 names and endpoints",
+        "Redirects and remote metadata obey SSRF/origin/size/time policies",
+        "The issued credential is verified before vault insertion"
+      ],
+      "validation": [
+        "Protocol unit tests with deterministic HTTP adapter",
+        "Issuer-wallet contract tests",
+        "No-network test run"
+      ],
+      "failureModes": [
+        "Do not follow arbitrary redirects or private-network metadata URLs",
+        "OAuth errors map to safe user actions",
+        "Never persist an unverified credential as valid"
+      ]
     },
     {
       "id": "SSW-010",
@@ -175,14 +396,41 @@
       "wave": 4,
       "lane": "protocol",
       "dependsOn": ["SSW-005", "SSW-008"],
-      "featureDocs": ["working/features/credential-exchange.md", "working/features/verification-trust-and-status.md"],
-      "touchPaths": ["packages/openid4vc/**", "packages/presentation-policy/**", "packages/test-fixtures/**"],
+      "featureDocs": [
+        "working/features/credential-exchange.md",
+        "working/features/verification-trust-and-status.md"
+      ],
+      "touchPaths": [
+        "packages/openid4vc/**",
+        "packages/presentation-policy/**",
+        "packages/test-fixtures/**"
+      ],
       "objective": "Implement the supported OpenID4VP 1.0 same-device request/response path using DCQL, direct_post, state/nonce, audience, holder binding, and strict disclosure selection.",
-      "deliverables": ["Wallet request parser and candidate selector", "Verifier request builder and response verifier", "Signed/request-URI trust hooks and negative protocol fixtures"],
-      "nonGoals": ["Silent presentation", "All client identifier schemes", "Digital Credentials API integration"],
-      "acceptance": ["Wrong audience, nonce, state, holder key, response URI, and disclosure set are rejected", "Only holder-approved claims enter the presentation", "Replay state is consumed atomically"],
-      "validation": ["Protocol contract tests", "Cross-device URI parsing fuzz/property tests", "No-network happy and failure flows"],
-      "failureModes": ["Unknown transaction_data is rejected as required", "Ambiguous verifier identity blocks consent", "Mismatched or duplicate response parameters fail closed"]
+      "deliverables": [
+        "Wallet request parser and candidate selector",
+        "Verifier request builder and response verifier",
+        "Signed/request-URI trust hooks and negative protocol fixtures"
+      ],
+      "nonGoals": [
+        "Silent presentation",
+        "All client identifier schemes",
+        "Digital Credentials API integration"
+      ],
+      "acceptance": [
+        "Wrong audience, nonce, state, holder key, response URI, and disclosure set are rejected",
+        "Only holder-approved claims enter the presentation",
+        "Replay state is consumed atomically"
+      ],
+      "validation": [
+        "Protocol contract tests",
+        "Cross-device URI parsing fuzz/property tests",
+        "No-network happy and failure flows"
+      ],
+      "failureModes": [
+        "Unknown transaction_data is rejected as required",
+        "Ambiguous verifier identity blocks consent",
+        "Mismatched or duplicate response parameters fail closed"
+      ]
     },
     {
       "id": "SSW-011",
@@ -196,11 +444,31 @@
       "featureDocs": ["working/features/credential-exchange.md"],
       "touchPaths": ["apps/issuer-demo/**"],
       "objective": "Build a minimal issuer that creates a synthetic AgeCredential offer and issues a signed is_over_18 credential through the supported local OpenID4VCI flow.",
-      "deliverables": ["Issuer metadata, offer, token, credential, status, and public-key routes", "Clearly synthetic fixture UI", "Deterministic local signing-key lifecycle for tests"],
-      "nonGoals": ["Real identity proofing", "Production key management", "General issuer administration"],
-      "acceptance": ["A wallet can complete the supported offer flow", "The UI never asks for or suggests real PII", "Expired, reused, invalid-code, and revoked fixtures are testable"],
-      "validation": ["Issuer route integration tests", "OpenID4VCI contract test against the client package", "Accessibility smoke check"],
-      "failureModes": ["Test signing keys are unmistakably non-production", "Errors do not expose tokens or signing material", "Rate and size bounds exist even in the demo"]
+      "deliverables": [
+        "Issuer metadata, offer, token, credential, status, and public-key routes",
+        "Clearly synthetic fixture UI",
+        "Deterministic local signing-key lifecycle for tests"
+      ],
+      "nonGoals": [
+        "Real identity proofing",
+        "Production key management",
+        "General issuer administration"
+      ],
+      "acceptance": [
+        "A wallet can complete the supported offer flow",
+        "The UI never asks for or suggests real PII",
+        "Expired, reused, invalid-code, and revoked fixtures are testable"
+      ],
+      "validation": [
+        "Issuer route integration tests",
+        "OpenID4VCI contract test against the client package",
+        "Accessibility smoke check"
+      ],
+      "failureModes": [
+        "Test signing keys are unmistakably non-production",
+        "Errors do not expose tokens or signing material",
+        "Rate and size bounds exist even in the demo"
+      ]
     },
     {
       "id": "SSW-012",
@@ -211,14 +479,37 @@
       "wave": 6,
       "lane": "apps",
       "dependsOn": ["SSW-007", "SSW-009", "SSW-010"],
-      "featureDocs": ["working/features/credential-exchange.md", "working/features/encrypted-vault.md"],
+      "featureDocs": [
+        "working/features/credential-exchange.md",
+        "working/features/encrypted-vault.md"
+      ],
       "touchPaths": ["apps/wallet-web/**"],
       "objective": "Build the wallet UI for local unlock, credential offer intake, verification-before-storage, encrypted listing/deletion, request review, disclosure approval, and presentation submission.",
-      "deliverables": ["Vault setup/unlock and credential lifecycle screens", "OpenID4VCI intake and OpenID4VP consent flow", "Actionable privacy-safe error states"],
-      "nonGoals": ["Smart-account integration", "Cloud backup", "Production visual design"],
-      "acceptance": ["The UI shows issuer/verifier, purpose, expiry, requested and disclosed claims", "No credential plaintext persists outside the unlocked session", "Lock, delete, corrupt-vault, rejected-offer, and cancelled-presentation paths work"],
-      "validation": ["Component tests", "Browser integration tests with fake IndexedDB/WebAuthn capabilities", "Accessibility checks for the complete local flow"],
-      "failureModes": ["Never auto-approve or silently disclose", "Unsupported PRF presents the approved fallback", "Sensitive data is redacted from logs and error boundaries"]
+      "deliverables": [
+        "Vault setup/unlock and credential lifecycle screens",
+        "OpenID4VCI intake and OpenID4VP consent flow",
+        "Actionable privacy-safe error states"
+      ],
+      "nonGoals": [
+        "Smart-account integration",
+        "Cloud backup",
+        "Production visual design"
+      ],
+      "acceptance": [
+        "The UI shows issuer/verifier, purpose, expiry, requested and disclosed claims",
+        "No credential plaintext persists outside the unlocked session",
+        "Lock, delete, corrupt-vault, rejected-offer, and cancelled-presentation paths work"
+      ],
+      "validation": [
+        "Component tests",
+        "Browser integration tests with fake IndexedDB/WebAuthn capabilities",
+        "Accessibility checks for the complete local flow"
+      ],
+      "failureModes": [
+        "Never auto-approve or silently disclose",
+        "Unsupported PRF presents the approved fallback",
+        "Sensitive data is redacted from logs and error boundaries"
+      ]
     },
     {
       "id": "SSW-013",
@@ -232,11 +523,31 @@
       "featureDocs": ["working/features/verification-trust-and-status.md"],
       "touchPaths": ["apps/verifier-demo/**"],
       "objective": "Build a minimal verifier that generates a DCQL request for is_over_18, tracks state/nonce, validates the presentation off-chain, and grants a local demo session.",
-      "deliverables": ["Request and callback endpoints", "Verification pipeline UI with safe reason codes", "Single-use access-session result"],
-      "nonGoals": ["On-chain gating", "Real age decisions", "Persistent user accounts"],
-      "acceptance": ["Only a fully valid presentation grants access", "Every validation class has a tested rejection fixture", "A rejection reveals no hidden claim-matching information"],
-      "validation": ["Route and domain integration tests", "Replay and concurrent callback tests", "Accessibility smoke check"],
-      "failureModes": ["Fail closed on unavailable trust/status data", "Do not distinguish consent denial from claim mismatch in a privacy-leaking way", "Never log the full vp_token"]
+      "deliverables": [
+        "Request and callback endpoints",
+        "Verification pipeline UI with safe reason codes",
+        "Single-use access-session result"
+      ],
+      "nonGoals": [
+        "On-chain gating",
+        "Real age decisions",
+        "Persistent user accounts"
+      ],
+      "acceptance": [
+        "Only a fully valid presentation grants access",
+        "Every validation class has a tested rejection fixture",
+        "A rejection reveals no hidden claim-matching information"
+      ],
+      "validation": [
+        "Route and domain integration tests",
+        "Replay and concurrent callback tests",
+        "Accessibility smoke check"
+      ],
+      "failureModes": [
+        "Fail closed on unavailable trust/status data",
+        "Do not distinguish consent denial from claim mismatch in a privacy-leaking way",
+        "Never log the full vp_token"
+      ]
     },
     {
       "id": "SSW-014",
@@ -247,14 +558,43 @@
       "wave": 7,
       "lane": "integration",
       "dependsOn": ["SSW-011", "SSW-012", "SSW-013"],
-      "featureDocs": ["working/features/credential-exchange.md", "working/features/encrypted-vault.md", "working/features/verification-trust-and-status.md"],
-      "touchPaths": ["tests/e2e/**", "packages/test-fixtures/**", "scripts/**", "README.md"],
+      "featureDocs": [
+        "working/features/credential-exchange.md",
+        "working/features/encrypted-vault.md",
+        "working/features/verification-trust-and-status.md"
+      ],
+      "touchPaths": [
+        "tests/e2e/**",
+        "packages/test-fixtures/**",
+        "scripts/**",
+        "README.md"
+      ],
       "objective": "Provide one command that starts the three local apps and proves issuance, encrypted storage, minimal presentation, off-chain verification, and access without chain or hosted infrastructure.",
-      "deliverables": ["Playwright happy path", "Required negative and restart/persistence paths", "Exact local runbook and test fixture reset"],
-      "nonGoals": ["Testnet smart account", "On-chain attestation", "Performance certification"],
-      "acceptance": ["The happy path passes from a clean data directory", "No birthdate or undisclosed claim reaches the verifier", "Signature, replay, expiry, status, holder-binding, and vault-tamper failures deny access"],
-      "validation": ["pnpm e2e:local", "Inspect network/log artifacts for secret and undisclosed-claim leakage", "Repeat after app restart and fixture reset"],
-      "failureModes": ["E2E does not paper over prerequisite failures", "Ports and child processes are cleaned up reliably", "Screenshots/traces are sanitized before retention"]
+      "deliverables": [
+        "Playwright happy path",
+        "Required negative and restart/persistence paths",
+        "Exact local runbook and test fixture reset"
+      ],
+      "nonGoals": [
+        "Testnet smart account",
+        "On-chain attestation",
+        "Performance certification"
+      ],
+      "acceptance": [
+        "The happy path passes from a clean data directory",
+        "No birthdate or undisclosed claim reaches the verifier",
+        "Signature, replay, expiry, status, holder-binding, and vault-tamper failures deny access"
+      ],
+      "validation": [
+        "pnpm e2e:local",
+        "Inspect network/log artifacts for secret and undisclosed-claim leakage",
+        "Repeat after app restart and fixture reset"
+      ],
+      "failureModes": [
+        "E2E does not paper over prerequisite failures",
+        "Ports and child processes are cleaned up reliably",
+        "Screenshots/traces are sanitized before retention"
+      ]
     },
     {
       "id": "SSW-015",
@@ -266,13 +606,37 @@
       "lane": "account",
       "dependsOn": ["SSW-003"],
       "featureDocs": ["working/features/smart-account-and-passkeys.md"],
-      "touchPaths": ["docs/decisions/**", "packages/account-adapter/**", "contracts/**"],
+      "touchPaths": [
+        "docs/decisions/**",
+        "packages/account-adapter/**",
+        "contracts/**"
+      ],
       "objective": "Compare Safe and Kernel, select the maintained base, pin deployments and EntryPoint compatibility, and create a local Foundry/account-adapter harness without writing a custom account base.",
-      "deliverables": ["Decision ADR with license, audits, recovery, provider independence, and migration analysis", "Pinned ABIs, chain/deployment manifest, and code-hash verification", "Local account deployment and execution test harness"],
-      "nonGoals": ["Passkey UI", "Testnet UserOperation", "Custom identity or recovery module"],
-      "acceptance": ["The selected base satisfies ERC-1271 and has a credible ERC-4337/passkey path", "Local deployments are deterministic and code hashes are asserted", "Hosted SDK/provider dependencies are isolated behind the account adapter"],
-      "validation": ["forge test --root contracts", "Account-adapter unit tests against Anvil", "License and deployment-address review"],
-      "failureModes": ["Reject incompatible EntryPoint/module combinations", "Do not trust an address without chain ID and code hash", "Document upgrade and module-install authority"]
+      "deliverables": [
+        "Decision ADR with license, audits, recovery, provider independence, and migration analysis",
+        "Pinned ABIs, chain/deployment manifest, and code-hash verification",
+        "Local account deployment and execution test harness"
+      ],
+      "nonGoals": [
+        "Passkey UI",
+        "Testnet UserOperation",
+        "Custom identity or recovery module"
+      ],
+      "acceptance": [
+        "The selected base satisfies ERC-1271 and has a credible ERC-4337/passkey path",
+        "Local deployments are deterministic and code hashes are asserted",
+        "Hosted SDK/provider dependencies are isolated behind the account adapter"
+      ],
+      "validation": [
+        "forge test --root contracts",
+        "Account-adapter unit tests against Anvil",
+        "License and deployment-address review"
+      ],
+      "failureModes": [
+        "Reject incompatible EntryPoint/module combinations",
+        "Do not trust an address without chain ID and code hash",
+        "Document upgrade and module-install authority"
+      ]
     },
     {
       "id": "SSW-016",
@@ -284,13 +648,37 @@
       "lane": "account",
       "dependsOn": ["SSW-015"],
       "featureDocs": ["working/features/smart-account-and-passkeys.md"],
-      "touchPaths": ["packages/account-adapter/**", "contracts/**", "apps/wallet-web/**"],
+      "touchPaths": [
+        "packages/account-adapter/**",
+        "contracts/**",
+        "apps/wallet-web/**"
+      ],
       "objective": "Register a WebAuthn passkey, derive or deploy the selected smart account locally, execute a local operation, and validate account signatures through ERC-1271.",
-      "deliverables": ["WebAuthn signer adapter with origin/RP/challenge checks", "Counterfactual/deployed account flow on Anvil", "ERC-1271 positive and negative contract tests"],
-      "nonGoals": ["Hosted bundler/paymaster", "ERC-7579 modules", "Account recovery"],
-      "acceptance": ["Passkey private material never leaves the authenticator", "Wrong origin, RP ID, challenge, signature, and account reject", "Account address remains deterministic under the documented inputs"],
-      "validation": ["Playwright virtual-authenticator tests", "Anvil integration and forge ERC-1271 tests", "Cross-browser passkey capability smoke matrix"],
-      "failureModes": ["Explicitly handle user cancellation and unavailable authenticators", "P-256 verifier path is pinned and code-hash checked", "Never conflate passkey assertion with vault decryption"]
+      "deliverables": [
+        "WebAuthn signer adapter with origin/RP/challenge checks",
+        "Counterfactual/deployed account flow on Anvil",
+        "ERC-1271 positive and negative contract tests"
+      ],
+      "nonGoals": [
+        "Hosted bundler/paymaster",
+        "ERC-7579 modules",
+        "Account recovery"
+      ],
+      "acceptance": [
+        "Passkey private material never leaves the authenticator",
+        "Wrong origin, RP ID, challenge, signature, and account reject",
+        "Account address remains deterministic under the documented inputs"
+      ],
+      "validation": [
+        "Playwright virtual-authenticator tests",
+        "Anvil integration and forge ERC-1271 tests",
+        "Cross-browser passkey capability smoke matrix"
+      ],
+      "failureModes": [
+        "Explicitly handle user cancellation and unavailable authenticators",
+        "P-256 verifier path is pinned and code-hash checked",
+        "Never conflate passkey assertion with vault decryption"
+      ]
     },
     {
       "id": "SSW-017",
@@ -302,13 +690,38 @@
       "lane": "account",
       "dependsOn": ["SSW-016"],
       "featureDocs": ["working/features/smart-account-and-passkeys.md"],
-      "touchPaths": ["packages/account-adapter/**", "contracts/script/**", ".env.example", "docs/protocols/**"],
+      "touchPaths": [
+        "packages/account-adapter/**",
+        "contracts/script/**",
+        ".env.example",
+        "docs/protocols/**"
+      ],
       "objective": "Submit and observe a passkey-authorized UserOperation through configurable bundler/paymaster adapters on one documented testnet while preserving fully local core tests.",
-      "deliverables": ["Validated environment schema and provider-neutral ports", "UserOperation simulation/submission/receipt flow", "Testnet smoke runbook with chain and deployment manifest"],
-      "nonGoals": ["Mainnet", "Hard-coded provider account", "Guaranteed gas sponsorship"],
-      "acceptance": ["Missing external configuration cleanly skips opt-in tests", "Simulation errors and sponsorship denial are actionable", "A successful operation is linked to exact EntryPoint, chain, account, and receipt"],
-      "validation": ["Local adapter contract tests", "Opt-in testnet smoke command", "Provider outage and paymaster-denial tests"],
-      "failureModes": ["Never fall back to an unintended chain or RPC", "Redact API credentials and signed payload diagnostics", "Retry policy does not duplicate an already-included operation"]
+      "deliverables": [
+        "Validated environment schema and provider-neutral ports",
+        "UserOperation simulation/submission/receipt flow",
+        "Testnet smoke runbook with chain and deployment manifest"
+      ],
+      "nonGoals": [
+        "Mainnet",
+        "Hard-coded provider account",
+        "Guaranteed gas sponsorship"
+      ],
+      "acceptance": [
+        "Missing external configuration cleanly skips opt-in tests",
+        "Simulation errors and sponsorship denial are actionable",
+        "A successful operation is linked to exact EntryPoint, chain, account, and receipt"
+      ],
+      "validation": [
+        "Local adapter contract tests",
+        "Opt-in testnet smoke command",
+        "Provider outage and paymaster-denial tests"
+      ],
+      "failureModes": [
+        "Never fall back to an unintended chain or RPC",
+        "Redact API credentials and signed payload diagnostics",
+        "Retry policy does not duplicate an already-included operation"
+      ]
     },
     {
       "id": "SSW-018",
@@ -320,13 +733,37 @@
       "lane": "account",
       "dependsOn": ["SSW-016"],
       "featureDocs": ["working/features/smart-account-and-passkeys.md"],
-      "touchPaths": ["packages/account-adapter/**", "contracts/**", "docs/decisions/**"],
+      "touchPaths": [
+        "packages/account-adapter/**",
+        "contracts/**",
+        "docs/decisions/**"
+      ],
       "objective": "Integrate the selected maintained ERC-7579 adapter, prove module install/use/remove behavior locally, and document Draft-standard migration risk.",
-      "deliverables": ["Pinned adapter and module manifest", "Install, use, uninstall, and recovery tests", "Compatibility ADR addendum"],
-      "nonGoals": ["Writing a new modular account standard", "Installing unreviewed community modules", "Making credentials depend on ERC-7579"],
-      "acceptance": ["Account behavior remains valid before and after module lifecycle", "Malicious/reverting module fixtures cannot silently seize control", "Draft version and upgrade path are visible in runtime/deployment metadata"],
-      "validation": ["Foundry module lifecycle and reentrancy tests", "Account-adapter compatibility tests", "Code-hash and registry-policy checks"],
-      "failureModes": ["Module uninstall denial has a documented recovery path", "Fallback/hook authorization is fail-closed", "No delegatecall target is accepted without explicit policy"]
+      "deliverables": [
+        "Pinned adapter and module manifest",
+        "Install, use, uninstall, and recovery tests",
+        "Compatibility ADR addendum"
+      ],
+      "nonGoals": [
+        "Writing a new modular account standard",
+        "Installing unreviewed community modules",
+        "Making credentials depend on ERC-7579"
+      ],
+      "acceptance": [
+        "Account behavior remains valid before and after module lifecycle",
+        "Malicious/reverting module fixtures cannot silently seize control",
+        "Draft version and upgrade path are visible in runtime/deployment metadata"
+      ],
+      "validation": [
+        "Foundry module lifecycle and reentrancy tests",
+        "Account-adapter compatibility tests",
+        "Code-hash and registry-policy checks"
+      ],
+      "failureModes": [
+        "Module uninstall denial has a documented recovery path",
+        "Fallback/hook authorization is fail-closed",
+        "No delegatecall target is accepted without explicit policy"
+      ]
     },
     {
       "id": "SSW-019",
@@ -338,13 +775,37 @@
       "lane": "identity",
       "dependsOn": ["SSW-008", "SSW-016"],
       "featureDocs": ["working/features/identity-and-holder-binding.md"],
-      "touchPaths": ["docs/decisions/**", "packages/identity-adapter/**", "packages/sd-jwt-adapter/**"],
+      "touchPaths": [
+        "docs/decisions/**",
+        "packages/identity-adapter/**",
+        "packages/sd-jwt-adapter/**"
+      ],
       "objective": "Compare did:pkh and did:ethr for contract-account control, decide where DID is actually needed, and implement a privacy-aware holder-binding adapter that survives passkey rotation.",
-      "deliverables": ["DID/control/privacy ADR", "Resolver and control-proof ports with deterministic fixtures", "Credential-scoped or pairwise holder-binding strategy where supported"],
-      "nonGoals": ["Custom DID method", "Global DID in every presentation", "Universal resolver dependency in core tests"],
-      "acceptance": ["Passkey rotation does not require a new public account identity", "Base credential flow works with the DID adapter disabled", "Correlation implications of every binding mode are documented and tested"],
-      "validation": ["Resolver/control fixture tests", "Holder-binding rotation and wrong-controller tests", "Privacy review of identifiers exposed to issuer and verifier"],
-      "failureModes": ["Resolver outage is explicit and scoped", "Contract-account signature verification uses the correct chain", "No fallback silently replaces strong holder binding with bearer behavior"]
+      "deliverables": [
+        "DID/control/privacy ADR",
+        "Resolver and control-proof ports with deterministic fixtures",
+        "Credential-scoped or pairwise holder-binding strategy where supported"
+      ],
+      "nonGoals": [
+        "Custom DID method",
+        "Global DID in every presentation",
+        "Universal resolver dependency in core tests"
+      ],
+      "acceptance": [
+        "Passkey rotation does not require a new public account identity",
+        "Base credential flow works with the DID adapter disabled",
+        "Correlation implications of every binding mode are documented and tested"
+      ],
+      "validation": [
+        "Resolver/control fixture tests",
+        "Holder-binding rotation and wrong-controller tests",
+        "Privacy review of identifiers exposed to issuer and verifier"
+      ],
+      "failureModes": [
+        "Resolver outage is explicit and scoped",
+        "Contract-account signature verification uses the correct chain",
+        "No fallback silently replaces strong holder binding with bearer behavior"
+      ]
     },
     {
       "id": "SSW-020",
@@ -356,13 +817,38 @@
       "lane": "verification",
       "dependsOn": ["SSW-009", "SSW-010"],
       "featureDocs": ["working/features/verification-trust-and-status.md"],
-      "touchPaths": ["packages/credential-domain/**", "packages/openid4vc/**", "apps/issuer-demo/**", "apps/verifier-demo/**"],
+      "touchPaths": [
+        "packages/credential-domain/**",
+        "packages/openid4vc/**",
+        "apps/issuer-demo/**",
+        "apps/verifier-demo/**"
+      ],
       "objective": "Implement a versioned local trust policy and the pinned status mechanism with bounded fetching, cache freshness, issuer key rotation, and deterministic revocation fixtures.",
-      "deliverables": ["Trust-bundle schema and policy evaluator", "Status fetch/cache adapter and issuer demo endpoints", "Valid, revoked, suspended, stale, unavailable, and rotated-key fixtures"],
-      "nonGoals": ["Global governance marketplace", "Production trust authority", "Putting credential status or PII on-chain"],
-      "acceptance": ["Revoked/suspended credentials are rejected", "Unknown issuer and stale/unavailable status follow explicit fail-closed policy", "Status lookup does not leak holder-specific identifiers"],
-      "validation": ["Trust and status unit/contract tests", "Cache/clock/rotation boundary tests", "SSRF, response-size, and timeout tests"],
-      "failureModes": ["No silent acceptance on network failure", "Issuer key rotation cannot validate with an untrusted replacement key", "Error copy distinguishes retryable infrastructure failure from invalid credential without leaking claims"]
+      "deliverables": [
+        "Trust-bundle schema and policy evaluator",
+        "Status fetch/cache adapter and issuer demo endpoints",
+        "Valid, revoked, suspended, stale, unavailable, and rotated-key fixtures"
+      ],
+      "nonGoals": [
+        "Global governance marketplace",
+        "Production trust authority",
+        "Putting credential status or PII on-chain"
+      ],
+      "acceptance": [
+        "Revoked/suspended credentials are rejected",
+        "Unknown issuer and stale/unavailable status follow explicit fail-closed policy",
+        "Status lookup does not leak holder-specific identifiers"
+      ],
+      "validation": [
+        "Trust and status unit/contract tests",
+        "Cache/clock/rotation boundary tests",
+        "SSRF, response-size, and timeout tests"
+      ],
+      "failureModes": [
+        "No silent acceptance on network failure",
+        "Issuer key rotation cannot validate with an untrusted replacement key",
+        "Error copy distinguishes retryable infrastructure failure from invalid credential without leaking claims"
+      ]
     },
     {
       "id": "SSW-021",
@@ -373,14 +859,43 @@
       "wave": 7,
       "lane": "recovery",
       "dependsOn": ["SSW-007", "SSW-016", "SSW-019"],
-      "featureDocs": ["working/features/encrypted-vault.md", "working/features/identity-and-holder-binding.md", "working/features/smart-account-and-passkeys.md"],
-      "touchPaths": ["packages/credential-vault/**", "packages/account-adapter/**", "apps/wallet-web/**", "contracts/**"],
+      "featureDocs": [
+        "working/features/encrypted-vault.md",
+        "working/features/identity-and-holder-binding.md",
+        "working/features/smart-account-and-passkeys.md"
+      ],
+      "touchPaths": [
+        "packages/credential-vault/**",
+        "packages/account-adapter/**",
+        "apps/wallet-web/**",
+        "contracts/**"
+      ],
       "objective": "Provide tested signer rotation/account recovery and a separately authenticated encrypted vault export/restore flow, making their independent success conditions clear.",
-      "deliverables": ["Recovery policy and timelock/guardian or selected maintained module integration", "Versioned encrypted backup envelope with KDF and integrity metadata", "Lost-device, colluding-guardian, wrong-passphrase, rollback, and partial-recovery tests"],
-      "nonGoals": ["Production social graph", "Custodial recovery service", "Unencrypted export"],
-      "acceptance": ["Recovered account keeps the documented stable address/control identity", "A backup never contains plaintext credentials or keys", "Account recovery without vault backup and vault restore without account control are handled honestly"],
-      "validation": ["Foundry/account recovery tests", "Export/import round-trip and corruption/property tests", "End-to-end device-loss drill"],
-      "failureModes": ["Timelock and guardian thresholds cannot be bypassed", "Rollback/version downgrade is detected", "Wrong recovery input does not reveal whether a credential exists"]
+      "deliverables": [
+        "Recovery policy and timelock/guardian or selected maintained module integration",
+        "Versioned encrypted backup envelope with KDF and integrity metadata",
+        "Lost-device, colluding-guardian, wrong-passphrase, rollback, and partial-recovery tests"
+      ],
+      "nonGoals": [
+        "Production social graph",
+        "Custodial recovery service",
+        "Unencrypted export"
+      ],
+      "acceptance": [
+        "Recovered account keeps the documented stable address/control identity",
+        "A backup never contains plaintext credentials or keys",
+        "Account recovery without vault backup and vault restore without account control are handled honestly"
+      ],
+      "validation": [
+        "Foundry/account recovery tests",
+        "Export/import round-trip and corruption/property tests",
+        "End-to-end device-loss drill"
+      ],
+      "failureModes": [
+        "Timelock and guardian thresholds cannot be bypassed",
+        "Rollback/version downgrade is detected",
+        "Wrong recovery input does not reveal whether a credential exists"
+      ]
     },
     {
       "id": "SSW-022",
@@ -391,14 +906,41 @@
       "wave": 8,
       "lane": "security-ux",
       "dependsOn": ["SSW-012", "SSW-013", "SSW-020"],
-      "featureDocs": ["working/features/credential-exchange.md", "working/features/verification-trust-and-status.md"],
-      "touchPaths": ["apps/wallet-web/**", "apps/verifier-demo/**", "docs/threat-model/**"],
+      "featureDocs": [
+        "working/features/credential-exchange.md",
+        "working/features/verification-trust-and-status.md"
+      ],
+      "touchPaths": [
+        "apps/wallet-web/**",
+        "apps/verifier-demo/**",
+        "docs/threat-model/**"
+      ],
       "objective": "Make request trust, verifier identity, purpose, exact disclosures, expiry, status, and denial behavior understandable while preventing silent or coercive presentation.",
-      "deliverables": ["Consent and risk-state interaction spec implemented in the apps", "Signed/request-URI trust indicators and unsafe-request blockers", "Privacy-safe denial and claim-mismatch behavior"],
-      "nonGoals": ["Brand polish", "Dark-pattern conversion optimization", "Silent background credentials"],
-      "acceptance": ["The holder can distinguish requester, requested data, shared data, purpose, and expiry", "Unsafe or ambiguous requests cannot reach approval", "Denial does not reveal whether hidden claims matched"],
-      "validation": ["Component and accessibility tests", "Phishing/mixed-origin/replay user-flow tests", "Manual threat-model walkthrough"],
-      "failureModes": ["Never render remote metadata as trusted unsanitized HTML", "No pre-checked consent or approval-by-timeout", "Error details do not leak undisclosed claims"]
+      "deliverables": [
+        "Consent and risk-state interaction spec implemented in the apps",
+        "Signed/request-URI trust indicators and unsafe-request blockers",
+        "Privacy-safe denial and claim-mismatch behavior"
+      ],
+      "nonGoals": [
+        "Brand polish",
+        "Dark-pattern conversion optimization",
+        "Silent background credentials"
+      ],
+      "acceptance": [
+        "The holder can distinguish requester, requested data, shared data, purpose, and expiry",
+        "Unsafe or ambiguous requests cannot reach approval",
+        "Denial does not reveal whether hidden claims matched"
+      ],
+      "validation": [
+        "Component and accessibility tests",
+        "Phishing/mixed-origin/replay user-flow tests",
+        "Manual threat-model walkthrough"
+      ],
+      "failureModes": [
+        "Never render remote metadata as trusted unsanitized HTML",
+        "No pre-checked consent or approval-by-timeout",
+        "Error details do not leak undisclosed claims"
+      ]
     },
     {
       "id": "SSW-023",
@@ -410,13 +952,38 @@
       "lane": "onchain",
       "dependsOn": ["SSW-017", "SSW-019", "SSW-020"],
       "featureDocs": ["working/features/onchain-attestations.md"],
-      "touchPaths": ["contracts/**", "packages/credential-domain/**", "packages/account-adapter/**", "apps/access-demo/**"],
+      "touchPaths": [
+        "contracts/**",
+        "packages/credential-domain/**",
+        "packages/account-adapter/**",
+        "apps/access-demo/**"
+      ],
       "objective": "Convert a valid off-chain result into a short-lived attestor-signed, chain/consumer/policy/nonce-scoped message and gate one local/testnet demo contract without writing credential data on-chain.",
-      "deliverables": ["Versioned attestation envelope and signer/verifier interfaces", "Consumer contract with expiry, nonce/nullifier, policy, audience, and attestor rotation checks", "Access demo and privacy/trust documentation"],
-      "nonGoals": ["Arbitrary ZK", "Credential verification in Solidity", "Permanent identity registry"],
-      "acceptance": ["Only a valid scoped unexpired unused attestation grants access", "Chain replay, consumer replay, nonce reuse, wrong policy, and rotated/revoked attestor reject", "Events and calldata contain no credential, DID document, or PII"],
-      "validation": ["Foundry unit, fuzz, replay, and gas tests", "Local integration from verifier result to consumer", "Opt-in testnet smoke if configuration exists"],
-      "failureModes": ["Trust in the attestor is explicit and versioned", "Attestor compromise has a rotation/revocation path", "On-chain failure never changes the validity of the underlying off-chain credential"]
+      "deliverables": [
+        "Versioned attestation envelope and signer/verifier interfaces",
+        "Consumer contract with expiry, nonce/nullifier, policy, audience, and attestor rotation checks",
+        "Access demo and privacy/trust documentation"
+      ],
+      "nonGoals": [
+        "Arbitrary ZK",
+        "Credential verification in Solidity",
+        "Permanent identity registry"
+      ],
+      "acceptance": [
+        "Only a valid scoped unexpired unused attestation grants access",
+        "Chain replay, consumer replay, nonce reuse, wrong policy, and rotated/revoked attestor reject",
+        "Events and calldata contain no credential, DID document, or PII"
+      ],
+      "validation": [
+        "Foundry unit, fuzz, replay, and gas tests",
+        "Local integration from verifier result to consumer",
+        "Opt-in testnet smoke if configuration exists"
+      ],
+      "failureModes": [
+        "Trust in the attestor is explicit and versioned",
+        "Attestor compromise has a rotation/revocation path",
+        "On-chain failure never changes the validity of the underlying off-chain credential"
+      ]
     },
     {
       "id": "SSW-024",
@@ -428,13 +995,38 @@
       "lane": "quality",
       "dependsOn": ["SSW-014", "SSW-021", "SSW-022"],
       "featureDocs": ["working/procedures/SECURITY-REVIEW.md"],
-      "touchPaths": ["tests/**", "packages/**", "contracts/test/**", "docs/threat-model/**"],
+      "touchPaths": [
+        "tests/**",
+        "packages/**",
+        "contracts/test/**",
+        "docs/threat-model/**"
+      ],
       "objective": "Turn the threat model into automated adversarial evidence across parsers, JOSE, replay, vault, recovery, consent, status, modules, and logs.",
-      "deliverables": ["Cross-package property and mutation tests", "Foundry fuzz/invariant suite", "Structured redaction tests and sanitized failure artifacts"],
-      "nonGoals": ["Independent audit", "Fixing unrelated performance issues", "Production monitoring backend"],
-      "acceptance": ["Every initial threat has at least one test or documented manual control", "Fuzz/property seeds are reproducible", "Logs, traces, screenshots, and errors exclude secrets, credentials, and undisclosed claims"],
-      "validation": ["pnpm test:security", "forge test --root contracts with fuzz/invariants", "Secret/redaction scan of generated artifacts"],
-      "failureModes": ["Flaky randomized tests preserve failing seeds", "No test uses real PII or production endpoints", "A sanitizer failure fails CI rather than merely warning"]
+      "deliverables": [
+        "Cross-package property and mutation tests",
+        "Foundry fuzz/invariant suite",
+        "Structured redaction tests and sanitized failure artifacts"
+      ],
+      "nonGoals": [
+        "Independent audit",
+        "Fixing unrelated performance issues",
+        "Production monitoring backend"
+      ],
+      "acceptance": [
+        "Every initial threat has at least one test or documented manual control",
+        "Fuzz/property seeds are reproducible",
+        "Logs, traces, screenshots, and errors exclude secrets, credentials, and undisclosed claims"
+      ],
+      "validation": [
+        "pnpm test:security",
+        "forge test --root contracts with fuzz/invariants",
+        "Secret/redaction scan of generated artifacts"
+      ],
+      "failureModes": [
+        "Flaky randomized tests preserve failing seeds",
+        "No test uses real PII or production endpoints",
+        "A sanitizer failure fails CI rather than merely warning"
+      ]
     },
     {
       "id": "SSW-025",
@@ -446,13 +1038,35 @@
       "lane": "integration",
       "dependsOn": ["SSW-017", "SSW-018", "SSW-023", "SSW-024"],
       "featureDocs": ["working/procedures/RELEASE-WORKFLOW.md"],
-      "touchPaths": ["tests/e2e/**", "scripts/**", "README.md", "docs/**", "working/**"],
+      "touchPaths": [
+        "tests/e2e/**",
+        "scripts/**",
+        "README.md",
+        "docs/**",
+        "working/**"
+      ],
       "objective": "Run and document the complete synthetic flow locally and on the supported testnet, including account creation, credential exchange, recovery, status rejection, and optional attestation-gated access.",
-      "deliverables": ["Release-candidate orchestration command and environment validation", "Browser/chain/provider support matrix", "Acceptance report with artifacts and exact deployment manifest"],
+      "deliverables": [
+        "Release-candidate orchestration command and environment validation",
+        "Browser/chain/provider support matrix",
+        "Acceptance report with artifacts and exact deployment manifest"
+      ],
       "nonGoals": ["Mainnet", "Real credentials", "Production SLA"],
-      "acceptance": ["All local tests pass without external configuration", "Opt-in testnet flow passes on the declared matrix", "Recovery, revoked credential, provider outage, and attestation replay scenarios pass"],
-      "validation": ["pnpm verify:rc", "Opt-in testnet E2E", "SBOM, license, secret, dependency, and contract code-hash checks"],
-      "failureModes": ["Do not mark the RC green when any required criterion is skipped", "Classify external outage separately from product defect", "Artifacts are sanitized and reproducible"]
+      "acceptance": [
+        "All local tests pass without external configuration",
+        "Opt-in testnet flow passes on the declared matrix",
+        "Recovery, revoked credential, provider outage, and attestation replay scenarios pass"
+      ],
+      "validation": [
+        "pnpm verify:rc",
+        "Opt-in testnet E2E",
+        "SBOM, license, secret, dependency, and contract code-hash checks"
+      ],
+      "failureModes": [
+        "Do not mark the RC green when any required criterion is skipped",
+        "Classify external outage separately from product defect",
+        "Artifacts are sanitized and reproducible"
+      ]
     },
     {
       "id": "SSW-026",
@@ -464,13 +1078,39 @@
       "lane": "security",
       "dependsOn": ["SSW-025"],
       "featureDocs": ["working/procedures/SECURITY-REVIEW.md"],
-      "touchPaths": ["docs/architecture/**", "docs/threat-model/**", "docs/decisions/**", "docs/audit/**", "SECURITY.md"],
+      "touchPaths": [
+        "docs/architecture/**",
+        "docs/threat-model/**",
+        "docs/decisions/**",
+        "docs/audit/**",
+        "SECURITY.md"
+      ],
       "objective": "Produce a reviewer-ready evidence packet covering assets, trust boundaries, key lifecycle, protocol profiles, contracts, deployments, privacy data flow, tests, known gaps, and reproducible setup.",
-      "deliverables": ["Architecture/data-flow and threat-model packet", "Contract and dependency inventory with code hashes, licenses, and audit provenance", "Known-issues, scope, reproducibility, and reviewer checklist"],
-      "nonGoals": ["Claiming an audit occurred", "Closing findings without reviewers", "Production approval"],
-      "acceptance": ["A reviewer can reproduce builds/tests from a clean clone", "Every key, credential, identifier, log, and on-chain field has a documented lifecycle", "Unsupported claims and remaining risks are prominent"],
-      "validation": ["Fresh-clone audit runbook", "Documentation link check", "Internal security/privacy review sign-off"],
-      "failureModes": ["Missing evidence is listed as a gap, not inferred", "No secret is included in the packet", "Threats without controls block production claims"]
+      "deliverables": [
+        "Architecture/data-flow and threat-model packet",
+        "Contract and dependency inventory with code hashes, licenses, and audit provenance",
+        "Known-issues, scope, reproducibility, and reviewer checklist"
+      ],
+      "nonGoals": [
+        "Claiming an audit occurred",
+        "Closing findings without reviewers",
+        "Production approval"
+      ],
+      "acceptance": [
+        "A reviewer can reproduce builds/tests from a clean clone",
+        "Every key, credential, identifier, log, and on-chain field has a documented lifecycle",
+        "Unsupported claims and remaining risks are prominent"
+      ],
+      "validation": [
+        "Fresh-clone audit runbook",
+        "Documentation link check",
+        "Internal security/privacy review sign-off"
+      ],
+      "failureModes": [
+        "Missing evidence is listed as a gap, not inferred",
+        "No secret is included in the packet",
+        "Threats without controls block production claims"
+      ]
     },
     {
       "id": "SSW-027",
@@ -483,13 +1123,40 @@
       "dependsOn": ["SSW-002", "SSW-026"],
       "externalWrite": true,
       "featureDocs": ["working/procedures/RELEASE-WORKFLOW.md"],
-      "touchPaths": ["CHANGELOG.md", "README.md", "SECURITY.md", "PROJECT.json", "STATUS.md", ".github/**"],
+      "touchPaths": [
+        "CHANGELOG.md",
+        "README.md",
+        "SECURITY.md",
+        "PROJECT.json",
+        "STATUS.md",
+        ".github/**"
+      ],
       "objective": "After explicit release approval, publish a signed alpha tag and GitHub release with accurate maturity warnings, reproducible checks, artifacts, limitations, and no production-security claim.",
-      "deliverables": ["Versioned changelog and release notes", "Signed tag and GitHub alpha release", "Updated current-state and support documentation"],
-      "nonGoals": ["Mainnet deployment", "Production identity use", "Stable 1.0 guarantee"],
-      "acceptance": ["Release commit equals the verified RC source", "Published artifacts and checksums are reproducible", "Warnings clearly limit the alpha to synthetic data and local/testnet use"],
-      "validation": ["Re-run release checks from the tag", "Verify GitHub visibility, tag signature, checksums, and links", "Inspect release archive for secrets and local artifacts"],
-      "failureModes": ["Stop before external publication without explicit approval", "Do not republish changed artifacts under the same tag", "Do not call the release audited or production-ready"]
+      "deliverables": [
+        "Versioned changelog and release notes",
+        "Signed tag and GitHub alpha release",
+        "Updated current-state and support documentation"
+      ],
+      "nonGoals": [
+        "Mainnet deployment",
+        "Production identity use",
+        "Stable 1.0 guarantee"
+      ],
+      "acceptance": [
+        "Release commit equals the verified RC source",
+        "Published artifacts and checksums are reproducible",
+        "Warnings clearly limit the alpha to synthetic data and local/testnet use"
+      ],
+      "validation": [
+        "Re-run release checks from the tag",
+        "Verify GitHub visibility, tag signature, checksums, and links",
+        "Inspect release archive for secrets and local artifacts"
+      ],
+      "failureModes": [
+        "Stop before external publication without explicit approval",
+        "Do not republish changed artifacts under the same tag",
+        "Do not call the release audited or production-ready"
+      ]
     },
     {
       "id": "SSW-028",
@@ -501,13 +1168,852 @@
       "lane": "research",
       "dependsOn": ["SSW-023"],
       "featureDocs": ["working/roadmap/future/zk-predicate-proofs.md"],
-      "touchPaths": ["working/research/**", "working/roadmap/future/zk-predicate-proofs.md", "docs/decisions/**"],
+      "touchPaths": [
+        "working/research/**",
+        "working/roadmap/future/zk-predicate-proofs.md",
+        "docs/decisions/**"
+      ],
       "objective": "Evaluate whether a maintained, auditable proof system can prove hidden age predicates while binding issuer, status, holder, audience, nonce, expiry, and nullifier semantics.",
-      "deliverables": ["Comparison of candidate proof systems and circuit assumptions", "Browser performance and on-chain cost measurements on synthetic fixtures", "Go, defer, or reject ADR with a bounded implementation proposal"],
-      "nonGoals": ["Production circuit", "Replacing the issuer-derived is_over_18 MVP", "Universal proof marketplace"],
-      "acceptance": ["Trusted setup, audit status, cryptographic assumptions, licensing, and maintenance are compared", "Revocation and anti-replay binding are part of the design", "The recommendation includes privacy/correlation and operational costs"],
-      "validation": ["Reproducible benchmark prototype", "Independent review of the research assumptions", "No product dependency added unless the ADR says go"],
-      "failureModes": ["Do not select a proof system on gas cost alone", "Do not claim unlinkability without a concrete transcript analysis", "Abandon candidates that require custom unaudited cryptography for the MVP"]
+      "deliverables": [
+        "Comparison of candidate proof systems and circuit assumptions",
+        "Browser performance and on-chain cost measurements on synthetic fixtures",
+        "Go, defer, or reject ADR with a bounded implementation proposal"
+      ],
+      "nonGoals": [
+        "Production circuit",
+        "Replacing the issuer-derived is_over_18 MVP",
+        "Universal proof marketplace"
+      ],
+      "acceptance": [
+        "Trusted setup, audit status, cryptographic assumptions, licensing, and maintenance are compared",
+        "Revocation and anti-replay binding are part of the design",
+        "The recommendation includes privacy/correlation and operational costs"
+      ],
+      "validation": [
+        "Reproducible benchmark prototype",
+        "Independent review of the research assumptions",
+        "No product dependency added unless the ADR says go"
+      ],
+      "failureModes": [
+        "Do not select a proof system on gas cost alone",
+        "Do not claim unlinkability without a concrete transcript analysis",
+        "Abandon candidates that require custom unaudited cryptography for the MVP"
+      ]
+    },
+    {
+      "id": "SSW-029",
+      "slug": "wallet-platform-architecture",
+      "title": "Define the modular Wallet Platform architecture",
+      "status": "Todo",
+      "priority": "P0",
+      "wave": 13,
+      "lane": "architecture",
+      "dependsOn": ["SSW-026"],
+      "featureDocs": ["working/features/wallet-platform-sdk.md"],
+      "touchPaths": [
+        "docs/decisions/SSW-029-*.md",
+        "docs/threat-model/wallet-platform-*.md",
+        "working/maps/**"
+      ],
+      "objective": "Specify the provider-neutral SDK, self-hosted service, wallet app, admin console, authentication, signer, Safe, DID, credential, and portability boundaries before implementation.",
+      "deliverables": [
+        "Architecture and custody ADR",
+        "Trust-boundary and data-flow threat model",
+        "Dependency and build-versus-adapter matrix"
+      ],
+      "nonGoals": [
+        "Functional implementation",
+        "Selecting a permanent hosted vendor",
+        "Production or mainnet claims"
+      ],
+      "acceptance": [
+        "The user-controlled Safe and revocable operational signer model is explicit",
+        "Email-only custody limitations and sensitive-operation step-up are explicit",
+        "Every provider dependency sits behind a replaceable port"
+      ],
+      "validation": [
+        "Architecture link and consistency check",
+        "Threat-model review against existing audit packet",
+        "Official-source version and license verification"
+      ],
+      "failureModes": [
+        "Do not describe email possession as cryptographic self-custody",
+        "Do not permit a vendor signer to become irremovable",
+        "List unresolved upstream module risks as blockers"
+      ]
+    },
+    {
+      "id": "SSW-030",
+      "slug": "platform-schemas-wallet-locators",
+      "title": "Implement platform schemas and opaque wallet locators",
+      "status": "Todo",
+      "priority": "P0",
+      "wave": 13,
+      "lane": "platform-core",
+      "dependsOn": ["SSW-029"],
+      "featureDocs": ["working/features/wallet-platform-sdk.md"],
+      "touchPaths": ["packages/platform-types/**"],
+      "objective": "Create versioned runtime schemas for tenants, principals, wallets, signers, auth identities, transaction intents, challenges, audit events, migration bundles, and opaque tenant-scoped wallet locators.",
+      "deliverables": [
+        "Dependency-light public schemas and error taxonomy",
+        "Email-free opaque wallet locator",
+        "Deterministic serialization and validation fixtures"
+      ],
+      "nonGoals": [
+        "Database adapter",
+        "HTTP service",
+        "Authentication implementation"
+      ],
+      "acceptance": [
+        "Locators reveal no email or social subject",
+        "Unknown fields, malformed hex, unsafe integers, and oversized values fail closed",
+        "Every persisted/exchanged project object carries a schema version"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/platform-types test",
+        "Property tests for locator parsing and serialization",
+        "pnpm typecheck"
+      ],
+      "failureModes": [
+        "Prevent cross-tenant locator confusion",
+        "Bound nesting, arrays, strings, and numeric values",
+        "Never serialize secrets into audit or public response types"
+      ]
+    },
+    {
+      "id": "SSW-031",
+      "slug": "platform-store-tenancy-audit",
+      "title": "Implement multi-tenant storage and redacted audit events",
+      "status": "Todo",
+      "priority": "P0",
+      "wave": 13,
+      "lane": "platform-storage",
+      "dependsOn": ["SSW-030"],
+      "featureDocs": ["working/features/wallet-platform-sdk.md"],
+      "touchPaths": ["packages/platform-store/**"],
+      "objective": "Build in-memory and PostgreSQL ports for platform metadata with strict tenant isolation, atomic idempotency, migrations, and privacy-safe audit records.",
+      "deliverables": [
+        "Storage interfaces and in-memory adapter",
+        "PostgreSQL schema and migrations",
+        "Append-only redacted audit adapter"
+      ],
+      "nonGoals": [
+        "Credential plaintext storage",
+        "Managed database service",
+        "Analytics warehouse"
+      ],
+      "acceptance": [
+        "Every query is tenant-scoped",
+        "Concurrent idempotent writes produce one result",
+        "No VC, OTP, token, recovery factor, or raw social/email identity enters audit output"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/platform-store test",
+        "PostgreSQL migration and rollback integration tests",
+        "Tenant escape and concurrency tests"
+      ],
+      "failureModes": [
+        "Storage failure cannot authorize an operation",
+        "Migrations are atomic and reversible before destructive steps",
+        "Redaction failure stops audit persistence"
+      ]
+    },
+    {
+      "id": "SSW-032",
+      "slug": "safe-service-adapter",
+      "title": "Implement the Safe wallet-service adapter",
+      "status": "Todo",
+      "priority": "P0",
+      "wave": 13,
+      "lane": "account",
+      "dependsOn": ["SSW-029", "SSW-030"],
+      "featureDocs": [
+        "working/features/wallet-platform-sdk.md",
+        "working/features/smart-account-and-passkeys.md"
+      ],
+      "touchPaths": [
+        "packages/safe-service-adapter/**",
+        "contracts/test/WalletPlatform*.t.sol"
+      ],
+      "objective": "Expose deterministic Safe lifecycle, call preparation, ERC-4337 simulation, sponsorship, submission, and receipt inspection through provider-neutral service ports.",
+      "deliverables": [
+        "Safe lifecycle and call interfaces",
+        "RPC, bundler, paymaster, and signer ports",
+        "Base Sepolia and separate Scroll Sepolia deployment profiles"
+      ],
+      "nonGoals": [
+        "Custom smart-account base",
+        "Custom cryptography",
+        "Hosted provider fallback"
+      ],
+      "acceptance": [
+        "Chain, EntryPoint, factory, account bytecode, and code hashes are verified",
+        "A provider can be replaced without changing domain types",
+        "Scroll configuration cannot silently reuse Base deployment metadata"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/safe-service-adapter test",
+        "forge test --root contracts --match-path test/WalletPlatform*.t.sol",
+        "Provider failure and receipt mismatch tests"
+      ],
+      "failureModes": [
+        "Simulation failure blocks submission",
+        "Never retry a possibly submitted UserOperation blindly",
+        "Reject missing or unpinned deployment metadata"
+      ]
+    },
+    {
+      "id": "SSW-033",
+      "slug": "signer-policy-engine",
+      "title": "Implement scoped operational-signer policies",
+      "status": "Todo",
+      "priority": "P0",
+      "wave": 13,
+      "lane": "authorization",
+      "dependsOn": ["SSW-030", "SSW-032"],
+      "featureDocs": ["working/features/wallet-platform-sdk.md"],
+      "touchPaths": ["packages/signer-policy/**"],
+      "objective": "Authorize operational signers only within contract, selector, asset, amount, frequency, chain, and TTL policies, with passkey or recovery step-up for sensitive changes.",
+      "deliverables": [
+        "Versioned policy schema and evaluator",
+        "Step-up decision interface",
+        "Revocation and bounded-session lifecycle"
+      ],
+      "nonGoals": [
+        "Authentication UI",
+        "Owning Safe permanently",
+        "Unbounded arbitrary calls"
+      ],
+      "acceptance": [
+        "Email/social sessions cannot rotate owners, export, migrate, or install modules without step-up",
+        "Expired or revoked policies fail closed",
+        "Every decision has a redacted stable reason code"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/signer-policy test",
+        "Property tests for amount/TTL boundaries",
+        "Privilege escalation and replay tests"
+      ],
+      "failureModes": [
+        "Deny unknown contracts and selectors",
+        "Policy-store outage denies authorization",
+        "Do not leak balances or policy internals in rejection messages"
+      ]
+    },
+    {
+      "id": "SSW-034",
+      "slug": "passkey-auth-module",
+      "title": "Build the modular passkey authentication adapter",
+      "status": "Todo",
+      "priority": "P0",
+      "wave": 14,
+      "lane": "authentication",
+      "dependsOn": ["SSW-030", "SSW-033"],
+      "featureDocs": [
+        "working/features/wallet-platform-sdk.md",
+        "working/features/smart-account-and-passkeys.md"
+      ],
+      "touchPaths": ["packages/auth-passkey/**"],
+      "objective": "Provide browser/server passkey registration, authentication, step-up, account binding, rotation, and removal while reusing the existing WebAuthn security boundary.",
+      "deliverables": [
+        "Passkey auth ports and browser adapter",
+        "Server challenge and binding verifier",
+        "Deterministic WebAuthn fixtures"
+      ],
+      "nonGoals": [
+        "Hardware-specific SDK",
+        "Using signatures as vault encryption keys",
+        "Assuming WebAuthn PRF support"
+      ],
+      "acceptance": [
+        "Origin, RP ID, challenge, account, user verification, and code hash are bound",
+        "Rotation preserves account/DID identity",
+        "Cancellation and unsupported authenticators are actionable"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/auth-passkey test",
+        "Mutation tests for WebAuthn context",
+        "Browser capability smoke tests"
+      ],
+      "failureModes": [
+        "Never downgrade user verification silently",
+        "PRF absence uses the documented fallback",
+        "Remove the old signer only after the replacement is proven"
+      ]
+    },
+    {
+      "id": "SSW-035",
+      "slug": "email-otp-auth-module",
+      "title": "Build the self-hosted email OTP module",
+      "status": "Todo",
+      "priority": "P0",
+      "wave": 14,
+      "lane": "authentication",
+      "dependsOn": ["SSW-030", "SSW-031", "SSW-033"],
+      "featureDocs": ["working/features/wallet-platform-sdk.md"],
+      "touchPaths": ["packages/auth-email/**"],
+      "objective": "Implement provider-neutral email OTP authentication with a generic transport port, SMTP adapter, Mailpit fixture, and short operational-signer sessions.",
+      "deliverables": [
+        "EmailTransportPort and SMTP adapter",
+        "Hashed single-use OTP state machine",
+        "Recovery, email-change, and session revocation flows"
+      ],
+      "nonGoals": [
+        "Email as an on-chain owner",
+        "Hosted email dependency",
+        "Claiming email-only self-custody"
+      ],
+      "acceptance": [
+        "OTP values are random, hashed, expiring, single-use, rate-limited, and never logged",
+        "Responses resist account enumeration",
+        "Email never appears in wallet locators or on-chain data"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/auth-email test",
+        "Mailpit contract tests",
+        "Brute-force, race, replay, and enumeration tests"
+      ],
+      "failureModes": [
+        "Transport outage cannot create an authenticated session",
+        "Changing email revokes prior sessions",
+        "Sensitive operations still require passkey/recovery step-up"
+      ]
+    },
+    {
+      "id": "SSW-036",
+      "slug": "social-oidc-auth-module",
+      "title": "Build the provider-neutral social OIDC module",
+      "status": "Todo",
+      "priority": "P1",
+      "wave": 14,
+      "lane": "authentication",
+      "dependsOn": ["SSW-030", "SSW-031", "SSW-033"],
+      "featureDocs": ["working/features/wallet-platform-sdk.md"],
+      "touchPaths": ["packages/auth-oidc/**"],
+      "objective": "Implement generic OIDC/OAuth login and explicit account linking with configurable Google and Apple examples, using issuer plus subject as the canonical external identity.",
+      "deliverables": [
+        "OIDC discovery/JWKS and callback ports",
+        "PKCE, state, nonce, and linking state machine",
+        "Google and Apple configuration examples"
+      ],
+      "nonGoals": [
+        "Hard-coded provider SDK",
+        "Using email as the canonical OIDC identity",
+        "Social account as permanent Safe owner"
+      ],
+      "acceptance": [
+        "Issuer, audience, nonce, state, PKCE, signature, and expiry are verified",
+        "Email collisions cannot merge accounts",
+        "Unlink and provider outage leave recovery routes intact"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/auth-oidc test",
+        "OIDC discovery/JWKS fixture tests",
+        "Issuer confusion, replay, collision, and linking tests"
+      ],
+      "failureModes": [
+        "Discovery and JWKS fetching obey SSRF and size policies",
+        "Provider outage fails closed",
+        "Account linking always requires an authenticated existing factor"
+      ]
+    },
+    {
+      "id": "SSW-037",
+      "slug": "default-private-did-lifecycle",
+      "title": "Add the default private DID lifecycle",
+      "status": "Todo",
+      "priority": "P1",
+      "wave": 14,
+      "lane": "identity",
+      "dependsOn": ["SSW-030", "SSW-032"],
+      "featureDocs": [
+        "working/features/wallet-platform-sdk.md",
+        "working/features/identity-and-holder-binding.md"
+      ],
+      "touchPaths": ["packages/identity-adapter/**"],
+      "objective": "Create a local did:pkh controller reference automatically for each Safe while keeping publication optional and credential presentations pairwise by default.",
+      "deliverables": [
+        "Wallet-creation DID lifecycle API",
+        "Control-proof and export interface",
+        "Pairwise presentation integration fixtures"
+      ],
+      "nonGoals": [
+        "Automatic on-chain registration",
+        "Universal resolver dependency",
+        "Global DID disclosure in every presentation"
+      ],
+      "acceptance": [
+        "DID derives deterministically from chain and Safe",
+        "Passkey/vendor rotation preserves the DID",
+        "Creation produces no chain transaction or public identifier disclosure"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/identity-adapter test",
+        "Recovery and vendor-rotation identity tests",
+        "Correlation and disclosure fixture review"
+      ],
+      "failureModes": [
+        "Chain mismatch fails closed",
+        "Resolver outage cannot break base credential flows",
+        "Never replace pairwise holder IDs with the public controller silently"
+      ]
+    },
+    {
+      "id": "SSW-038",
+      "slug": "wallet-portability-protocol",
+      "title": "Implement in-place rotation and full wallet portability",
+      "status": "Todo",
+      "priority": "P0",
+      "wave": 15,
+      "lane": "portability",
+      "dependsOn": ["SSW-031", "SSW-032", "SSW-033", "SSW-037"],
+      "featureDocs": ["working/features/wallet-platform-sdk.md"],
+      "touchPaths": ["packages/wallet-portability/**"],
+      "objective": "Support vendor rotation on the same Safe and a signed, versioned, encrypted full export/import bundle for migration to another service or wallet.",
+      "deliverables": [
+        "In-place signer/module rotation protocol",
+        "Portable encrypted migration bundle",
+        "Import validation, rollback, and compatibility report"
+      ],
+      "nonGoals": [
+        "Silent asset sweeping",
+        "Plaintext key export",
+        "Vendor-specific bundle fields"
+      ],
+      "acceptance": [
+        "In-place migration preserves address, DID, assets, and history",
+        "Full export is integrity-protected, encrypted, and user-authorized",
+        "The old vendor signer is removed only after the new control path succeeds"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/wallet-portability test",
+        "Cross-adapter round-trip fixtures",
+        "Tamper, downgrade, interruption, and rollback tests"
+      ],
+      "failureModes": [
+        "Migration interruption leaves at least one valid user recovery path",
+        "Reject unknown mandatory bundle versions",
+        "Never claim portability when upstream account modules block rotation"
+      ]
+    },
+    {
+      "id": "SSW-039",
+      "slug": "wallet-asset-actions",
+      "title": "Implement native, token, and NFT wallet actions",
+      "status": "Todo",
+      "priority": "P1",
+      "wave": 15,
+      "lane": "assets",
+      "dependsOn": ["SSW-032", "SSW-033"],
+      "featureDocs": ["working/features/wallet-platform-sdk.md"],
+      "touchPaths": [
+        "packages/wallet-actions/**",
+        "contracts/test/WalletActions*.t.sol"
+      ],
+      "objective": "Provide typed prepare/preview/simulate actions for native assets, ERC-20, ERC-721, ERC-1155, minting, transfers, approvals, and batches under signer policies.",
+      "deliverables": [
+        "Typed action builders and human-readable previews",
+        "Token/NFT metadata validation boundary",
+        "Synthetic ERC-20/721/1155 test contracts and fixtures"
+      ],
+      "nonGoals": [
+        "DEX or bridge",
+        "Unrestricted arbitrary calls by default",
+        "Trusting unverified remote token metadata"
+      ],
+      "acceptance": [
+        "Every action is simulated and policy-checked before authorization",
+        "Unlimited approvals and unknown selectors receive explicit high-risk treatment",
+        "Chain, target, amount, recipient, and token ID appear in consent"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/wallet-actions test",
+        "forge test --root contracts --match-path test/WalletActions*.t.sol",
+        "Malicious-token and revert fixtures"
+      ],
+      "failureModes": [
+        "Simulation mismatch blocks submission",
+        "Decimals and metadata cannot change authorization amounts",
+        "Batch failure is atomic or explicitly represented"
+      ]
+    },
+    {
+      "id": "SSW-040",
+      "slug": "wallet-service-rest-openapi",
+      "title": "Build the self-hosted Wallet Service API",
+      "status": "Todo",
+      "priority": "P0",
+      "wave": 15,
+      "lane": "service",
+      "dependsOn": [
+        "SSW-031",
+        "SSW-032",
+        "SSW-033",
+        "SSW-034",
+        "SSW-035",
+        "SSW-036",
+        "SSW-037",
+        "SSW-038",
+        "SSW-039"
+      ],
+      "featureDocs": ["working/features/wallet-platform-sdk.md"],
+      "touchPaths": ["apps/wallet-service/**"],
+      "objective": "Expose versioned REST and OpenAPI interfaces for wallet lifecycle, transactions, balances, activity, signers, DID, authentication, and portability without hosted-provider coupling.",
+      "deliverables": [
+        "Node wallet service with /v1 API",
+        "OpenAPI 3.1 specification",
+        "JWT user auth, scoped server API keys, idempotency, and webhook boundaries"
+      ],
+      "nonGoals": [
+        "Admin or consumer UI",
+        "Vendor-specific mandatory service",
+        "Mainnet configuration"
+      ],
+      "acceptance": [
+        "All mutations require authentication, tenant scope, idempotency, and policy evaluation",
+        "Browser and server credentials have separate scopes",
+        "OpenAPI matches runtime request/response validation"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/wallet-service test",
+        "OpenAPI contract and negative route tests",
+        "Auth, tenant, idempotency, webhook, SSRF, and rate-limit tests"
+      ],
+      "failureModes": [
+        "Never return or log raw secrets, OTPs, VCs, recovery material, or signer keys",
+        "Provider outage maps to stable retry-safe errors",
+        "Unknown API versions or fields fail closed"
+      ]
+    },
+    {
+      "id": "SSW-041",
+      "slug": "typescript-wallet-sdk",
+      "title": "Build the browser and server TypeScript Wallet SDK",
+      "status": "Todo",
+      "priority": "P0",
+      "wave": 16,
+      "lane": "sdk",
+      "dependsOn": ["SSW-040"],
+      "featureDocs": ["working/features/wallet-platform-sdk.md"],
+      "touchPaths": ["packages/wallet-sdk/**"],
+      "objective": "Provide familiar browser/server SDK clients for wallets, transactions, balances, assets, signers, identity, and portability using only the public OpenAPI contract.",
+      "deliverables": [
+        "ESM browser and server entrypoints",
+        "Generated API types plus ergonomic domain methods",
+        "Timeout, abort, retry classification, idempotency, and stable errors"
+      ],
+      "nonGoals": [
+        "React hooks",
+        "Bundling server secrets into browser code",
+        "Direct database or Safe imports"
+      ],
+      "acceptance": [
+        "The SDK exposes create/get/getOrCreate, prepare/authorize/send, balances, token/NFT, signer, DID, and migration methods",
+        "Browser bundles contain no server-only code",
+        "Generated and runtime API schemas cannot drift"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/wallet-sdk test",
+        "Browser/server export and bundle tests",
+        "OpenAPI generation drift check"
+      ],
+      "failureModes": [
+        "Retry only operations proven idempotent",
+        "Redact response bodies from authentication errors",
+        "Abort and timeout leave transaction state queryable"
+      ]
+    },
+    {
+      "id": "SSW-042",
+      "slug": "react-wallet-sdk",
+      "title": "Build framework-neutral React wallet bindings",
+      "status": "Todo",
+      "priority": "P1",
+      "wave": 16,
+      "lane": "sdk",
+      "dependsOn": ["SSW-034", "SSW-035", "SSW-036", "SSW-041"],
+      "featureDocs": ["working/features/wallet-platform-sdk.md"],
+      "touchPaths": ["packages/wallet-sdk-react/**"],
+      "objective": "Expose configurable React providers and hooks for auth, wallets, balances, transactions, signers, DID, and portability without requiring Next.js.",
+      "deliverables": [
+        "WalletProvider and modular auth configuration",
+        "useAuth/useWallet/useBalances/useTransaction/useSigners/useDid/usePortability hooks",
+        "Accessible loading, cancellation, error, and step-up states"
+      ],
+      "nonGoals": [
+        "Product-specific visual design",
+        "Next.js-only APIs",
+        "Silent transaction approval"
+      ],
+      "acceptance": [
+        "Auth modules can be installed independently",
+        "Hooks handle cancellation, stale requests, wallet switching, and step-up",
+        "No hook exposes secret or full credential values"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/wallet-sdk-react test",
+        "React strict-mode and concurrency tests",
+        "Bundle and accessibility checks"
+      ],
+      "failureModes": [
+        "Provider changes clear stale privileged state",
+        "Unmounted flows cannot submit operations",
+        "UI errors remain privacy-safe"
+      ]
+    },
+    {
+      "id": "SSW-043",
+      "slug": "consumer-wallet-app",
+      "title": "Build the modular consumer wallet application",
+      "status": "Todo",
+      "priority": "P0",
+      "wave": 17,
+      "lane": "apps",
+      "dependsOn": ["SSW-038", "SSW-039", "SSW-042"],
+      "featureDocs": [
+        "working/features/wallet-platform-sdk.md",
+        "working/features/credential-exchange.md"
+      ],
+      "touchPaths": ["apps/wallet-app/**"],
+      "objective": "Build a Next.js PWA for passkey, email, or OIDC onboarding, Safe/DID creation, assets, credentials, consent, signers, recovery, export, and migration through the public React SDK.",
+      "deliverables": [
+        "Installable wallet application",
+        "Modular onboarding and step-up flows",
+        "Assets, credentials, identity, recovery, and portability screens"
+      ],
+      "nonGoals": [
+        "Direct service/database imports",
+        "Mainnet assets",
+        "Auto-approval"
+      ],
+      "acceptance": [
+        "Each auth module can be enabled independently",
+        "A local private DID is created without public registration",
+        "Sensitive actions require explicit preview, consent, and step-up"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/wallet-app test",
+        "Browser E2E for every auth mode",
+        "PWA, accessibility, privacy, and responsive checks"
+      ],
+      "failureModes": [
+        "No plaintext credential survives a locked session",
+        "Email-only custody limitations are visible",
+        "Failed or cancelled migrations preserve control"
+      ]
+    },
+    {
+      "id": "SSW-044",
+      "slug": "wallet-admin-console",
+      "title": "Build the Wallet Platform administration console",
+      "status": "Todo",
+      "priority": "P1",
+      "wave": 17,
+      "lane": "apps",
+      "dependsOn": ["SSW-039", "SSW-041", "SSW-042"],
+      "featureDocs": ["working/features/wallet-platform-sdk.md"],
+      "touchPaths": ["apps/admin-console/**"],
+      "objective": "Build a Next.js console for tenants, API keys, auth providers, networks, infrastructure ports, policies, wallets, transactions, audit, DID, assets, credentials, and migration operations.",
+      "deliverables": [
+        "Tenant and integration configuration",
+        "Wallet/policy/audit operational views",
+        "Simulation-first token, NFT, DID, credential, and migration actions"
+      ],
+      "nonGoals": [
+        "Showing secrets or full VCs",
+        "Bypassing SDK/API boundaries",
+        "Production billing"
+      ],
+      "acceptance": [
+        "Every mutation shows chain, target, cost, simulation, and policy result",
+        "Roles and API scopes restrict administrative actions",
+        "Audit views remain redacted and tenant-scoped"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/admin-console test",
+        "Role, tenant, and destructive-action E2E",
+        "Accessibility and secret-rendering scan"
+      ],
+      "failureModes": [
+        "No raw secret can be read back after creation",
+        "Dangerous actions require reauthentication and confirmation",
+        "Provider errors cannot expose configuration credentials"
+      ]
+    },
+    {
+      "id": "SSW-045",
+      "slug": "wallet-use-case-gallery",
+      "title": "Build executable Wallet Platform use-case examples",
+      "status": "Todo",
+      "priority": "P1",
+      "wave": 17,
+      "lane": "examples",
+      "dependsOn": ["SSW-043", "SSW-044"],
+      "featureDocs": ["working/features/wallet-platform-sdk.md"],
+      "touchPaths": [
+        "apps/use-case-gallery/**",
+        "packages/test-fixtures/src/platform-*.ts"
+      ],
+      "objective": "Demonstrate passkey, email, social, enterprise provisioning, ERC-20 loyalty, NFT/1155 minting, credential-gated access, DID binding, recovery, vendor rotation, and full export/import through public SDKs only.",
+      "deliverables": [
+        "Executable use-case gallery",
+        "Synthetic fixtures and recipes",
+        "Deep links into matching admin-console operations"
+      ],
+      "nonGoals": [
+        "Real customer data",
+        "Valuable assets",
+        "Private internal imports"
+      ],
+      "acceptance": [
+        "Every example starts from a clean synthetic fixture",
+        "Examples use only documented public SDK methods",
+        "Every success flow includes at least one actionable failure example"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/use-case-gallery test",
+        "Use-case browser E2E",
+        "Public-import and secret/PII scan"
+      ],
+      "failureModes": [
+        "Fixtures cannot target mainnet",
+        "Examples never embed API secrets client-side",
+        "Reset cleans all local state and processes"
+      ]
+    },
+    {
+      "id": "SSW-046",
+      "slug": "self-hosted-reference-stack",
+      "title": "Build the self-hosted reference stack",
+      "status": "Todo",
+      "priority": "P1",
+      "wave": 18,
+      "lane": "operations",
+      "dependsOn": ["SSW-040", "SSW-043", "SSW-044", "SSW-045"],
+      "featureDocs": ["working/features/wallet-platform-sdk.md"],
+      "touchPaths": [
+        "deploy/self-hosted/**",
+        "docker-compose.platform.yml",
+        ".env.platform.example"
+      ],
+      "objective": "Provide a reproducible Docker Compose stack for wallet-service, PostgreSQL, Mailpit, Anvil, wallet app, admin console, and gallery with replaceable production infrastructure ports.",
+      "deliverables": [
+        "Container builds and compose topology",
+        "Environment validation and health/readiness checks",
+        "Migration, backup/restore, secret rotation, and Base Sepolia opt-in runbooks"
+      ],
+      "nonGoals": [
+        "Production SLA",
+        "Bundled production secrets",
+        "Mainnet deployment"
+      ],
+      "acceptance": [
+        "A clean machine can start and validate the local stack",
+        "Development signers and services are unmistakably unsafe for production",
+        "Replacing SMTP/RPC/bundler/paymaster/signer ports requires configuration rather than domain changes"
+      ],
+      "validation": [
+        "docker compose -f docker-compose.platform.yml config",
+        "Local stack smoke and restart tests",
+        "Backup/restore and environment secret scan"
+      ],
+      "failureModes": [
+        "Startup fails on missing required configuration",
+        "Health does not imply readiness before migrations",
+        "Never ship default credentials outside local fixtures"
+      ]
+    },
+    {
+      "id": "SSW-047",
+      "slug": "wallet-platform-security-e2e",
+      "title": "Integrate and adversarially test the Wallet Platform",
+      "status": "Todo",
+      "priority": "P0",
+      "wave": 18,
+      "lane": "security",
+      "dependsOn": ["SSW-046"],
+      "featureDocs": [
+        "working/features/wallet-platform-sdk.md",
+        "working/procedures/SECURITY-REVIEW.md"
+      ],
+      "touchPaths": [
+        "tests/platform/**",
+        "tests/security/platform-*.test.mjs",
+        "scripts/verify-platform.mjs",
+        "docs/audit/wallet-platform-*.md"
+      ],
+      "objective": "Prove the complete platform flows and edge cases across auth, account, DID, assets, credentials, recovery, vendor rotation, export/import, tenancy, and provider failures.",
+      "deliverables": [
+        "Deterministic platform E2E command",
+        "Adversarial/property/fuzz coverage",
+        "Sanitized security evidence and gap report"
+      ],
+      "nonGoals": [
+        "Independent audit claim",
+        "Mainnet testing",
+        "Masking skipped provider integration"
+      ],
+      "acceptance": [
+        "All supported use cases pass locally from clean state",
+        "Tenant escape, OTP abuse, OIDC confusion, signer escalation, replay, malicious calldata, SSRF, webhook forgery, and migration tamper fail closed",
+        "Logs, screenshots, traces, databases, and bundles pass secret/PII scans"
+      ],
+      "validation": [
+        "node scripts/verify-platform.mjs",
+        "pnpm test:security && forge test --root contracts",
+        "Artifact, database, trace, and bundle redaction scan"
+      ],
+      "failureModes": [
+        "A skipped required case blocks green status",
+        "Preserve randomized failing seeds",
+        "Separate external outage from product defect without treating it as a pass"
+      ]
+    },
+    {
+      "id": "SSW-048",
+      "slug": "wallet-platform-documentation",
+      "title": "Publish complete local Wallet Platform documentation",
+      "status": "Todo",
+      "priority": "P1",
+      "wave": 18,
+      "lane": "documentation",
+      "dependsOn": ["SSW-047"],
+      "featureDocs": [
+        "working/features/wallet-platform-sdk.md",
+        "working/roadmap/future/identity-platform-expansions.md"
+      ],
+      "touchPaths": [
+        "apps/docs/**",
+        "docs/platform/**",
+        "README.md",
+        "DOCS-MAP.md"
+      ],
+      "objective": "Document the implemented SDK, API, auth modules, email self-hosting, OIDC, portability, wallet app, admin console, examples, operations, security limits, and future identity expansions.",
+      "deliverables": [
+        "Platform sections in the Next.js documentation app",
+        "Generated OpenAPI/SDK reference and tested examples",
+        "Self-hosting, migration, custody, Base-to-Scroll, and future-expansion guides"
+      ],
+      "nonGoals": [
+        "Publishing npm packages",
+        "Deploying documentation",
+        "Claiming unimplemented future standards"
+      ],
+      "acceptance": [
+        "Every public method and use case links to a passing example",
+        "Email-only custody and portability guarantees are accurately described",
+        "Future formats and ZK/privacy-native adapters are clearly marked unimplemented"
+      ],
+      "validation": [
+        "pnpm --filter @ssw/docs build",
+        "Documentation link and code-sample tests",
+        "Claims-versus-implementation audit"
+      ],
+      "failureModes": [
+        "Do not copy stale examples by hand when tests can generate them",
+        "No production-readiness or audit claim",
+        "Broken or unsupported adapters remain visible limitations"
+      ]
     }
   ]
 }
