@@ -84,6 +84,40 @@ importers:
         specifier: 4.1.10
         version: 4.1.10(@types/node@22.15.30)(vite@8.1.5(@types/node@22.15.30)(esbuild@0.28.1))
 
+  apps/use-case-gallery:
+    dependencies:
+      '@ssw/identity-adapter':
+        specifier: workspace:*
+        version: link:../../packages/identity-adapter
+      '@ssw/test-fixtures':
+        specifier: workspace:*
+        version: link:../../packages/test-fixtures
+      '@ssw/wallet-actions':
+        specifier: workspace:*
+        version: link:../../packages/wallet-actions
+      next:
+        specifier: 15.5.6
+        version: 15.5.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react:
+        specifier: 19.1.0
+        version: 19.1.0
+      react-dom:
+        specifier: 19.1.0
+        version: 19.1.0(react@19.1.0)
+    devDependencies:
+      '@types/node':
+        specifier: 22.15.30
+        version: 22.15.30
+      '@types/react':
+        specifier: 19.1.2
+        version: 19.1.2
+      '@types/react-dom':
+        specifier: 19.1.2
+        version: 19.1.2(@types/react@19.1.2)
+      typescript:
+        specifier: 5.9.2
+        version: 5.9.2
+
   apps/verifier-demo:
     dependencies:
       '@ssw/credential-domain':
@@ -250,6 +284,9 @@ importers:
 
   packages/test-fixtures:
     dependencies:
+      '@ssw/identity-adapter':
+        specifier: workspace:*
+        version: link:../identity-adapter
       jose:
         specifier: 6.2.4
         version: 6.2.4
