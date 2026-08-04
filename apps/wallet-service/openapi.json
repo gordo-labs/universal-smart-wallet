@@ -1,0 +1,68 @@
+{
+  "openapi": "3.1.0",
+  "info": { "title": "Sovereign Smart Wallet Service", "version": "1.0.0" },
+  "security": [{ "bearerAuth": [] }, { "apiKeyAuth": [] }],
+  "paths": {
+    "/v1/health": {
+      "get": {
+        "security": [],
+        "responses": { "200": { "description": "Healthy" } }
+      }
+    },
+    "/v1/wallets": {
+      "get": { "responses": { "200": { "description": "Tenant wallets" } } },
+      "post": {
+        "responses": {
+          "201": { "description": "Created" },
+          "401": { "description": "Unauthenticated" },
+          "403": { "description": "Forbidden" },
+          "428": { "description": "Idempotency-Key required" }
+        }
+      }
+    },
+    "/v1/wallets/{walletId}": {
+      "get": {
+        "parameters": [{ "$ref": "#/components/parameters/WalletId" }],
+        "responses": {
+          "200": { "description": "Wallet" },
+          "404": { "description": "Not found" }
+        }
+      }
+    },
+    "/v1/transactions": {
+      "post": {
+        "responses": {
+          "202": { "description": "Accepted" },
+          "403": { "description": "Policy denied" },
+          "428": { "description": "Idempotency-Key required" }
+        }
+      }
+    },
+    "/v1/webhooks": {
+      "post": {
+        "responses": {
+          "200": { "description": "Accepted" },
+          "403": { "description": "Server scope required" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      },
+      "apiKeyAuth": { "type": "http", "scheme": "bearer" }
+    },
+    "parameters": {
+      "WalletId": {
+        "name": "walletId",
+        "in": "path",
+        "required": true,
+        "schema": { "type": "string" }
+      }
+    }
+  }
+}
