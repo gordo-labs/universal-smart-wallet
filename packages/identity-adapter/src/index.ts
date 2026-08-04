@@ -32,6 +32,31 @@ export type ControlProofPort = {
   }): Promise<boolean>;
 };
 
+/** A proof is exported only when a caller explicitly asks for DID control. */
+export type DidControlExport = {
+  readonly version: 1;
+  readonly did: DidReference;
+  readonly proof: unknown;
+  /** This package never registers a DID or submits a chain transaction. */
+  readonly registration: 'local-only';
+};
+
+export type PrivateDidLifecycle = {
+  readonly did: DidReference;
+  /** Creation is local and has no chain side effects or implicit disclosure. */
+  readonly created: {
+    readonly registeredOnChain: false;
+    readonly disclosed: false;
+  };
+  /** The DID remains stable when signer/passkey/vendor control changes. */
+  rotateControl(account: AccountController): PrivateDidLifecycle;
+  pairwise(input: {
+    readonly credentialId: string;
+    readonly verifier: string;
+  }): Promise<HolderBinding>;
+  exportControl(proof: unknown): DidControlExport;
+};
+
 export type HolderBinding = {
   readonly mode: HolderBindingMode;
   readonly credentialId: string;
@@ -74,6 +99,19 @@ const normalizeAccount = (account: AccountController): AccountController => {
     chainId: account.chainId,
     address: account.address.toLowerCase() as `0x${string}`,
   };
+};
+
+const assertDidReference = (reference: DidReference): DidReference => {
+  const normalized =
+    reference.method === 'did:pkh'
+      ? didPkh(reference.controller)
+      : didEthr(reference.controller);
+  if (reference.did !== normalized.did)
+    throw new IdentityAdapterError(
+      'INVALID_DID',
+      'DID does not match its controller account',
+    );
+  return normalized;
 };
 
 export function didPkh(account: AccountController): DidReference {
@@ -135,6 +173,7 @@ export async function createHolderBinding(input: {
   readonly controller: DidReference;
   readonly verifier?: string;
 }): Promise<HolderBinding> {
+  const controller = assertDidReference(input.controller);
   if (!input.credentialId || input.credentialId.length > 256)
     throw new IdentityAdapterError(
       'BINDING_MISMATCH',
@@ -146,13 +185,60 @@ export async function createHolderBinding(input: {
       'pairwise binding requires verifier scope',
     );
   const scope = input.mode === 'pairwise' ? input.verifier : 'credential';
-  const holderId = `h_${await digest(`${input.controller.did}|${input.credentialId}|${scope}`)}`;
+  const holderId = `h_${await digest(`${controller.did}|${input.credentialId}|${scope}`)}`;
   return {
     mode: input.mode,
     credentialId: input.credentialId,
     holderId,
-    controller: input.controller,
+    controller,
   };
+}
+
+/**
+ * Creates the default private DID at wallet creation time. This is a local
+ * value object: it never resolves, registers, publishes, or submits a chain
+ * transaction. A new signer/vendor therefore cannot change the controller.
+ */
+export function createPrivateDidLifecycle(
+  account: AccountController,
+  method: DidMethod = 'did:pkh',
+): PrivateDidLifecycle {
+  const controller = method === 'did:pkh' ? didPkh(account) : didEthr(account);
+  const lifecycle: PrivateDidLifecycle = {
+    did: controller,
+    created: { registeredOnChain: false, disclosed: false },
+    rotateControl(nextAccount) {
+      const next = normalizeAccount(nextAccount);
+      if (next.chainId !== controller.controller.chainId)
+        throw new IdentityAdapterError(
+          'CHAIN_MISMATCH',
+          'DID control rotation cannot change chain',
+        );
+      if (next.address !== controller.controller.address)
+        throw new IdentityAdapterError(
+          'CONTROL_PROOF_REJECTED',
+          'DID controller cannot change during signer/vendor rotation',
+        );
+      return lifecycle;
+    },
+    pairwise(input) {
+      return createHolderBinding({
+        mode: 'pairwise',
+        credentialId: input.credentialId,
+        verifier: input.verifier,
+        controller,
+      });
+    },
+    exportControl(proof) {
+      return {
+        version: 1,
+        did: controller,
+        proof,
+        registration: 'local-only',
+      };
+    },
+  };
+  return lifecycle;
 }
 
 export async function verifyControlProof(input: {
@@ -161,20 +247,21 @@ export async function verifyControlProof(input: {
   readonly proof: unknown;
   readonly control: ControlProofPort;
 }): Promise<void> {
+  const did = assertDidReference(input.did);
   const expected = normalizeAccount(input.expectedAccount);
-  if (input.did.controller.chainId !== expected.chainId)
+  if (did.controller.chainId !== expected.chainId)
     throw new IdentityAdapterError(
       'CHAIN_MISMATCH',
       'DID controller chain does not match account chain',
     );
-  if (input.did.controller.address !== expected.address.toLowerCase())
+  if (did.controller.address !== expected.address.toLowerCase())
     throw new IdentityAdapterError(
       'CONTROL_PROOF_REJECTED',
       'controller does not match account',
     );
   if (
     !(await input.control.verify({
-      did: input.did,
+      did,
       account: expected,
       proof: input.proof,
     }))
