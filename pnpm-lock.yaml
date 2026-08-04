@@ -75,6 +75,21 @@ importers:
         specifier: 4.1.10
         version: 4.1.10(@types/node@22.15.30)(vite@8.1.5(@types/node@22.15.30)(esbuild@0.28.1))
 
+  apps/wallet-service:
+    dependencies:
+      '@ssw/platform-store':
+        specifier: workspace:*
+        version: link:../../packages/platform-store
+      '@ssw/platform-types':
+        specifier: workspace:*
+        version: link:../../packages/platform-types
+      '@ssw/signer-policy':
+        specifier: workspace:*
+        version: link:../../packages/signer-policy
+      jose:
+        specifier: 6.2.4
+        version: 6.2.4
+
   apps/wallet-web:
     dependencies:
       '@ssw/credential-vault':
