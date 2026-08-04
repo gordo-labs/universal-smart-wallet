@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| Status | Doing |
+| Status | Done |
 | Priority | P0 |
 | Wave | 15 |
 | Lane | account |

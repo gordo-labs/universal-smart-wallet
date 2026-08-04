@@ -1322,7 +1322,7 @@
       "id": "SSW-032",
       "slug": "safe-service-adapter",
       "title": "Implement the Safe wallet-service adapter",
-      "status": "Doing",
+      "status": "Done",
       "priority": "P0",
       "wave": 15,
       "lane": "account",
