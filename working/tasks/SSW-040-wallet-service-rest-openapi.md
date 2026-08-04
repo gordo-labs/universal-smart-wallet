@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P0 |
-| Wave | 15 |
+| Wave | 19 |
 | Lane | service |
 | Dependencies | SSW-031, SSW-032, SSW-033, SSW-034, SSW-035, SSW-036, SSW-037, SSW-038, SSW-039 |
 | Primary paths | `apps/wallet-service/**` |

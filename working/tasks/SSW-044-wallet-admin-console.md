@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P1 |
-| Wave | 17 |
+| Wave | 22 |
 | Lane | apps |
 | Dependencies | SSW-039, SSW-041, SSW-042 |
 | Primary paths | `apps/admin-console/**` |

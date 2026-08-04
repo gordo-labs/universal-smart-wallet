@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P0 |
-| Wave | 18 |
+| Wave | 25 |
 | Lane | security |
 | Dependencies | SSW-046 |
 | Primary paths | `tests/platform/**`, `tests/security/platform-*.test.mjs`, `scripts/verify-platform.mjs`, `docs/audit/wallet-platform-*.md` |

@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P0 |
-| Wave | 13 |
+| Wave | 16 |
 | Lane | authorization |
 | Dependencies | SSW-030, SSW-032 |
 | Primary paths | `packages/signer-policy/**` |

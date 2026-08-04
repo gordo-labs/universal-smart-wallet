@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P0 |
-| Wave | 15 |
+| Wave | 18 |
 | Lane | portability |
 | Dependencies | SSW-031, SSW-032, SSW-033, SSW-037 |
 | Primary paths | `packages/wallet-portability/**` |

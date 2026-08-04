@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P0 |
-| Wave | 16 |
+| Wave | 20 |
 | Lane | sdk |
 | Dependencies | SSW-040 |
 | Primary paths | `packages/wallet-sdk/**` |

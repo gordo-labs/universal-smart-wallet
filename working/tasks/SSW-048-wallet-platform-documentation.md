@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P1 |
-| Wave | 18 |
+| Wave | 26 |
 | Lane | documentation |
 | Dependencies | SSW-047 |
 | Primary paths | `apps/docs/**`, `docs/platform/**`, `README.md`, `DOCS-MAP.md` |

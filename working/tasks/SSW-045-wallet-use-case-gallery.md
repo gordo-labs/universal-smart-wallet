@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P1 |
-| Wave | 17 |
+| Wave | 23 |
 | Lane | examples |
 | Dependencies | SSW-043, SSW-044 |
 | Primary paths | `apps/use-case-gallery/**`, `packages/test-fixtures/src/platform-*.ts` |

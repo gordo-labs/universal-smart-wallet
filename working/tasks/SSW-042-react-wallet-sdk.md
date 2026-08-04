@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P1 |
-| Wave | 16 |
+| Wave | 21 |
 | Lane | sdk |
 | Dependencies | SSW-034, SSW-035, SSW-036, SSW-041 |
 | Primary paths | `packages/wallet-sdk-react/**` |

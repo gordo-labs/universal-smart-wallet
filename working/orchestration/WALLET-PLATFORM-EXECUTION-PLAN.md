@@ -8,14 +8,22 @@ and migration provider-neutral.
 
 ## Waves
 
-| Wave | Tasks           | Exit condition                                                                |
-| ---- | --------------- | ----------------------------------------------------------------------------- |
-| 13   | SSW-029–SSW-033 | Architecture, schemas, storage, Safe service adapter, and signer policy fixed |
-| 14   | SSW-034–SSW-037 | Passkey, email, OIDC, and default private DID modules pass independently      |
-| 15   | SSW-038–SSW-040 | Portability, asset actions, and REST/OpenAPI service integrated               |
-| 16   | SSW-041–SSW-042 | TypeScript and React SDKs consume only public service contracts               |
-| 17   | SSW-043–SSW-045 | Wallet app, admin console, and use-case gallery work through the SDK          |
-| 18   | SSW-046–SSW-048 | Self-host stack, adversarial E2E, and final documentation complete            |
+| Wave | Tasks                    | Exit condition                                              |
+| ---- | ------------------------ | ----------------------------------------------------------- |
+| 13   | SSW-029                  | Platform architecture and threat model fixed                |
+| 14   | SSW-030                  | Public schemas and locators fixed                           |
+| 15   | SSW-031, SSW-032         | Storage and Safe service adapter pass independently         |
+| 16   | SSW-033, SSW-037         | Signer policy and private DID lifecycle pass independently  |
+| 17   | SSW-034–SSW-036, SSW-039 | Authentication modules and asset actions pass independently |
+| 18   | SSW-038                  | Both portability modes pass                                 |
+| 19   | SSW-040                  | REST/OpenAPI service integrates every platform module       |
+| 20   | SSW-041                  | TypeScript SDK consumes only public service contracts       |
+| 21   | SSW-042                  | React bindings consume only the TypeScript SDK              |
+| 22   | SSW-043, SSW-044         | Wallet app and admin console pass independently             |
+| 23   | SSW-045                  | Use-case gallery passes through public SDKs                 |
+| 24   | SSW-046                  | Self-hosted reference stack passes from clean state         |
+| 25   | SSW-047                  | Full adversarial E2E gate passes                            |
+| 26   | SSW-048                  | Documentation matches the verified implementation           |
 
 ## Critical path
 

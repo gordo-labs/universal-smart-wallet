@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P1 |
-| Wave | 18 |
+| Wave | 24 |
 | Lane | operations |
 | Dependencies | SSW-040, SSW-043, SSW-044, SSW-045 |
 | Primary paths | `deploy/self-hosted/**`, `docker-compose.platform.yml`, `.env.platform.example` |

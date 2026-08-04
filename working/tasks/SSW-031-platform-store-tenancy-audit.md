@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P0 |
-| Wave | 13 |
+| Wave | 15 |
 | Lane | platform-storage |
 | Dependencies | SSW-030 |
 | Primary paths | `packages/platform-store/**` |

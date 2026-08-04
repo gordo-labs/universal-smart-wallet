@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P1 |
-| Wave | 15 |
+| Wave | 17 |
 | Lane | assets |
 | Dependencies | SSW-032, SSW-033 |
 | Primary paths | `packages/wallet-actions/**`, `contracts/test/WalletActions*.t.sol` |

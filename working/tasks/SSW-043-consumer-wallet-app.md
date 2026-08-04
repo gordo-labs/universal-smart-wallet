@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P0 |
-| Wave | 17 |
+| Wave | 22 |
 | Lane | apps |
 | Dependencies | SSW-038, SSW-039, SSW-042 |
 | Primary paths | `apps/wallet-app/**` |

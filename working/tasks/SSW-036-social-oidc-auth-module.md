@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P1 |
-| Wave | 14 |
+| Wave | 17 |
 | Lane | authentication |
 | Dependencies | SSW-030, SSW-031, SSW-033 |
 | Primary paths | `packages/auth-oidc/**` |

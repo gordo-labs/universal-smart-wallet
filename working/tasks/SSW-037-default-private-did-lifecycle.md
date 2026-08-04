@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P1 |
-| Wave | 14 |
+| Wave | 16 |
 | Lane | identity |
 | Dependencies | SSW-030, SSW-032 |
 | Primary paths | `packages/identity-adapter/**` |

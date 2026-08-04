@@ -6,7 +6,7 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P0 |
-| Wave | 13 |
+| Wave | 15 |
 | Lane | account |
 | Dependencies | SSW-029, SSW-030 |
 | Primary paths | `packages/safe-service-adapter/**`, `contracts/test/WalletPlatform*.t.sol` |
