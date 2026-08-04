@@ -29,6 +29,12 @@
         }
       }
     },
+    "/v1/wallets/{walletId}/balances": {
+      "get": { "parameters": [{ "$ref": "#/components/parameters/WalletId" }], "responses": { "200": { "description": "Wallet balances" } } }
+    },
+    "/v1/wallets/{walletId}/activity": {
+      "get": { "parameters": [{ "$ref": "#/components/parameters/WalletId" }], "responses": { "200": { "description": "Wallet activity" } } }
+    },
     "/v1/transactions": {
       "post": {
         "responses": {
