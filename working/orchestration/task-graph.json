@@ -1246,7 +1246,7 @@
       "id": "SSW-030",
       "slug": "platform-schemas-wallet-locators",
       "title": "Implement platform schemas and opaque wallet locators",
-      "status": "Todo",
+      "status": "Doing",
       "priority": "P0",
       "wave": 14,
       "lane": "platform-core",

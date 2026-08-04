@@ -34,7 +34,7 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-027 | Todo | P1 | release | Publish the first open-source alpha release | [task](tasks/SSW-027-open-source-alpha-release.md) |
 | SSW-028 | Done | P3 | research | Research a future ZK predicate-proof path | [task](tasks/SSW-028-zk-predicate-research.md) |
 | SSW-029 | Done | P0 | architecture | Define the modular Wallet Platform architecture | [task](tasks/SSW-029-wallet-platform-architecture.md) |
-| SSW-030 | Todo | P0 | platform-core | Implement platform schemas and opaque wallet locators | [task](tasks/SSW-030-platform-schemas-wallet-locators.md) |
+| SSW-030 | Doing | P0 | platform-core | Implement platform schemas and opaque wallet locators | [task](tasks/SSW-030-platform-schemas-wallet-locators.md) |
 | SSW-031 | Todo | P0 | platform-storage | Implement multi-tenant storage and redacted audit events | [task](tasks/SSW-031-platform-store-tenancy-audit.md) |
 | SSW-032 | Todo | P0 | account | Implement the Safe wallet-service adapter | [task](tasks/SSW-032-safe-service-adapter.md) |
 | SSW-033 | Todo | P0 | authorization | Implement scoped operational-signer policies | [task](tasks/SSW-033-signer-policy-engine.md) |
