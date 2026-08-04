@@ -44,8 +44,8 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-037 | Done | P1 | identity | Add the default private DID lifecycle | [task](tasks/SSW-037-default-private-did-lifecycle.md) |
 | SSW-038 | Done | P0 | portability | Implement in-place rotation and full wallet portability | [task](tasks/SSW-038-wallet-portability-protocol.md) |
 | SSW-039 | Done | P1 | assets | Implement native, token, and NFT wallet actions | [task](tasks/SSW-039-wallet-asset-actions.md) |
-| SSW-040 | Doing | P0 | service | Build the self-hosted Wallet Service API | [task](tasks/SSW-040-wallet-service-rest-openapi.md) |
-| SSW-041 | Todo | P0 | sdk | Build the browser and server TypeScript Wallet SDK | [task](tasks/SSW-041-typescript-wallet-sdk.md) |
+| SSW-040 | Done | P0 | service | Build the self-hosted Wallet Service API | [task](tasks/SSW-040-wallet-service-rest-openapi.md) |
+| SSW-041 | Doing | P0 | sdk | Build the browser and server TypeScript Wallet SDK | [task](tasks/SSW-041-typescript-wallet-sdk.md) |
 | SSW-042 | Todo | P1 | sdk | Build framework-neutral React wallet bindings | [task](tasks/SSW-042-react-wallet-sdk.md) |
 | SSW-043 | Todo | P0 | apps | Build the modular consumer wallet application | [task](tasks/SSW-043-consumer-wallet-app.md) |
 | SSW-044 | Todo | P1 | apps | Build the Wallet Platform administration console | [task](tasks/SSW-044-wallet-admin-console.md) |
