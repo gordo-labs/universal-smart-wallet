@@ -1,0 +1,15 @@
+{
+  "name": "@ssw/auth-email",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "pnpm build && vitest run"
+  },
+  "devDependencies": {
+    "vitest": "4.1.10"
+  }
+}
