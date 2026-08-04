@@ -144,6 +144,18 @@ describe('@ssw/platform-store', () => {
         metadata: { email: 'person@example.test' },
       }),
     ).toThrow(AuditRedactionError);
+    expect(() =>
+      redactAuditEvent({
+        eventId: 'e2b',
+        tenantId: 'tenant-a',
+        eventType: 'wallet.created',
+        actorKind: 'system',
+        outcome: 'accepted',
+        resource: 'wlt_v1_opaque',
+        createdAt: at,
+        metadata: { details: { email: 'person@example.test' } },
+      }),
+    ).toThrow(AuditRedactionError);
     const store = new InMemoryPlatformStore();
     await expect(
       store.appendAudit(
