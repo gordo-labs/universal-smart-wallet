@@ -1973,7 +1973,7 @@
       "id": "SSW-048",
       "slug": "wallet-platform-documentation",
       "title": "Publish complete local Wallet Platform documentation",
-      "status": "Doing",
+      "status": "Done",
       "priority": "P1",
       "wave": 26,
       "lane": "documentation",

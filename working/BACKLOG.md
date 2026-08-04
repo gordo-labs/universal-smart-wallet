@@ -52,7 +52,7 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-045 | Done | P1 | examples | Build executable Wallet Platform use-case examples | [task](tasks/SSW-045-wallet-use-case-gallery.md) |
 | SSW-046 | Done | P1 | operations | Build the self-hosted reference stack | [task](tasks/SSW-046-self-hosted-reference-stack.md) |
 | SSW-047 | Done | P0 | security | Integrate and adversarially test the Wallet Platform | [task](tasks/SSW-047-wallet-platform-security-e2e.md) |
-| SSW-048 | Doing | P1 | documentation | Publish complete local Wallet Platform documentation | [task](tasks/SSW-048-wallet-platform-documentation.md) |
+| SSW-048 | Done | P1 | documentation | Publish complete local Wallet Platform documentation | [task](tasks/SSW-048-wallet-platform-documentation.md) |
 
 ## Status rules
 
