@@ -20,10 +20,12 @@
 - [Product map](working/maps/PRODUCT-MAP.md)
 - [Technical map](working/maps/TECHNICAL-MAP.md)
 - [Feature relations](working/maps/FEATURE-RELATIONS.md)
+- [Wallet Platform adapter matrix](working/maps/WALLET-PLATFORM-ADAPTER-MATRIX.md)
 
 ## Threat model
 
 - [Vault key management](docs/threat-model/SSW-006-vault-key-management.md)
+- [Wallet Platform trust boundaries](docs/threat-model/wallet-platform-trust-boundaries.md)
 
 ## Planned features
 
@@ -38,6 +40,7 @@
 - [Recovery and encrypted backup](working/tasks/SSW-021-recovery-encrypted-backup.md)
 - [Smart account and passkeys](working/features/smart-account-and-passkeys.md)
 - [ERC-7579 compatibility ADR](docs/decisions/SSW-018-erc7579-compatibility.md)
+- [Wallet Platform architecture ADR](docs/decisions/SSW-029-wallet-platform-architecture.md)
 - [Identity and holder binding](working/features/identity-and-holder-binding.md)
 - [Verification, trust, and status](working/features/verification-trust-and-status.md)
 - [On-chain attestations](working/features/onchain-attestations.md)
