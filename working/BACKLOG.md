@@ -37,11 +37,11 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-030 | Done | P0 | platform-core | Implement platform schemas and opaque wallet locators | [task](tasks/SSW-030-platform-schemas-wallet-locators.md) |
 | SSW-031 | Doing | P0 | platform-storage | Implement multi-tenant storage and redacted audit events | [task](tasks/SSW-031-platform-store-tenancy-audit.md) |
 | SSW-032 | Done | P0 | account | Implement the Safe wallet-service adapter | [task](tasks/SSW-032-safe-service-adapter.md) |
-| SSW-033 | Todo | P0 | authorization | Implement scoped operational-signer policies | [task](tasks/SSW-033-signer-policy-engine.md) |
+| SSW-033 | Doing | P0 | authorization | Implement scoped operational-signer policies | [task](tasks/SSW-033-signer-policy-engine.md) |
 | SSW-034 | Todo | P0 | authentication | Build the modular passkey authentication adapter | [task](tasks/SSW-034-passkey-auth-module.md) |
 | SSW-035 | Todo | P0 | authentication | Build the self-hosted email OTP module | [task](tasks/SSW-035-email-otp-auth-module.md) |
 | SSW-036 | Todo | P1 | authentication | Build the provider-neutral social OIDC module | [task](tasks/SSW-036-social-oidc-auth-module.md) |
-| SSW-037 | Todo | P1 | identity | Add the default private DID lifecycle | [task](tasks/SSW-037-default-private-did-lifecycle.md) |
+| SSW-037 | Doing | P1 | identity | Add the default private DID lifecycle | [task](tasks/SSW-037-default-private-did-lifecycle.md) |
 | SSW-038 | Todo | P0 | portability | Implement in-place rotation and full wallet portability | [task](tasks/SSW-038-wallet-portability-protocol.md) |
 | SSW-039 | Todo | P1 | assets | Implement native, token, and NFT wallet actions | [task](tasks/SSW-039-wallet-asset-actions.md) |
 | SSW-040 | Todo | P0 | service | Build the self-hosted Wallet Service API | [task](tasks/SSW-040-wallet-service-rest-openapi.md) |
