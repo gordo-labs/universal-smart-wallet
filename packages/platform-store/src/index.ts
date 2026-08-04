@@ -200,6 +200,15 @@ export function redactAuditEvent(input: AuditInput): RedactedAuditEvent {
                   `sensitive audit value rejected for ${key}`,
                 );
             }
+            if (
+              value !== null &&
+              typeof value !== 'string' &&
+              typeof value !== 'number' &&
+              typeof value !== 'boolean'
+            )
+              throw new AuditRedactionError(
+                `non-scalar audit value rejected for ${key}`,
+              );
             if (typeof value === 'number' && !Number.isSafeInteger(value))
               throw new AuditRedactionError(`unsafe audit number for ${key}`);
             return [key, value];
@@ -444,6 +453,13 @@ export class PostgresPlatformStore implements StorePort {
       throw new StoreError('TENANT_INVALID', 'idempotency key/hash is invalid');
     await this.transaction.begin();
     try {
+      // Serialize the check/execute/record sequence for the tenant/key. The
+      // advisory lock closes the race where two transactions observe no row
+      // before either inserts the unique idempotency record.
+      await this.transaction.query(
+        'SELECT pg_advisory_xact_lock(hashtext($1))',
+        [`ssw:idempotency:${tenantId}:${key}`],
+      );
       const current = await this.transaction.query<{
         request_hash: string;
         response: T | null;
