@@ -1032,7 +1032,7 @@
       "id": "SSW-025",
       "slug": "testnet-release-candidate",
       "title": "Integrate the full local and testnet release candidate",
-      "status": "Doing",
+      "status": "Blocked",
       "priority": "P0",
       "wave": 10,
       "lane": "integration",

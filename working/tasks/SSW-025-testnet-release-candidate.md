@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| Status | Doing |
+| Status | Blocked |
 | Priority | P0 |
 | Wave | 10 |
 | Lane | integration |
