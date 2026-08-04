@@ -46,6 +46,17 @@ holder identifiers remain the default for credential presentations.
   signer/KMS, bundler, paymaster, and RPC ports.
 - Local validation uses synthetic identities and assets only.
 
+## Architecture records
+
+- [SSW-029 architecture and custody ADR](../../docs/decisions/SSW-029-wallet-platform-architecture.md)
+- [Wallet Platform trust-boundary threat model](../../docs/threat-model/wallet-platform-trust-boundaries.md)
+- [Dependency and adapter matrix](../maps/WALLET-PLATFORM-ADAPTER-MATRIX.md)
+
+The ADR is the source of truth for control/custody, provider-neutral ports,
+build-versus-adapter decisions, and unresolved upstream risks. The threat
+model is the source of truth for data crossing the browser, service, policy,
+account, identity-provider and verifier boundaries.
+
 ## Public capability families
 
 - Wallet lifecycle: create, get, recover, configure, and close.

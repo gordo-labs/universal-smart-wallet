@@ -13,6 +13,10 @@ flowchart LR
   R[Recovery + encrypted backup] --> V
   R --> A
   Z[Future ZK predicates] -. later .-> O
+  A --> WP[Wallet Platform SDK/service]
+  WP --> AUTH[Passkey / Email / OIDC adapters]
+  WP --> PORT[Vendor rotation + encrypted portability]
+  WP --> ADMIN[Wallet + admin applications]
 ```
 
 ## Boundary rules

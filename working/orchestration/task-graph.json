@@ -1204,7 +1204,7 @@
       "id": "SSW-029",
       "slug": "wallet-platform-architecture",
       "title": "Define the modular Wallet Platform architecture",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P0",
       "wave": 13,
       "lane": "architecture",

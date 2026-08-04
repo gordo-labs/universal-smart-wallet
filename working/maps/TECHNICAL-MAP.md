@@ -42,6 +42,29 @@ contracts (independent ABI boundary)
 `credential-domain`, `shared-types`, and core verification tests must not import
 Next.js, IndexedDB, Safe SDKs, RPC clients, or hosted service clients.
 
+## Wallet Platform extension (SSW-029)
+
+The platform wave adds a provider-neutral layer around the existing surfaces:
+
+```text
+SDK / wallet app / admin console
+              |
+      Wallet Service API
+              |
+ domain types + policy + audit
+       /       |        \
+   VaultPort  AccountPort  AuthProviderPort
+      |           |             |
+ client vault  Safe/4337    passkey / SMTP / OIDC
+              |
+       Rpc / bundler / paymaster ports
+```
+
+The user-controlled Safe remains the cryptographic control root. Email/social
+providers only produce principals and scoped operational sessions. See the
+[SSW-029 ADR](../../docs/decisions/SSW-029-wallet-platform-architecture.md)
+and [adapter matrix](WALLET-PLATFORM-ADAPTER-MATRIX.md) for the full boundary.
+
 SSW-004 keeps `shared-types` dependency-free and places the supported DCQL
 subset in `presentation-policy`; mapping is deterministic and fails closed on
 operators, formats, paths, or disclosure shapes outside that subset.
