@@ -41,6 +41,8 @@ test('step-up is bound to operation and expires; passkey/recovery are accepted',
 });
 test('replay and revocation fail closed', async () => {
   const { store, evaluator } = setup(); assert.equal((await evaluator.authorize(request())).allowed, true); assert.equal((await evaluator.authorize(request())).reasonCode, 'REPLAY_DETECTED');
+  assert.equal(await store.reserve({ requestId: 'global-replay', frequencyKey: 'bucket-a', at: 101, amount: 0n }), 'reserved');
+  assert.equal(await store.reserve({ requestId: 'global-replay', frequencyKey: 'bucket-b', at: 101, amount: 0n }), 'replay');
   store.revokeSession('session-1'); assert.equal((await evaluator.authorize(request({ requestId: 'r-2' }))).reasonCode, 'SESSION_REVOKED');
   const next = setup(); next.store.revokePolicy('policy-1'); assert.equal((await next.evaluator.authorize(request())).reasonCode, 'POLICY_REVOKED');
 });

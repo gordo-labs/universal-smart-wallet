@@ -150,6 +150,7 @@ export class InMemoryPolicyStore implements PolicyStore {
   private readonly revokedPolicies = new Set<string>();
   private readonly revokedSessions = new Set<string>();
   private readonly usage = new Map<string, Usage>();
+  private readonly consumedRequestIds = new Set<string>();
   putPolicy(policy: OperationalSignerPolicy): void { validatePolicy(policy); this.policies.set(policy.policyId, policy); }
   putSession(session: SignerSession): void {
     if (!session.sessionId || !session.signerId || !session.policyId || session.expiresAt <= session.issuedAt) fail('INVALID_REQUEST');
@@ -163,12 +164,15 @@ export class InMemoryPolicyStore implements PolicyStore {
   isSessionRevoked(sessionId: string): Promise<boolean> { return Promise.resolve(this.revokedSessions.has(sessionId)); }
   async reserve(input: { readonly requestId: string; readonly frequencyKey: string; readonly at: number; readonly amount: bigint; readonly frequency?: FrequencyPolicy }): Promise<'reserved' | 'replay' | 'frequency'> {
     const prior = this.usage.get(input.frequencyKey);
-    if (prior?.requestIds.has(input.requestId)) return 'replay';
+    // Request IDs are global replay keys, not scoped to a target or selector.
+    // Otherwise a captured authorization could be replayed against another
+    // policy bucket before the caller notices the mismatch.
+    if (this.consumedRequestIds.has(input.requestId)) return 'replay';
     const window = input.frequency;
     const start = window ? Math.floor(input.at / window.windowSeconds) * window.windowSeconds : input.at;
     const usage: Usage = prior && prior.windowStart === start ? prior : { requestIds: new Set<string>(), count: 0, amount: 0n, windowStart: start };
     if (window && (usage.count >= window.maxOperations || (window.maxTotalAmount !== undefined && usage.amount + input.amount > window.maxTotalAmount))) return 'frequency';
-    usage.requestIds.add(input.requestId); usage.count += 1; usage.amount += input.amount; this.usage.set(input.frequencyKey, usage); return 'reserved';
+    usage.requestIds.add(input.requestId); usage.count += 1; usage.amount += input.amount; this.usage.set(input.frequencyKey, usage); this.consumedRequestIds.add(input.requestId); return 'reserved';
   }
 }
 
