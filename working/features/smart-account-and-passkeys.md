@@ -80,3 +80,20 @@ install/use/uninstall, reverting and reentrant modules, and owner-only recovery
 removal. Safe remains the external account base and credentials do not depend
 on modules. Draft migration and per-chain deployment pinning remain required
 before testnet use.
+
+## SSW-034 modular authentication adapter (2026-08-04)
+
+`@ssw/auth-passkey` reuses the existing WebAuthn/P-256 boundary through an
+injected verifier port. It provides browser registration/authentication ports,
+server-side single-use challenge consumption, step-up evidence, account/DID
+binding, and deterministic synthetic fixtures. Every assertion is bound to the
+origin, RP ID, challenge, account, required user verification state, and pinned
+verifier deployment code hash before the verifier is called.
+
+Passkey rotation verifies and stores the replacement before revoking the old
+credential, preserving the Safe account and controller DID. Removal requires a
+different active replacement. Browser cancellation and unsupported authenticators
+are mapped to actionable typed errors. WebAuthn PRF is capability-detected and
+optional; when unavailable callers receive the explicit passphrase fallback,
+never a silent downgrade. The adapter does not use signatures as vault keys and
+does not persist private passkey material.

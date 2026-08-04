@@ -1404,7 +1404,7 @@
       "id": "SSW-034",
       "slug": "passkey-auth-module",
       "title": "Build the modular passkey authentication adapter",
-      "status": "Doing",
+      "status": "Done",
       "priority": "P0",
       "wave": 17,
       "lane": "authentication",
