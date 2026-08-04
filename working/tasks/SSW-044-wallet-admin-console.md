@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| Status | Doing |
+| Status | Done |
 | Priority | P1 |
 | Wave | 22 |
 | Lane | apps |
