@@ -46,9 +46,9 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-039 | Done | P1 | assets | Implement native, token, and NFT wallet actions | [task](tasks/SSW-039-wallet-asset-actions.md) |
 | SSW-040 | Done | P0 | service | Build the self-hosted Wallet Service API | [task](tasks/SSW-040-wallet-service-rest-openapi.md) |
 | SSW-041 | Done | P0 | sdk | Build the browser and server TypeScript Wallet SDK | [task](tasks/SSW-041-typescript-wallet-sdk.md) |
-| SSW-042 | Doing | P1 | sdk | Build framework-neutral React wallet bindings | [task](tasks/SSW-042-react-wallet-sdk.md) |
-| SSW-043 | Todo | P0 | apps | Build the modular consumer wallet application | [task](tasks/SSW-043-consumer-wallet-app.md) |
-| SSW-044 | Todo | P1 | apps | Build the Wallet Platform administration console | [task](tasks/SSW-044-wallet-admin-console.md) |
+| SSW-042 | Done | P1 | sdk | Build framework-neutral React wallet bindings | [task](tasks/SSW-042-react-wallet-sdk.md) |
+| SSW-043 | Doing | P0 | apps | Build the modular consumer wallet application | [task](tasks/SSW-043-consumer-wallet-app.md) |
+| SSW-044 | Doing | P1 | apps | Build the Wallet Platform administration console | [task](tasks/SSW-044-wallet-admin-console.md) |
 | SSW-045 | Todo | P1 | examples | Build executable Wallet Platform use-case examples | [task](tasks/SSW-045-wallet-use-case-gallery.md) |
 | SSW-046 | Todo | P1 | operations | Build the self-hosted reference stack | [task](tasks/SSW-046-self-hosted-reference-stack.md) |
 | SSW-047 | Todo | P0 | security | Integrate and adversarially test the Wallet Platform | [task](tasks/SSW-047-wallet-platform-security-e2e.md) |
