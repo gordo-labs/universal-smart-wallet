@@ -2,7 +2,7 @@
 
 ## Current
 
-- **Lifecycle:** planning; executable monorepo foundation and public governance baseline complete on task branches.
+- **Lifecycle:** local alpha foundation complete; external testnet/release gates remain explicitly blocked.
 - **Feasibility:** high for a synthetic local/testnet vertical slice; medium for
   a production wallet until conformance, recovery, browser portability,
   privacy, and independent security review are complete.
@@ -11,9 +11,9 @@
   optional on-chain attestations.
 - **Execution:** 48 atomic tasks with explicit dependencies, parallel waves,
   acceptance criteria, validation, and agent prompts. `SSW-001`–`SSW-013`,
-  `SSW-015`–`SSW-025`, `SSW-028`, and `SSW-029` are Done. `SSW-025` has a
-  passing local RC gate but remains blocked on explicit testnet configuration.
-  `SSW-030`–`SSW-048` are the remaining Wallet Platform expansion.
+  `SSW-015`–`SSW-024`, `SSW-026`, `SSW-028`–`SSW-048` are Done. `SSW-025` has a
+  passing local RC gate but remains blocked on explicit testnet configuration;
+  `SSW-027` remains blocked on human release approval.
 - **GitHub:** the public repository is at
   `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.
@@ -42,5 +42,5 @@
    deployments, and runtime hashes before marking alpha-testnet green.
 2. `SSW-027` — release evidence is prepared but publication is blocked pending
    explicit release approval and final candidate selection.
-3. `SSW-030`–`SSW-048` — assign the remaining documented Wallet Platform tasks
-   by dependency wave.
+3. Documentation is complete in `docs/platform/` and the Next.js `/platform`
+   section; run the documented checks after any implementation change.
