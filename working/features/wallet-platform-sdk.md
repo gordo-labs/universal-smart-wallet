@@ -46,6 +46,23 @@ holder identifiers remain the default for credential presentations.
   signer/KMS, bundler, paymaster, and RPC ports.
 - Local validation uses synthetic identities and assets only.
 
+## Safe service adapter boundary (SSW-032)
+
+`@ssw/safe-service-adapter` provides the provider-neutral account service
+boundary. Its ports separate Safe lifecycle/call encoding, RPC deployment
+inspection, ERC-4337 bundling, paymaster sponsorship, and operation signing.
+The adapter requires an explicitly pinned deployment profile before any
+operation is allowed. Profiles are chain-specific (`base-sepolia` 84532 and
+`scroll-sepolia` 534351); factory, singleton, and EntryPoint runtime bytecode
+and code hashes are checked against the profile. Missing or zero hashes are
+rejected, and a Scroll profile cannot inherit Base chain metadata.
+
+Simulation is a mandatory prerequisite to submission. Once a UserOperation has
+been sent, the adapter refuses a duplicate submission and requires receipt
+inspection instead. The implementation does not implement an account,
+cryptography, bundler, paymaster, or provider fallback; all are replaceable
+ports with local deterministic tests.
+
 ## Architecture records
 
 - [SSW-029 architecture and custody ADR](../../docs/decisions/SSW-029-wallet-platform-architecture.md)
