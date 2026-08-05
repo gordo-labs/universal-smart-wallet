@@ -39,6 +39,8 @@ export type RequestOptions = {
   readonly authorization?: string;
 };
 
+type RequestBodyMode = 'json' | 'form';
+
 export type IdentitySdkErrorCode =
   | 'AUTH_REQUIRED'
   | 'AUTH_INVALID'
@@ -138,6 +140,7 @@ export class IdentityClient {
     path: string,
     body?: unknown,
     requestOptions: RequestOptions = {},
+    bodyMode: RequestBodyMode = 'json',
   ): Promise<T> {
     if (requestOptions.signal?.aborted)
       throw new IdentitySdkError('ABORTED', 'Request aborted');
@@ -170,9 +173,11 @@ export class IdentityClient {
         };
         if (requestOptions.idempotencyKey)
           headers['idempotency-key'] = requestOptions.idempotencyKey;
-        if (body !== undefined) {
-          headers['content-type'] = 'application/json';
-        }
+        if (body !== undefined)
+          headers['content-type'] =
+            bodyMode === 'form'
+              ? 'application/x-www-form-urlencoded'
+              : 'application/json';
         if (this.options.token)
           headers.authorization = `Bearer ${this.options.token}`;
         if (requestOptions.authorization)
@@ -183,7 +188,21 @@ export class IdentityClient {
           {
             method: methodUpper,
             headers,
-            body: body === undefined ? undefined : JSON.stringify(body),
+            body:
+              body === undefined
+                ? undefined
+                : bodyMode === 'form'
+                  ? typeof body === 'string'
+                    ? body
+                    : body instanceof URLSearchParams
+                      ? body.toString()
+                      : (() => {
+                          throw new IdentitySdkError(
+                            'INVALID_REQUEST',
+                            'form body must be encoded',
+                          );
+                        })()
+                  : JSON.stringify(body),
             signal: controller.signal,
           },
         );
@@ -238,6 +257,14 @@ export class IdentityClient {
 
   post<T>(path: string, body?: unknown, options?: RequestOptions): Promise<T> {
     return this.request<T>('POST', path, body, options);
+  }
+
+  postForm<T>(
+    path: string,
+    body: string | URLSearchParams,
+    options?: RequestOptions,
+  ): Promise<T> {
+    return this.request<T>('POST', path, body, options, 'form');
   }
 
   health(options?: RequestOptions): Promise<IdentityHealth> {

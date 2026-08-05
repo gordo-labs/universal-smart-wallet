@@ -16,3 +16,7 @@ export const createServerIdentityClient = (
       authorization: `ApiKey ${options.apiKey}`,
     },
   });
+
+export * from './verifier/client.js';
+export * from './verifier/types.js';
+export * from './scanner/index.js';

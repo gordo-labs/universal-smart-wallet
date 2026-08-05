@@ -36,6 +36,14 @@
     "./issuer/server": {
       "types": "./dist/issuer/server.d.ts",
       "import": "./dist/issuer/server.js"
+    },
+    "./verifier": {
+      "types": "./dist/verifier/index.d.ts",
+      "import": "./dist/verifier/index.js"
+    },
+    "./scanner": {
+      "types": "./dist/scanner/index.d.ts",
+      "import": "./dist/scanner/index.js"
     }
   },
   "scripts": {
@@ -44,6 +52,7 @@
     "test": "pnpm build && node --test test/*.test.mjs"
   },
   "dependencies": {
-    "@ssw/credential-formats": "workspace:*"
+    "@ssw/credential-formats": "workspace:*",
+    "@ssw/credential-scanner": "workspace:*"
   }
 }
