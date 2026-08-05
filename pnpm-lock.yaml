@@ -237,6 +237,8 @@ importers:
         specifier: 4.1.10
         version: 4.1.10(@types/node@22.15.30)(vite@8.1.5(@types/node@22.15.30)(esbuild@0.28.1))
 
+  packages/issuer-signer: {}
+
   packages/openid4vc:
     devDependencies:
       vitest:
@@ -300,6 +302,12 @@ importers:
       jose:
         specifier: 6.2.4
         version: 6.2.4
+
+  packages/trust-registry:
+    devDependencies:
+      vitest:
+        specifier: 4.1.10
+        version: 4.1.10(@types/node@22.15.30)(vite@8.1.5(@types/node@22.15.30)(esbuild@0.28.1))
 
   packages/wallet-actions:
     dependencies:

@@ -56,11 +56,11 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-049 | Done | P0 | architecture | Define institutional identity, assurance, and EUDI architecture | [task](tasks/SSW-049-institutional-identity-architecture.md) |
 | SSW-050 | Done | P0 | credential-core | Generalize credential templates, schemas, and lifecycle types | [task](tasks/SSW-050-credential-template-domain.md) |
 | SSW-051 | Done | P0 | credential-format | Implement replaceable multiformat credential adapters | [task](tasks/SSW-051-multiformat-credential-adapters.md) |
-| SSW-052 | Doing | P0 | trust | Build the signed off-chain trust and status registry | [task](tasks/SSW-052-signed-trust-status-registry.md) |
-| SSW-053 | Doing | P0 | security | Implement institutional KMS/HSM signing ports | [task](tasks/SSW-053-institutional-kms-signer.md) |
-| SSW-054 | Todo | P0 | issuer | Build the institutional credential issuer service | [task](tasks/SSW-054-institutional-issuer-service.md) |
-| SSW-055 | Todo | P1 | identity | Add wallet-created self-attested credentials | [task](tasks/SSW-055-self-attested-credentials.md) |
-| SSW-056 | Todo | P0 | verifier | Build the credential verification service | [task](tasks/SSW-056-credential-verifier-service.md) |
+| SSW-052 | Done | P0 | trust | Build the signed off-chain trust and status registry | [task](tasks/SSW-052-signed-trust-status-registry.md) |
+| SSW-053 | Done | P0 | security | Implement institutional KMS/HSM signing ports | [task](tasks/SSW-053-institutional-kms-signer.md) |
+| SSW-054 | Doing | P0 | issuer | Build the institutional credential issuer service | [task](tasks/SSW-054-institutional-issuer-service.md) |
+| SSW-055 | Doing | P1 | identity | Add wallet-created self-attested credentials | [task](tasks/SSW-055-self-attested-credentials.md) |
+| SSW-056 | Doing | P0 | verifier | Build the credential verification service | [task](tasks/SSW-056-credential-verifier-service.md) |
 | SSW-057 | Todo | P0 | sdk | Expose issuer, holder, verifier, and scanner SDKs | [task](tasks/SSW-057-identity-sdk-surfaces.md) |
 | SSW-058 | Todo | P0 | apps | Build the institutional issuer administration panel | [task](tasks/SSW-058-institutional-issuer-admin.md) |
 | SSW-059 | Todo | P0 | apps | Build the individual wallet identity studio | [task](tasks/SSW-059-individual-identity-studio.md) |
