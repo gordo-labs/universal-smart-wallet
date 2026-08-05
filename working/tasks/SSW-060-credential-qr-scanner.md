@@ -42,20 +42,6 @@ Parse and classify bounded OpenID4VCI offer, OpenID4VP request, and offline-enve
 - Never navigate unknown schemes
 - One-time nonces cannot replay
 
-## Completion evidence (2026-08-05)
-
-- `@ssw/credential-scanner` provides a pure, byte-bounded classifier for
-  OpenID4VCI offers, OpenID4VP requests, and `ssw-offline://v1` envelopes.
-- Unknown schemes, non-HTTPS remote URIs without an explicit allow-list,
-  duplicate/unknown parameters, duplicate JSON keys, malformed payloads, and
-  oversized inputs fail closed. The parser never opens a browser, camera, or
-  network connection.
-- `InMemoryReplayTokenBoundary` and the `ReplayTokenBoundary` port provide a
-  deterministic one-time replay boundary for offline tokens. Signature and
-  freshness verification remain in SSW-072.
-- Validation: `pnpm --filter @ssw/credential-scanner test` — 5/5 tests passed,
-  including cancellation/fuzz-style bounded-input checks.
-
 ## Validation mapped to acceptance
 
 1. `pnpm --filter @ssw/credential-scanner test`

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { WalletCredentialScanner } from './wallet';
-import { ScanInputError } from './input';
+import { WalletCredentialScanner } from './wallet.ts';
+import { ScanInputError } from './input.ts';
 
 test('wallet scanner supports offer/request sources and blocks untrusted links', () => {
   const scanner = new WalletCredentialScanner(value => value);

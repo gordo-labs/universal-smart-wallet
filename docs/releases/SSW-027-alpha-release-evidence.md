@@ -80,3 +80,21 @@ The archive is a source artifact, not a signed release asset.
 Until these actions are complete, the repository must describe this as a
 prepared release candidate only; it is not published, audited, or
 production-ready.
+
+## Re-audit — 2026-08-05
+
+The current checkout is `328e818b7efdfef67b066889b311f5e539bd103a`
+(`docs: atomize remaining identity platform prompts`), not the documented
+candidate `de994c6cf3db82158b3118e9c3f7cc1b501fda07`. The candidate is an
+ancestor of the current checkout, but `git diff --exit-code
+de994c6cf3db82158b3118e9c3f7cc1b501fda07` still fails because subsequent
+implementation and documentation commits changed the source. Existing
+archive and local-gate evidence therefore cannot be promoted to this HEAD
+without a fresh run from the exact final source.
+
+No explicit human approval to create and push a signed release tag or to
+create a GitHub Release is recorded in the repository or current task
+context. A read-only `gh release view v0.1.0-alpha.1` check also reports
+`release not found`; no tag matching `v0.1.0*` exists locally. The release
+remains **BLOCKED** pending final candidate selection, fresh verification,
+and explicit owner authorization immediately before external publication.

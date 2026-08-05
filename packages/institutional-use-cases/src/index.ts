@@ -12,6 +12,10 @@ import {
   type VerificationPolicy,
 } from '@ssw/verifier-service';
 
+export * from './government/index.js';
+export * from './driving-school/index.js';
+export * from './enterprise/index.js';
+
 export const UNIVERSITY_USE_CASE_VERSION = 1 as const;
 export const UNIVERSITY_TENANT_ID = 'university-synthetic';
 export const UNIVERSITY_ISSUER_ID = 'university-registrar-synthetic';

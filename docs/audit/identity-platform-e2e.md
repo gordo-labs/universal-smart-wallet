@@ -1,6 +1,6 @@
 # Institutional identity E2E gate evidence
 
-Generated: 2026-08-05T22:35:24.553Z
+Generated: 2026-08-05T22:57:15.403Z
 
 This is synthetic, local evidence only. It is not a certification, legal approval, or production-readiness claim.
 
@@ -27,6 +27,7 @@ This is synthetic, local evidence only. It is not a certification, legal approva
 ## Artifacts checked
 
 - `docs/audit/identity-platform-e2e.md`
+- `docs/audit/identity-platform-security.md`
 - `scripts/verify-identity-platform.mjs`
 - `tests/identity-platform/e2e.test.mjs`
 - `tests/identity-platform/fixtures.mjs`

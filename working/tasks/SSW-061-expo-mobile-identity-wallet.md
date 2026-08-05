@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| Status | Todo |
+| Status | Done |
 | Priority | P1 |
 | Wave | 35 |
 | Lane | mobile |
