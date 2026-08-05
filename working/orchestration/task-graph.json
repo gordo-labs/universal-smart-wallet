@@ -2181,7 +2181,7 @@
       "id": "SSW-058",
       "slug": "institutional-issuer-admin",
       "title": "Build issuer template and key configuration administration",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P0",
       "wave": 34,
       "lane": "apps",
@@ -2235,7 +2235,7 @@
       "id": "SSW-061",
       "slug": "expo-mobile-identity-wallet",
       "title": "Build React Native identity capability ports",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P1",
       "wave": 35,
       "lane": "mobile",
@@ -2304,7 +2304,7 @@
       "failureModes": ["No stale copied examples", "No unsupported standards claim"]
     },
     {
-      "id": "SSW-065", "slug": "institutional-issuer-sdk", "title": "Build the institutional issuer SDK", "status": "Todo", "priority": "P0", "wave": 32, "lane": "sdk", "dependsOn": ["SSW-057"],
+      "id": "SSW-065", "slug": "institutional-issuer-sdk", "title": "Build the institutional issuer SDK", "status": "Done", "priority": "P0", "wave": 32, "lane": "sdk", "dependsOn": ["SSW-057"],
       "featureDocs": ["working/features/institutional-identity-platform.md"], "touchPaths": ["packages/identity-sdk/src/issuer/**"],
       "objective": "Expose typed template, approval, issuance, reissue, suspend, revoke, and offer-session clients over the issuer OpenAPI contract.",
       "deliverables": ["Issuer server client", "Idempotent mutation methods", "Issuer OpenAPI drift test"], "nonGoals": ["UI", "KMS secrets in clients", "Direct signer access"],

@@ -138,3 +138,19 @@ redacted, and all methods accept abort signals.
 `@ssw/wallet-sdk-react` adds `HolderIdentityProvider` and holder hooks. Each
 operation aborts on unmount or superseding requests and clears privileged data
 before a new request, so stale credentials cannot remain visible.
+
+## SSW-058 implementation note
+
+`apps/admin-console/src/lib/institutional-issuer-admin.ts` adds the
+tenant-scoped institutional administration boundary. Template records move
+through `draft`, `in_review`, `approved`, `published`, and `deprecated`; the
+credential payload and version are frozen once published, and a new version is
+required for edits. Reviewer, publisher, and editor scopes are explicit and
+cannot cross tenant boundaries.
+
+Signer configuration stores provider, algorithm, key version, and an opaque
+provider-side key reference only. Secret-like values, PEM/private-key material,
+and provider credentials are rejected before persistence. The admin reference
+screen exposes lifecycle actions and redacted public signer metadata; it does
+not issue credentials or implement credential lifecycle operations (those stay
+in SSW-068/SSW-069).

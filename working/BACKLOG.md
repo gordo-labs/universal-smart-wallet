@@ -62,14 +62,14 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-055 | Done | P1 | identity | Add wallet-created self-attested credentials | [task](tasks/SSW-055-self-attested-credentials.md) |
 | SSW-056 | Done | P0 | verifier | Build the credential verification service | [task](tasks/SSW-056-credential-verifier-service.md) |
 | SSW-057 | Done | P0 | sdk | Build the format-neutral Identity SDK foundation | [task](tasks/SSW-057-identity-sdk-surfaces.md) |
-| SSW-058 | Todo | P0 | apps | Build issuer template and key configuration administration | [task](tasks/SSW-058-institutional-issuer-admin.md) |
+| SSW-058 | Done | P0 | apps | Build issuer template and key configuration administration | [task](tasks/SSW-058-institutional-issuer-admin.md) |
 | SSW-059 | Todo | P0 | apps | Build the holder credential inbox and trust inspector | [task](tasks/SSW-059-individual-identity-studio.md) |
 | SSW-060 | Done | P0 | scanner | Build the bounded credential QR parser core | [task](tasks/SSW-060-credential-qr-scanner.md) |
-| SSW-061 | Todo | P1 | mobile | Build React Native identity capability ports | [task](tasks/SSW-061-expo-mobile-identity-wallet.md) |
+| SSW-061 | Done | P1 | mobile | Build React Native identity capability ports | [task](tasks/SSW-061-expo-mobile-identity-wallet.md) |
 | SSW-062 | Todo | P1 | examples | Add the university credential use-case pack | [task](tasks/SSW-062-institutional-use-case-packs.md) |
 | SSW-063 | Todo | P0 | security | Build the deterministic institutional identity E2E gate | [task](tasks/SSW-063-institutional-identity-security-conformance.md) |
 | SSW-064 | Todo | P1 | documentation | Publish Identity SDK and protocol developer documentation | [task](tasks/SSW-064-institutional-identity-documentation.md) |
-| SSW-065 | Todo | P0 | sdk | Build the institutional issuer SDK | [task](tasks/SSW-065-institutional-issuer-sdk.md) |
+| SSW-065 | Done | P0 | sdk | Build the institutional issuer SDK | [task](tasks/SSW-065-institutional-issuer-sdk.md) |
 | SSW-066 | Done | P0 | sdk | Build holder credential SDK methods and React hooks | [task](tasks/SSW-066-holder-credential-sdk.md) |
 | SSW-067 | Todo | P0 | sdk | Build verifier session and scanner SDK methods | [task](tasks/SSW-067-verifier-scanner-sdk.md) |
 | SSW-068 | Todo | P0 | apps | Build issuer review, issuance, and credential lifecycle administration | [task](tasks/SSW-068-issuer-admin-lifecycle.md) |
