@@ -219,6 +219,16 @@ importers:
         specifier: 4.1.10
         version: 4.1.10(@types/node@22.15.30)(vite@8.1.5(@types/node@22.15.30)(esbuild@0.28.1))
 
+  packages/credential-formats:
+    dependencies:
+      '@ssw/sd-jwt-adapter':
+        specifier: workspace:*
+        version: link:../sd-jwt-adapter
+    devDependencies:
+      jose:
+        specifier: 6.2.4
+        version: 6.2.4
+
   packages/credential-vault: {}
 
   packages/identity-adapter:

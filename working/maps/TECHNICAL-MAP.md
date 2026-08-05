@@ -18,6 +18,7 @@ their narrow boundaries.
 | `packages/credential-vault`    | Encryption envelope and stores                        | Crypto and storage adapters              |
 | `packages/account-adapter`     | Passkey account + ERC-4337 provider-neutral ports     | Explicit testnet deployment metadata     |
 | `packages/sd-jwt-adapter`      | Version-pinned credential format                      | Narrow third-party adapter               |
+| `packages/credential-formats`  | Pinned multiformat registry and neutral verification  | Reviewed format crypto behind ports      |
 | `packages/openid4vc`           | Issuance and presentation protocol adapters           | HTTP and JOSE ports                      |
 | `packages/presentation-policy` | Internal policy and DCQL mapping                      | Runtime schemas                          |
 | `packages/account-adapter`     | Safe boundary with deployment/code-hash validation    | Protocol Kit/viem only behind this port  |

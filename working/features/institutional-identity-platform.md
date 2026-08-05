@@ -27,6 +27,12 @@ wallet boundaries but never share an assurance level.
 - EUDI ARF readiness is evidence-driven and requires external conformance and
   legal review before any certification statement.
 
+SSW-051 implements this boundary in `@ssw/credential-formats`: every adapter
+uses the same issue, inspect, verify, and present contract; exact profile and
+version pins are enforced by the registry. SD-JWT VC delegates to the existing
+JOSE adapter. ISO mdoc and W3C Data Integrity cryptography stay behind reviewed
+library ports, while legacy JWT-VC is inspect/verify-only.
+
 ## Product surfaces
 
 - Institutional issuer and verifier REST services.
@@ -54,4 +60,3 @@ wallet boundaries but never share an assurance level.
 - Driving schools issue training completion; only the competent authority may
   issue the driving licence.
 - Enterprises issue employment, training, access, and representation claims.
-

@@ -2055,7 +2055,7 @@
       "id": "SSW-051",
       "slug": "multiformat-credential-adapters",
       "title": "Implement replaceable multiformat credential adapters",
-      "status": "Doing",
+      "status": "Done",
       "priority": "P0",
       "wave": 29,
       "lane": "credential-format",
