@@ -139,6 +139,19 @@ redacted, and all methods accept abort signals.
 operation aborts on unmount or superseding requests and clears privileged data
 before a new request, so stale credentials cannot remain visible.
 
+## SSW-061 implementation note
+
+`@ssw/identity-sdk-react-native` defines framework-neutral ports for passkeys,
+byte-only secure storage, camera scanning, lifecycle events, and universal/app
+links. The adapter owns cancellation for sensitive work: backgrounding aborts
+all pending passkey, storage, camera, and credential-link sessions, while
+explicit abort/disposal removes listeners and stops the camera. Credential
+links are parsed through the bounded SSW-060 parser and never navigate or
+fetch. The package has no React Native or Expo dependency; platform adapters
+are supplied by the eventual SSW-073 application. Secure storage deliberately
+has no plaintext export/backup operation, and errors do not include raw links,
+QR data, claims, or secret bytes.
+
 ## SSW-058 implementation note
 
 `apps/admin-console/src/lib/institutional-issuer-admin.ts` adds the
