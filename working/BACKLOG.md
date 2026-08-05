@@ -54,10 +54,10 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-047 | Done | P0 | security | Integrate and adversarially test the Wallet Platform | [task](tasks/SSW-047-wallet-platform-security-e2e.md) |
 | SSW-048 | Done | P1 | documentation | Publish complete local Wallet Platform documentation | [task](tasks/SSW-048-wallet-platform-documentation.md) |
 | SSW-049 | Done | P0 | architecture | Define institutional identity, assurance, and EUDI architecture | [task](tasks/SSW-049-institutional-identity-architecture.md) |
-| SSW-050 | Doing | P0 | credential-core | Generalize credential templates, schemas, and lifecycle types | [task](tasks/SSW-050-credential-template-domain.md) |
-| SSW-051 | Todo | P0 | credential-format | Implement replaceable multiformat credential adapters | [task](tasks/SSW-051-multiformat-credential-adapters.md) |
-| SSW-052 | Todo | P0 | trust | Build the signed off-chain trust and status registry | [task](tasks/SSW-052-signed-trust-status-registry.md) |
-| SSW-053 | Todo | P0 | security | Implement institutional KMS/HSM signing ports | [task](tasks/SSW-053-institutional-kms-signer.md) |
+| SSW-050 | Done | P0 | credential-core | Generalize credential templates, schemas, and lifecycle types | [task](tasks/SSW-050-credential-template-domain.md) |
+| SSW-051 | Doing | P0 | credential-format | Implement replaceable multiformat credential adapters | [task](tasks/SSW-051-multiformat-credential-adapters.md) |
+| SSW-052 | Doing | P0 | trust | Build the signed off-chain trust and status registry | [task](tasks/SSW-052-signed-trust-status-registry.md) |
+| SSW-053 | Doing | P0 | security | Implement institutional KMS/HSM signing ports | [task](tasks/SSW-053-institutional-kms-signer.md) |
 | SSW-054 | Todo | P0 | issuer | Build the institutional credential issuer service | [task](tasks/SSW-054-institutional-issuer-service.md) |
 | SSW-055 | Todo | P1 | identity | Add wallet-created self-attested credentials | [task](tasks/SSW-055-self-attested-credentials.md) |
 | SSW-056 | Todo | P0 | verifier | Build the credential verification service | [task](tasks/SSW-056-credential-verifier-service.md) |
