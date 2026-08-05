@@ -30,6 +30,7 @@
 ## Planned features
 
 - [Wallet Platform SDK and self-hosted service](working/features/wallet-platform-sdk.md)
+- [Institutional identity platform](working/features/institutional-identity-platform.md)
 - [Credential exchange](working/features/credential-exchange.md)
 - [SD-JWT VC adapter](docs/protocols/sd-jwt-vc-adapter.md)
 - [OpenID4VCI issuance](docs/protocols/openid4vci-issuance.md)
@@ -42,6 +43,7 @@
 - [Modular passkey authentication package](packages/auth-passkey/src/index.ts)
 - [ERC-7579 compatibility ADR](docs/decisions/SSW-018-erc7579-compatibility.md)
 - [Wallet Platform architecture ADR](docs/decisions/SSW-029-wallet-platform-architecture.md)
+- [Institutional identity and EUDI ADR](docs/decisions/SSW-049-institutional-identity-architecture.md)
 - [Identity and holder binding](working/features/identity-and-holder-binding.md)
 - [Verification, trust, and status](working/features/verification-trust-and-status.md)
 - [On-chain attestations](working/features/onchain-attestations.md)

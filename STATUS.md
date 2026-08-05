@@ -9,11 +9,13 @@
 - **Architecture:** off-chain credential core, encrypted local vault,
   replaceable OpenID4VC and SD-JWT adapters, smart-account control plane, and
   optional on-chain attestations.
-- **Execution:** 48 atomic tasks with explicit dependencies, parallel waves,
+- **Execution:** 64 atomic tasks with explicit dependencies, parallel waves,
   acceptance criteria, validation, and agent prompts. `SSW-001`–`SSW-013`,
   `SSW-015`–`SSW-024`, `SSW-026`, `SSW-028`–`SSW-048` are Done. `SSW-025` has a
   passing local RC gate but remains blocked on explicit testnet configuration;
-  `SSW-027` remains blocked on human release approval.
+  `SSW-027` remains blocked on human release approval. `SSW-049`–`SSW-064`
+  extend the platform into institutional issuance, verification, QR scanning,
+  mobile identity, multiformat credentials, sector packs, and EUDI readiness.
 - **GitHub:** the public repository is at
   `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.
@@ -44,3 +46,5 @@
    explicit release approval and final candidate selection.
 3. Documentation is complete in `docs/platform/` and the Next.js `/platform`
    section; run the documented checks after any implementation change.
+4. Execute `SSW-049`–`SSW-064` by dependency wave, preserving explicit
+   assurance, KMS/HSM, off-chain trust, and no-certification boundaries.
