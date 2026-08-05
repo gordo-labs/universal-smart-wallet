@@ -1,0 +1,15 @@
+{
+  "name": "@ssw/verifier-service-api",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm --filter @ssw/verifier-service build && tsc",
+    "typecheck": "pnpm --filter @ssw/verifier-service build && tsc --noEmit",
+    "test": "pnpm build && node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@ssw/verifier-service": "workspace:*"
+  }
+}
