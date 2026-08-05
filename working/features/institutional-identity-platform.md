@@ -111,3 +111,16 @@ and retries only for safe methods or explicitly idempotent mutations.
 OpenAPI path constants in `src/generated.ts` are checked against both service
 contracts in the package test. Actor-specific issuer, holder, verifier, UI,
 and scanner methods remain intentionally deferred to `SSW-065`–`SSW-072`.
+
+## SSW-065 implementation note
+
+`@ssw/identity-sdk/issuer` now exposes a typed institutional issuer client for
+template, issuer profile, reviewer policy, issuance-session, offer, OpenID4VCI,
+credential lookup, reissue, suspend, and revoke operations. Tenant-scoped
+administrative calls set `X-Tenant-Id`; server-only factories keep API-key
+authorization out of browser exports. Mutation retries require an explicit
+idempotency key, while authorization, token exchange, and credential issuance
+are single-use and never retried because an ambiguous response must be queried
+through the session/lifecycle endpoints. Authentication and service errors are
+redacted by the shared transport, and signer/KMS material remains outside the
+SDK boundary.
