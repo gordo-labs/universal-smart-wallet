@@ -2199,7 +2199,7 @@
       "id": "SSW-059",
       "slug": "individual-identity-studio",
       "title": "Build the holder credential inbox and trust inspector",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P0",
       "wave": 34,
       "lane": "apps",
@@ -2253,7 +2253,7 @@
       "id": "SSW-062",
       "slug": "institutional-use-case-packs",
       "title": "Add the university credential use-case pack",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P1",
       "wave": 38,
       "lane": "examples",
@@ -2271,7 +2271,7 @@
       "id": "SSW-063",
       "slug": "institutional-identity-security-conformance",
       "title": "Build the deterministic institutional identity E2E gate",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P0",
       "wave": 39,
       "lane": "security",
@@ -2289,7 +2289,7 @@
       "id": "SSW-064",
       "slug": "institutional-identity-documentation",
       "title": "Publish Identity SDK and protocol developer documentation",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P1",
       "wave": 35,
       "lane": "documentation",
@@ -2320,7 +2320,7 @@
       "failureModes": ["Unmount cancels sensitive operations", "Unknown issuer needs explicit acknowledgement"]
     },
     {
-      "id": "SSW-067", "slug": "verifier-scanner-sdk", "title": "Build verifier session and scanner SDK methods", "status": "Todo", "priority": "P0", "wave": 33, "lane": "sdk", "dependsOn": ["SSW-057", "SSW-060"],
+      "id": "SSW-067", "slug": "verifier-scanner-sdk", "title": "Build verifier session and scanner SDK methods", "status": "Done", "priority": "P0", "wave": 33, "lane": "sdk", "dependsOn": ["SSW-057", "SSW-060"],
       "featureDocs": ["working/features/institutional-identity-platform.md"], "touchPaths": ["packages/identity-sdk/src/verifier/**", "packages/identity-sdk/src/scanner/**"],
       "objective": "Expose policy/session/request/verify/receipt clients and safe scanner parse/accept/respond orchestration.",
       "deliverables": ["Verifier client", "Scanner orchestration client", "Receipt polling"], "nonGoals": ["Camera access", "Persisting presentations", "Offline trust implementation"],
@@ -2328,7 +2328,7 @@
       "failureModes": ["No blind response resubmission", "Timeout preserves receipt lookup"]
     },
     {
-      "id": "SSW-068", "slug": "issuer-admin-lifecycle", "title": "Build issuer review, issuance, and credential lifecycle administration", "status": "Todo", "priority": "P0", "wave": 35, "lane": "apps", "dependsOn": ["SSW-058", "SSW-065"],
+      "id": "SSW-068", "slug": "issuer-admin-lifecycle", "title": "Build issuer review, issuance, and credential lifecycle administration", "status": "Done", "priority": "P0", "wave": 35, "lane": "apps", "dependsOn": ["SSW-058", "SSW-065"],
       "featureDocs": ["working/features/institutional-identity-platform.md"], "touchPaths": ["apps/admin-console/src/issuer/**"],
       "objective": "Add evidence-reference review, dual approval, individual/bulk issue, reissue, suspend, and revoke workflows.",
       "deliverables": ["Review queue", "Issuance flows", "Credential lifecycle views"], "nonGoals": ["Raw evidence persistence", "Signer configuration", "Billing"],
@@ -2336,7 +2336,7 @@
       "failureModes": ["Partial bulk failure is explicit", "Unmount cannot issue"]
     },
     {
-      "id": "SSW-069", "slug": "issuer-admin-audit", "title": "Build issuer signer, trust, and redacted audit administration", "status": "Todo", "priority": "P1", "wave": 35, "lane": "apps", "dependsOn": ["SSW-058", "SSW-065"],
+      "id": "SSW-069", "slug": "issuer-admin-audit", "title": "Build issuer signer, trust, and redacted audit administration", "status": "Done", "priority": "P1", "wave": 35, "lane": "apps", "dependsOn": ["SSW-058", "SSW-065"],
       "featureDocs": ["working/features/institutional-identity-platform.md"], "touchPaths": ["apps/admin-console/src/identity-operations/**"],
       "objective": "Expose opaque signer health/rotation, trust/status configuration, and tenant-scoped redacted audit views.",
       "deliverables": ["Signer operations view", "Trust/status view", "Redacted audit explorer"], "nonGoals": ["Reading keys", "Showing credentials/evidence", "Legal accreditation"],
@@ -2344,7 +2344,7 @@
       "failureModes": ["Provider errors are redacted", "Unknown trust never appears active"]
     },
     {
-      "id": "SSW-070", "slug": "holder-self-attested-consent-ui", "title": "Build self-attested editing and presentation consent UI", "status": "Todo", "priority": "P0", "wave": 35, "lane": "apps", "dependsOn": ["SSW-059", "SSW-066"],
+      "id": "SSW-070", "slug": "holder-self-attested-consent-ui", "title": "Build self-attested editing and presentation consent UI", "status": "Done", "priority": "P0", "wave": 35, "lane": "apps", "dependsOn": ["SSW-059", "SSW-066"],
       "featureDocs": ["working/features/institutional-identity-platform.md"], "touchPaths": ["apps/wallet-app/src/identity/**"],
       "objective": "Add self-attested creation, permanent assurance warnings, claim-by-claim consent, delete, and encrypted export flows.",
       "deliverables": ["Self-attested editor", "Presentation consent", "Delete/export controls"], "nonGoals": ["Institutional endorsement", "Silent disclosure", "Plaintext backup"],
@@ -2352,7 +2352,7 @@
       "failureModes": ["Cancellation clears disclosure state", "No assurance upgrade"]
     },
     {
-      "id": "SSW-071", "slug": "web-camera-qr-integration", "title": "Integrate camera and QR flows into wallet and admin web apps", "status": "Todo", "priority": "P0", "wave": 35, "lane": "scanner", "dependsOn": ["SSW-060", "SSW-067"],
+      "id": "SSW-071", "slug": "web-camera-qr-integration", "title": "Integrate camera and QR flows into wallet and admin web apps", "status": "Done", "priority": "P0", "wave": 35, "lane": "scanner", "dependsOn": ["SSW-060", "SSW-067"],
       "featureDocs": ["working/features/institutional-identity-platform.md"], "touchPaths": ["apps/admin-console/src/scanner/**", "apps/wallet-app/src/scanner/**"],
       "objective": "Add camera, image upload, URI paste, and deep-link handling for issuance and verification without putting media access in scanner core.",
       "deliverables": ["Web camera adapter", "Admin verifier scanner", "Wallet offer/request scanner"], "nonGoals": ["Offline envelope verification", "BLE/NFC", "Biometrics"],
@@ -2360,7 +2360,7 @@
       "failureModes": ["Duplicate scans are single use", "No background camera"]
     },
     {
-      "id": "SSW-072", "slug": "offline-qr-verification", "title": "Implement signed offline QR verification and freshness policy", "status": "Todo", "priority": "P0", "wave": 35, "lane": "scanner", "dependsOn": ["SSW-052", "SSW-060", "SSW-067"],
+      "id": "SSW-072", "slug": "offline-qr-verification", "title": "Implement signed offline QR verification and freshness policy", "status": "Done", "priority": "P0", "wave": 35, "lane": "scanner", "dependsOn": ["SSW-052", "SSW-060", "SSW-067"],
       "featureDocs": ["working/features/institutional-identity-platform.md"], "touchPaths": ["packages/credential-scanner/src/offline/**"],
       "objective": "Verify bounded signed offline envelopes against cached trust/status and return indeterminate when freshness is insufficient.",
       "deliverables": ["Offline envelope v1", "Freshness evaluator", "Cached trust/status resolver"], "nonGoals": ["BLE/NFC", "Online status fallback disguised as offline", "Large credential payloads"],
@@ -2368,7 +2368,7 @@
       "failureModes": ["No stale-to-verified transition", "Reject unbounded QR payloads"]
     },
     {
-      "id": "SSW-073", "slug": "expo-mobile-wallet-app", "title": "Build the Expo mobile identity wallet application", "status": "Todo", "priority": "P1", "wave": 36, "lane": "mobile", "dependsOn": ["SSW-061", "SSW-070", "SSW-071", "SSW-072"],
+      "id": "SSW-073", "slug": "expo-mobile-wallet-app", "title": "Build the Expo mobile identity wallet application", "status": "Done", "priority": "P1", "wave": 36, "lane": "mobile", "dependsOn": ["SSW-061", "SSW-070", "SSW-071", "SSW-072"],
       "featureDocs": ["working/features/institutional-identity-platform.md"], "touchPaths": ["apps/wallet-mobile/**"],
       "objective": "Compose passkey, secure storage, inbox, consent, camera, deep-link, issuance, presentation, and verification flows in an Expo app.",
       "deliverables": ["Expo application", "iOS/Android link configuration", "Mobile lifecycle tests"], "nonGoals": ["Store publication", "BLE/NFC", "Production push notifications"],
@@ -2376,7 +2376,7 @@
       "failureModes": ["No plaintext backup", "Permission failure has recovery UI"]
     },
     {
-      "id": "SSW-074", "slug": "government-credential-pack", "title": "Add the government credential use-case pack", "status": "Todo", "priority": "P1", "wave": 38, "lane": "examples", "dependsOn": ["SSW-068", "SSW-070", "SSW-073"],
+      "id": "SSW-074", "slug": "government-credential-pack", "title": "Add the government credential use-case pack", "status": "Done", "priority": "P1", "wave": 38, "lane": "examples", "dependsOn": ["SSW-068", "SSW-070", "SSW-073"],
       "featureDocs": ["working/features/institutional-identity-platform.md"], "touchPaths": ["packages/institutional-use-cases/src/government/**", "apps/use-case-gallery/**"],
       "objective": "Add synthetic residence, permit, public-licence, PID/EAA policy examples with explicit authority and legal-status boundaries.",
       "deliverables": ["Government templates", "Government verifier policies", "Executable journeys"], "nonGoals": ["Real PID", "Qualified-provider claim", "Citizen data"],
@@ -2384,7 +2384,7 @@
       "failureModes": ["Reject unauthorized government types", "No legal inference"]
     },
     {
-      "id": "SSW-075", "slug": "driving-school-credential-pack", "title": "Add the driving-school credential use-case pack", "status": "Todo", "priority": "P1", "wave": 38, "lane": "examples", "dependsOn": ["SSW-068", "SSW-070", "SSW-073"],
+      "id": "SSW-075", "slug": "driving-school-credential-pack", "title": "Add the driving-school credential use-case pack", "status": "Done", "priority": "P1", "wave": 38, "lane": "examples", "dependsOn": ["SSW-068", "SSW-070", "SSW-073"],
       "featureDocs": ["working/features/institutional-identity-platform.md"], "touchPaths": ["packages/institutional-use-cases/src/driving-school/**", "apps/use-case-gallery/**"],
       "objective": "Add synthetic enrollment, lesson completion, exam-readiness, and training-completion credentials while reserving driving licences for authorities.",
       "deliverables": ["Driving-school templates", "Authority separation policies", "Executable journeys"], "nonGoals": ["Issuing a driving licence", "Real student data", "ISO mDL certification"],
@@ -2392,7 +2392,7 @@
       "failureModes": ["No authority escalation", "Reject unsupported mdoc namespace"]
     },
     {
-      "id": "SSW-076", "slug": "enterprise-credential-pack", "title": "Add the enterprise credential use-case pack", "status": "Todo", "priority": "P1", "wave": 38, "lane": "examples", "dependsOn": ["SSW-068", "SSW-070", "SSW-073"],
+      "id": "SSW-076", "slug": "enterprise-credential-pack", "title": "Add the enterprise credential use-case pack", "status": "Done", "priority": "P1", "wave": 38, "lane": "examples", "dependsOn": ["SSW-068", "SSW-070", "SSW-073"],
       "featureDocs": ["working/features/institutional-identity-platform.md"], "touchPaths": ["packages/institutional-use-cases/src/enterprise/**", "apps/use-case-gallery/**"],
       "objective": "Add synthetic employment, training, access, and representation credentials with tenant-scoped verifier policies.",
       "deliverables": ["Enterprise templates", "Enterprise policies", "Executable journeys"], "nonGoals": ["Payroll data", "Legal power-of-attorney claim", "Real employees"],
@@ -2400,7 +2400,7 @@
       "failureModes": ["No cross-tenant acceptance", "Expired roles fail closed"]
     },
     {
-      "id": "SSW-077", "slug": "identity-adversarial-security", "title": "Add adversarial and privacy tests for institutional identity", "status": "Todo", "priority": "P0", "wave": 40, "lane": "security", "dependsOn": ["SSW-063"],
+      "id": "SSW-077", "slug": "identity-adversarial-security", "title": "Add adversarial and privacy tests for institutional identity", "status": "Done", "priority": "P0", "wave": 40, "lane": "security", "dependsOn": ["SSW-063"],
       "featureDocs": ["working/features/institutional-identity-platform.md", "working/procedures/SECURITY-REVIEW.md"], "touchPaths": ["tests/security/identity-*.test.mjs", "docs/audit/identity-platform-security.md"],
       "objective": "Attack assurance, tenant, key rotation, status, disclosure, QR, deep-link, offline, and mobile lifecycle boundaries.",
       "deliverables": ["Adversarial matrix", "Privacy/redaction scan", "Security gap report"], "nonGoals": ["Independent audit claim", "Fuzzing external providers", "Production PII"],
@@ -2408,7 +2408,7 @@
       "failureModes": ["Skipped required attack blocks green", "Outage is not a pass"]
     },
     {
-      "id": "SSW-078", "slug": "eudi-haip-readiness-evidence", "title": "Produce EUDI and HAIP readiness evidence", "status": "Todo", "priority": "P1", "wave": 41, "lane": "conformance", "dependsOn": ["SSW-077"],
+      "id": "SSW-078", "slug": "eudi-haip-readiness-evidence", "title": "Produce EUDI and HAIP readiness evidence", "status": "Done", "priority": "P1", "wave": 41, "lane": "conformance", "dependsOn": ["SSW-077"],
       "featureDocs": ["working/features/institutional-identity-platform.md"], "touchPaths": ["tests/conformance/**", "docs/audit/eudi-haip-readiness.md"],
       "objective": "Map implemented behavior to pinned EUDI ARF, OpenID4VCI/VP, HAIP, SD-JWT VC, and mdoc requirements with tested/blocked/external status.",
       "deliverables": ["Conformance matrix", "Automated profile checks", "External certification blockers"], "nonGoals": ["Self-certification", "Legal opinion", "Qualified-provider claim"],
@@ -2416,7 +2416,7 @@
       "failureModes": ["Unknown requirement remains blocked", "No inferred compliance"]
     },
     {
-      "id": "SSW-079", "slug": "identity-operator-docs-handoff", "title": "Publish identity operator, sector, and final handoff documentation", "status": "Todo", "priority": "P1", "wave": 42, "lane": "documentation", "dependsOn": ["SSW-064", "SSW-068", "SSW-069", "SSW-070", "SSW-071", "SSW-072", "SSW-073", "SSW-078"],
+      "id": "SSW-079", "slug": "identity-operator-docs-handoff", "title": "Publish identity operator, sector, and final handoff documentation", "status": "Done", "priority": "P1", "wave": 42, "lane": "documentation", "dependsOn": ["SSW-064", "SSW-068", "SSW-069", "SSW-070", "SSW-071", "SSW-072", "SSW-073", "SSW-078"],
       "featureDocs": ["working/features/institutional-identity-platform.md"], "touchPaths": ["apps/docs/**", "docs/identity-platform/**", "DOCS-MAP.md", "working/orchestration/**"],
       "objective": "Publish issuer, verifier, scanner, mobile, KMS/HSM, trust, offline, sector, EUDI-boundary, runbook, and generated prompt documentation.",
       "deliverables": ["Operator guides", "Sector and mobile guides", "Final prompt catalog and claims audit"], "nonGoals": ["Deploying docs", "Publishing packages", "Certification claim"],

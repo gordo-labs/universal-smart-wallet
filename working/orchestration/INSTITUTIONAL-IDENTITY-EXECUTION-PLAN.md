@@ -2,9 +2,10 @@
 
 ## Scope
 
-Keep the completed `SSW-049`–`SSW-056` implementation unchanged. The remaining
-platform work is expressed only as 23 atomic, copy/paste subagent prompts:
-`SSW-057`–`SSW-079`.
+The institutional identity platform is complete through `SSW-079` in the
+local synthetic baseline. The `SSW-057`–`SSW-079` entries below remain the
+atomic, copy/paste subagent contracts that document how the work was split and
+how future changes must be validated; they are not a queue of unstarted work.
 
 The source of truth is `task-graph.json`. Generated prompt documents live in
 `working/tasks/`; `PROMPT-CATALOG.md` is their index.
@@ -25,16 +26,18 @@ The source of truth is `task-graph.json`. Generated prompt documents live in
 | 41 | SSW-078 | Version-pinned EUDI/HAIP evidence has no unsupported claims |
 | 42 | SSW-079 | Operator docs, examples, claims, and prompt catalog agree |
 
-## Assignment rules
+## Assignment rules and maintenance
 
-1. Give a subagent exactly one full **Agent prompt** from its task document.
+1. For future changes, give a subagent exactly one full **Agent prompt** from
+   its task document.
 2. Start it only when every `dependsOn` task is Done.
 3. Parallelize tasks in the same wave only when their `touchPaths` do not
    overlap; otherwise serialize or assign explicit file ownership.
 4. Do not broaden non-goals, use real PII, claim certification, publish, deploy,
    or use mainnet without separate authorization.
-5. After a task is integrated, run its stated validation and regenerate the
-   planning artifacts before marking it Done.
+5. After a future task is integrated, run its stated validation and regenerate
+   the planning artifacts before keeping it Done. SSW-079 additionally requires
+   the operator handoff and claims audit to stay synchronized.
 
 ## Critical paths
 

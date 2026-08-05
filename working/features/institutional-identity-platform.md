@@ -69,23 +69,19 @@ upgrade the wallet-created credential.
   issue the driving licence.
 - Enterprises issue employment, training, access, and representation claims.
 
-## Remaining atomic execution
+## Institutional identity execution status
 
-The implementation baseline now includes `SSW-060` and `SSW-066`. The remaining
-work is documented, not started, as 20 atomic prompts (`SSW-058`–`SSW-079`,
-excluding the completed SSW-060 and SSW-066):
+`SSW-049`–`SSW-079` are complete in the local synthetic implementation and
+documentation baseline. The generated task documents remain the historical
+atomic contracts and acceptance evidence for each subtask. The final handoff
+is [`docs/identity-platform/operator-handoff.md`](../../docs/identity-platform/operator-handoff.md),
+which maps every supported journey to a passing example and records blocked or
+external EUDI/HAIP, authority, trust, device, and production gates.
 
-- actor-specific SDKs: `SSW-065`, `SSW-067`;
-- issuer, holder, and scanner product surfaces: `SSW-058`–`SSW-059`,
-  `SSW-068`–`SSW-072`;
-- React Native capability ports and the Expo app: `SSW-061`, `SSW-073`;
-- university, government, driving-school, and enterprise packs: `SSW-062`,
-  `SSW-074`–`SSW-076`;
-- deterministic E2E, adversarial security, conformance, and final handoff:
-  `SSW-063`, `SSW-064`, `SSW-077`–`SSW-079`.
-
-Use the generated task document as the complete subagent prompt. Do not combine
-tasks or start a task before every `dependsOn` item is Done.
+This status does not claim production readiness, certification, legal authority,
+mainnet support, or a general ZK predicate-proof capability. Future changes to
+identity code must update the handoff, claims audit, and evidence links before
+the corresponding task can remain Done.
 
 ## SSW-060 implementation note
 

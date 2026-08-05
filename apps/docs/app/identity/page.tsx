@@ -16,6 +16,11 @@ const guides = [
     'The tests that keep public examples and OpenAPI contracts in lockstep.',
     '/identity/examples',
   ],
+  [
+    'Operator handoff',
+    'Issuer, holder, verifier, scanner, mobile, sector, offline and EUDI boundaries.',
+    '/identity/operator-handoff',
+  ],
 ] as const;
 
 export default function IdentityPage() {

@@ -63,27 +63,27 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-056 | Done | P0 | verifier | Build the credential verification service | [task](tasks/SSW-056-credential-verifier-service.md) |
 | SSW-057 | Done | P0 | sdk | Build the format-neutral Identity SDK foundation | [task](tasks/SSW-057-identity-sdk-surfaces.md) |
 | SSW-058 | Done | P0 | apps | Build issuer template and key configuration administration | [task](tasks/SSW-058-institutional-issuer-admin.md) |
-| SSW-059 | Todo | P0 | apps | Build the holder credential inbox and trust inspector | [task](tasks/SSW-059-individual-identity-studio.md) |
+| SSW-059 | Done | P0 | apps | Build the holder credential inbox and trust inspector | [task](tasks/SSW-059-individual-identity-studio.md) |
 | SSW-060 | Done | P0 | scanner | Build the bounded credential QR parser core | [task](tasks/SSW-060-credential-qr-scanner.md) |
 | SSW-061 | Done | P1 | mobile | Build React Native identity capability ports | [task](tasks/SSW-061-expo-mobile-identity-wallet.md) |
-| SSW-062 | Todo | P1 | examples | Add the university credential use-case pack | [task](tasks/SSW-062-institutional-use-case-packs.md) |
-| SSW-063 | Todo | P0 | security | Build the deterministic institutional identity E2E gate | [task](tasks/SSW-063-institutional-identity-security-conformance.md) |
-| SSW-064 | Todo | P1 | documentation | Publish Identity SDK and protocol developer documentation | [task](tasks/SSW-064-institutional-identity-documentation.md) |
+| SSW-062 | Done | P1 | examples | Add the university credential use-case pack | [task](tasks/SSW-062-institutional-use-case-packs.md) |
+| SSW-063 | Done | P0 | security | Build the deterministic institutional identity E2E gate | [task](tasks/SSW-063-institutional-identity-security-conformance.md) |
+| SSW-064 | Done | P1 | documentation | Publish Identity SDK and protocol developer documentation | [task](tasks/SSW-064-institutional-identity-documentation.md) |
 | SSW-065 | Done | P0 | sdk | Build the institutional issuer SDK | [task](tasks/SSW-065-institutional-issuer-sdk.md) |
 | SSW-066 | Done | P0 | sdk | Build holder credential SDK methods and React hooks | [task](tasks/SSW-066-holder-credential-sdk.md) |
-| SSW-067 | Todo | P0 | sdk | Build verifier session and scanner SDK methods | [task](tasks/SSW-067-verifier-scanner-sdk.md) |
-| SSW-068 | Todo | P0 | apps | Build issuer review, issuance, and credential lifecycle administration | [task](tasks/SSW-068-issuer-admin-lifecycle.md) |
-| SSW-069 | Todo | P1 | apps | Build issuer signer, trust, and redacted audit administration | [task](tasks/SSW-069-issuer-admin-audit.md) |
-| SSW-070 | Todo | P0 | apps | Build self-attested editing and presentation consent UI | [task](tasks/SSW-070-holder-self-attested-consent-ui.md) |
-| SSW-071 | Todo | P0 | scanner | Integrate camera and QR flows into wallet and admin web apps | [task](tasks/SSW-071-web-camera-qr-integration.md) |
-| SSW-072 | Todo | P0 | scanner | Implement signed offline QR verification and freshness policy | [task](tasks/SSW-072-offline-qr-verification.md) |
-| SSW-073 | Todo | P1 | mobile | Build the Expo mobile identity wallet application | [task](tasks/SSW-073-expo-mobile-wallet-app.md) |
-| SSW-074 | Todo | P1 | examples | Add the government credential use-case pack | [task](tasks/SSW-074-government-credential-pack.md) |
-| SSW-075 | Todo | P1 | examples | Add the driving-school credential use-case pack | [task](tasks/SSW-075-driving-school-credential-pack.md) |
-| SSW-076 | Todo | P1 | examples | Add the enterprise credential use-case pack | [task](tasks/SSW-076-enterprise-credential-pack.md) |
-| SSW-077 | Todo | P0 | security | Add adversarial and privacy tests for institutional identity | [task](tasks/SSW-077-identity-adversarial-security.md) |
-| SSW-078 | Todo | P1 | conformance | Produce EUDI and HAIP readiness evidence | [task](tasks/SSW-078-eudi-haip-readiness-evidence.md) |
-| SSW-079 | Todo | P1 | documentation | Publish identity operator, sector, and final handoff documentation | [task](tasks/SSW-079-identity-operator-docs-handoff.md) |
+| SSW-067 | Done | P0 | sdk | Build verifier session and scanner SDK methods | [task](tasks/SSW-067-verifier-scanner-sdk.md) |
+| SSW-068 | Done | P0 | apps | Build issuer review, issuance, and credential lifecycle administration | [task](tasks/SSW-068-issuer-admin-lifecycle.md) |
+| SSW-069 | Done | P1 | apps | Build issuer signer, trust, and redacted audit administration | [task](tasks/SSW-069-issuer-admin-audit.md) |
+| SSW-070 | Done | P0 | apps | Build self-attested editing and presentation consent UI | [task](tasks/SSW-070-holder-self-attested-consent-ui.md) |
+| SSW-071 | Done | P0 | scanner | Integrate camera and QR flows into wallet and admin web apps | [task](tasks/SSW-071-web-camera-qr-integration.md) |
+| SSW-072 | Done | P0 | scanner | Implement signed offline QR verification and freshness policy | [task](tasks/SSW-072-offline-qr-verification.md) |
+| SSW-073 | Done | P1 | mobile | Build the Expo mobile identity wallet application | [task](tasks/SSW-073-expo-mobile-wallet-app.md) |
+| SSW-074 | Done | P1 | examples | Add the government credential use-case pack | [task](tasks/SSW-074-government-credential-pack.md) |
+| SSW-075 | Done | P1 | examples | Add the driving-school credential use-case pack | [task](tasks/SSW-075-driving-school-credential-pack.md) |
+| SSW-076 | Done | P1 | examples | Add the enterprise credential use-case pack | [task](tasks/SSW-076-enterprise-credential-pack.md) |
+| SSW-077 | Done | P0 | security | Add adversarial and privacy tests for institutional identity | [task](tasks/SSW-077-identity-adversarial-security.md) |
+| SSW-078 | Done | P1 | conformance | Produce EUDI and HAIP readiness evidence | [task](tasks/SSW-078-eudi-haip-readiness-evidence.md) |
+| SSW-079 | Done | P1 | documentation | Publish identity operator, sector, and final handoff documentation | [task](tasks/SSW-079-identity-operator-docs-handoff.md) |
 
 ## Status rules
 

@@ -6,6 +6,10 @@ format-neutral transport and policy boundary: it does not implement a wallet,
 issuer key custody, camera access, cryptographic primitives, or a verifier's
 legal decision.
 
+Operators should continue with the [identity operator handoff](operator-handoff.md)
+after selecting an SDK surface. It maps each journey to local evidence,
+sector authority boundaries, and the claims audit.
+
 ## Choose a surface
 
 | Integrator                      | Start here                                         | Executable evidence                                                                               |
@@ -16,6 +20,7 @@ legal decision.
 | Verifier backend                | [SDK reference](sdk-reference.md#verifier-client)  | [`identity-sdk/test/verifier.test.mjs`](../../packages/identity-sdk/test/verifier.test.mjs)       |
 | QR/deep-link integration        | [SDK reference](sdk-reference.md#scanner-client)   | [`identity-sdk/test/scanner.test.mjs`](../../packages/identity-sdk/test/scanner.test.mjs)         |
 | Pure parser or offline verifier | [Protocol and formats](protocols-formats.md)       | [`credential-scanner/test/index.test.mjs`](../../packages/credential-scanner/test/index.test.mjs) |
+| Operator / sector handoff      | [Operator handoff](operator-handoff.md)            | [`tests/docs/identity-handoff.test.mjs`](../../tests/docs/identity-handoff.test.mjs)             |
 
 ## Install only the needed boundary
 
