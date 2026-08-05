@@ -2163,7 +2163,7 @@
       "id": "SSW-057",
       "slug": "identity-sdk-surfaces",
       "title": "Build the format-neutral Identity SDK foundation",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P0",
       "wave": 31,
       "lane": "sdk",

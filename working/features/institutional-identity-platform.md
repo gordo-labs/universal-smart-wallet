@@ -71,10 +71,10 @@ upgrade the wallet-created credential.
 
 ## Remaining atomic execution
 
-The implementation baseline stops at `SSW-056`. The remaining work is
-documented, not started, as 23 atomic prompts (`SSW-057`–`SSW-079`):
+The implementation baseline stops at `SSW-057`. The remaining work is
+documented, not started, as 22 atomic prompts (`SSW-058`–`SSW-079`):
 
-- shared and actor-specific SDKs: `SSW-057`, `SSW-065`–`SSW-067`;
+- actor-specific SDKs: `SSW-065`–`SSW-067`;
 - issuer, holder, and scanner product surfaces: `SSW-058`–`SSW-060`,
   `SSW-068`–`SSW-072`;
 - React Native capability ports and the Expo app: `SSW-061`, `SSW-073`;
@@ -85,3 +85,16 @@ documented, not started, as 23 atomic prompts (`SSW-057`–`SSW-079`):
 
 Use the generated task document as the complete subagent prompt. Do not combine
 tasks or start a task before every `dependsOn` item is Done.
+
+## SSW-057 implementation note
+
+`@ssw/identity-sdk` now provides the shared format-neutral transport boundary
+for the issuer and verifier services. Browser and server entry points are
+separate: browser clients can use bearer tokens, while API-key headers are
+available only from the server factory. The transport enforces absolute HTTPS
+or HTTP service URLs, bounded timeout and cancellation, redacted HTTP errors,
+and retries only for safe methods or explicitly idempotent mutations.
+
+OpenAPI path constants in `src/generated.ts` are checked against both service
+contracts in the package test. Actor-specific issuer, holder, verifier, UI,
+and scanner methods remain intentionally deferred to `SSW-065`–`SSW-072`.

@@ -61,7 +61,7 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-054 | Done | P0 | issuer | Build the institutional credential issuer service | [task](tasks/SSW-054-institutional-issuer-service.md) |
 | SSW-055 | Done | P1 | identity | Add wallet-created self-attested credentials | [task](tasks/SSW-055-self-attested-credentials.md) |
 | SSW-056 | Done | P0 | verifier | Build the credential verification service | [task](tasks/SSW-056-credential-verifier-service.md) |
-| SSW-057 | Todo | P0 | sdk | Build the format-neutral Identity SDK foundation | [task](tasks/SSW-057-identity-sdk-surfaces.md) |
+| SSW-057 | Done | P0 | sdk | Build the format-neutral Identity SDK foundation | [task](tasks/SSW-057-identity-sdk-surfaces.md) |
 | SSW-058 | Todo | P0 | apps | Build issuer template and key configuration administration | [task](tasks/SSW-058-institutional-issuer-admin.md) |
 | SSW-059 | Todo | P0 | apps | Build the holder credential inbox and trust inspector | [task](tasks/SSW-059-individual-identity-studio.md) |
 | SSW-060 | Todo | P0 | scanner | Build the bounded credential QR parser core | [task](tasks/SSW-060-credential-qr-scanner.md) |
