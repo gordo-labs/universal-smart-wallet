@@ -44,7 +44,8 @@ services:
       SSW_ENV: ${SSW_ENV:?set SSW_ENV}
       DATABASE_URL: postgres://${POSTGRES_USER:?set POSTGRES_USER}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:?set POSTGRES_DB}
       SMTP_URL: smtp://mailpit:1025
-      RPC_URL: http://anvil:8545
+      RPC_URL: ${RPC_URL:-http://anvil:8545}
+      CHAIN_ID: ${CHAIN_ID:-31337}
       BUNDLER_URL: ${BUNDLER_URL:-}
       PAYMASTER_URL: ${PAYMASTER_URL:-}
       SIGNER_ENDPOINT: ${SIGNER_ENDPOINT:-}

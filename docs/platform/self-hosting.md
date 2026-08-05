@@ -5,6 +5,13 @@ and [`scripts/self-hosted-validate.mjs`](../../scripts/self-hosted-validate.mjs)
 PostgreSQL, SMTP, OIDC, RPC, bundler, paymaster, signer/KMS and storage are
 replaceable ports rather than vendor requirements.
 
+The supported initial network is Base Sepolia (`CHAIN_ID=84532` with
+`RPC_URL=https://sepolia.base.org`). Base Mainnet (`CHAIN_ID=8453` with
+`RPC_URL=https://mainnet.base.org`) is an explicit opt-in profile and is not
+the default. The self-hosted service verifies `eth_chainId` at startup and
+fails closed on a mismatch. The bundled Docker Compose file intentionally
+keeps Anvil (`31337`) as its local default.
+
 ## Email-only onboarding
 
 `@ssw/auth-email` sends a six-digit, single-use, salted/hashed OTP through an

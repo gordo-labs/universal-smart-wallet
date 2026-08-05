@@ -38,6 +38,8 @@ export type WalletServiceOptions = {
   apiKeys?: readonly ApiKey[];
   now?: () => number;
   maxBodyBytes?: number;
+  /** Defaults to Base Sepolia; callers must opt into another chain explicitly. */
+  defaultChainId?: number;
 };
 
 export class WalletServiceError extends Error {
@@ -100,10 +102,12 @@ export class WalletService {
   private readonly now: () => number;
   private readonly keys: readonly ApiKey[];
   private readonly maxBody: number;
+  private readonly defaultChainId: number;
   constructor(private readonly options: WalletServiceOptions) {
     this.now = options.now ?? nowSeconds;
     this.keys = options.apiKeys ?? [];
     this.maxBody = options.maxBodyBytes ?? 64 * 1024;
+    this.defaultChainId = options.defaultChainId ?? 84532;
   }
 
   async handle(request: Request): Promise<Response> {
@@ -250,7 +254,8 @@ export class WalletService {
         `wallet-${sha256(`${auth.tenantId}:${bodyRaw}`).slice(0, 16)}`,
       'walletId',
     );
-    const chainId = body.chainId === undefined ? 8453 : body.chainId;
+    const chainId =
+      body.chainId === undefined ? this.defaultChainId : body.chainId;
     if (!Number.isSafeInteger(chainId) || (chainId as number) < 1)
       fail(400, 'INVALID_CHAIN');
     const addr =
