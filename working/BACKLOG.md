@@ -64,7 +64,7 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-057 | Done | P0 | sdk | Build the format-neutral Identity SDK foundation | [task](tasks/SSW-057-identity-sdk-surfaces.md) |
 | SSW-058 | Todo | P0 | apps | Build issuer template and key configuration administration | [task](tasks/SSW-058-institutional-issuer-admin.md) |
 | SSW-059 | Todo | P0 | apps | Build the holder credential inbox and trust inspector | [task](tasks/SSW-059-individual-identity-studio.md) |
-| SSW-060 | Todo | P0 | scanner | Build the bounded credential QR parser core | [task](tasks/SSW-060-credential-qr-scanner.md) |
+| SSW-060 | Done | P0 | scanner | Build the bounded credential QR parser core | [task](tasks/SSW-060-credential-qr-scanner.md) |
 | SSW-061 | Todo | P1 | mobile | Build React Native identity capability ports | [task](tasks/SSW-061-expo-mobile-identity-wallet.md) |
 | SSW-062 | Todo | P1 | examples | Add the university credential use-case pack | [task](tasks/SSW-062-institutional-use-case-packs.md) |
 | SSW-063 | Todo | P0 | security | Build the deterministic institutional identity E2E gate | [task](tasks/SSW-063-institutional-identity-security-conformance.md) |

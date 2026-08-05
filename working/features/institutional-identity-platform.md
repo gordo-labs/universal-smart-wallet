@@ -71,11 +71,12 @@ upgrade the wallet-created credential.
 
 ## Remaining atomic execution
 
-The implementation baseline stops at `SSW-057`. The remaining work is
-documented, not started, as 22 atomic prompts (`SSW-058`–`SSW-079`):
+The implementation baseline now includes `SSW-060`. The remaining work is
+documented, not started, as 21 atomic prompts (`SSW-058`–`SSW-079`, excluding
+the completed SSW-060):
 
 - actor-specific SDKs: `SSW-065`–`SSW-067`;
-- issuer, holder, and scanner product surfaces: `SSW-058`–`SSW-060`,
+- issuer, holder, and scanner product surfaces: `SSW-058`–`SSW-059`,
   `SSW-068`–`SSW-072`;
 - React Native capability ports and the Expo app: `SSW-061`, `SSW-073`;
 - university, government, driving-school, and enterprise packs: `SSW-062`,
@@ -85,6 +86,18 @@ documented, not started, as 22 atomic prompts (`SSW-058`–`SSW-079`):
 
 Use the generated task document as the complete subagent prompt. Do not combine
 tasks or start a task before every `dependsOn` item is Done.
+
+## SSW-060 implementation note
+
+`@ssw/credential-scanner` now supplies the bounded, side-effect-free parser
+core. It classifies OpenID4VCI credential offers, OpenID4VP requests, and
+versioned `ssw-offline://v1` envelopes; it does not fetch, navigate, start a
+camera, or verify a credential. Scheme authority, parameter duplication,
+duplicate JSON keys, control characters, payload size, HTTPS trust, and
+base64url envelope boundaries are checked before a result is returned.
+`ReplayTokenBoundary` is an explicit one-time port and the in-memory fixture
+rejects unknown, expired, or already-consumed tokens. Camera/deep-link
+integration and signed offline verification remain SSW-071 and SSW-072.
 
 ## SSW-057 implementation note
 

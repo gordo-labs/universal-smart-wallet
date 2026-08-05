@@ -2217,7 +2217,7 @@
       "id": "SSW-060",
       "slug": "credential-qr-scanner",
       "title": "Build the bounded credential QR parser core",
-      "status": "Todo",
+      "status": "Done",
       "priority": "P0",
       "wave": 32,
       "lane": "scanner",
