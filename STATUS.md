@@ -9,15 +9,16 @@
 - **Architecture:** off-chain credential core, encrypted local vault,
   replaceable OpenID4VC and SD-JWT adapters, smart-account control plane, and
   optional on-chain attestations.
-- **Execution:** 64 atomic tasks with explicit dependencies, parallel waves,
+- **Execution:** 79 atomic tasks with explicit dependencies, parallel waves,
   acceptance criteria, validation, and agent prompts. `SSW-001`–`SSW-013`,
   `SSW-015`–`SSW-024`, `SSW-026`, `SSW-028`–`SSW-048` are Done. `SSW-025` has a
   passing local RC gate but remains blocked on explicit testnet configuration;
-  `SSW-027` remains blocked on human release approval. `SSW-049`–`SSW-064`
-  extend the platform into institutional issuance, verification, QR scanning,
-  mobile identity, multiformat credentials, sector packs, and EUDI readiness.
-  `SSW-049`–`SSW-053` and `SSW-055` are Done; `SSW-054` and `SSW-056` are in
-  progress.
+  `SSW-027` remains blocked on human release approval. `SSW-049`–`SSW-056` are
+  Done and extend the platform through generalized credential formats,
+  trust/status, institutional signing, issuer, self-issued, and verifier
+  services. `SSW-057`–`SSW-079` are documented atomic prompts for the remaining
+  SDK, admin, holder, scanner, mobile, sector, security, conformance, and
+  documentation work; none is currently executing.
 - **GitHub:** the public repository is at
   `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.
@@ -48,5 +49,5 @@
    explicit release approval and final candidate selection.
 3. Documentation is complete in `docs/platform/` and the Next.js `/platform`
    section; run the documented checks after any implementation change.
-4. Execute `SSW-049`–`SSW-064` by dependency wave, preserving explicit
-   assurance, KMS/HSM, off-chain trust, and no-certification boundaries.
+4. Assign `SSW-057`–`SSW-079` from the institutional identity execution plan,
+   one generated prompt per subagent and only after its dependencies are Done.
