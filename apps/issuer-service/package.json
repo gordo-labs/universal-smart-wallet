@@ -1,0 +1,15 @@
+{
+  "name": "@ssw/issuer-service-api",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm --filter @ssw/issuer-service build && tsc",
+    "typecheck": "pnpm build && tsc --noEmit",
+    "test": "pnpm build && node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@ssw/issuer-service": "workspace:*"
+  }
+}
