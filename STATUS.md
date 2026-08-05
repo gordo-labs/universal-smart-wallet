@@ -16,10 +16,10 @@
   `SSW-027` remains blocked on human release approval. `SSW-049`–`SSW-057` are
   Done and extend the platform through generalized credential formats,
   trust/status, institutional signing, issuer, self-issued, verifier services,
-  and the format-neutral Identity SDK transport boundary. `SSW-058`–`SSW-079`
-  remain documented atomic prompts for the remaining SDK, admin, holder,
-  scanner, mobile, sector, security, conformance, and documentation work; none
-  is currently executing.
+  actor-specific SDKs, admin/holder/scanner/mobile surfaces, sector examples,
+  adversarial evidence, conformance boundaries, and the final operator handoff.
+  SSW-079 is documentation-only; no deployment, package publication,
+  certification, or production-readiness claim is implied.
 - **GitHub:** the public repository is at
   `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.
@@ -50,5 +50,5 @@
    explicit release approval and final candidate selection.
 3. Documentation is complete in `docs/platform/` and the Next.js `/platform`
    section; run the documented checks after any implementation change.
-4. Assign `SSW-058`–`SSW-079` from the institutional identity execution plan,
-   one generated prompt per subagent and only after its dependencies are Done.
+4. Keep the operator handoff and claims audit synchronized when future identity
+   implementation changes; do not infer certification from local evidence.

@@ -34,6 +34,16 @@ const pages: Record<
       'Fixtures use synthetic values and injected ports only.',
     ],
   },
+  'operator-handoff': {
+    title: 'Identity operator handoff',
+    intro: 'Runbook, tested examples, sector boundaries and explicit claims limits.',
+    source: 'docs/identity-platform/operator-handoff.md',
+    bullets: [
+      'Issuer, holder, verifier, scanner and mobile journeys map to passing local evidence.',
+      'KMS/HSM, signed trust, offline freshness and sector authority boundaries are explicit.',
+      'EUDI/HAIP readiness is evidence-driven; no certification, legal or production claim is made.',
+    ],
+  },
 };
 
 export function generateStaticParams() {

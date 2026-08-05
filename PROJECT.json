@@ -6,12 +6,12 @@
   "lifecycle": "planning",
   "frequency": "weekly",
   "description": "Open-source smart wallet for passkey-controlled smart accounts and privacy-preserving verifiable credentials.",
-  "lastAction": "2026-08-05T18:53:25+02:00",
-  "lastActionDescription": "Preserved the completed institutional identity implementation through SSW-056 and atomized all remaining work into generated prompts SSW-057 through SSW-079.",
+  "lastAction": "2026-08-06T00:55:00+02:00",
+  "lastActionDescription": "Completed the institutional identity operator handoff, claims audit, evidence links, and local documentation checks through SSW-079.",
   "nextNeeds": [
     "SSW-025: Integrate the full local and testnet release candidate",
     "SSW-027: Publish the first open-source alpha release (requires explicit approval)",
-    "SSW-057–SSW-079: Assign the documented institutional identity prompts by dependency wave"
+    "Keep SSW-079 operator docs and claims evidence synchronized with future identity changes"
   ],
   "blocking": null,
   "license": "Apache-2.0",

@@ -32,6 +32,8 @@
 - [Wallet Platform SDK and self-hosted service](working/features/wallet-platform-sdk.md)
 - [Institutional identity platform](working/features/institutional-identity-platform.md)
 - [Institutional identity developer docs](docs/identity-platform/README.md)
+- [Institutional identity operator handoff](docs/identity-platform/operator-handoff.md)
+- [EUDI/HAIP readiness evidence](docs/audit/eudi-haip-readiness.md)
 - [Credential exchange](working/features/credential-exchange.md)
 - [SD-JWT VC adapter](docs/protocols/sd-jwt-vc-adapter.md)
 - [OpenID4VCI issuance](docs/protocols/openid4vci-issuance.md)
