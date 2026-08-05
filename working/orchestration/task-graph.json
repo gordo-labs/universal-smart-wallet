@@ -2127,7 +2127,7 @@
       "id": "SSW-055",
       "slug": "self-attested-credentials",
       "title": "Add wallet-created self-attested credentials",
-      "status": "Doing",
+      "status": "Done",
       "priority": "P1",
       "wave": 30,
       "lane": "identity",

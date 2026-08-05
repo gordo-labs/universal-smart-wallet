@@ -17,6 +17,9 @@ flowchart LR
   WP --> AUTH[Passkey / Email / OIDC adapters]
   WP --> PORT[Vendor rotation + encrypted portability]
   WP --> ADMIN[Wallet + admin applications]
+  D --> SI[Self-attested credential]
+  SI --> FMT[Credential format adapter]
+  SI --> POL[Exact assurance policy]
 ```
 
 ## Boundary rules
@@ -28,3 +31,5 @@ flowchart LR
 - Status/trust failures are terminal verification failures, not warnings.
 - On-chain attestations consume a minimal verification result, never a
   credential or disclosed PII.
+- Self-attested issuer and subject both resolve to the holder controller;
+  institutional policy rejects the permanent `self_attested` label.

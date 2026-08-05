@@ -59,7 +59,7 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-052 | Done | P0 | trust | Build the signed off-chain trust and status registry | [task](tasks/SSW-052-signed-trust-status-registry.md) |
 | SSW-053 | Done | P0 | security | Implement institutional KMS/HSM signing ports | [task](tasks/SSW-053-institutional-kms-signer.md) |
 | SSW-054 | Doing | P0 | issuer | Build the institutional credential issuer service | [task](tasks/SSW-054-institutional-issuer-service.md) |
-| SSW-055 | Doing | P1 | identity | Add wallet-created self-attested credentials | [task](tasks/SSW-055-self-attested-credentials.md) |
+| SSW-055 | Done | P1 | identity | Add wallet-created self-attested credentials | [task](tasks/SSW-055-self-attested-credentials.md) |
 | SSW-056 | Doing | P0 | verifier | Build the credential verification service | [task](tasks/SSW-056-credential-verifier-service.md) |
 | SSW-057 | Todo | P0 | sdk | Expose issuer, holder, verifier, and scanner SDKs | [task](tasks/SSW-057-identity-sdk-surfaces.md) |
 | SSW-058 | Todo | P0 | apps | Build the institutional issuer administration panel | [task](tasks/SSW-058-institutional-issuer-admin.md) |

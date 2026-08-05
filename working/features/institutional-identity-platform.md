@@ -33,6 +33,14 @@ version pins are enforced by the registry. SD-JWT VC delegates to the existing
 JOSE adapter. ISO mdoc and W3C Data Integrity cryptography stay behind reviewed
 library ports, while legacy JWT-VC is inspect/verify-only.
 
+SSW-055 implements wallet-created credentials in
+`@ssw/self-issued-credentials`. The signed payload fixes issuer and subject to
+the holder controller and fixes assurance to `self_attested`. Wallet private
+keys stay behind `HolderSignerPort`, format proofs stay behind the SSW-051
+adapter boundary, and both bindings are verified before acceptance. An
+institution may issue a separate credential after review; it cannot mutate or
+upgrade the wallet-created credential.
+
 ## Product surfaces
 
 - Institutional issuer and verifier REST services.
