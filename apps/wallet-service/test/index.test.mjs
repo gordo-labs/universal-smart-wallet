@@ -65,6 +65,23 @@ test('wallet mutations require idempotency and create a private DID', async () =
   assert.equal(replay.status, 200);
   assert.equal(replay.headers.get('idempotency-replayed'), 'true');
 });
+test('wallet creation defaults to Base Sepolia', async () => {
+  const s = service();
+  const response = await s.handle(
+    req('/v1/wallets', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'idempotency-key': 'wallet-default',
+      },
+      body: JSON.stringify({ walletId: 'default-chain' }),
+    }),
+  );
+  assert.equal(response.status, 201);
+  const wallet = await response.json();
+  assert.equal(wallet.chainId, 84532);
+  assert.match(wallet.did, /^did:pkh:eip155:84532:0x/);
+});
 test('transaction rejects malformed/unknown fields and requires policy inputs', async () => {
   const s = service();
   const response = await s.handle(
