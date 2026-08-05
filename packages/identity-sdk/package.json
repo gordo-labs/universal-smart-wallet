@@ -20,11 +20,30 @@
     "./generated": {
       "types": "./dist/generated.d.ts",
       "import": "./dist/generated.js"
+    },
+    "./holder": {
+      "types": "./dist/holder/index.d.ts",
+      "import": "./dist/holder/index.js"
+    },
+    "./issuer": {
+      "types": "./dist/issuer/index.d.ts",
+      "import": "./dist/issuer/index.js"
+    },
+    "./issuer/browser": {
+      "types": "./dist/issuer/browser.d.ts",
+      "import": "./dist/issuer/browser.js"
+    },
+    "./issuer/server": {
+      "types": "./dist/issuer/server.d.ts",
+      "import": "./dist/issuer/server.js"
     }
   },
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit",
     "test": "pnpm build && node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@ssw/credential-formats": "workspace:*"
   }
 }

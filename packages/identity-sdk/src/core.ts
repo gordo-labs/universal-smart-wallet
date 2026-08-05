@@ -33,6 +33,10 @@ export type RequestOptions = {
   /** Required for retrying a mutating request. */
   readonly idempotencyKey?: string;
   readonly retry?: RetryPolicy;
+  /** Per-request headers such as the issuer tenant boundary. */
+  readonly headers?: Readonly<Record<string, string>>;
+  /** Explicit request authorization, for single-use protocol tokens. */
+  readonly authorization?: string;
 };
 
 export type IdentitySdkErrorCode =
@@ -162,14 +166,17 @@ export class IdentityClient {
         const headers: Record<string, string> = {
           accept: 'application/json',
           ...this.options.headers,
+          ...requestOptions.headers,
         };
+        if (requestOptions.idempotencyKey)
+          headers['idempotency-key'] = requestOptions.idempotencyKey;
         if (body !== undefined) {
           headers['content-type'] = 'application/json';
-          if (requestOptions.idempotencyKey)
-            headers['idempotency-key'] = requestOptions.idempotencyKey;
         }
         if (this.options.token)
           headers.authorization = `Bearer ${this.options.token}`;
+        if (requestOptions.authorization)
+          headers.authorization = requestOptions.authorization;
 
         const response = await this.fetcher(
           joinUrl(this.options.baseUrl, path),
