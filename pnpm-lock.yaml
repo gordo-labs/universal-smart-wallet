@@ -292,6 +292,12 @@ importers:
         specifier: 4.1.10
         version: 4.1.10(@types/node@22.15.30)(vite@8.1.5(@types/node@22.15.30)(esbuild@0.28.1))
 
+  packages/self-issued-credentials:
+    dependencies:
+      '@ssw/credential-formats':
+        specifier: workspace:*
+        version: link:../credential-formats
+
   packages/shared-types:
     devDependencies:
       vitest:
