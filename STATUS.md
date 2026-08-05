@@ -16,6 +16,7 @@
   `SSW-027` remains blocked on human release approval. `SSW-049`–`SSW-064`
   extend the platform into institutional issuance, verification, QR scanning,
   mobile identity, multiformat credentials, sector packs, and EUDI readiness.
+  `SSW-049`–`SSW-051` are Done; `SSW-052` and `SSW-053` are in progress.
 - **GitHub:** the public repository is at
   `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.

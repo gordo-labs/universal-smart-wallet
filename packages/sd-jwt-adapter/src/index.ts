@@ -72,6 +72,17 @@ export interface VerifiedCredential {
   readonly status?: { readonly idx: number; readonly uri: string };
 }
 
+export interface InspectedSdJwtCredential {
+  readonly profile: typeof SD_JWT_VC_PROFILE;
+  readonly mediaType: typeof SD_JWT_VC_MEDIA_TYPE;
+  readonly kind: 'credential' | 'presentation';
+  readonly algorithm: AllowedAlgorithm;
+  readonly keyId?: string;
+  readonly issuer?: string;
+  readonly credentialType: 'AgeCredential';
+  readonly hasKeyBinding: boolean;
+}
+
 export class SdJwtVerificationError extends Error {
   readonly code = 'SD_JWT_REJECTED';
   constructor(message: string) {
@@ -241,6 +252,39 @@ export async function present(input: PresentationInput): Promise<string> {
   const presentation = `${base}${kb}`;
   ensureBound(presentation);
   return presentation;
+}
+
+/**
+ * Parses only the pinned public metadata needed by a format router. This does
+ * not verify signatures; callers must invoke `verify` before trusting claims.
+ */
+export function inspect(token: string): InspectedSdJwtCredential {
+  ensureBound(token);
+  const parts = splitSdJwt(token);
+  const header = decodeProtectedHeader(parts.jwt);
+  if (header.typ !== SD_JWT_VC_MEDIA_TYPE) fail('unsupported media type');
+  const algorithm = ensureAlgorithm(header);
+  const payload = decodeJwt(parts.jwt) as Record<string, unknown>;
+  if (
+    payload.vct !== 'AgeCredential' ||
+    payload._sd_alg !== SD_JWT_HASH_ALGORITHM
+  )
+    fail('unsupported credential profile');
+  if (parts.kbJwt) {
+    const kbHeader = decodeProtectedHeader(parts.kbJwt);
+    if (kbHeader.typ !== 'kb+jwt') fail('invalid key-binding type');
+    ensureAlgorithm(kbHeader);
+  }
+  return {
+    profile: SD_JWT_VC_PROFILE,
+    mediaType: SD_JWT_VC_MEDIA_TYPE,
+    kind: parts.kbJwt ? 'presentation' : 'credential',
+    algorithm,
+    ...(typeof header.kid === 'string' ? { keyId: header.kid } : {}),
+    ...(typeof payload.iss === 'string' ? { issuer: payload.iss } : {}),
+    credentialType: 'AgeCredential',
+    hasKeyBinding: Boolean(parts.kbJwt),
+  };
 }
 
 export async function verify(input: VerifyInput): Promise<VerifiedCredential> {
