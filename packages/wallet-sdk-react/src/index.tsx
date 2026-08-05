@@ -86,3 +86,5 @@ export function WalletStatus({ loading, error, stepUpRequired, onCancel }: { rea
   if (loading) return <div role="status" aria-live="polite" aria-busy="true">Loading…{onCancel ? <button type="button" onClick={onCancel}>Cancel</button> : null}</div>;
   return null;
 }
+
+export * from './identity.js';
