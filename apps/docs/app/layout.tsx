@@ -16,6 +16,7 @@ const navigation = [
   ['/testing', 'Testing'],
   ['/chains', 'Base → Scroll'],
   ['/platform', 'Wallet Platform'],
+  ['/identity', 'Institutional identity'],
 ] as const;
 
 export default function RootLayout({
