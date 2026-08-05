@@ -1,0 +1,17 @@
+{
+  "name": "@ssw/institutional-use-cases",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "pnpm build && node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@ssw/credential-domain": "workspace:*",
+    "@ssw/credential-formats": "workspace:*",
+    "@ssw/verifier-service": "workspace:*"
+  }
+}

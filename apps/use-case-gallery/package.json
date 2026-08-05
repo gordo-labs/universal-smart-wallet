@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": { "build": "tsc", "typecheck": "tsc --noEmit", "test": "pnpm build && node --test test/*.test.mjs" },
   "dependencies": {
+    "@ssw/institutional-use-cases": "workspace:*",
     "@ssw/test-fixtures": "workspace:*",
     "@ssw/wallet-actions": "workspace:*",
     "@ssw/identity-adapter": "workspace:*",

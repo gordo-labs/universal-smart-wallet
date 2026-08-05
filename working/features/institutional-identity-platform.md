@@ -167,3 +167,19 @@ and provider credentials are rejected before persistence. The admin reference
 screen exposes lifecycle actions and redacted public signer metadata; it does
 not issue credentials or implement credential lifecycle operations (those stay
 in SSW-068/SSW-069).
+
+## SSW-062 implementation note
+
+`@ssw/institutional-use-cases` now provides three executable university packs:
+synthetic enrollment, diploma, and professional qualification credentials. Each
+pack freezes a published institutional template, a two-reviewer issuer policy,
+a holder-bound verifier policy, synthetic evidence/claims, and an explicit
+registrar authority boundary. `runUniversityJourney()` exercises review, dual
+approval, issuance, and verification without RPCs, issuer services, or real
+identity data. The registrar cannot issue government identity or driving-
+licence credentials; those authority classes remain outside this pack.
+
+`apps/use-case-gallery` exposes the packs under `/university` with a separate
+route per journey. The gallery is structured as sector modules so later
+government, driving-school, and enterprise packs can be added without mixing
+policies or authority boundaries.
