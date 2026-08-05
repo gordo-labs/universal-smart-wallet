@@ -84,6 +84,12 @@ importers:
         specifier: 4.1.10
         version: 4.1.10(@types/node@22.15.30)(vite@8.1.5(@types/node@22.15.30)(esbuild@0.28.1))
 
+  apps/issuer-service:
+    dependencies:
+      '@ssw/issuer-service':
+        specifier: workspace:*
+        version: link:../../packages/issuer-service
+
   apps/use-case-gallery:
     dependencies:
       '@ssw/identity-adapter':
@@ -242,6 +248,24 @@ importers:
       vitest:
         specifier: 4.1.10
         version: 4.1.10(@types/node@22.15.30)(vite@8.1.5(@types/node@22.15.30)(esbuild@0.28.1))
+
+  packages/issuer-service:
+    dependencies:
+      '@ssw/credential-domain':
+        specifier: workspace:*
+        version: link:../credential-domain
+      '@ssw/credential-formats':
+        specifier: workspace:*
+        version: link:../credential-formats
+      '@ssw/issuer-signer':
+        specifier: workspace:*
+        version: link:../issuer-signer
+      '@ssw/openid4vc':
+        specifier: workspace:*
+        version: link:../openid4vc
+      '@ssw/trust-registry':
+        specifier: workspace:*
+        version: link:../trust-registry
 
   packages/issuer-signer: {}
 
