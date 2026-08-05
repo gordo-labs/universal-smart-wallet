@@ -13,12 +13,13 @@
   acceptance criteria, validation, and agent prompts. `SSW-001`–`SSW-013`,
   `SSW-015`–`SSW-024`, `SSW-026`, `SSW-028`–`SSW-048` are Done. `SSW-025` has a
   passing local RC gate but remains blocked on explicit testnet configuration;
-  `SSW-027` remains blocked on human release approval. `SSW-049`–`SSW-056` are
+  `SSW-027` remains blocked on human release approval. `SSW-049`–`SSW-057` are
   Done and extend the platform through generalized credential formats,
-  trust/status, institutional signing, issuer, self-issued, and verifier
-  services. `SSW-057`–`SSW-079` are documented atomic prompts for the remaining
-  SDK, admin, holder, scanner, mobile, sector, security, conformance, and
-  documentation work; none is currently executing.
+  trust/status, institutional signing, issuer, self-issued, verifier services,
+  and the format-neutral Identity SDK transport boundary. `SSW-058`–`SSW-079`
+  remain documented atomic prompts for the remaining SDK, admin, holder,
+  scanner, mobile, sector, security, conformance, and documentation work; none
+  is currently executing.
 - **GitHub:** the public repository is at
   `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.
@@ -49,5 +50,5 @@
    explicit release approval and final candidate selection.
 3. Documentation is complete in `docs/platform/` and the Next.js `/platform`
    section; run the documented checks after any implementation change.
-4. Assign `SSW-057`–`SSW-079` from the institutional identity execution plan,
+4. Assign `SSW-058`–`SSW-079` from the institutional identity execution plan,
    one generated prompt per subagent and only after its dependencies are Done.
