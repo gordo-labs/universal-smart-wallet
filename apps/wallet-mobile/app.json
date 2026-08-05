@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "Sovereign Smart Wallet",
+    "slug": "sovereign-smart-wallet",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "ssw-wallet",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "org.sovereignsmartwallet.mobile",
+      "associatedDomains": ["applinks:wallet.sovereign.example"]
+    },
+    "android": {
+      "package": "org.sovereignsmartwallet.mobile",
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            { "scheme": "https", "host": "wallet.sovereign.example", "pathPrefix": "/credential" }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
+    },
+    "plugins": ["expo-secure-store", "expo-camera", "expo-linking"]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@ssw/wallet-mobile",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "App.tsx",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "pnpm build && node --test test/*.test.mjs",
+    "export": "node scripts/validate-expo-config.mjs"
+  },
+  "dependencies": {
+    "@ssw/credential-scanner": "workspace:*",
+    "@ssw/identity-sdk": "workspace:*",
+    "@ssw/identity-sdk-react-native": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.30",
+    "typescript": "5.9.2"
+  },
+  "expo": {
+    "autolinking": true
+  }
+}
