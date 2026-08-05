@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { AdminVerifierScanner } from './verifier';
-import { ScanInputError } from './input';
-import { WebCameraAdapter } from './web-camera';
+import { AdminVerifierScanner } from './verifier.ts';
+import { ScanInputError } from './input.ts';
+import { WebCameraAdapter } from './web-camera.ts';
 
 test('admin scanner rejects unknown schemes and consumes a scan once', () => {
   const scanner = new AdminVerifierScanner(value => value);

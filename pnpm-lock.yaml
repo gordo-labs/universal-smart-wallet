@@ -95,6 +95,9 @@ importers:
       '@ssw/identity-adapter':
         specifier: workspace:*
         version: link:../../packages/identity-adapter
+      '@ssw/institutional-use-cases':
+        specifier: workspace:*
+        version: link:../../packages/institutional-use-cases
       '@ssw/test-fixtures':
         specifier: workspace:*
         version: link:../../packages/test-fixtures
@@ -148,6 +151,12 @@ importers:
 
   apps/wallet-app:
     dependencies:
+      '@ssw/credential-formats':
+        specifier: workspace:*
+        version: link:../../packages/credential-formats
+      '@ssw/identity-sdk':
+        specifier: workspace:*
+        version: link:../../packages/identity-sdk
       next:
         specifier: 15.5.6
         version: 15.5.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -173,6 +182,25 @@ importers:
       vitest:
         specifier: 4.1.10
         version: 4.1.10(@types/node@22.15.30)(vite@8.1.5(@types/node@22.15.30)(esbuild@0.28.1))
+
+  apps/wallet-mobile:
+    dependencies:
+      '@ssw/credential-scanner':
+        specifier: workspace:*
+        version: link:../../packages/credential-scanner
+      '@ssw/identity-sdk':
+        specifier: workspace:*
+        version: link:../../packages/identity-sdk
+      '@ssw/identity-sdk-react-native':
+        specifier: workspace:*
+        version: link:../../packages/identity-sdk-react-native
+    devDependencies:
+      '@types/node':
+        specifier: 22.15.30
+        version: 22.15.30
+      typescript:
+        specifier: 5.9.2
+        version: 5.9.2
 
   apps/wallet-service:
     dependencies:
@@ -241,6 +269,8 @@ importers:
         specifier: 6.2.4
         version: 6.2.4
 
+  packages/credential-scanner: {}
+
   packages/credential-vault: {}
 
   packages/identity-adapter:
@@ -249,7 +279,32 @@ importers:
         specifier: 4.1.10
         version: 4.1.10(@types/node@22.15.30)(vite@8.1.5(@types/node@22.15.30)(esbuild@0.28.1))
 
-  packages/identity-sdk: {}
+  packages/identity-sdk:
+    dependencies:
+      '@ssw/credential-formats':
+        specifier: workspace:*
+        version: link:../credential-formats
+      '@ssw/credential-scanner':
+        specifier: workspace:*
+        version: link:../credential-scanner
+
+  packages/identity-sdk-react-native:
+    dependencies:
+      '@ssw/credential-scanner':
+        specifier: workspace:*
+        version: link:../credential-scanner
+
+  packages/institutional-use-cases:
+    dependencies:
+      '@ssw/credential-domain':
+        specifier: workspace:*
+        version: link:../credential-domain
+      '@ssw/credential-formats':
+        specifier: workspace:*
+        version: link:../credential-formats
+      '@ssw/verifier-service':
+        specifier: workspace:*
+        version: link:../verifier-service
 
   packages/issuer-service:
     dependencies:
@@ -384,6 +439,13 @@ importers:
   packages/wallet-sdk: {}
 
   packages/wallet-sdk-react:
+    dependencies:
+      '@ssw/credential-formats':
+        specifier: workspace:*
+        version: link:../credential-formats
+      '@ssw/identity-sdk':
+        specifier: workspace:*
+        version: link:../identity-sdk
     devDependencies:
       '@types/react':
         specifier: 19.1.2

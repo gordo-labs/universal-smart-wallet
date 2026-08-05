@@ -10,6 +10,7 @@ export const createBrowserIdentityClient = (
   options: IdentityClientOptions,
 ): IdentityClient => new IdentityClient(options);
 
+export * from './issuer/browser.js';
 export * from './verifier/client.js';
 export * from './verifier/types.js';
 export * from './scanner/index.js';

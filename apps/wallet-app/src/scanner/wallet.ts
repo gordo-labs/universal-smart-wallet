@@ -1,5 +1,5 @@
-import { WebCameraAdapter, type CameraOptions, type CameraPhase } from './web-camera';
-import { SingleUseScanGate, fromDeepLink, fromImageBytes, fromUri, type ParsedScan, type ScanParser, type ScanSource } from './input';
+import { WebCameraAdapter, type CameraOptions, type CameraPhase } from './web-camera.ts';
+import { SingleUseScanGate, fromDeepLink, fromImageBytes, fromUri, type ParsedScan, type ScanParser, type ScanSource } from './input.ts';
 
 export type WalletScanKind = 'issuance' | 'presentation';
 export type WalletScanResult<T> = { readonly source: ScanSource; readonly kind: WalletScanKind; readonly parsed: T };

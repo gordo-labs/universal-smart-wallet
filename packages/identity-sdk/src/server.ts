@@ -17,6 +17,7 @@ export const createServerIdentityClient = (
     },
   });
 
+export * from './issuer/server.js';
 export * from './verifier/client.js';
 export * from './verifier/types.js';
 export * from './scanner/index.js';
