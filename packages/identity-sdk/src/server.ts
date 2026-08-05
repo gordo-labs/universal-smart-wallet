@@ -1,5 +1,6 @@
 export * from './generated.js';
 export * from './core.js';
+export * from './holder/index.js';
 
 import { IdentityClient } from './core.js';
 import type { ServerIdentityClientOptions } from './core.js';

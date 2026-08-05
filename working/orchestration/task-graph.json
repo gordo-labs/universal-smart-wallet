@@ -2312,7 +2312,7 @@
       "failureModes": ["Abort leaves session queryable", "Ambiguous issue response is not retried"]
     },
     {
-      "id": "SSW-066", "slug": "holder-credential-sdk", "title": "Build holder credential SDK methods and React hooks", "status": "Todo", "priority": "P0", "wave": 32, "lane": "sdk", "dependsOn": ["SSW-057"],
+      "id": "SSW-066", "slug": "holder-credential-sdk", "title": "Build holder credential SDK methods and React hooks", "status": "Done", "priority": "P0", "wave": 32, "lane": "sdk", "dependsOn": ["SSW-057"],
       "featureDocs": ["working/features/institutional-identity-platform.md"], "touchPaths": ["packages/identity-sdk/src/holder/**", "packages/wallet-sdk-react/**"],
       "objective": "Expose accept-offer, list, inspect, create-self-attested, delete, export, and claim-consent presentation methods plus React hooks.",
       "deliverables": ["Holder client", "Credential React hooks", "Stale-request cancellation"], "nonGoals": ["Rendering credential values in logs", "Silent presentation", "Native modules"],

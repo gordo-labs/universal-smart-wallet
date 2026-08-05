@@ -70,7 +70,7 @@ in [task-graph.json](orchestration/task-graph.json).
 | SSW-063 | Todo | P0 | security | Build the deterministic institutional identity E2E gate | [task](tasks/SSW-063-institutional-identity-security-conformance.md) |
 | SSW-064 | Todo | P1 | documentation | Publish Identity SDK and protocol developer documentation | [task](tasks/SSW-064-institutional-identity-documentation.md) |
 | SSW-065 | Todo | P0 | sdk | Build the institutional issuer SDK | [task](tasks/SSW-065-institutional-issuer-sdk.md) |
-| SSW-066 | Todo | P0 | sdk | Build holder credential SDK methods and React hooks | [task](tasks/SSW-066-holder-credential-sdk.md) |
+| SSW-066 | Done | P0 | sdk | Build holder credential SDK methods and React hooks | [task](tasks/SSW-066-holder-credential-sdk.md) |
 | SSW-067 | Todo | P0 | sdk | Build verifier session and scanner SDK methods | [task](tasks/SSW-067-verifier-scanner-sdk.md) |
 | SSW-068 | Todo | P0 | apps | Build issuer review, issuance, and credential lifecycle administration | [task](tasks/SSW-068-issuer-admin-lifecycle.md) |
 | SSW-069 | Todo | P1 | apps | Build issuer signer, trust, and redacted audit administration | [task](tasks/SSW-069-issuer-admin-audit.md) |

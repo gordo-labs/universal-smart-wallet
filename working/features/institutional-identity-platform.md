@@ -71,11 +71,11 @@ upgrade the wallet-created credential.
 
 ## Remaining atomic execution
 
-The implementation baseline now includes `SSW-060`. The remaining work is
-documented, not started, as 21 atomic prompts (`SSW-058`–`SSW-079`, excluding
-the completed SSW-060):
+The implementation baseline now includes `SSW-060` and `SSW-066`. The remaining
+work is documented, not started, as 20 atomic prompts (`SSW-058`–`SSW-079`,
+excluding the completed SSW-060 and SSW-066):
 
-- actor-specific SDKs: `SSW-065`–`SSW-067`;
+- actor-specific SDKs: `SSW-065`, `SSW-067`;
 - issuer, holder, and scanner product surfaces: `SSW-058`–`SSW-059`,
   `SSW-068`–`SSW-072`;
 - React Native capability ports and the Expo app: `SSW-061`, `SSW-073`;
@@ -124,3 +124,17 @@ are single-use and never retried because an ambiguous response must be queried
 through the session/lifecycle endpoints. Authentication and service errors are
 redacted by the shared transport, and signer/KMS material remains outside the
 SDK boundary.
+
+## SSW-066 implementation note
+
+`@ssw/identity-sdk/holder` now provides a vault-backed holder client for
+accepting OID4VCI offers, listing metadata-only summaries, inspecting,
+self-attested creation, deletion, explicit export, and claim-specific
+presentation consent. Unknown issuers require an allowlist match or an
+explicit acknowledgement. The store owns encrypted export serialization;
+the in-memory fixture is for synthetic tests only. Errors are stable and
+redacted, and all methods accept abort signals.
+
+`@ssw/wallet-sdk-react` adds `HolderIdentityProvider` and holder hooks. Each
+operation aborts on unmount or superseding requests and clears privileged data
+before a new request, so stale credentials cannot remain visible.
