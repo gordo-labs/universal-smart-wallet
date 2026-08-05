@@ -1,4 +1,4 @@
-# SSW-059 — Build the individual wallet identity studio
+# SSW-059 — Build the holder credential inbox and trust inspector
 
 > Generated from `working/orchestration/task-graph.json`. Edit the graph and rerun `node scripts/render-task-prompts.mjs`.
 
@@ -6,9 +6,9 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P0 |
-| Wave | 32 |
+| Wave | 34 |
 | Lane | apps |
-| Dependencies | SSW-057 |
+| Dependencies | SSW-066 |
 | Primary paths | `apps/wallet-app/**` |
 
 ## Active feature context
@@ -17,13 +17,13 @@
 
 ## Objective
 
-Let holders accept offers, inspect trust and claims, create self-attested credentials, consent to presentation, delete, and export.
+Let holders accept offers, list credentials, and inspect issuer trust, assurance, status, expiry, and claims before storage.
 
 ## Deliverables
 
 - Credential inbox
-- Self-attested editor
-- Claim-by-claim consent
+- Trust and assurance inspector
+- Offer acceptance flow
 
 ## Non-goals
 
@@ -33,9 +33,9 @@ Let holders accept offers, inspect trust and claims, create self-attested creden
 
 ## Acceptance criteria
 
-1. Trust and assurance are visible
+1. Trust and assurance are visible before acceptance
 2. Vault remains client encrypted
-3. Cancellation clears privileged state
+3. Cancellation stores nothing
 
 ## Expected failure handling
 
@@ -50,23 +50,23 @@ Let holders accept offers, inspect trust and claims, create self-attested creden
 ## Agent prompt
 
 ```text
-Implement SSW-059: Build the individual wallet identity studio.
+Implement SSW-059: Build the holder credential inbox and trust inspector.
 
 Project: sovereign-smart-wallet
-Objective: Let holders accept offers, inspect trust and claims, create self-attested credentials, consent to presentation, delete, and export.
+Objective: Let holders accept offers, list credentials, and inspect issuer trust, assurance, status, expiry, and claims before storage.
 
 Mandatory start:
 1. Read AGENTS.md, PROJECT.json, STATUS.md, DOCS-MAP.md, working/BACKLOG.md, and this complete task document.
 2. Read these active feature/context documents: working/features/institutional-identity-platform.md.
 3. Run git status --short --branch before editing. If unrelated work exists, do not clean, overwrite, or include it; use an isolated worktree or ask for direction.
-4. Confirm these dependencies are merged: SSW-057.
+4. Confirm these dependencies are merged: SSW-066.
 5. Work only on SSW-059 in an atomic branch. Primary owned paths: apps/wallet-app/**.
 
 
 Deliver:
 - Credential inbox
-- Self-attested editor
-- Claim-by-claim consent
+- Trust and assurance inspector
+- Offer acceptance flow
 
 Do not include:
 - Silent acceptance
@@ -74,9 +74,9 @@ Do not include:
 - Trusting unknown issuers
 
 Acceptance criteria:
-1. Trust and assurance are visible
+1. Trust and assurance are visible before acceptance
 2. Vault remains client encrypted
-3. Cancellation clears privileged state
+3. Cancellation stores nothing
 
 Error and security behavior:
 - Unknown issuer requires explicit warning

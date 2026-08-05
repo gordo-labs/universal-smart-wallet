@@ -1,4 +1,4 @@
-# SSW-058 — Build the institutional issuer administration panel
+# SSW-058 — Build issuer template and key configuration administration
 
 > Generated from `working/orchestration/task-graph.json`. Edit the graph and rerun `node scripts/render-task-prompts.mjs`.
 
@@ -6,9 +6,9 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P0 |
-| Wave | 32 |
+| Wave | 34 |
 | Lane | apps |
-| Dependencies | SSW-057 |
+| Dependencies | SSW-065 |
 | Primary paths | `apps/admin-console/**` |
 
 ## Active feature context
@@ -17,13 +17,13 @@
 
 ## Objective
 
-Add template, evidence review, approval, issue, bulk issue, reissue, suspend, revoke, signer, and audit workflows.
+Add tenant-scoped template draft/review/publish/deprecate and opaque KMS/HSM key configuration screens.
 
 ## Deliverables
 
-- Issuer admin modules
+- Template administration
+- Signer configuration
 - Institutional RBAC
-- Safe previews and audit views
 
 ## Non-goals
 
@@ -33,9 +33,9 @@ Add template, evidence review, approval, issue, bulk issue, reissue, suspend, re
 
 ## Acceptance criteria
 
-1. Roles separate review and signing
-2. Dangerous operations require step-up and confirmation
-3. No full credential or evidence appears in audit
+1. Published templates are immutable
+2. Key material is never readable
+3. Tenant and role isolation is enforced
 
 ## Expected failure handling
 
@@ -50,23 +50,23 @@ Add template, evidence review, approval, issue, bulk issue, reissue, suspend, re
 ## Agent prompt
 
 ```text
-Implement SSW-058: Build the institutional issuer administration panel.
+Implement SSW-058: Build issuer template and key configuration administration.
 
 Project: sovereign-smart-wallet
-Objective: Add template, evidence review, approval, issue, bulk issue, reissue, suspend, revoke, signer, and audit workflows.
+Objective: Add tenant-scoped template draft/review/publish/deprecate and opaque KMS/HSM key configuration screens.
 
 Mandatory start:
 1. Read AGENTS.md, PROJECT.json, STATUS.md, DOCS-MAP.md, working/BACKLOG.md, and this complete task document.
 2. Read these active feature/context documents: working/features/institutional-identity-platform.md.
 3. Run git status --short --branch before editing. If unrelated work exists, do not clean, overwrite, or include it; use an isolated worktree or ask for direction.
-4. Confirm these dependencies are merged: SSW-057.
+4. Confirm these dependencies are merged: SSW-065.
 5. Work only on SSW-058 in an atomic branch. Primary owned paths: apps/admin-console/**.
 
 
 Deliver:
-- Issuer admin modules
+- Template administration
+- Signer configuration
 - Institutional RBAC
-- Safe previews and audit views
 
 Do not include:
 - Showing secrets
@@ -74,9 +74,9 @@ Do not include:
 - Production billing
 
 Acceptance criteria:
-1. Roles separate review and signing
-2. Dangerous operations require step-up and confirmation
-3. No full credential or evidence appears in audit
+1. Published templates are immutable
+2. Key material is never readable
+3. Tenant and role isolation is enforced
 
 Error and security behavior:
 - Unmounted flows cannot issue

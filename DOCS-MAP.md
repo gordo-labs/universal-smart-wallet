@@ -52,6 +52,7 @@
 
 - [Execution plan](working/orchestration/EXECUTION-PLAN.md)
 - [Wallet Platform execution plan](working/orchestration/WALLET-PLATFORM-EXECUTION-PLAN.md)
+- [Institutional identity execution plan](working/orchestration/INSTITUTIONAL-IDENTITY-EXECUTION-PLAN.md)
 - [Parallel waves](working/orchestration/PARALLEL-WAVES.md)
 - [Dependency graph](working/orchestration/DEPENDENCY-GRAPH.md)
 - [Prompt catalog](working/orchestration/PROMPT-CATALOG.md)

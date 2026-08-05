@@ -1,4 +1,4 @@
-# SSW-062 — Add the university credential use-case pack
+# SSW-069 — Build issuer signer, trust, and redacted audit administration
 
 > Generated from `working/orchestration/task-graph.json`. Edit the graph and rerun `node scripts/render-task-prompts.mjs`.
 
@@ -6,10 +6,10 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P1 |
-| Wave | 38 |
-| Lane | examples |
-| Dependencies | SSW-068, SSW-070, SSW-073 |
-| Primary paths | `packages/institutional-use-cases/**`, `apps/use-case-gallery/**` |
+| Wave | 35 |
+| Lane | apps |
+| Dependencies | SSW-058, SSW-065 |
+| Primary paths | `apps/admin-console/src/identity-operations/**` |
 
 ## Active feature context
 
@@ -17,78 +17,78 @@
 
 ## Objective
 
-Ship synthetic enrollment, diploma, and professional-qualification templates, policies, fixtures, issuance, status, and verification journeys.
+Expose opaque signer health/rotation, trust/status configuration, and tenant-scoped redacted audit views.
 
 ## Deliverables
 
-- University templates
-- University verifier policies
-- Executable university journeys
+- Signer operations view
+- Trust/status view
+- Redacted audit explorer
 
 ## Non-goals
 
-- Real citizen data
-- Claiming a driving school can issue a driving licence
-- Jurisdiction-specific legal advice
+- Reading keys
+- Showing credentials/evidence
+- Legal accreditation
 
 ## Acceptance criteria
 
-1. Each pack has issuer and verifier policy
-2. Authority boundaries are explicit
-3. All fixtures are synthetic
+1. Keys remain opaque/write-only
+2. Audit filters PII and credential material
+3. Rotation ambiguity fails closed
 
 ## Expected failure handling
 
-- Reject unauthorized credential types
-- No real PII
+- Provider errors are redacted
+- Unknown trust never appears active
 
 ## Validation mapped to acceptance
 
-1. `pnpm --filter @ssw/institutional-use-cases test`
-2. `Gallery journey tests`
+1. `pnpm --filter @ssw/admin-console test -- identity-operations`
+2. `Secret and tenant scan`
 
 ## Agent prompt
 
 ```text
-Implement SSW-062: Add the university credential use-case pack.
+Implement SSW-069: Build issuer signer, trust, and redacted audit administration.
 
 Project: sovereign-smart-wallet
-Objective: Ship synthetic enrollment, diploma, and professional-qualification templates, policies, fixtures, issuance, status, and verification journeys.
+Objective: Expose opaque signer health/rotation, trust/status configuration, and tenant-scoped redacted audit views.
 
 Mandatory start:
 1. Read AGENTS.md, PROJECT.json, STATUS.md, DOCS-MAP.md, working/BACKLOG.md, and this complete task document.
 2. Read these active feature/context documents: working/features/institutional-identity-platform.md.
 3. Run git status --short --branch before editing. If unrelated work exists, do not clean, overwrite, or include it; use an isolated worktree or ask for direction.
-4. Confirm these dependencies are merged: SSW-068, SSW-070, SSW-073.
-5. Work only on SSW-062 in an atomic branch. Primary owned paths: packages/institutional-use-cases/**, apps/use-case-gallery/**.
+4. Confirm these dependencies are merged: SSW-058, SSW-065.
+5. Work only on SSW-069 in an atomic branch. Primary owned paths: apps/admin-console/src/identity-operations/**.
 
 
 Deliver:
-- University templates
-- University verifier policies
-- Executable university journeys
+- Signer operations view
+- Trust/status view
+- Redacted audit explorer
 
 Do not include:
-- Real citizen data
-- Claiming a driving school can issue a driving licence
-- Jurisdiction-specific legal advice
+- Reading keys
+- Showing credentials/evidence
+- Legal accreditation
 
 Acceptance criteria:
-1. Each pack has issuer and verifier policy
-2. Authority boundaries are explicit
-3. All fixtures are synthetic
+1. Keys remain opaque/write-only
+2. Audit filters PII and credential material
+3. Rotation ambiguity fails closed
 
 Error and security behavior:
-- Reject unauthorized credential types
-- No real PII
+- Provider errors are redacted
+- Unknown trust never appears active
 - Use synthetic credentials only, local Anvil or explicitly configured testnets only, and no real PII or valuable assets.
 - Do not implement cryptographic primitives or a smart-account base from scratch.
 - Do not log or commit credentials, disclosures, vault keys, recovery material, passkey private material, secrets, or production endpoints.
 - Keep core tests independent of hosted RPC, bundler, paymaster, issuer, verifier, resolver, and trust-registry services.
 
 Validation:
-1. Run pnpm --filter @ssw/institutional-use-cases test and map the result to acceptance criterion 1.
-2. Run Gallery journey tests and map the result to acceptance criterion 2.
+1. Run pnpm --filter @ssw/admin-console test -- identity-operations and map the result to acceptance criterion 1.
+2. Run Secret and tenant scan and map the result to acceptance criterion 2.
 - Add or update at least one automated test for every behavior changed.
 - Run the narrow checks first, then the relevant root checks.
 

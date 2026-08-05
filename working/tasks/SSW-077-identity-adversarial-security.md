@@ -1,4 +1,4 @@
-# SSW-060 — Build the bounded credential QR parser core
+# SSW-077 — Add adversarial and privacy tests for institutional identity
 
 > Generated from `working/orchestration/task-graph.json`. Edit the graph and rerun `node scripts/render-task-prompts.mjs`.
 
@@ -6,89 +6,90 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P0 |
-| Wave | 32 |
-| Lane | scanner |
-| Dependencies | SSW-057 |
-| Primary paths | `packages/credential-scanner/**` |
+| Wave | 40 |
+| Lane | security |
+| Dependencies | SSW-063 |
+| Primary paths | `tests/security/identity-*.test.mjs`, `docs/audit/identity-platform-security.md` |
 
 ## Active feature context
 
 - working/features/institutional-identity-platform.md
+- working/procedures/SECURITY-REVIEW.md
 
 ## Objective
 
-Parse and classify bounded OpenID4VCI offer, OpenID4VP request, and offline-envelope inputs without camera or navigation side effects.
+Attack assurance, tenant, key rotation, status, disclosure, QR, deep-link, offline, and mobile lifecycle boundaries.
 
 ## Deliverables
 
-- Scanner parser core
-- Safe URI classifier
-- Replay-token boundary
+- Adversarial matrix
+- Privacy/redaction scan
+- Security gap report
 
 ## Non-goals
 
-- BLE
-- NFC
-- Biometric capture
+- Independent audit claim
+- Fuzzing external providers
+- Production PII
 
 ## Acceptance criteria
 
-1. Issuance, presentation, and offline inputs are classified
-2. Unknown schemes never navigate
-3. Malformed, oversized, duplicated, and phishing input fails closed
+1. Assurance escalation and tenant escape fail closed
+2. Logs/artifacts contain no PII or credentials
+3. Randomized failures preserve seeds
 
 ## Expected failure handling
 
-- Never navigate unknown schemes
-- One-time nonces cannot replay
+- Skipped required attack blocks green
+- Outage is not a pass
 
 ## Validation mapped to acceptance
 
-1. `pnpm --filter @ssw/credential-scanner test`
-2. `Camera cancellation and parser fuzz tests`
+1. `pnpm test:security`
+2. `Identity artifact redaction scan`
 
 ## Agent prompt
 
 ```text
-Implement SSW-060: Build the bounded credential QR parser core.
+Implement SSW-077: Add adversarial and privacy tests for institutional identity.
 
 Project: sovereign-smart-wallet
-Objective: Parse and classify bounded OpenID4VCI offer, OpenID4VP request, and offline-envelope inputs without camera or navigation side effects.
+Objective: Attack assurance, tenant, key rotation, status, disclosure, QR, deep-link, offline, and mobile lifecycle boundaries.
 
 Mandatory start:
 1. Read AGENTS.md, PROJECT.json, STATUS.md, DOCS-MAP.md, working/BACKLOG.md, and this complete task document.
-2. Read these active feature/context documents: working/features/institutional-identity-platform.md.
+2. Read these active feature/context documents: working/features/institutional-identity-platform.md, working/procedures/SECURITY-REVIEW.md.
 3. Run git status --short --branch before editing. If unrelated work exists, do not clean, overwrite, or include it; use an isolated worktree or ask for direction.
-4. Confirm these dependencies are merged: SSW-057.
-5. Work only on SSW-060 in an atomic branch. Primary owned paths: packages/credential-scanner/**.
+4. Confirm these dependencies are merged: SSW-063.
+5. Work only on SSW-077 in an atomic branch. Primary owned paths: tests/security/identity-*.test.mjs, docs/audit/identity-platform-security.md.
 
 
 Deliver:
-- Scanner parser core
-- Safe URI classifier
-- Replay-token boundary
+- Adversarial matrix
+- Privacy/redaction scan
+- Security gap report
 
 Do not include:
-- BLE
-- NFC
-- Biometric capture
+- Independent audit claim
+- Fuzzing external providers
+- Production PII
 
 Acceptance criteria:
-1. Issuance, presentation, and offline inputs are classified
-2. Unknown schemes never navigate
-3. Malformed, oversized, duplicated, and phishing input fails closed
+1. Assurance escalation and tenant escape fail closed
+2. Logs/artifacts contain no PII or credentials
+3. Randomized failures preserve seeds
 
 Error and security behavior:
-- Never navigate unknown schemes
-- One-time nonces cannot replay
+- Skipped required attack blocks green
+- Outage is not a pass
 - Use synthetic credentials only, local Anvil or explicitly configured testnets only, and no real PII or valuable assets.
 - Do not implement cryptographic primitives or a smart-account base from scratch.
 - Do not log or commit credentials, disclosures, vault keys, recovery material, passkey private material, secrets, or production endpoints.
 - Keep core tests independent of hosted RPC, bundler, paymaster, issuer, verifier, resolver, and trust-registry services.
 
 Validation:
-1. Run pnpm --filter @ssw/credential-scanner test and map the result to acceptance criterion 1.
-2. Run Camera cancellation and parser fuzz tests and map the result to acceptance criterion 2.
+1. Run pnpm test:security and map the result to acceptance criterion 1.
+2. Run Identity artifact redaction scan and map the result to acceptance criterion 2.
 - Add or update at least one automated test for every behavior changed.
 - Run the narrow checks first, then the relevant root checks.
 

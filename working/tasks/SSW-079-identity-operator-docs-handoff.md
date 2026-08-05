@@ -1,4 +1,4 @@
-# SSW-062 — Add the university credential use-case pack
+# SSW-079 — Publish identity operator, sector, and final handoff documentation
 
 > Generated from `working/orchestration/task-graph.json`. Edit the graph and rerun `node scripts/render-task-prompts.mjs`.
 
@@ -6,10 +6,10 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P1 |
-| Wave | 38 |
-| Lane | examples |
-| Dependencies | SSW-068, SSW-070, SSW-073 |
-| Primary paths | `packages/institutional-use-cases/**`, `apps/use-case-gallery/**` |
+| Wave | 42 |
+| Lane | documentation |
+| Dependencies | SSW-064, SSW-068, SSW-069, SSW-070, SSW-071, SSW-072, SSW-073, SSW-078 |
+| Primary paths | `apps/docs/**`, `docs/identity-platform/**`, `DOCS-MAP.md`, `working/orchestration/**` |
 
 ## Active feature context
 
@@ -17,78 +17,78 @@
 
 ## Objective
 
-Ship synthetic enrollment, diploma, and professional-qualification templates, policies, fixtures, issuance, status, and verification journeys.
+Publish issuer, verifier, scanner, mobile, KMS/HSM, trust, offline, sector, EUDI-boundary, runbook, and generated prompt documentation.
 
 ## Deliverables
 
-- University templates
-- University verifier policies
-- Executable university journeys
+- Operator guides
+- Sector and mobile guides
+- Final prompt catalog and claims audit
 
 ## Non-goals
 
-- Real citizen data
-- Claiming a driving school can issue a driving licence
-- Jurisdiction-specific legal advice
+- Deploying docs
+- Publishing packages
+- Certification claim
 
 ## Acceptance criteria
 
-1. Each pack has issuer and verifier policy
-2. Authority boundaries are explicit
-3. All fixtures are synthetic
+1. Every supported journey links to a passing example
+2. Limitations and external blockers are explicit
+3. Graph, backlog, prompts, and docs are synchronized
 
 ## Expected failure handling
 
-- Reject unauthorized credential types
-- No real PII
+- No stale examples
+- No unsupported capability claim
 
 ## Validation mapped to acceptance
 
-1. `pnpm --filter @ssw/institutional-use-cases test`
-2. `Gallery journey tests`
+1. `pnpm --filter @ssw/docs build`
+2. `Documentation link, sample, and claims audit`
 
 ## Agent prompt
 
 ```text
-Implement SSW-062: Add the university credential use-case pack.
+Implement SSW-079: Publish identity operator, sector, and final handoff documentation.
 
 Project: sovereign-smart-wallet
-Objective: Ship synthetic enrollment, diploma, and professional-qualification templates, policies, fixtures, issuance, status, and verification journeys.
+Objective: Publish issuer, verifier, scanner, mobile, KMS/HSM, trust, offline, sector, EUDI-boundary, runbook, and generated prompt documentation.
 
 Mandatory start:
 1. Read AGENTS.md, PROJECT.json, STATUS.md, DOCS-MAP.md, working/BACKLOG.md, and this complete task document.
 2. Read these active feature/context documents: working/features/institutional-identity-platform.md.
 3. Run git status --short --branch before editing. If unrelated work exists, do not clean, overwrite, or include it; use an isolated worktree or ask for direction.
-4. Confirm these dependencies are merged: SSW-068, SSW-070, SSW-073.
-5. Work only on SSW-062 in an atomic branch. Primary owned paths: packages/institutional-use-cases/**, apps/use-case-gallery/**.
+4. Confirm these dependencies are merged: SSW-064, SSW-068, SSW-069, SSW-070, SSW-071, SSW-072, SSW-073, SSW-078.
+5. Work only on SSW-079 in an atomic branch. Primary owned paths: apps/docs/**, docs/identity-platform/**, DOCS-MAP.md, working/orchestration/**.
 
 
 Deliver:
-- University templates
-- University verifier policies
-- Executable university journeys
+- Operator guides
+- Sector and mobile guides
+- Final prompt catalog and claims audit
 
 Do not include:
-- Real citizen data
-- Claiming a driving school can issue a driving licence
-- Jurisdiction-specific legal advice
+- Deploying docs
+- Publishing packages
+- Certification claim
 
 Acceptance criteria:
-1. Each pack has issuer and verifier policy
-2. Authority boundaries are explicit
-3. All fixtures are synthetic
+1. Every supported journey links to a passing example
+2. Limitations and external blockers are explicit
+3. Graph, backlog, prompts, and docs are synchronized
 
 Error and security behavior:
-- Reject unauthorized credential types
-- No real PII
+- No stale examples
+- No unsupported capability claim
 - Use synthetic credentials only, local Anvil or explicitly configured testnets only, and no real PII or valuable assets.
 - Do not implement cryptographic primitives or a smart-account base from scratch.
 - Do not log or commit credentials, disclosures, vault keys, recovery material, passkey private material, secrets, or production endpoints.
 - Keep core tests independent of hosted RPC, bundler, paymaster, issuer, verifier, resolver, and trust-registry services.
 
 Validation:
-1. Run pnpm --filter @ssw/institutional-use-cases test and map the result to acceptance criterion 1.
-2. Run Gallery journey tests and map the result to acceptance criterion 2.
+1. Run pnpm --filter @ssw/docs build and map the result to acceptance criterion 1.
+2. Run Documentation link, sample, and claims audit and map the result to acceptance criterion 2.
 - Add or update at least one automated test for every behavior changed.
 - Run the narrow checks first, then the relevant root checks.
 

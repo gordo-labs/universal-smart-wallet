@@ -1,15 +1,15 @@
-# SSW-057 — Expose issuer, holder, verifier, and scanner SDKs
+# SSW-057 — Build the format-neutral Identity SDK foundation
 
 > Generated from `working/orchestration/task-graph.json`. Edit the graph and rerun `node scripts/render-task-prompts.mjs`.
 
 | Field | Value |
 | --- | --- |
-| Status | Doing |
+| Status | Todo |
 | Priority | P0 |
 | Wave | 31 |
 | Lane | sdk |
 | Dependencies | SSW-054, SSW-055, SSW-056 |
-| Primary paths | `packages/identity-sdk/**`, `packages/wallet-sdk/**`, `packages/wallet-sdk-react/**` |
+| Primary paths | `packages/identity-sdk/**` |
 
 ## Active feature context
 
@@ -17,13 +17,13 @@
 
 ## Objective
 
-Expose format-neutral issuer, wallet, verifier, and scanner methods for browser, server, React, and mobile clients.
+Create the shared transport, generated domain types, stable errors, cancellation, timeout, and browser/server boundaries used by actor-specific SDKs.
 
 ## Deliverables
 
-- Identity SDK
+- Identity SDK transport core
+- Generated shared types
 - Stable errors and cancellation
-- Browser/server export boundaries
 
 ## Non-goals
 
@@ -33,9 +33,9 @@ Expose format-neutral issuer, wallet, verifier, and scanner methods for browser,
 
 ## Acceptance criteria
 
-1. All actor methods are typed
-2. Browser exports contain no signer secrets
-3. OpenAPI and runtime types cannot drift
+1. Transport and shared types are format neutral
+2. Browser exports contain no server secrets
+3. Generated and runtime types cannot drift
 
 ## Expected failure handling
 
@@ -50,23 +50,23 @@ Expose format-neutral issuer, wallet, verifier, and scanner methods for browser,
 ## Agent prompt
 
 ```text
-Implement SSW-057: Expose issuer, holder, verifier, and scanner SDKs.
+Implement SSW-057: Build the format-neutral Identity SDK foundation.
 
 Project: sovereign-smart-wallet
-Objective: Expose format-neutral issuer, wallet, verifier, and scanner methods for browser, server, React, and mobile clients.
+Objective: Create the shared transport, generated domain types, stable errors, cancellation, timeout, and browser/server boundaries used by actor-specific SDKs.
 
 Mandatory start:
 1. Read AGENTS.md, PROJECT.json, STATUS.md, DOCS-MAP.md, working/BACKLOG.md, and this complete task document.
 2. Read these active feature/context documents: working/features/institutional-identity-platform.md.
 3. Run git status --short --branch before editing. If unrelated work exists, do not clean, overwrite, or include it; use an isolated worktree or ask for direction.
 4. Confirm these dependencies are merged: SSW-054, SSW-055, SSW-056.
-5. Work only on SSW-057 in an atomic branch. Primary owned paths: packages/identity-sdk/**, packages/wallet-sdk/**, packages/wallet-sdk-react/**.
+5. Work only on SSW-057 in an atomic branch. Primary owned paths: packages/identity-sdk/**.
 
 
 Deliver:
-- Identity SDK
+- Identity SDK transport core
+- Generated shared types
 - Stable errors and cancellation
-- Browser/server export boundaries
 
 Do not include:
 - UI
@@ -74,9 +74,9 @@ Do not include:
 - Direct database imports
 
 Acceptance criteria:
-1. All actor methods are typed
-2. Browser exports contain no signer secrets
-3. OpenAPI and runtime types cannot drift
+1. Transport and shared types are format neutral
+2. Browser exports contain no server secrets
+3. Generated and runtime types cannot drift
 
 Error and security behavior:
 - Redact authentication responses

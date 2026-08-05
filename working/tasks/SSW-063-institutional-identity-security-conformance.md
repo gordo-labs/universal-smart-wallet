@@ -1,4 +1,4 @@
-# SSW-063 — Adversarially test identity flows and EUDI readiness
+# SSW-063 — Build the deterministic institutional identity E2E gate
 
 > Generated from `working/orchestration/task-graph.json`. Edit the graph and rerun `node scripts/render-task-prompts.mjs`.
 
@@ -6,9 +6,9 @@
 | --- | --- |
 | Status | Todo |
 | Priority | P0 |
-| Wave | 35 |
+| Wave | 39 |
 | Lane | security |
-| Dependencies | SSW-062 |
+| Dependencies | SSW-062, SSW-073, SSW-074, SSW-075, SSW-076 |
 | Primary paths | `tests/identity-platform/**`, `scripts/verify-identity-platform.mjs`, `docs/audit/identity-platform-*.md` |
 
 ## Active feature context
@@ -18,13 +18,13 @@
 
 ## Objective
 
-Prove issuer-wallet-verifier and scanner flows, privacy, assurance, tenancy, status, key rotation, and EUDI/HAIP readiness gaps.
+Prove deterministic issuer-wallet-verifier, scanner, mobile, status, and sector journeys from a clean local state.
 
 ## Deliverables
 
 - Identity E2E gate
-- Adversarial matrix
-- Conformance evidence and gap report
+- Deterministic fixtures
+- Pass/fail evidence
 
 ## Non-goals
 
@@ -35,8 +35,8 @@ Prove issuer-wallet-verifier and scanner flows, privacy, assurance, tenancy, sta
 ## Acceptance criteria
 
 1. All formats and sector journeys pass locally
-2. Assurance escalation, replay, phishing, tenant escape, key and status attacks fail closed
-3. Evidence distinguishes tested, blocked, and external conformance
+2. Online/offline scanner and mobile journeys are deterministic
+3. Skipped required flows block green status
 
 ## Expected failure handling
 
@@ -51,23 +51,23 @@ Prove issuer-wallet-verifier and scanner flows, privacy, assurance, tenancy, sta
 ## Agent prompt
 
 ```text
-Implement SSW-063: Adversarially test identity flows and EUDI readiness.
+Implement SSW-063: Build the deterministic institutional identity E2E gate.
 
 Project: sovereign-smart-wallet
-Objective: Prove issuer-wallet-verifier and scanner flows, privacy, assurance, tenancy, status, key rotation, and EUDI/HAIP readiness gaps.
+Objective: Prove deterministic issuer-wallet-verifier, scanner, mobile, status, and sector journeys from a clean local state.
 
 Mandatory start:
 1. Read AGENTS.md, PROJECT.json, STATUS.md, DOCS-MAP.md, working/BACKLOG.md, and this complete task document.
 2. Read these active feature/context documents: working/features/institutional-identity-platform.md, working/procedures/SECURITY-REVIEW.md.
 3. Run git status --short --branch before editing. If unrelated work exists, do not clean, overwrite, or include it; use an isolated worktree or ask for direction.
-4. Confirm these dependencies are merged: SSW-062.
+4. Confirm these dependencies are merged: SSW-062, SSW-073, SSW-074, SSW-075, SSW-076.
 5. Work only on SSW-063 in an atomic branch. Primary owned paths: tests/identity-platform/**, scripts/verify-identity-platform.mjs, docs/audit/identity-platform-*.md.
 
 
 Deliver:
 - Identity E2E gate
-- Adversarial matrix
-- Conformance evidence and gap report
+- Deterministic fixtures
+- Pass/fail evidence
 
 Do not include:
 - Self-certification
@@ -76,8 +76,8 @@ Do not include:
 
 Acceptance criteria:
 1. All formats and sector journeys pass locally
-2. Assurance escalation, replay, phishing, tenant escape, key and status attacks fail closed
-3. Evidence distinguishes tested, blocked, and external conformance
+2. Online/offline scanner and mobile journeys are deterministic
+3. Skipped required flows block green status
 
 Error and security behavior:
 - Skipped required case blocks green
