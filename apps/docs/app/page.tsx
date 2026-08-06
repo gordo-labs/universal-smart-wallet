@@ -48,7 +48,7 @@ export default function HomePage() {
           <span>Authorization stays verifiable.</span>
         </h1>
         <p className="lede">
-          Sovereign Smart Wallet is an open-source passkey wallet for
+          Universal Smart Wallet is an open-source passkey wallet for
           privacy-preserving verifiable credentials and smart-account
           authorization.
         </p>

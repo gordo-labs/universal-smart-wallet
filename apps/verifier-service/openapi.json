@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Sovereign Smart Wallet Credential Verifier",
+    "title": "Universal Smart Wallet Credential Verifier",
     "version": "1.0.0",
     "description": "OpenID4VP verification sessions and privacy-minimal receipts. The service never returns or stores full presentations."
   },

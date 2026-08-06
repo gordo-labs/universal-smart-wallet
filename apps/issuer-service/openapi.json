@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Sovereign Smart Wallet Institutional Issuer",
+    "title": "Universal Smart Wallet Institutional Issuer",
     "version": "1.0.0",
     "description": "Tenant-scoped institutional issuance, review, credential lifecycle, and single-use OpenID4VCI offers. Evidence values are references and SHA-256 digests only."
   },

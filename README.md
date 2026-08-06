@@ -1,4 +1,4 @@
-# Sovereign Smart Wallet
+# Universal Smart Wallet
 
 Open-source project for a passkey-controlled smart account and a
 privacy-preserving wallet for verifiable credentials.
@@ -77,7 +77,7 @@ party components retain their own licenses and must pass the dependency review
 in `SSW-003`.
 
 The public repository is
-[`gordo-labs/sovereign-smart-wallet`](https://github.com/gordo-labs/sovereign-smart-wallet).
+[`gordo-labs/universal-smart-wallet`](https://github.com/gordo-labs/universal-smart-wallet).
 Repository publication is not a product release or a production-readiness
 claim.
 

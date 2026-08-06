@@ -456,7 +456,7 @@ export class WalletController {
 }
 
 export const walletUiCopy = Object.freeze({
-  title: 'Sovereign Smart Wallet',
+  title: 'Universal Smart Wallet',
   warning: 'Local synthetic demo. Review every claim before disclosure.',
   prfFallback:
     'WebAuthn PRF is unavailable; use the approved encrypted passphrase fallback.',

@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to Sovereign Smart Wallet are documented here. The
+All notable changes to Universal Smart Wallet are documented here. The
 project follows a pre-release version convention until an independently
 reviewed production policy exists.
 

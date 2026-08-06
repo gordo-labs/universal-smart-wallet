@@ -1,4 +1,4 @@
-# Sovereign Smart Wallet docs
+# Universal Smart Wallet docs
 
 Next.js documentation app for the implemented wallet architecture and security boundaries.
 It is static: no RPC, bundler, issuer, verifier or hosted credential service is required.

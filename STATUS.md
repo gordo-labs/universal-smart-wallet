@@ -1,4 +1,4 @@
-# STATUS — Sovereign Smart Wallet
+# STATUS — Universal Smart Wallet
 
 ## Current
 
@@ -21,10 +21,10 @@
   SSW-079 is documentation-only; no deployment, package publication,
   certification, or production-readiness claim is implied.
 - **GitHub:** the public repository is at
-  `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
+  `gordo-labs/universal-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.
 - **Codex:** primary thread `019fad60-2d17-7512-acaf-0c740b4a670a`, titled
-  “Sovereign Smart Wallet — proyecto y orquestación”, working exclusively in
+  “Universal Smart Wallet — proyecto y orquestación”, working exclusively in
   this repository from the saved parent project `clawd`.
 
 ## Decisions promoted on 2026-07-29

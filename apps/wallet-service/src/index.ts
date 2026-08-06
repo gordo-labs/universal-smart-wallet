@@ -427,7 +427,7 @@ export const createWalletService = (options: WalletServiceOptions) =>
   new WalletService(options);
 export const openApi = {
   openapi: '3.1.0',
-  info: { title: 'Sovereign Smart Wallet Service', version: '1.0.0' },
+  info: { title: 'Universal Smart Wallet Service', version: '1.0.0' },
   paths: {
     '/v1/health': { get: { responses: { '200': { description: 'healthy' } } } },
     '/v1/wallets': {

@@ -3,9 +3,9 @@ import Link from 'next/link';
 import './styles.css';
 
 export const metadata: Metadata = {
-  title: 'Sovereign Smart Wallet · Docs',
+  title: 'Universal Smart Wallet · Docs',
   description:
-    'Architecture and security documentation for the Sovereign Smart Wallet.',
+    'Architecture and security documentation for the Universal Smart Wallet.',
 };
 const navigation = [
   ['/', 'Overview'],
@@ -35,7 +35,7 @@ export default function RootLayout({
             </Link>
             <a
               className="github-link"
-              href="https://github.com/gordo-labs/sovereign-smart-wallet"
+              href="https://github.com/gordo-labs/universal-smart-wallet"
             >
               GitHub ↗
             </a>

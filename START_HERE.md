@@ -1,4 +1,4 @@
-# START_HERE — Sovereign Smart Wallet
+# START_HERE — Universal Smart Wallet
 
 ## Fast path
 

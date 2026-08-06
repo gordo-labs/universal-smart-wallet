@@ -65,7 +65,7 @@ ${task.validation.map((item, index) => `${index + 1}. \`${item}\``).join("\n")}
 \`\`\`text
 Implement ${task.id}: ${task.title}.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: ${task.objective}
 
 Mandatory start:
@@ -113,7 +113,7 @@ const backlogRows = graph.tasks
   )
   .join("\n");
 
-const backlog = `# Backlog — Sovereign Smart Wallet
+const backlog = `# Backlog — Universal Smart Wallet
 
 Canonical atomic construction queue. Dependencies and scheduling metadata live
 in [task-graph.json](orchestration/task-graph.json).
