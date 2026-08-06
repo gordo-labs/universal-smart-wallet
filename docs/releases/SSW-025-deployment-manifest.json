@@ -25,7 +25,11 @@
     }
   },
   "testnet": {
-    "status": "opt-in",
+    "status": "deployed-smoke-pass",
+    "network": "base-sepolia",
+    "chainId": 84532,
+    "rpcUrl": "https://sepolia.base.org",
+    "deployer": "0xd278714499E76d58a28f57727A5545a006FF2985",
     "configuration": "SSW_RC_TESTNET=1, SSW_RC_NETWORK=<non-local label>, plus SSW_RC_* variables",
     "localBoundary": "SSW_RC_NETWORK=anvil/local/localhost and chainId 31337 are rejected; Anvil is local evidence only",
     "requiredPins": [
@@ -35,6 +39,24 @@
       "account address and runtime code hash",
       "attestation consumer address and runtime code hash"
     ],
-    "deployment": null
+    "deployment": {
+      "entryPoint": {
+        "address": "0x4337084d9e255ff0702461cf8895ce9e3b5ff108",
+        "runtimeCodeSha256": "8d08ec3d51935264e196a19050b4b95ef9e7414a7c4e1c9fe30f7c12dad93787"
+      },
+      "account": {
+        "address": "0x1142596452A797cB0ED4c6d338b60b1d5E93A04e",
+        "implementation": "ExternalDeploymentFixture test-only account fixture",
+        "runtimeCodeSha256": "db6442628e353d9a84ce32753cfc36f78d69bf45b47b3add0378ee594e0c116e"
+      },
+      "attestationConsumer": {
+        "address": "0x5F67272F354F8E86522136E49886EEcac8945925",
+        "runtimeCodeSha256": "0ba04c693d7214fcc3e2cca366ec4bf4dec3e99a5287e590e5acff9668cc1d38"
+      },
+      "deploymentTransactions": {
+        "attestationConsumer": "0xbf8d54f671841a11f9b393f6d17d33f1e861b140b61524ff83fecd5b37cac3c0",
+        "account": "0x0c91b17e4df2f4c2ae34787fc9c8a399a45c4a467e30eb4a27d32b3763f7f5b4"
+      }
+    }
   }
 }

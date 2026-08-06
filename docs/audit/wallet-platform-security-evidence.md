@@ -31,6 +31,7 @@ paymaster, SMTP, OIDC, issuer and verifier integrations remain opt-in.
 
 ## Known gates
 
-SSW-025 remains blocked until an explicitly configured disposable non-local
-testnet is supplied. SSW-027 release publication remains blocked pending
-explicit approval; this task performs no tag, push, deployment, or release.
+SSW-025 now has a pinned Base Sepolia smoke deployment and a passing configured
+testnet matrix; the deployment is explicitly fixture-only and not a production
+Safe account. SSW-027 release publication remains blocked pending explicit
+approval; this evidence does not create a tag or release.

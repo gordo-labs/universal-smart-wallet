@@ -2,6 +2,26 @@
   "schemaVersion": 1,
   "network": "anvil",
   "chainId": 31337,
+  "testnet": {
+    "network": "base-sepolia",
+    "chainId": 84532,
+    "entryPoint": {
+      "address": "0x4337084d9e255ff0702461cf8895ce9e3b5ff108",
+      "codeHash": "0x8d08ec3d51935264e196a19050b4b95ef9e7414a7c4e1c9fe30f7c12dad93787",
+      "status": "external canonical EntryPoint v0.8; runtime pinned"
+    },
+    "account": {
+      "base": "fixture",
+      "implementation": "ExternalDeploymentFixture test-only account fixture",
+      "address": "0x1142596452A797cB0ED4c6d338b60b1d5E93A04e",
+      "codeHash": "0xdb6442628e353d9a84ce32753cfc36f78d69bf45b47b3add0378ee594e0c116e"
+    },
+    "attestationConsumer": {
+      "address": "0x5F67272F354F8E86522136E49886EEcac8945925",
+      "codeHash": "0x0ba04c693d7214fcc3e2cca366ec4bf4dec3e99a5287e590e5acff9668cc1d38"
+    },
+    "status": "smoke-deployed; test-only, not production account"
+  },
   "entryPoint": {
     "version": "0.8.0",
     "address": "0x4337084d9e255ff0702461cf8895ce9e3b5ff108",
