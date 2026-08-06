@@ -4,14 +4,14 @@
 
 | Field | Value |
 | --- | --- |
-| Status | Blocked |
+| Status | In Progress |
 | Priority | P1 |
 | Wave | 12 |
 | Lane | release |
 | Dependencies | SSW-002, SSW-026 |
 | Primary paths | `CHANGELOG.md`, `README.md`, `SECURITY.md`, `PROJECT.json`, `STATUS.md`, `.github/**` |
 
-> This task includes external writes. Confirm explicit owner authorization immediately before performing them.
+> Owner approval received in the current thread. External publication is now authorized, subject to the release checks below.
 
 ## Active feature context
 
