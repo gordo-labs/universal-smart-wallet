@@ -2,7 +2,7 @@
 
 ## Current
 
-- **Lifecycle:** local alpha foundation complete; external testnet/release gates remain explicitly blocked.
+- **Lifecycle:** local alpha foundation complete; the Base Sepolia smoke gate is passing; open-source alpha publication remains separately gated.
 - **Feasibility:** high for a synthetic local/testnet vertical slice; medium for
   a production wallet until conformance, recovery, browser portability,
   privacy, and independent security review are complete.
@@ -12,8 +12,8 @@
 - **Execution:** 79 atomic tasks with explicit dependencies, parallel waves,
   acceptance criteria, validation, and agent prompts. `SSW-001`–`SSW-013`,
   `SSW-015`–`SSW-024`, `SSW-026`, `SSW-028`–`SSW-048` are Done. `SSW-025` has a
-  passing local RC gate but remains blocked on explicit testnet configuration;
-  `SSW-027` remains blocked on human release approval. `SSW-049`–`SSW-079` are
+  passing local and Base Sepolia RC gates; `SSW-027` remains blocked on human
+  release approval. `SSW-049`–`SSW-079` are
   Done and extend the platform through generalized credential formats,
   trust/status, institutional signing, issuer, self-issued, verifier services,
   actor-specific SDKs, admin/holder/scanner/mobile surfaces, sector examples,
@@ -44,9 +44,7 @@
 
 ## Next
 
-1. `SSW-025` — configure a disposable non-local testnet with pinned RPC,
-   deployments, and runtime hashes before marking alpha-testnet green.
-2. `SSW-027` — release evidence is prepared but publication is blocked pending
+1. `SSW-027` — release evidence is prepared but publication is blocked pending
    explicit release approval and final candidate selection.
 3. Documentation is complete in `docs/platform/` and the Next.js `/platform`
    section; run the documented checks after any implementation change.
