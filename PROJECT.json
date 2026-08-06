@@ -1,16 +1,17 @@
 {
-  "name": "Sovereign Smart Wallet",
-  "slug": "sovereign-smart-wallet",
+  "name": "Universal Smart Wallet",
+  "slug": "universal-smart-wallet",
   "type": "public-app",
   "status": "active",
   "lifecycle": "planning",
   "frequency": "weekly",
   "description": "Open-source smart wallet for passkey-controlled smart accounts and privacy-preserving verifiable credentials.",
-  "lastAction": "2026-07-29T14:15:00+02:00",
-  "lastActionDescription": "Added the versioned EIP-712 on-chain attestation consumer and synthetic access demo with replay, expiry, scope, and attestor rotation checks.",
+  "lastAction": "2026-08-06T00:55:00+02:00",
+  "lastActionDescription": "Completed the institutional identity operator handoff, claims audit, evidence links, and local documentation checks through SSW-079.",
   "nextNeeds": [
     "SSW-025: Integrate the full local and testnet release candidate",
-    "SSW-027: Publish the first open-source alpha release (requires explicit approval)"
+    "SSW-027: Publish the first open-source alpha release (requires explicit approval)",
+    "Keep SSW-079 operator docs and claims evidence synchronized with future identity changes"
   ],
   "blocking": null,
   "license": "Apache-2.0",
@@ -23,17 +24,17 @@
   "git": {
     "enabled": true,
     "defaultBranch": "main",
-    "remote": "https://github.com/gordo-labs/sovereign-smart-wallet",
-    "plannedRemote": "https://github.com/gordo-labs/sovereign-smart-wallet",
+    "remote": "https://github.com/gordo-labs/universal-smart-wallet",
+    "plannedRemote": "https://github.com/gordo-labs/universal-smart-wallet",
     "plannedVisibility": "public",
     "publicationState": "public planning scaffold"
   },
   "codex": {
     "primaryThreadId": "019fad60-2d17-7512-acaf-0c740b4a670a",
     "hostId": "slingshot:env_e_6a08403649e88325b41272589868ea9b",
-    "title": "Sovereign Smart Wallet — proyecto y orquestación",
+    "title": "Universal Smart Wallet — proyecto y orquestación",
     "savedProject": "clawd",
-    "workingDirectory": "/Users/sergiogordo/clawd/projects/sovereign-smart-wallet"
+    "workingDirectory": "/Users/sergiogordo/clawd/projects/universal-smart-wallet"
   },
   "telegram": {
     "hasTopic": false

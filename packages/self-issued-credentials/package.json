@@ -1,0 +1,15 @@
+{
+  "name": "@ssw/self-issued-credentials",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm --filter @ssw/credential-formats build && tsc",
+    "typecheck": "pnpm --filter @ssw/credential-formats build && tsc --noEmit",
+    "test": "pnpm build && node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@ssw/credential-formats": "workspace:*"
+  }
+}

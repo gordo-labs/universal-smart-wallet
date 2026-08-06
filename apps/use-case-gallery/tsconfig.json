@@ -1,0 +1,5 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "outDir": "dist", "rootDir": ".", "jsx": "preserve", "plugins": [{ "name": "next" }] },
+  "include": ["src/**/*.ts", "app/**/*.tsx", "next-env.d.ts"]
+}

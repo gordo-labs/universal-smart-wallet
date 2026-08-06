@@ -1,22 +1,30 @@
-# STATUS — Sovereign Smart Wallet
+# STATUS — Universal Smart Wallet
 
 ## Current
 
-- **Lifecycle:** planning; executable monorepo foundation and public governance baseline complete on task branches.
+- **Lifecycle:** local alpha foundation complete; the Base Sepolia smoke gate is passing; open-source alpha publication remains separately gated.
 - **Feasibility:** high for a synthetic local/testnet vertical slice; medium for
   a production wallet until conformance, recovery, browser portability,
   privacy, and independent security review are complete.
 - **Architecture:** off-chain credential core, encrypted local vault,
   replaceable OpenID4VC and SD-JWT adapters, smart-account control plane, and
   optional on-chain attestations.
-- **Execution:** 28 atomic tasks with explicit dependencies, parallel waves,
+- **Execution:** 79 atomic tasks with explicit dependencies, parallel waves,
   acceptance criteria, validation, and agent prompts. `SSW-001`–`SSW-013`,
-  `SSW-015`–`SSW-024`, and `SSW-028` are Done.
+  `SSW-015`–`SSW-024`, `SSW-026`, `SSW-028`–`SSW-048` are Done. `SSW-025` has a
+  passing local and Base Sepolia RC gates; `SSW-027` is in progress following
+  explicit owner release approval. `SSW-049`–`SSW-079` are
+  Done and extend the platform through generalized credential formats,
+  trust/status, institutional signing, issuer, self-issued, verifier services,
+  actor-specific SDKs, admin/holder/scanner/mobile surfaces, sector examples,
+  adversarial evidence, conformance boundaries, and the final operator handoff.
+  SSW-079 is documentation-only; no deployment, package publication,
+  certification, or production-readiness claim is implied.
 - **GitHub:** the public repository is at
-  `gordo-labs/sovereign-smart-wallet`. This is repository publication only,
+  `gordo-labs/universal-smart-wallet`. This is repository publication only,
   not an alpha release or production-readiness claim.
 - **Codex:** primary thread `019fad60-2d17-7512-acaf-0c740b4a670a`, titled
-  “Sovereign Smart Wallet — proyecto y orquestación”, working exclusively in
+  “Universal Smart Wallet — proyecto y orquestación”, working exclusively in
   this repository from the saved parent project `clawd`.
 
 ## Decisions promoted on 2026-07-29
@@ -36,5 +44,8 @@
 
 ## Next
 
-1. `SSW-025` — local release gate is implemented; run the opt-in testnet lane before marking alpha-testnet green.
-2. `SSW-027` — open-source alpha release (requires explicit release approval).
+1. `SSW-027` — publish the approved alpha tag/release after the final checks.
+3. Documentation is complete in `docs/platform/` and the Next.js `/platform`
+   section; run the documented checks after any implementation change.
+4. Keep the operator handoff and claims audit synchronized when future identity
+   implementation changes; do not infer certification from local evidence.

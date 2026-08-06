@@ -1,0 +1,18 @@
+{
+  "name": "@ssw/platform-store",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "pnpm --filter @ssw/platform-types build && pnpm build && vitest run"
+  },
+  "dependencies": {
+    "@ssw/platform-types": "workspace:*"
+  },
+  "devDependencies": {
+    "vitest": "4.1.10"
+  }
+}

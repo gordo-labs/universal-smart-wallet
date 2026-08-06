@@ -1,4 +1,4 @@
-# AGENTS.md — Sovereign Smart Wallet
+# AGENTS.md — Universal Smart Wallet
 
 **Cursor workspace = this folder.**
 

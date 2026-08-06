@@ -1,0 +1,179 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Universal Smart Wallet Credential Verifier",
+    "version": "1.0.0",
+    "description": "OpenID4VP verification sessions and privacy-minimal receipts. The service never returns or stores full presentations."
+  },
+  "paths": {
+    "/v1/health": {
+      "get": {
+        "responses": { "200": { "description": "Healthy" } }
+      }
+    },
+    "/v1/verification-sessions": {
+      "post": {
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["policyId"],
+                "properties": { "policyId": { "type": "string" } }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Bounded, single-use OpenID4VP session",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/VerificationSession" }
+              }
+            }
+          },
+          "400": { "description": "Invalid policy request" }
+        }
+      }
+    },
+    "/v1/verification-sessions/{sessionId}": {
+      "get": {
+        "parameters": [{ "$ref": "#/components/parameters/SessionId" }],
+        "responses": {
+          "200": { "description": "Session state" },
+          "404": { "description": "Session not found" }
+        }
+      }
+    },
+    "/v1/verification-sessions/{sessionId}/responses": {
+      "post": {
+        "parameters": [{ "$ref": "#/components/parameters/SessionId" }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["state", "vp_token"],
+                "properties": {
+                  "state": { "type": "string" },
+                  "vp_token": {
+                    "type": "string",
+                    "maxLength": 32768,
+                    "writeOnly": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Minimal verified, rejected, or indeterminate receipt",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/VerificationReceipt" }
+              }
+            }
+          },
+          "413": { "description": "Presentation response too large" },
+          "415": { "description": "Expected direct_post form encoding" }
+        }
+      }
+    },
+    "/v1/receipts/{receiptId}": {
+      "get": {
+        "parameters": [{ "$ref": "#/components/parameters/ReceiptId" }],
+        "responses": {
+          "200": {
+            "description": "Minimal receipt",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/VerificationReceipt" }
+              }
+            }
+          },
+          "404": { "description": "Receipt not found" }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "SessionId": {
+        "name": "sessionId",
+        "in": "path",
+        "required": true,
+        "schema": { "type": "string" }
+      },
+      "ReceiptId": {
+        "name": "receiptId",
+        "in": "path",
+        "required": true,
+        "schema": { "type": "string" }
+      }
+    },
+    "schemas": {
+      "VerificationSession": {
+        "type": "object",
+        "required": [
+          "schemaVersion",
+          "sessionId",
+          "tenantId",
+          "policyId",
+          "nonce",
+          "state",
+          "status",
+          "createdAt",
+          "expiresAt",
+          "request"
+        ],
+        "properties": {
+          "schemaVersion": { "const": 1 },
+          "sessionId": { "type": "string" },
+          "tenantId": { "type": "string" },
+          "policyId": { "type": "string" },
+          "nonce": { "type": "string" },
+          "state": { "type": "string" },
+          "status": { "enum": ["requested", "consumed", "expired"] },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "expiresAt": { "type": "string", "format": "date-time" },
+          "request": { "type": "object" },
+          "receipt": { "$ref": "#/components/schemas/VerificationReceipt" }
+        }
+      },
+      "VerificationReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schemaVersion",
+          "receiptId",
+          "sessionId",
+          "tenantId",
+          "policyId",
+          "result",
+          "reasonCode",
+          "verifiedAt",
+          "checks"
+        ],
+        "properties": {
+          "schemaVersion": { "const": 1 },
+          "receiptId": { "type": "string" },
+          "sessionId": { "type": "string" },
+          "tenantId": { "type": "string" },
+          "policyId": { "type": "string" },
+          "result": { "enum": ["verified", "rejected", "indeterminate"] },
+          "reasonCode": { "type": "string" },
+          "verifiedAt": { "type": "string", "format": "date-time" },
+          "checks": { "type": "array", "items": { "type": "string" } },
+          "snapshotId": { "type": "string" },
+          "snapshotExpiresAt": { "type": "integer" }
+        }
+      }
+    }
+  }
+}

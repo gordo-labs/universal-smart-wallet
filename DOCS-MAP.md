@@ -1,8 +1,9 @@
-# DOCS-MAP — Sovereign Smart Wallet
+# DOCS-MAP — Universal Smart Wallet
 
 ## Overview
 
 - [README.md](README.md)
+- [Next.js documentation app](apps/docs/README.md)
 - [PROJECT.json](PROJECT.json)
 - [STATUS.md](STATUS.md)
 - [START_HERE.md](START_HERE.md)
@@ -19,13 +20,20 @@
 - [Product map](working/maps/PRODUCT-MAP.md)
 - [Technical map](working/maps/TECHNICAL-MAP.md)
 - [Feature relations](working/maps/FEATURE-RELATIONS.md)
+- [Wallet Platform adapter matrix](working/maps/WALLET-PLATFORM-ADAPTER-MATRIX.md)
 
 ## Threat model
 
 - [Vault key management](docs/threat-model/SSW-006-vault-key-management.md)
+- [Wallet Platform trust boundaries](docs/threat-model/wallet-platform-trust-boundaries.md)
 
 ## Planned features
 
+- [Wallet Platform SDK and self-hosted service](working/features/wallet-platform-sdk.md)
+- [Institutional identity platform](working/features/institutional-identity-platform.md)
+- [Institutional identity developer docs](docs/identity-platform/README.md)
+- [Institutional identity operator handoff](docs/identity-platform/operator-handoff.md)
+- [EUDI/HAIP readiness evidence](docs/audit/eudi-haip-readiness.md)
 - [Credential exchange](working/features/credential-exchange.md)
 - [SD-JWT VC adapter](docs/protocols/sd-jwt-vc-adapter.md)
 - [OpenID4VCI issuance](docs/protocols/openid4vci-issuance.md)
@@ -35,7 +43,10 @@
 - [Encrypted vault](working/features/encrypted-vault.md)
 - [Recovery and encrypted backup](working/tasks/SSW-021-recovery-encrypted-backup.md)
 - [Smart account and passkeys](working/features/smart-account-and-passkeys.md)
+- [Modular passkey authentication package](packages/auth-passkey/src/index.ts)
 - [ERC-7579 compatibility ADR](docs/decisions/SSW-018-erc7579-compatibility.md)
+- [Wallet Platform architecture ADR](docs/decisions/SSW-029-wallet-platform-architecture.md)
+- [Institutional identity and EUDI ADR](docs/decisions/SSW-049-institutional-identity-architecture.md)
 - [Identity and holder binding](working/features/identity-and-holder-binding.md)
 - [Verification, trust, and status](working/features/verification-trust-and-status.md)
 - [On-chain attestations](working/features/onchain-attestations.md)
@@ -43,6 +54,8 @@
 ## Orchestration
 
 - [Execution plan](working/orchestration/EXECUTION-PLAN.md)
+- [Wallet Platform execution plan](working/orchestration/WALLET-PLATFORM-EXECUTION-PLAN.md)
+- [Institutional identity execution plan](working/orchestration/INSTITUTIONAL-IDENTITY-EXECUTION-PLAN.md)
 - [Parallel waves](working/orchestration/PARALLEL-WAVES.md)
 - [Dependency graph](working/orchestration/DEPENDENCY-GRAPH.md)
 - [Prompt catalog](working/orchestration/PROMPT-CATALOG.md)
@@ -56,6 +69,7 @@
 - [NEXT](working/roadmap/NEXT.md)
 - [LATER](working/roadmap/LATER.md)
 - [Future ZK predicates](working/roadmap/future/zk-predicate-proofs.md)
+- [Future identity and platform expansions](working/roadmap/future/identity-platform-expansions.md)
 
 ## Procedures
 
@@ -74,6 +88,7 @@
 ## History and memory
 
 - [July 2026 history](working/history/2026/2026-07.md)
+- [August 2026 history](working/history/2026/2026-08.md)
 - [Project memory](working/memory/README.md)
 
 ## Global workspace

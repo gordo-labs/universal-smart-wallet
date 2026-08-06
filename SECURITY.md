@@ -2,7 +2,7 @@
 
 ## Project maturity
 
-Sovereign Smart Wallet is experimental and has not been independently audited.
+Universal Smart Wallet is experimental and has not been independently audited.
 Do not use it for production identity credentials, personal data, mainnet
 assets, or decisions with legal or financial effect.
 
@@ -13,7 +13,7 @@ lists reproducible evidence and open gaps; it is not an independent audit.
 ## Reporting
 
 Report suspected vulnerabilities through
-[GitHub private vulnerability reporting](https://github.com/gordo-labs/sovereign-smart-wallet/security/advisories/new).
+[GitHub private vulnerability reporting](https://github.com/gordo-labs/universal-smart-wallet/security/advisories/new).
 Do not publish exploit details in a public issue. Maintainers aim to
 acknowledge a private report within five business days; remediation timelines
 depend on severity and project maturity.

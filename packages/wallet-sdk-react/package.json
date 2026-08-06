@@ -1,0 +1,12 @@
+{
+  "name": "@ssw/wallet-sdk-react",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" } },
+  "scripts": { "build": "tsc", "typecheck": "tsc --noEmit", "test": "pnpm build && vitest run" },
+  "peerDependencies": { "react": ">=18" },
+  "dependencies": { "@ssw/credential-formats": "workspace:*", "@ssw/identity-sdk": "workspace:*" },
+  "devDependencies": { "@types/react": "19.1.2", "@types/react-dom": "19.1.2", "react": "19.1.0", "react-dom": "19.1.0", "vitest": "4.1.10" }
+}

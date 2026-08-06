@@ -1,0 +1,103 @@
+name: universal-smart-wallet-platform
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:?set POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER:?set POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+    ports: ['${POSTGRES_PORT:-55432}:5432']
+    volumes:
+      - platform-postgres:/var/lib/postgresql/data
+      - ./packages/platform-store/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}']
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  mailpit:
+    image: axllent/mailpit:v1.21
+    ports:
+      ['${MAILPIT_SMTP_PORT:-51025}:1025', '${MAILPIT_UI_PORT:-58025}:8025']
+    healthcheck:
+      test: ['CMD', '/mailpit', 'readyz']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  anvil:
+    image: ghcr.io/foundry-rs/foundry:stable
+    command: ['anvil', '--host', '0.0.0.0', '--chain-id', '31337']
+    ports: ['${ANVIL_PORT:-58545}:8545']
+    healthcheck:
+      test: ['CMD-SHELL', 'cast block-number --rpc-url http://127.0.0.1:8545']
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  wallet-service:
+    build: { context: ., dockerfile: deploy/self-hosted/Dockerfile.service }
+    environment:
+      SSW_ENV: ${SSW_ENV:?set SSW_ENV}
+      DATABASE_URL: postgres://${POSTGRES_USER:?set POSTGRES_USER}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:?set POSTGRES_DB}
+      SMTP_URL: smtp://mailpit:1025
+      RPC_URL: ${RPC_URL:-http://anvil:8545}
+      CHAIN_ID: ${CHAIN_ID:-31337}
+      BUNDLER_URL: ${BUNDLER_URL:-}
+      PAYMASTER_URL: ${PAYMASTER_URL:-}
+      SIGNER_ENDPOINT: ${SIGNER_ENDPOINT:-}
+    ports: ['${WALLET_SERVICE_PORT:-53001}:3000']
+    depends_on:
+      postgres: { condition: service_healthy }
+      mailpit: { condition: service_healthy }
+      anvil: { condition: service_healthy }
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          "fetch('http://127.0.0.1:3000/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  wallet-app:
+    build:
+      {
+        context: .,
+        dockerfile: deploy/self-hosted/Dockerfile.web,
+        args: { APP: wallet-app },
+      }
+    environment: { NEXT_PUBLIC_WALLET_SERVICE_URL: http://wallet-service:3000 }
+    ports: ['${WALLET_APP_PORT:-53002}:3000']
+    depends_on: { wallet-service: { condition: service_healthy } }
+
+  admin-console:
+    build:
+      {
+        context: .,
+        dockerfile: deploy/self-hosted/Dockerfile.web,
+        args: { APP: admin-console },
+      }
+    environment: { NEXT_PUBLIC_WALLET_SERVICE_URL: http://wallet-service:3000 }
+    ports: ['${ADMIN_CONSOLE_PORT:-53003}:3000']
+    depends_on: { wallet-service: { condition: service_healthy } }
+
+  gallery:
+    build:
+      {
+        context: .,
+        dockerfile: deploy/self-hosted/Dockerfile.web,
+        args: { APP: use-case-gallery },
+      }
+    environment: { NEXT_PUBLIC_WALLET_SERVICE_URL: http://wallet-service:3000 }
+    ports: ['${GALLERY_PORT:-53004}:3000']
+    depends_on: { wallet-service: { condition: service_healthy } }
+
+volumes:
+  platform-postgres:

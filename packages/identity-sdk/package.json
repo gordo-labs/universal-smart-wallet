@@ -1,0 +1,58 @@
+{
+  "name": "@ssw/identity-sdk",
+  "private": true,
+  "type": "module",
+  "main": "dist/browser.js",
+  "types": "dist/browser.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/browser.d.ts",
+      "import": "./dist/browser.js"
+    },
+    "./browser": {
+      "types": "./dist/browser.d.ts",
+      "import": "./dist/browser.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js"
+    },
+    "./generated": {
+      "types": "./dist/generated.d.ts",
+      "import": "./dist/generated.js"
+    },
+    "./holder": {
+      "types": "./dist/holder/index.d.ts",
+      "import": "./dist/holder/index.js"
+    },
+    "./issuer": {
+      "types": "./dist/issuer/index.d.ts",
+      "import": "./dist/issuer/index.js"
+    },
+    "./issuer/browser": {
+      "types": "./dist/issuer/browser.d.ts",
+      "import": "./dist/issuer/browser.js"
+    },
+    "./issuer/server": {
+      "types": "./dist/issuer/server.d.ts",
+      "import": "./dist/issuer/server.js"
+    },
+    "./verifier": {
+      "types": "./dist/verifier/index.d.ts",
+      "import": "./dist/verifier/index.js"
+    },
+    "./scanner": {
+      "types": "./dist/scanner/index.d.ts",
+      "import": "./dist/scanner/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "pnpm build && node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@ssw/credential-formats": "workspace:*",
+    "@ssw/credential-scanner": "workspace:*"
+  }
+}

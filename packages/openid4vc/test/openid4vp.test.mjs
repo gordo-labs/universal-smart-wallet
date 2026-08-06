@@ -34,6 +34,41 @@ describe('OpenID4VP same-device direct_post', () => {
       ),
     ).rejects.toMatchObject({ code: 'untrusted_request' });
   });
+
+  it('requires HTTPS and trusted hooks for remote or transaction-bound requests', async () => {
+    await expect(
+      parseOpenId4VpRequest(
+        'https://verifier.example/authorize?response_type=vp_token&response_mode=direct_post&client_id=https%3A%2F%2Fverifier.example&response_uri=http%3A%2F%2Fverifier.example%2Fcb&nonce=n&state=s&dcql_query=%7B%22credentials%22%3A%5B%5D%7D',
+      ),
+    ).rejects.toMatchObject({ code: 'insecure_origin' });
+    await expect(
+      parseOpenId4VpRequest({
+        response_type: 'vp_token',
+        response_mode: 'direct_post',
+        client_id: 'https://verifier.example',
+        response_uri: 'https://verifier.example/cb',
+        nonce: 'n',
+        state: 's',
+        dcql_query: { credentials: [] },
+        transaction_data: ['tx'],
+      }),
+    ).rejects.toMatchObject({ code: 'invalid_transaction_data' });
+    await expect(
+      parseOpenId4VpRequest(
+        {
+          response_type: 'vp_token',
+          response_mode: 'direct_post',
+          client_id: 'https://verifier.example',
+          response_uri: 'https://verifier.example/cb',
+          nonce: 'n',
+          state: 's',
+          dcql_query: { credentials: [] },
+          transaction_data: ['tx'],
+        },
+        { validateTransactionData: async () => false },
+      ),
+    ).rejects.toMatchObject({ code: 'invalid_transaction_data' });
+  });
   it('consumes state before verification and rejects replay/disclosure mismatch', async () => {
     const value = request();
     let consumed = false;
@@ -78,5 +113,29 @@ describe('OpenID4VP same-device direct_post', () => {
         expectedDisclosures: [],
       }),
     ).rejects.toMatchObject({ code: 'disclosure_mismatch' });
+  });
+
+  it('consumes state only after size and parameter checks, and rejects duplicates', async () => {
+    const value = request();
+    let consumed = 0;
+    const verify = async () => ({ disclosures: [], claims: {} });
+    const base = {
+      expected: value,
+      consumeState: () => ((consumed += 1), true),
+      verifyVpToken: verify,
+    };
+    await expect(
+      verifyOpenId4VpDirectPost({
+        ...base,
+        body: 'state=s&state=s&vp_token=t',
+      }),
+    ).rejects.toMatchObject({ code: 'duplicate_parameter' });
+    await expect(
+      verifyOpenId4VpDirectPost({
+        ...base,
+        body: `state=${value.state}&vp_token=${'x'.repeat(8_193)}`,
+      }),
+    ).rejects.toMatchObject({ code: 'invalid_request' });
+    expect(consumed).toBe(0);
   });
 });

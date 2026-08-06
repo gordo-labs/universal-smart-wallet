@@ -1,0 +1,17 @@
+{
+  "name": "@ssw/use-case-gallery",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": { "build": "tsc", "typecheck": "tsc --noEmit", "test": "pnpm build && node --test test/*.test.mjs" },
+  "dependencies": {
+    "@ssw/institutional-use-cases": "workspace:*",
+    "@ssw/test-fixtures": "workspace:*",
+    "@ssw/wallet-actions": "workspace:*",
+    "@ssw/identity-adapter": "workspace:*",
+    "next": "15.5.6",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": { "@types/node": "22.15.30", "@types/react": "19.1.2", "@types/react-dom": "19.1.2", "typescript": "5.9.2" }
+}

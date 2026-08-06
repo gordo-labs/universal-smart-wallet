@@ -30,6 +30,13 @@ export const SYNTHETIC_CREDENTIAL_ID = 'credential-age-over-18';
 /** Stable marker used by the local E2E reset command. */
 export const LOCAL_FIXTURE_VERSION = 'ssw-local-vertical-slice-v1' as const;
 
+export {
+  createPlatformFixture,
+  resetPlatformFixture,
+  type PlatformFixture,
+  type PlatformFixtureOptions,
+} from './platform-use-cases.js';
+
 export async function createSyntheticKeyMaterial() {
   const issuer = await generateKeyPair('ES256');
   const holder = await generateKeyPair('ES256');

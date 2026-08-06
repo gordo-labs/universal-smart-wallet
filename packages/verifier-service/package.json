@@ -1,0 +1,17 @@
+{
+  "name": "@ssw/verifier-service",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "pnpm --filter @ssw/credential-formats build && pnpm --filter @ssw/openid4vc build && pnpm --filter @ssw/trust-registry build && tsc",
+    "typecheck": "pnpm --filter @ssw/credential-formats build && pnpm --filter @ssw/openid4vc build && pnpm --filter @ssw/trust-registry build && tsc --noEmit",
+    "test": "pnpm build && node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@ssw/credential-formats": "workspace:*",
+    "@ssw/openid4vc": "workspace:*",
+    "@ssw/trust-registry": "workspace:*"
+  }
+}

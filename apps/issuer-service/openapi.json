@@ -1,0 +1,693 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Universal Smart Wallet Institutional Issuer",
+    "version": "1.0.0",
+    "description": "Tenant-scoped institutional issuance, review, credential lifecycle, and single-use OpenID4VCI offers. Evidence values are references and SHA-256 digests only."
+  },
+  "servers": [{ "url": "https://issuer.example" }],
+  "security": [{ "bearerAuth": [] }],
+  "paths": {
+    "/v1/health": {
+      "get": {
+        "security": [],
+        "responses": { "200": { "description": "Healthy" } }
+      }
+    },
+    "/.well-known/openid-credential-issuer": {
+      "get": {
+        "security": [],
+        "parameters": [
+          { "$ref": "#/components/parameters/TenantQuery" },
+          { "$ref": "#/components/parameters/IssuerQuery" }
+        ],
+        "responses": {
+          "200": { "description": "OpenID4VCI issuer metadata" },
+          "404": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    },
+    "/v1/templates": {
+      "post": {
+        "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CredentialTemplate" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Published template registered" },
+          "400": { "$ref": "#/components/responses/Error" },
+          "403": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    },
+    "/v1/issuers": {
+      "post": {
+        "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/IssuerProfile" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Issuer profile registered" },
+          "400": { "$ref": "#/components/responses/Error" },
+          "403": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    },
+    "/v1/reviewer-policies": {
+      "post": {
+        "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ReviewerPolicy" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Reviewer policy registered" },
+          "400": { "$ref": "#/components/responses/Error" },
+          "403": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    },
+    "/v1/issuance-requests": {
+      "post": {
+        "parameters": [{ "$ref": "#/components/parameters/TenantHeader" }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/IssuanceRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Pending evidence review session",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/IssuanceSession" }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/Error" },
+          "403": { "$ref": "#/components/responses/Error" },
+          "409": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    },
+    "/v1/issuance-requests/{sessionId}": {
+      "get": {
+        "parameters": [
+          { "$ref": "#/components/parameters/TenantHeader" },
+          { "$ref": "#/components/parameters/SessionId" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Claims-redacted issuance session",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/IssuanceSession" }
+              }
+            }
+          },
+          "404": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    },
+    "/v1/issuance-requests/{sessionId}/reviews": {
+      "post": {
+        "parameters": [
+          { "$ref": "#/components/parameters/TenantHeader" },
+          { "$ref": "#/components/parameters/SessionId" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["decision"],
+                "properties": {
+                  "decision": { "enum": ["approved", "rejected"] }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Review recorded" },
+          "403": { "$ref": "#/components/responses/Error" },
+          "409": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    },
+    "/v1/issuance-requests/{sessionId}/offers": {
+      "post": {
+        "parameters": [
+          { "$ref": "#/components/parameters/TenantHeader" },
+          { "$ref": "#/components/parameters/SessionId" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/OfferRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Expiring single-use credential offer",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CredentialOffer" }
+              }
+            }
+          },
+          "403": { "$ref": "#/components/responses/Error" },
+          "409": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    },
+    "/v1/oid4vci/{tenantId}/authorize": {
+      "post": {
+        "parameters": [{ "$ref": "#/components/parameters/TenantId" }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/AuthorizationRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Single-use authorization code" },
+          "400": { "$ref": "#/components/responses/Error" },
+          "403": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    },
+    "/v1/oid4vci/{tenantId}/token": {
+      "post": {
+        "security": [],
+        "parameters": [{ "$ref": "#/components/parameters/TenantId" }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/TokenRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Single-use bearer token",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/TokenResponse" }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/Error" },
+          "403": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    },
+    "/v1/oid4vci/{tenantId}/credential": {
+      "post": {
+        "parameters": [{ "$ref": "#/components/parameters/TenantId" }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CredentialRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Issued synthetic credential" },
+          "400": { "$ref": "#/components/responses/Error" },
+          "401": { "$ref": "#/components/responses/Error" },
+          "403": { "$ref": "#/components/responses/Error" },
+          "503": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    },
+    "/v1/credentials/{credentialId}": {
+      "get": {
+        "parameters": [
+          { "$ref": "#/components/parameters/TenantHeader" },
+          { "$ref": "#/components/parameters/CredentialId" }
+        ],
+        "responses": {
+          "200": { "description": "Credential metadata and status" },
+          "404": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    },
+    "/v1/credentials/{credentialId}/reissue": {
+      "post": {
+        "parameters": [
+          { "$ref": "#/components/parameters/TenantHeader" },
+          { "$ref": "#/components/parameters/CredentialId" }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/IssuanceRequest" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Pending reviewed reissuance session" },
+          "404": { "$ref": "#/components/responses/Error" },
+          "409": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    },
+    "/v1/credentials/{credentialId}/suspend": {
+      "post": {
+        "parameters": [
+          { "$ref": "#/components/parameters/TenantHeader" },
+          { "$ref": "#/components/parameters/CredentialId" }
+        ],
+        "responses": {
+          "200": { "description": "Credential suspended" },
+          "404": { "$ref": "#/components/responses/Error" },
+          "409": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    },
+    "/v1/credentials/{credentialId}/revoke": {
+      "post": {
+        "parameters": [
+          { "$ref": "#/components/parameters/TenantHeader" },
+          { "$ref": "#/components/parameters/CredentialId" }
+        ],
+        "responses": {
+          "200": { "description": "Credential irrevocably revoked" },
+          "404": { "$ref": "#/components/responses/Error" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": { "type": "http", "scheme": "bearer" }
+    },
+    "parameters": {
+      "TenantHeader": {
+        "name": "X-Tenant-Id",
+        "in": "header",
+        "required": true,
+        "schema": { "$ref": "#/components/schemas/OpaqueId" }
+      },
+      "TenantId": {
+        "name": "tenantId",
+        "in": "path",
+        "required": true,
+        "schema": { "$ref": "#/components/schemas/OpaqueId" }
+      },
+      "TenantQuery": {
+        "name": "tenant_id",
+        "in": "query",
+        "required": true,
+        "schema": { "$ref": "#/components/schemas/OpaqueId" }
+      },
+      "IssuerQuery": {
+        "name": "issuer_id",
+        "in": "query",
+        "required": true,
+        "schema": { "$ref": "#/components/schemas/OpaqueId" }
+      },
+      "SessionId": {
+        "name": "sessionId",
+        "in": "path",
+        "required": true,
+        "schema": { "$ref": "#/components/schemas/OpaqueId" }
+      },
+      "CredentialId": {
+        "name": "credentialId",
+        "in": "path",
+        "required": true,
+        "schema": { "$ref": "#/components/schemas/OpaqueId" }
+      }
+    },
+    "responses": {
+      "Error": {
+        "description": "Fail-closed error with no credential, evidence, key, or token material",
+        "content": {
+          "application/json": {
+            "schema": { "$ref": "#/components/schemas/Error" }
+          }
+        }
+      }
+    },
+    "schemas": {
+      "OpaqueId": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$"
+      },
+      "Error": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["error"],
+        "properties": {
+          "error": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["code"],
+            "properties": { "code": { "type": "string" } }
+          }
+        }
+      },
+      "CredentialTemplate": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schemaVersion",
+          "tenantId",
+          "templateId",
+          "version",
+          "type",
+          "assurance",
+          "formats",
+          "claims",
+          "status"
+        ],
+        "properties": {
+          "schemaVersion": { "const": 1 },
+          "tenantId": { "$ref": "#/components/schemas/OpaqueId" },
+          "templateId": { "$ref": "#/components/schemas/OpaqueId" },
+          "version": { "type": "integer", "minimum": 1 },
+          "type": { "$ref": "#/components/schemas/OpaqueId" },
+          "assurance": {
+            "enum": ["institutional", "government", "pid", "eaa", "qeaa"]
+          },
+          "formats": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "enum": ["sd-jwt-vc", "iso-mdoc", "w3c-vc-di"] }
+          },
+          "claims": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/components/schemas/ClaimDefinition" }
+          },
+          "status": { "const": "published" }
+        }
+      },
+      "ClaimDefinition": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "type", "required", "selectivelyDisclosable"],
+        "properties": {
+          "name": { "$ref": "#/components/schemas/OpaqueId" },
+          "type": { "enum": ["string", "boolean", "number", "date"] },
+          "required": { "type": "boolean" },
+          "selectivelyDisclosable": { "type": "boolean" }
+        }
+      },
+      "IssuerProfile": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schemaVersion",
+          "tenantId",
+          "issuerId",
+          "issuerUri",
+          "assurance",
+          "keyRef",
+          "authorizedTemplateIds"
+        ],
+        "properties": {
+          "schemaVersion": { "const": 1 },
+          "tenantId": { "$ref": "#/components/schemas/OpaqueId" },
+          "issuerId": { "$ref": "#/components/schemas/OpaqueId" },
+          "issuerUri": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "assurance": {
+            "enum": ["institutional", "government", "pid", "eaa", "qeaa"]
+          },
+          "keyRef": { "$ref": "#/components/schemas/OpaqueId" },
+          "authorizedTemplateIds": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": { "$ref": "#/components/schemas/OpaqueId" }
+          }
+        }
+      },
+      "ReviewerPolicy": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schemaVersion",
+          "tenantId",
+          "policyId",
+          "templateId",
+          "requiredApprovals",
+          "authorizedReviewerIds"
+        ],
+        "properties": {
+          "schemaVersion": { "const": 1 },
+          "tenantId": { "$ref": "#/components/schemas/OpaqueId" },
+          "policyId": { "$ref": "#/components/schemas/OpaqueId" },
+          "templateId": { "$ref": "#/components/schemas/OpaqueId" },
+          "requiredApprovals": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10
+          },
+          "authorizedReviewerIds": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 10,
+            "uniqueItems": true,
+            "items": { "$ref": "#/components/schemas/OpaqueId" }
+          }
+        }
+      },
+      "EvidenceReference": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evidenceId", "kind", "digest", "source"],
+        "properties": {
+          "evidenceId": { "$ref": "#/components/schemas/OpaqueId" },
+          "kind": { "$ref": "#/components/schemas/OpaqueId" },
+          "digest": { "type": "string", "pattern": "^sha256:[a-f0-9]{64}$" },
+          "source": { "type": "string", "maxLength": 256 }
+        }
+      },
+      "SubjectBinding": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["schemaVersion", "bindingId", "method", "value"],
+        "properties": {
+          "schemaVersion": { "const": 1 },
+          "bindingId": { "$ref": "#/components/schemas/OpaqueId" },
+          "method": {
+            "enum": ["jwk-thumbprint", "did-pkh", "mdoc-device-key"]
+          },
+          "value": { "type": "string", "maxLength": 2048, "writeOnly": true }
+        }
+      },
+      "IssuanceRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sessionId",
+          "issuerId",
+          "templateId",
+          "templateVersion",
+          "format",
+          "reviewerPolicyId",
+          "claims",
+          "subjectBinding",
+          "evidence",
+          "expiresAt"
+        ],
+        "properties": {
+          "sessionId": { "$ref": "#/components/schemas/OpaqueId" },
+          "issuerId": { "$ref": "#/components/schemas/OpaqueId" },
+          "templateId": { "$ref": "#/components/schemas/OpaqueId" },
+          "templateVersion": { "type": "integer", "minimum": 1 },
+          "format": { "enum": ["sd-jwt-vc", "iso-mdoc", "w3c-vc-di"] },
+          "reviewerPolicyId": { "$ref": "#/components/schemas/OpaqueId" },
+          "claims": { "type": "object", "writeOnly": true },
+          "subjectBinding": { "$ref": "#/components/schemas/SubjectBinding" },
+          "evidence": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 16,
+            "items": { "$ref": "#/components/schemas/EvidenceReference" }
+          },
+          "expiresAt": { "type": "integer", "minimum": 0 }
+        }
+      },
+      "IssuanceSession": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "schemaVersion",
+          "tenantId",
+          "sessionId",
+          "kind",
+          "issuerId",
+          "templateId",
+          "templateVersion",
+          "format",
+          "reviewerPolicyId",
+          "state",
+          "evidence",
+          "reviews",
+          "expiresAt"
+        ],
+        "properties": {
+          "schemaVersion": { "const": 1 },
+          "tenantId": { "$ref": "#/components/schemas/OpaqueId" },
+          "sessionId": { "$ref": "#/components/schemas/OpaqueId" },
+          "kind": { "enum": ["issue", "reissue"] },
+          "issuerId": { "$ref": "#/components/schemas/OpaqueId" },
+          "templateId": { "$ref": "#/components/schemas/OpaqueId" },
+          "templateVersion": { "type": "integer" },
+          "format": { "type": "string" },
+          "reviewerPolicyId": { "$ref": "#/components/schemas/OpaqueId" },
+          "state": {
+            "enum": [
+              "pending_review",
+              "approved",
+              "offered",
+              "issued",
+              "rejected",
+              "expired",
+              "signing_ambiguous"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/EvidenceReference" }
+          },
+          "reviews": { "type": "array", "items": { "type": "object" } },
+          "expiresAt": { "type": "integer" },
+          "replacesCredentialId": { "$ref": "#/components/schemas/OpaqueId" }
+        }
+      },
+      "OfferRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["flow"],
+        "properties": {
+          "flow": { "enum": ["pre-authorized_code", "authorization_code"] },
+          "ttlMs": { "type": "integer", "minimum": 1000, "maximum": 600000 },
+          "clientId": { "$ref": "#/components/schemas/OpaqueId" },
+          "redirectUri": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          }
+        }
+      },
+      "CredentialOffer": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "credential_issuer",
+          "credential_configuration_ids",
+          "grants",
+          "expires_in"
+        ],
+        "properties": {
+          "credential_issuer": { "type": "string", "format": "uri" },
+          "credential_configuration_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "grants": { "type": "object" },
+          "expires_in": { "type": "integer", "minimum": 1, "maximum": 600 }
+        }
+      },
+      "AuthorizationRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["issuer_state", "client_id", "redirect_uri", "state"],
+        "properties": {
+          "issuer_state": { "type": "string", "writeOnly": true },
+          "client_id": { "$ref": "#/components/schemas/OpaqueId" },
+          "redirect_uri": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "state": { "type": "string" }
+        }
+      },
+      "TokenRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["grant_type"],
+        "properties": {
+          "grant_type": {
+            "enum": [
+              "authorization_code",
+              "urn:ietf:params:oauth:grant-type:pre-authorized_code"
+            ]
+          },
+          "pre-authorized_code": { "type": "string", "writeOnly": true },
+          "code": { "type": "string", "writeOnly": true },
+          "client_id": { "$ref": "#/components/schemas/OpaqueId" },
+          "redirect_uri": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          }
+        }
+      },
+      "TokenResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["access_token", "token_type", "expires_in"],
+        "properties": {
+          "access_token": { "type": "string", "writeOnly": true },
+          "token_type": { "const": "Bearer" },
+          "expires_in": { "type": "integer", "minimum": 0, "maximum": 60 }
+        }
+      },
+      "CredentialRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["credential_configuration_id", "proof"],
+        "properties": {
+          "credential_configuration_id": { "type": "string" },
+          "proof": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["proof_type", "jwt"],
+            "properties": {
+              "proof_type": { "const": "jwt" },
+              "jwt": { "type": "string", "maxLength": 8192, "writeOnly": true }
+            }
+          }
+        }
+      }
+    }
+  }
+}

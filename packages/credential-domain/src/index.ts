@@ -405,7 +405,15 @@ const isPrivateHost = (hostname: string): boolean => {
   const host = hostname.toLowerCase();
   if (host === 'localhost' || host.endsWith('.localhost') || host === '::1')
     return true;
-  if (/^127\./u.test(host) || /^10\./u.test(host) || /^192\.168\./u.test(host))
+  // Block loopback, RFC1918, link-local and carrier-grade NAT ranges. Status
+  // endpoints are attacker-controlled input and must not be an SSRF primitive.
+  if (
+    /^127\./u.test(host) ||
+    /^10\./u.test(host) ||
+    /^192\.168\./u.test(host) ||
+    /^169\.254\./u.test(host) ||
+    /^100\.(?:6[4-9]|[7-9]\d|1[01]\d|12[0-7])\./u.test(host)
+  )
     return true;
   const match = host.match(/^172\.(\d{1,3})\./u);
   return Boolean(match && Number(match[1]) >= 16 && Number(match[1]) <= 31);
@@ -418,7 +426,12 @@ const boundedStatusUrl = (value: string): URL => {
   } catch {
     throw new Error('ssrf_blocked');
   }
-  if (url.protocol !== 'https:' || isPrivateHost(url.hostname))
+  if (
+    url.protocol !== 'https:' ||
+    isPrivateHost(url.hostname) ||
+    url.username.length > 0 ||
+    url.password.length > 0
+  )
     throw new Error('ssrf_blocked');
   return url;
 };
@@ -470,7 +483,9 @@ export class StatusCache {
       const parsed = JSON.parse(response.body) as Partial<StatusRecord>;
       if (
         !['valid', 'revoked', 'suspended'].includes(parsed.status ?? '') ||
-        !Number.isFinite(parsed.expiresAt)
+        typeof parsed.expiresAt !== 'number' ||
+        !Number.isSafeInteger(parsed.expiresAt) ||
+        parsed.expiresAt <= now
       )
         throw new Error('invalid_response');
       const record = {
@@ -486,6 +501,8 @@ export class StatusCache {
         cached: false,
       };
     } catch (error) {
+      if (error instanceof Error && error.message === 'invalid_response')
+        return { ok: false, code: 'invalid_response', cached: false };
       if (cached)
         return {
           ok: false,
@@ -496,4 +513,302 @@ export class StatusCache {
       return { ok: false, code: 'unavailable', cached: false };
     }
   }
+}
+
+// Institutional credential domain v1. These objects contain metadata and
+// policy only; raw evidence and credential values are intentionally absent.
+export const IDENTITY_DOMAIN_VERSION = 1 as const;
+export type AssuranceLevel =
+  | 'self_attested'
+  | 'institutional'
+  | 'government'
+  | 'qualified'
+  | 'pid'
+  | 'eaa'
+  | 'qeaa';
+export type CredentialFormat =
+  | 'sd-jwt-vc'
+  | 'iso-mdoc'
+  | 'w3c-vc-di'
+  | 'jwt-vc-legacy';
+export type TemplateStatus = 'draft' | 'review' | 'published' | 'deprecated';
+export type ClaimDefinition = {
+  readonly name: string;
+  readonly type: 'string' | 'boolean' | 'number' | 'date';
+  readonly required: boolean;
+  readonly selectivelyDisclosable: boolean;
+};
+export type CredentialTemplate = {
+  readonly schemaVersion: 1;
+  readonly tenantId: string;
+  readonly templateId: string;
+  readonly version: number;
+  readonly type: string;
+  readonly assurance: AssuranceLevel;
+  readonly formats: readonly CredentialFormat[];
+  readonly claims: readonly ClaimDefinition[];
+  readonly status: TemplateStatus;
+};
+export type CredentialSchema = {
+  readonly schemaVersion: 1;
+  readonly tenantId: string;
+  readonly schemaId: string;
+  readonly templateId: string;
+  readonly templateVersion: number;
+  readonly digest: string;
+};
+export type IssuerProfile = {
+  readonly schemaVersion: 1;
+  readonly tenantId: string;
+  readonly issuerId: string;
+  readonly issuerUri: string;
+  readonly assurance: Exclude<AssuranceLevel, 'self_attested'>;
+  readonly keyRef: string;
+  readonly authorizedTemplateIds: readonly string[];
+};
+export type SubjectBinding = {
+  readonly schemaVersion: 1;
+  readonly bindingId: string;
+  readonly method: 'jwk-thumbprint' | 'did-pkh' | 'mdoc-device-key';
+  readonly value: string;
+};
+export type IssuanceSession = {
+  readonly schemaVersion: 1;
+  readonly tenantId: string;
+  readonly sessionId: string;
+  readonly templateId: string;
+  readonly issuerId: string;
+  readonly subjectBinding: SubjectBinding;
+  readonly state:
+    | 'pending_review'
+    | 'approved'
+    | 'offered'
+    | 'issued'
+    | 'rejected'
+    | 'expired';
+  readonly expiresAt: string;
+};
+export type VerificationPolicy = {
+  readonly schemaVersion: 1;
+  readonly tenantId: string;
+  readonly policyId: string;
+  readonly acceptedTemplateIds: readonly string[];
+  readonly acceptedAssurance: readonly AssuranceLevel[];
+  readonly requiredClaims: readonly string[];
+  readonly maxStatusAgeSeconds: number;
+};
+export type VerificationSession = {
+  readonly schemaVersion: 1;
+  readonly tenantId: string;
+  readonly sessionId: string;
+  readonly policyId: string;
+  readonly nonce: string;
+  readonly state: 'created' | 'requested' | 'consumed' | 'expired';
+  readonly expiresAt: string;
+};
+export type VerificationReceipt = {
+  readonly schemaVersion: 1;
+  readonly tenantId: string;
+  readonly receiptId: string;
+  readonly policyId: string;
+  readonly result: 'verified' | 'rejected' | 'indeterminate';
+  readonly assurance?: AssuranceLevel;
+  readonly reasonCode: string;
+  readonly verifiedAt: string;
+};
+
+const assurance = new Set<AssuranceLevel>([
+  'self_attested',
+  'institutional',
+  'government',
+  'qualified',
+  'pid',
+  'eaa',
+  'qeaa',
+]);
+const formats = new Set<CredentialFormat>([
+  'sd-jwt-vc',
+  'iso-mdoc',
+  'w3c-vc-di',
+  'jwt-vc-legacy',
+]);
+const opaqueIdentifier = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/u;
+const piiLike = /@|\s|\+?[0-9][0-9 ()-]{7,}/u;
+function assertOpaqueId(value: unknown, name: string): asserts value is string {
+  if (
+    typeof value !== 'string' ||
+    !opaqueIdentifier.test(value) ||
+    piiLike.test(value)
+  )
+    throw new Error(`${name} must be an opaque identifier`);
+}
+function assertStrictRecord(
+  value: unknown,
+  keys: readonly string[],
+  name: string,
+): asserts value is Record<string, unknown> {
+  if (!value || typeof value !== 'object' || Array.isArray(value))
+    throw new Error(`${name} must be an object`);
+  for (const key of Object.keys(value))
+    if (!keys.includes(key))
+      throw new Error(`${name} contains unknown field ${key}`);
+}
+function assertHttps(value: unknown, name: string): asserts value is string {
+  if (typeof value !== 'string') throw new Error(`${name} must be https`);
+  const url = new URL(value);
+  if (url.protocol !== 'https:' || url.username || url.password)
+    throw new Error(`${name} must be https`);
+}
+function freeze<T>(value: T): Readonly<T> {
+  if (value && typeof value === 'object') {
+    Object.freeze(value);
+    for (const child of Object.values(value as Record<string, unknown>))
+      freeze(child);
+  }
+  return value;
+}
+
+export function parseCredentialTemplate(value: unknown): CredentialTemplate {
+  assertStrictRecord(
+    value,
+    [
+      'schemaVersion',
+      'tenantId',
+      'templateId',
+      'version',
+      'type',
+      'assurance',
+      'formats',
+      'claims',
+      'status',
+    ],
+    'template',
+  );
+  if (value.schemaVersion !== IDENTITY_DOMAIN_VERSION)
+    throw new Error('unsupported template schema version');
+  assertOpaqueId(value.tenantId, 'tenantId');
+  assertOpaqueId(value.templateId, 'templateId');
+  assertOpaqueId(value.type, 'type');
+  if (!Number.isSafeInteger(value.version) || Number(value.version) < 1)
+    throw new Error('invalid template version');
+  if (!assurance.has(value.assurance as AssuranceLevel))
+    throw new Error('unknown assurance');
+  if (
+    !Array.isArray(value.formats) ||
+    value.formats.length === 0 ||
+    value.formats.some((item) => !formats.has(item as CredentialFormat))
+  )
+    throw new Error('unsupported credential format');
+  if (value.formats.includes('jwt-vc-legacy'))
+    throw new Error('legacy JWT-VC is verify-only');
+  if (!Array.isArray(value.claims) || value.claims.length === 0)
+    throw new Error('template requires claims');
+  const names = new Set<string>();
+  for (const item of value.claims) {
+    assertStrictRecord(
+      item,
+      ['name', 'type', 'required', 'selectivelyDisclosable'],
+      'claim',
+    );
+    assertOpaqueId(item.name, 'claim name');
+    if (names.has(item.name)) throw new Error('duplicate claim');
+    names.add(item.name);
+    if (!['string', 'boolean', 'number', 'date'].includes(String(item.type)))
+      throw new Error('unsupported claim type');
+    if (
+      typeof item.required !== 'boolean' ||
+      typeof item.selectivelyDisclosable !== 'boolean'
+    )
+      throw new Error('invalid claim flags');
+  }
+  if (
+    !['draft', 'review', 'published', 'deprecated'].includes(
+      String(value.status),
+    )
+  )
+    throw new Error('invalid template status');
+  return freeze({
+    ...value,
+    formats: [...value.formats],
+    claims: value.claims.map((item) => ({ ...item })),
+  } as unknown as CredentialTemplate) as CredentialTemplate;
+}
+
+export function publishCredentialTemplate(
+  value: CredentialTemplate,
+): CredentialTemplate {
+  const template = parseCredentialTemplate(value);
+  if (template.status !== 'review')
+    throw new Error('only reviewed templates can be published');
+  return parseCredentialTemplate({ ...template, status: 'published' });
+}
+export function deprecateCredentialTemplate(
+  value: CredentialTemplate,
+): CredentialTemplate {
+  const template = parseCredentialTemplate(value);
+  if (template.status !== 'published')
+    throw new Error('only published templates can be deprecated');
+  return parseCredentialTemplate({ ...template, status: 'deprecated' });
+}
+export function assertSameTenant(
+  left: { readonly tenantId: string },
+  right: { readonly tenantId: string },
+): void {
+  assertOpaqueId(left.tenantId, 'tenantId');
+  assertOpaqueId(right.tenantId, 'tenantId');
+  if (left.tenantId !== right.tenantId)
+    throw new Error('cross-tenant reference rejected');
+}
+export function assuranceAllowed(
+  actual: AssuranceLevel,
+  policy: VerificationPolicy,
+): boolean {
+  if (
+    !assurance.has(actual) ||
+    !policy.acceptedAssurance.every((item) => assurance.has(item))
+  )
+    return false;
+  return policy.acceptedAssurance.includes(actual);
+}
+export function parseIssuerProfile(value: unknown): IssuerProfile {
+  assertStrictRecord(
+    value,
+    [
+      'schemaVersion',
+      'tenantId',
+      'issuerId',
+      'issuerUri',
+      'assurance',
+      'keyRef',
+      'authorizedTemplateIds',
+    ],
+    'issuer profile',
+  );
+  if (value.schemaVersion !== 1)
+    throw new Error('unsupported issuer profile version');
+  assertOpaqueId(value.tenantId, 'tenantId');
+  assertOpaqueId(value.issuerId, 'issuerId');
+  assertOpaqueId(value.keyRef, 'keyRef');
+  assertHttps(value.issuerUri, 'issuerUri');
+  if (
+    value.assurance === 'self_attested' ||
+    !assurance.has(value.assurance as AssuranceLevel)
+  )
+    throw new Error('institutional issuer requires institutional assurance');
+  if (
+    !Array.isArray(value.authorizedTemplateIds) ||
+    value.authorizedTemplateIds.some((id) => {
+      try {
+        assertOpaqueId(id, 'templateId');
+        return false;
+      } catch {
+        return true;
+      }
+    })
+  )
+    throw new Error('invalid authorized templates');
+  return freeze({
+    ...value,
+    authorizedTemplateIds: [...value.authorizedTemplateIds],
+  } as unknown as IssuerProfile) as IssuerProfile;
 }

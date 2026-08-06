@@ -32,10 +32,10 @@ source only; `gzip -n` removes host-specific gzip metadata.
 release_tag=v0.1.0-alpha.1
 release_commit=de994c6cf3db82158b3118e9c3f7cc1b501fda07
 git diff --exit-code "$release_commit"
-git archive --format=tar --prefix="sovereign-smart-wallet-${release_tag#v}/" \
-  "$release_commit" | gzip -n > "sovereign-smart-wallet-${release_tag}.tar.gz"
-shasum -a 256 "sovereign-smart-wallet-${release_tag}.tar.gz" \
-  | tee "sovereign-smart-wallet-${release_tag}.tar.gz.sha256"
+git archive --format=tar --prefix="universal-smart-wallet-${release_tag#v}/" \
+  "$release_commit" | gzip -n > "universal-smart-wallet-${release_tag}.tar.gz"
+shasum -a 256 "universal-smart-wallet-${release_tag}.tar.gz" \
+  | tee "universal-smart-wallet-${release_tag}.tar.gz.sha256"
 ```
 
 Repeat on another clean clone and compare the checksum byte-for-byte. Generate

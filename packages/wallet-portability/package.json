@@ -1,0 +1,20 @@
+{
+  "name": "@ssw/wallet-portability",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "pnpm build && vitest run"
+  },
+  "dependencies": {
+    "@ssw/credential-vault": "workspace:*",
+    "@ssw/platform-types": "workspace:*",
+    "jose": "6.2.4"
+  },
+  "devDependencies": {
+    "vitest": "4.1.10"
+  }
+}
