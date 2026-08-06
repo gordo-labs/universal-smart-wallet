@@ -12,8 +12,8 @@
 - **Execution:** 79 atomic tasks with explicit dependencies, parallel waves,
   acceptance criteria, validation, and agent prompts. `SSW-001`–`SSW-013`,
   `SSW-015`–`SSW-024`, `SSW-026`, `SSW-028`–`SSW-048` are Done. `SSW-025` has a
-  passing local and Base Sepolia RC gates; `SSW-027` remains blocked on human
-  release approval. `SSW-049`–`SSW-079` are
+  passing local and Base Sepolia RC gates; `SSW-027` is in progress following
+  explicit owner release approval. `SSW-049`–`SSW-079` are
   Done and extend the platform through generalized credential formats,
   trust/status, institutional signing, issuer, self-issued, verifier services,
   actor-specific SDKs, admin/holder/scanner/mobile surfaces, sector examples,
@@ -44,8 +44,7 @@
 
 ## Next
 
-1. `SSW-027` — release evidence is prepared but publication is blocked pending
-   explicit release approval and final candidate selection.
+1. `SSW-027` — publish the approved alpha tag/release after the final checks.
 3. Documentation is complete in `docs/platform/` and the Next.js `/platform`
    section; run the documented checks after any implementation change.
 4. Keep the operator handoff and claims audit synchronized when future identity
