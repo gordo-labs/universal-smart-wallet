@@ -52,7 +52,7 @@ Add synthetic residence, permit, public-licence, PID/EAA policy examples with ex
 ```text
 Implement SSW-074: Add the government credential use-case pack.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Add synthetic residence, permit, public-licence, PID/EAA policy examples with explicit authority and legal-status boundaries.
 
 Mandatory start:

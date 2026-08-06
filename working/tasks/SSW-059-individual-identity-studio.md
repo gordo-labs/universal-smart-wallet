@@ -52,7 +52,7 @@ Let holders accept offers, list credentials, and inspect issuer trust, assurance
 ```text
 Implement SSW-059: Build the holder credential inbox and trust inspector.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Let holders accept offers, list credentials, and inspect issuer trust, assurance, status, expiry, and claims before storage.
 
 Mandatory start:

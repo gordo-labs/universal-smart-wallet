@@ -53,7 +53,7 @@ Prove deterministic issuer-wallet-verifier, scanner, mobile, status, and sector 
 ```text
 Implement SSW-063: Build the deterministic institutional identity E2E gate.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Prove deterministic issuer-wallet-verifier, scanner, mobile, status, and sector journeys from a clean local state.
 
 Mandatory start:

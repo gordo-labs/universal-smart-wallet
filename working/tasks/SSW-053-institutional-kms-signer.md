@@ -52,7 +52,7 @@ Provide non-exportable institutional signing, rotation, dual approval, and a cle
 ```text
 Implement SSW-053: Implement institutional KMS/HSM signing ports.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Provide non-exportable institutional signing, rotation, dual approval, and a clearly unsafe local development signer.
 
 Mandatory start:

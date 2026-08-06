@@ -52,7 +52,7 @@ Create OpenID4VP verification sessions and minimal receipts with signature, bind
 ```text
 Implement SSW-056: Build the credential verification service.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Create OpenID4VP verification sessions and minimal receipts with signature, binding, policy, trust, expiry, and status checks.
 
 Mandatory start:

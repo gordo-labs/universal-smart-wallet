@@ -54,7 +54,7 @@ Convert a valid off-chain result into a short-lived attestor-signed, chain/consu
 ```text
 Implement SSW-023: Build the short-lived on-chain attestation and access demo.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Convert a valid off-chain result into a short-lived attestor-signed, chain/consumer/policy/nonce-scoped message and gate one local/testnet demo contract without writing credential data on-chain.
 
 Mandatory start:

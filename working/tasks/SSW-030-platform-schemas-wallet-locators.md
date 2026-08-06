@@ -54,7 +54,7 @@ Create versioned runtime schemas for tenants, principals, wallets, signers, auth
 ```text
 Implement SSW-030: Implement platform schemas and opaque wallet locators.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Create versioned runtime schemas for tenants, principals, wallets, signers, auth identities, transaction intents, challenges, audit events, migration bundles, and opaque tenant-scoped wallet locators.
 
 Mandatory start:

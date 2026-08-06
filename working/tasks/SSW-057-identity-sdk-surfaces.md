@@ -52,7 +52,7 @@ Create the shared transport, generated domain types, stable errors, cancellation
 ```text
 Implement SSW-057: Build the format-neutral Identity SDK foundation.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Create the shared transport, generated domain types, stable errors, cancellation, timeout, and browser/server boundaries used by actor-specific SDKs.
 
 Mandatory start:

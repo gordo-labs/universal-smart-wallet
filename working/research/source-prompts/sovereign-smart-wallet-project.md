@@ -1,8 +1,8 @@
-# Sovereign Smart Wallet
+# Universal Smart Wallet
 
 ## 1. Resumen
 
-Sovereign Smart Wallet es una wallet de identidad y activos basada en una smart
+Universal Smart Wallet es una wallet de identidad y activos basada en una smart
 account programable. Permite recibir, custodiar y presentar credenciales
 verificables sin publicar datos personales en blockchain.
 

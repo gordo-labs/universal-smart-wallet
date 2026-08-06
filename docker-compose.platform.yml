@@ -1,4 +1,4 @@
-name: sovereign-smart-wallet-platform
+name: universal-smart-wallet-platform
 
 services:
   postgres:

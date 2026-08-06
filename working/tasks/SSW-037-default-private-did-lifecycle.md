@@ -55,7 +55,7 @@ Create a local did:pkh controller reference automatically for each Safe while ke
 ```text
 Implement SSW-037: Add the default private DID lifecycle.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Create a local did:pkh controller reference automatically for each Safe while keeping publication optional and credential presentations pairwise by default.
 
 Mandatory start:

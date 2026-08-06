@@ -4,7 +4,7 @@
 
 | Field | Value |
 | --- | --- |
-| Status | Blocked |
+| Status | Done |
 | Priority | P0 |
 | Wave | 10 |
 | Lane | integration |
@@ -54,7 +54,7 @@ Run and document the complete synthetic flow locally and on the supported testne
 ```text
 Implement SSW-025: Integrate the full local and testnet release candidate.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Run and document the complete synthetic flow locally and on the supported testnet, including account creation, credential exchange, recovery, status rejection, and optional attestation-gated access.
 
 Mandatory start:

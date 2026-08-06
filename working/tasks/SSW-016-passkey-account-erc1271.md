@@ -54,7 +54,7 @@ Register a WebAuthn passkey, derive or deploy the selected smart account locally
 ```text
 Implement SSW-016: Implement the local passkey smart account and ERC-1271 flow.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Register a WebAuthn passkey, derive or deploy the selected smart account locally, execute a local operation, and validate account signatures through ERC-1271.
 
 Mandatory start:

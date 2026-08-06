@@ -54,7 +54,7 @@ Wrap a maintained SD-JWT implementation for the pinned SD-JWT VC draft subset, i
 ```text
 Implement SSW-008: Implement the version-pinned SD-JWT VC adapter.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Wrap a maintained SD-JWT implementation for the pinned SD-JWT VC draft subset, including issuance, disclosure, key binding, issuer metadata, status references, and negative fixtures.
 
 Mandatory start:

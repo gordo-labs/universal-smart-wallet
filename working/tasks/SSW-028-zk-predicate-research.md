@@ -54,7 +54,7 @@ Evaluate whether a maintained, auditable proof system can prove hidden age predi
 ```text
 Implement SSW-028: Research a future ZK predicate-proof path.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Evaluate whether a maintained, auditable proof system can prove hidden age predicates while binding issuer, status, holder, audience, nonce, expiry, and nullifier semantics.
 
 Mandatory start:

@@ -54,7 +54,7 @@ Implement provider-neutral email OTP authentication with a generic transport por
 ```text
 Implement SSW-035: Build the self-hosted email OTP module.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Implement provider-neutral email OTP authentication with a generic transport port, SMTP adapter, Mailpit fixture, and short operational-signer sessions.
 
 Mandatory start:

@@ -52,7 +52,7 @@ Document public issuer, holder, verifier, scanner, transport, error, protocol, a
 ```text
 Implement SSW-064: Publish Identity SDK and protocol developer documentation.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Document public issuer, holder, verifier, scanner, transport, error, protocol, and format APIs with tested examples.
 
 Mandatory start:

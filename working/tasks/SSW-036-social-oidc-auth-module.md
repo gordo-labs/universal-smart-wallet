@@ -54,7 +54,7 @@ Implement generic OIDC/OAuth login and explicit account linking with configurabl
 ```text
 Implement SSW-036: Build the provider-neutral social OIDC module.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Implement generic OIDC/OAuth login and explicit account linking with configurable Google and Apple examples, using issuer plus subject as the canonical external identity.
 
 Mandatory start:

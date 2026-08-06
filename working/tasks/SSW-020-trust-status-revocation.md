@@ -54,7 +54,7 @@ Implement a versioned local trust policy and the pinned status mechanism with bo
 ```text
 Implement SSW-020: Implement issuer trust and credential status/revocation.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Implement a versioned local trust policy and the pinned status mechanism with bounded fetching, cache freshness, issuer key rotation, and deterministic revocation fixtures.
 
 Mandatory start:

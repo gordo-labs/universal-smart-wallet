@@ -1,6 +1,6 @@
 {
-  "name": "Sovereign Smart Wallet",
-  "slug": "sovereign-smart-wallet",
+  "name": "Universal Smart Wallet",
+  "slug": "universal-smart-wallet",
   "type": "public-app",
   "status": "active",
   "lifecycle": "planning",
@@ -24,17 +24,17 @@
   "git": {
     "enabled": true,
     "defaultBranch": "main",
-    "remote": "https://github.com/gordo-labs/sovereign-smart-wallet",
-    "plannedRemote": "https://github.com/gordo-labs/sovereign-smart-wallet",
+    "remote": "https://github.com/gordo-labs/universal-smart-wallet",
+    "plannedRemote": "https://github.com/gordo-labs/universal-smart-wallet",
     "plannedVisibility": "public",
     "publicationState": "public planning scaffold"
   },
   "codex": {
     "primaryThreadId": "019fad60-2d17-7512-acaf-0c740b4a670a",
     "hostId": "slingshot:env_e_6a08403649e88325b41272589868ea9b",
-    "title": "Sovereign Smart Wallet — proyecto y orquestación",
+    "title": "Universal Smart Wallet — proyecto y orquestación",
     "savedProject": "clawd",
-    "workingDirectory": "/Users/sergiogordo/clawd/projects/sovereign-smart-wallet"
+    "workingDirectory": "/Users/sergiogordo/clawd/projects/universal-smart-wallet"
   },
   "telegram": {
     "hasTopic": false

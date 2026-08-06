@@ -54,7 +54,7 @@ Build in-memory and PostgreSQL ports for platform metadata with strict tenant is
 ```text
 Implement SSW-031: Implement multi-tenant storage and redacted audit events.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Build in-memory and PostgreSQL ports for platform metadata with strict tenant isolation, atomic idempotency, migrations, and privacy-safe audit records.
 
 Mandatory start:

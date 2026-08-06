@@ -54,7 +54,7 @@ Build a minimal verifier that generates a DCQL request for is_over_18, tracks st
 ```text
 Implement SSW-013: Build the OpenID4VP verifier demo.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Build a minimal verifier that generates a DCQL request for is_over_18, tracks state/nonce, validates the presentation off-chain, and grants a local demo session.
 
 Mandatory start:

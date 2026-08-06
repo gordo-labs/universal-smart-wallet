@@ -6,7 +6,7 @@ acceso al Mac Studio.
 ---
 
 Quiero que abras y prepares un nuevo proyecto local llamado
-`sovereign-smart-wallet` en este ordenador.
+`universal-smart-wallet` en este ordenador.
 
 ## Objetivo
 
@@ -46,7 +46,7 @@ Antes de editar:
    está abierto dentro de una carpeta de proyectos, úsala. Si hay varias rutas
    plausibles y elegir una cambiaría la ubicación final, pregúntame cuál usar.
 3. Busca primero un repositorio o carpeta existente llamado
-   `sovereign-smart-wallet`.
+   `universal-smart-wallet`.
 4. Si ya existe, ábrelo, inspecciona su estado Git y continúa sin destruir ni
    sobrescribir cambios locales.
 5. Si no existe, crea la carpeta y un repositorio Git nuevo.
@@ -145,7 +145,7 @@ Usa esta estructura como objetivo, ajustándola únicamente si la herramienta de
 smart accounts elegida exige otra organización:
 
 ```text
-sovereign-smart-wallet/
+universal-smart-wallet/
   apps/
     wallet-web/
     issuer-demo/
@@ -324,7 +324,7 @@ para continuar.
 
 Trabaja en incrementos pequeños:
 
-1. `chore: initialize sovereign smart wallet monorepo`
+1. `chore: initialize universal smart wallet monorepo`
 2. `docs: define architecture and security model`
 3. `feat: add credential policy and verification core`
 4. `feat: add issuer wallet verifier demo flow`

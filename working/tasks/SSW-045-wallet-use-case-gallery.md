@@ -54,7 +54,7 @@ Demonstrate passkey, email, social, enterprise provisioning, ERC-20 loyalty, NFT
 ```text
 Implement SSW-045: Build executable Wallet Platform use-case examples.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Demonstrate passkey, email, social, enterprise provisioning, ERC-20 loyalty, NFT/1155 minting, credential-gated access, DID binding, recovery, vendor rotation, and full export/import through public SDKs only.
 
 Mandatory start:

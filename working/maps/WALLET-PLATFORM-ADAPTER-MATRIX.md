@@ -1,7 +1,7 @@
 # Wallet Platform dependency and adapter matrix
 
 This matrix is the implementation boundary for SSW-029 and the following
-platform tasks. It distinguishes what Sovereign Smart Wallet owns from what it
+platform tasks. It distinguishes what Universal Smart Wallet owns from what it
 must integrate behind a replaceable port. Versions are pinned where the
 repository already has a compatibility decision; future adapters require a
 fresh source/license review before implementation.

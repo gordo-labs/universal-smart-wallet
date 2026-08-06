@@ -52,7 +52,7 @@ Parse and classify bounded OpenID4VCI offer, OpenID4VP request, and offline-enve
 ```text
 Implement SSW-060: Build the bounded credential QR parser core.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Parse and classify bounded OpenID4VCI offer, OpenID4VP request, and offline-envelope inputs without camera or navigation side effects.
 
 Mandatory start:

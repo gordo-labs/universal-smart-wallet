@@ -10,7 +10,7 @@
 
 ## Public repository
 
-`https://github.com/gordo-labs/sovereign-smart-wallet`
+`https://github.com/gordo-labs/universal-smart-wallet`
 
 The planning scaffold was published with explicit owner approval on
 2026-07-29. Product releases, deployments, package publication, and any

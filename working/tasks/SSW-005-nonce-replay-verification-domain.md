@@ -54,7 +54,7 @@ Build infrastructure-free challenge generation, state/nonce lifecycle, atomic si
 ```text
 Implement SSW-005: Implement nonce, replay, and verification-result domain logic.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Build infrastructure-free challenge generation, state/nonce lifecycle, atomic single-use replay protection, verification-result construction, and stable error codes.
 
 Mandatory start:

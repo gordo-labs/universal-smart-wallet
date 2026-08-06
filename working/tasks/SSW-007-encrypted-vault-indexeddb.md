@@ -54,7 +54,7 @@ Implement credential encryption, authenticated metadata, indexing, deletion, cor
 ```text
 Implement SSW-007: Implement the encrypted vault and IndexedDB adapter.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Implement credential encryption, authenticated metadata, indexing, deletion, corruption handling, and versioned IndexedDB migrations behind storage and crypto ports.
 
 Mandatory start:

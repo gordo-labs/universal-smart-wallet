@@ -52,7 +52,7 @@ Add tenant-scoped template draft/review/publish/deprecate and opaque KMS/HSM key
 ```text
 Implement SSW-058: Build issuer template and key configuration administration.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Add tenant-scoped template draft/review/publish/deprecate and opaque KMS/HSM key configuration screens.
 
 Mandatory start:

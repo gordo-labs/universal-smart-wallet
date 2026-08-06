@@ -54,7 +54,7 @@ Build a minimal issuer that creates a synthetic AgeCredential offer and issues a
 ```text
 Implement SSW-011: Build the synthetic OpenID4VCI issuer demo.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Build a minimal issuer that creates a synthetic AgeCredential offer and issues a signed is_over_18 credential through the supported local OpenID4VCI flow.
 
 Mandatory start:

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "project": "sovereign-smart-wallet",
+  "project": "universal-smart-wallet",
   "generatedTaskDocs": "working/tasks",
   "tasks": [
     {
@@ -84,7 +84,7 @@
         "Secret scan and repository governance settings are recorded"
       ],
       "validation": [
-        "gh repo view gordo-labs/sovereign-smart-wallet",
+        "gh repo view gordo-labs/universal-smart-wallet",
         "gh workflow list",
         "Inspect branch protection and private vulnerability reporting"
       ],

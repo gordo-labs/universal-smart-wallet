@@ -52,7 +52,7 @@ Expose typed template, approval, issuance, reissue, suspend, revoke, and offer-s
 ```text
 Implement SSW-065: Build the institutional issuer SDK.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Expose typed template, approval, issuance, reissue, suspend, revoke, and offer-session clients over the issuer OpenAPI contract.
 
 Mandatory start:

@@ -55,7 +55,7 @@ Expose deterministic Safe lifecycle, call preparation, ERC-4337 simulation, spon
 ```text
 Implement SSW-032: Implement the Safe wallet-service adapter.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Expose deterministic Safe lifecycle, call preparation, ERC-4337 simulation, sponsorship, submission, and receipt inspection through provider-neutral service ports.
 
 Mandatory start:

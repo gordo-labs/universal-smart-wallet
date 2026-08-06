@@ -56,7 +56,7 @@ Provide tested signer rotation/account recovery and a separately authenticated e
 ```text
 Implement SSW-021: Implement account recovery and encrypted vault backup/restore.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Provide tested signer rotation/account recovery and a separately authenticated encrypted vault export/restore flow, making their independent success conditions clear.
 
 Mandatory start:

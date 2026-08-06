@@ -52,7 +52,7 @@ Add camera, image upload, URI paste, and deep-link handling for issuance and ver
 ```text
 Implement SSW-071: Integrate camera and QR flows into wallet and admin web apps.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Add camera, image upload, URI paste, and deep-link handling for issuance and verification without putting media access in scanner core.
 
 Mandatory start:

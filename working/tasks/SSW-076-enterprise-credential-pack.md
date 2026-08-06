@@ -52,7 +52,7 @@ Add synthetic employment, training, access, and representation credentials with 
 ```text
 Implement SSW-076: Add the enterprise credential use-case pack.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Add synthetic employment, training, access, and representation credentials with tenant-scoped verifier policies.
 
 Mandatory start:

@@ -54,7 +54,7 @@ Re-check official sources, evaluate maintained libraries, and record exact compa
 ```text
 Implement SSW-003: Pin the standards and dependency compatibility baseline.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Re-check official sources, evaluate maintained libraries, and record exact compatible versions and replaceable adapter boundaries before protocol or account code is written.
 
 Mandatory start:

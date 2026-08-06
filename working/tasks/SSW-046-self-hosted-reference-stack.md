@@ -54,7 +54,7 @@ Provide a reproducible Docker Compose stack for wallet-service, PostgreSQL, Mail
 ```text
 Implement SSW-046: Build the self-hosted reference stack.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Provide a reproducible Docker Compose stack for wallet-service, PostgreSQL, Mailpit, Anvil, wallet app, admin console, and gallery with replaceable production infrastructure ports.
 
 Mandatory start:

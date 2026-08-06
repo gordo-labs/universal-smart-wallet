@@ -55,7 +55,7 @@ Provide browser/server passkey registration, authentication, step-up, account bi
 ```text
 Implement SSW-034: Build the modular passkey authentication adapter.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Provide browser/server passkey registration, authentication, step-up, account binding, rotation, and removal while reusing the existing WebAuthn security boundary.
 
 Mandatory start:

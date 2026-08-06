@@ -54,7 +54,7 @@ Produce a reviewer-ready evidence packet covering assets, trust boundaries, key 
 ```text
 Implement SSW-026: Prepare the independent security and privacy review packet.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Produce a reviewer-ready evidence packet covering assets, trust boundaries, key lifecycle, protocol profiles, contracts, deployments, privacy data flow, tests, known gaps, and reproducible setup.
 
 Mandatory start:

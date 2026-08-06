@@ -52,7 +52,7 @@ Let individuals create and wallet-sign explicitly self-attested credentials with
 ```text
 Implement SSW-055: Add wallet-created self-attested credentials.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Let individuals create and wallet-sign explicitly self-attested credentials without impersonating institutional issuers.
 
 Mandatory start:

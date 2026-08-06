@@ -55,7 +55,7 @@ Document the implemented SDK, API, auth modules, email self-hosting, OIDC, porta
 ```text
 Implement SSW-048: Publish complete local Wallet Platform documentation.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Document the implemented SDK, API, auth modules, email self-hosting, OIDC, portability, wallet app, admin console, examples, operations, security limits, and future identity expansions.
 
 Mandatory start:

@@ -55,7 +55,7 @@ Prove the complete platform flows and edge cases across auth, account, DID, asse
 ```text
 Implement SSW-047: Integrate and adversarially test the Wallet Platform.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Prove the complete platform flows and edge cases across auth, account, DID, assets, credentials, recovery, vendor rotation, export/import, tenancy, and provider failures.
 
 Mandatory start:

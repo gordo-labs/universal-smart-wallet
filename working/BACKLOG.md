@@ -1,4 +1,4 @@
-# Backlog — Sovereign Smart Wallet
+# Backlog — Universal Smart Wallet
 
 Canonical atomic construction queue. Dependencies and scheduling metadata live
 in [task-graph.json](orchestration/task-graph.json).

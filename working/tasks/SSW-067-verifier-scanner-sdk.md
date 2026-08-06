@@ -52,7 +52,7 @@ Expose policy/session/request/verify/receipt clients and safe scanner parse/acce
 ```text
 Implement SSW-067: Build verifier session and scanner SDK methods.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Expose policy/session/request/verify/receipt clients and safe scanner parse/accept/respond orchestration.
 
 Mandatory start:

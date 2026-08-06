@@ -54,7 +54,7 @@ Decide and prototype versioned vault key wrapping for WebAuthn PRF-capable and n
 ```text
 Implement SSW-006: Design and prove the vault key-management boundary.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Decide and prototype versioned vault key wrapping for WebAuthn PRF-capable and non-PRF browsers without treating a passkey signature as encryption material.
 
 Mandatory start:

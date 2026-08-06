@@ -52,7 +52,7 @@ Add self-attested creation, permanent assurance warnings, claim-by-claim consent
 ```text
 Implement SSW-070: Build self-attested editing and presentation consent UI.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Add self-attested creation, permanent assurance warnings, claim-by-claim consent, delete, and encrypted export flows.
 
 Mandatory start:

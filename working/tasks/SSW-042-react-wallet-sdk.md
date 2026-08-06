@@ -54,7 +54,7 @@ Expose configurable React providers and hooks for auth, wallets, balances, trans
 ```text
 Implement SSW-042: Build framework-neutral React wallet bindings.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Expose configurable React providers and hooks for auth, wallets, balances, transactions, signers, DID, and portability without requiring Next.js.
 
 Mandatory start:

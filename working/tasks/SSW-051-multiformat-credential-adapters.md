@@ -52,7 +52,7 @@ Expose one adapter contract for SD-JWT VC, ISO mdoc, W3C VC 2.0 Data Integrity, 
 ```text
 Implement SSW-051: Implement replaceable multiformat credential adapters.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Expose one adapter contract for SD-JWT VC, ISO mdoc, W3C VC 2.0 Data Integrity, and legacy JWT-VC inspection.
 
 Mandatory start:

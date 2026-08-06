@@ -52,7 +52,7 @@ Expose accept-offer, list, inspect, create-self-attested, delete, export, and cl
 ```text
 Implement SSW-066: Build holder credential SDK methods and React hooks.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Expose accept-offer, list, inspect, create-self-attested, delete, export, and claim-consent presentation methods plus React hooks.
 
 Mandatory start:

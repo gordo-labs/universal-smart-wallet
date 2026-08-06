@@ -54,7 +54,7 @@ Expose versioned REST and OpenAPI interfaces for wallet lifecycle, transactions,
 ```text
 Implement SSW-040: Build the self-hosted Wallet Service API.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Expose versioned REST and OpenAPI interfaces for wallet lifecycle, transactions, balances, activity, signers, DID, authentication, and portability without hosted-provider coupling.
 
 Mandatory start:

@@ -54,7 +54,7 @@ Build a Next.js console for tenants, API keys, auth providers, networks, infrast
 ```text
 Implement SSW-044: Build the Wallet Platform administration console.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Build a Next.js console for tenants, API keys, auth providers, networks, infrastructure ports, policies, wallets, transactions, audit, DID, assets, credentials, and migration operations.
 
 Mandatory start:

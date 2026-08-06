@@ -54,7 +54,7 @@ Integrate the selected maintained ERC-7579 adapter, prove module install/use/rem
 ```text
 Implement SSW-018: Integrate and test the pinned ERC-7579 compatibility path.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Integrate the selected maintained ERC-7579 adapter, prove module install/use/remove behavior locally, and document Draft-standard migration risk.
 
 Mandatory start:

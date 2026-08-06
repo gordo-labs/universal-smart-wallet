@@ -47,7 +47,7 @@ After explicit publication approval, create the public gordo-labs repository, pu
 
 ## Validation mapped to acceptance
 
-1. `gh repo view gordo-labs/sovereign-smart-wallet`
+1. `gh repo view gordo-labs/universal-smart-wallet`
 2. `gh workflow list`
 3. `Inspect branch protection and private vulnerability reporting`
 
@@ -56,7 +56,7 @@ After explicit publication approval, create the public gordo-labs repository, pu
 ```text
 Implement SSW-002: Create the public GitHub repository and governance baseline.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: After explicit publication approval, create the public gordo-labs repository, push the reviewed foundation, and configure minimum open-source and security governance.
 
 Mandatory start:
@@ -92,7 +92,7 @@ Error and security behavior:
 - Keep core tests independent of hosted RPC, bundler, paymaster, issuer, verifier, resolver, and trust-registry services.
 
 Validation:
-1. Run gh repo view gordo-labs/sovereign-smart-wallet and map the result to acceptance criterion 1.
+1. Run gh repo view gordo-labs/universal-smart-wallet and map the result to acceptance criterion 1.
 2. Run gh workflow list and map the result to acceptance criterion 2.
 3. Run Inspect branch protection and private vulnerability reporting and map the result to acceptance criterion 3.
 - Add or update at least one automated test for every behavior changed.

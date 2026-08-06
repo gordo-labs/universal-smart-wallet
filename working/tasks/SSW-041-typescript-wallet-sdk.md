@@ -54,7 +54,7 @@ Provide familiar browser/server SDK clients for wallets, transactions, balances,
 ```text
 Implement SSW-041: Build the browser and server TypeScript Wallet SDK.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Provide familiar browser/server SDK clients for wallets, transactions, balances, assets, signers, identity, and portability using only the public OpenAPI contract.
 
 Mandatory start:

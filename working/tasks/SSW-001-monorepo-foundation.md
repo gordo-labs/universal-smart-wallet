@@ -54,7 +54,7 @@ Create a minimal installable pnpm monorepo with strict TypeScript, one formattin
 ```text
 Implement SSW-001: Bootstrap the executable monorepo foundation.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Create a minimal installable pnpm monorepo with strict TypeScript, one formatting strategy, root validation scripts, three web app shells, packages, and a Foundry workspace without fictitious contract implementations.
 
 Mandatory start:

@@ -52,7 +52,7 @@ Map implemented behavior to pinned EUDI ARF, OpenID4VCI/VP, HAIP, SD-JWT VC, and
 ```text
 Implement SSW-078: Produce EUDI and HAIP readiness evidence.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Map implemented behavior to pinned EUDI ARF, OpenID4VCI/VP, HAIP, SD-JWT VC, and mdoc requirements with tested/blocked/external status.
 
 Mandatory start:

@@ -52,7 +52,7 @@ Add strict multitenant credential templates, schemas, issuer profiles, issuance 
 ```text
 Implement SSW-050: Generalize credential templates, schemas, and lifecycle types.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Add strict multitenant credential templates, schemas, issuer profiles, issuance sessions, verification policies, and receipts.
 
 Mandatory start:

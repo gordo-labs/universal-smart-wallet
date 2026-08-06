@@ -4,7 +4,7 @@ pragma solidity ^0.8.24;
 import {DeterministicDeploymentHarness, ExternalDeploymentFixture, ERC1271BoundaryFixture} from '../src/DeterministicDeploymentHarness.sol';
 
 contract SmartAccountHarnessTest {
-    bytes32 internal constant SALT = keccak256('sovereign-smart-wallet/SSW-015');
+    bytes32 internal constant SALT = keccak256('universal-smart-wallet/SSW-015');
     bytes20 internal constant ENTRY_POINT_V08 = bytes20(0x4337084D9E255Ff0702461CF8895CE9E3b5Ff108);
 
     function test_deterministic_local_deployment_and_code_hash() public {

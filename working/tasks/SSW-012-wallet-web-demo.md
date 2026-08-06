@@ -55,7 +55,7 @@ Build the wallet UI for local unlock, credential offer intake, verification-befo
 ```text
 Implement SSW-012: Build the wallet web demo.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Build the wallet UI for local unlock, credential offer intake, verification-before-storage, encrypted listing/deletion, request review, disclosure approval, and presentation submission.
 
 Mandatory start:

@@ -1,4 +1,4 @@
-# DOCS-MAP — Sovereign Smart Wallet
+# DOCS-MAP — Universal Smart Wallet
 
 ## Overview
 

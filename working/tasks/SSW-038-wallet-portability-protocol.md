@@ -54,7 +54,7 @@ Support vendor rotation on the same Safe and a signed, versioned, encrypted full
 ```text
 Implement SSW-038: Implement in-place rotation and full wallet portability.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Support vendor rotation on the same Safe and a signed, versioned, encrypted full export/import bundle for migration to another service or wallet.
 
 Mandatory start:

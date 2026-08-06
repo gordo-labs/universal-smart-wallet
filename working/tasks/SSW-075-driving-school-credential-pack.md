@@ -52,7 +52,7 @@ Add synthetic enrollment, lesson completion, exam-readiness, and training-comple
 ```text
 Implement SSW-075: Add the driving-school credential use-case pack.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Add synthetic enrollment, lesson completion, exam-readiness, and training-completion credentials while reserving driving licences for authorities.
 
 Mandatory start:

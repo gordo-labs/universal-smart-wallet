@@ -52,7 +52,7 @@ Compose passkey, secure storage, inbox, consent, camera, deep-link, issuance, pr
 ```text
 Implement SSW-073: Build the Expo mobile identity wallet application.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Compose passkey, secure storage, inbox, consent, camera, deep-link, issuance, presentation, and verification flows in an Expo app.
 
 Mandatory start:

@@ -55,7 +55,7 @@ Define versioned runtime-validated types for internal presentation policies, ver
 ```text
 Implement SSW-004: Implement shared runtime schemas and DCQL policy mapping.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Define versioned runtime-validated types for internal presentation policies, verification results, credential metadata, and a narrow mapping to and from OpenID4VP 1.0 DCQL.
 
 Mandatory start:

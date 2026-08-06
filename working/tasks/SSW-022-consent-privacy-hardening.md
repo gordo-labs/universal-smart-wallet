@@ -55,7 +55,7 @@ Make request trust, verifier identity, purpose, exact disclosures, expiry, statu
 ```text
 Implement SSW-022: Harden consent, phishing resistance, and privacy UX.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Make request trust, verifier identity, purpose, exact disclosures, expiry, status, and denial behavior understandable while preventing silent or coercive presentation.
 
 Mandatory start:

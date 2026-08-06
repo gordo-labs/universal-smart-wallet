@@ -56,7 +56,7 @@ Provide one command that starts the three local apps and proves issuance, encryp
 ```text
 Implement SSW-014: Integrate the deterministic local vertical slice.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Provide one command that starts the three local apps and proves issuance, encrypted storage, minimal presentation, off-chain verification, and access without chain or hosted infrastructure.
 
 Mandatory start:

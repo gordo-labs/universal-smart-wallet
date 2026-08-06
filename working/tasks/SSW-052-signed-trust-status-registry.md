@@ -52,7 +52,7 @@ Register authorized issuers, schemas, keys, jurisdictions, trust marks, revocati
 ```text
 Implement SSW-052: Build the signed off-chain trust and status registry.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Register authorized issuers, schemas, keys, jurisdictions, trust marks, revocation and freshness without requiring blockchain availability.
 
 Mandatory start:

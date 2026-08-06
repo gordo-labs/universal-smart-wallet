@@ -54,7 +54,7 @@ Submit and observe a passkey-authorized UserOperation through configurable bundl
 ```text
 Implement SSW-017: Add the opt-in ERC-4337 testnet adapter.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Submit and observe a passkey-authorized UserOperation through configurable bundler/paymaster adapters on one documented testnet while preserving fully local core tests.
 
 Mandatory start:

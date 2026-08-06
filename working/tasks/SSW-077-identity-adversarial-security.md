@@ -53,7 +53,7 @@ Attack assurance, tenant, key rotation, status, disclosure, QR, deep-link, offli
 ```text
 Implement SSW-077: Add adversarial and privacy tests for institutional identity.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Attack assurance, tenant, key rotation, status, disclosure, QR, deep-link, offline, and mobile lifecycle boundaries.
 
 Mandatory start:

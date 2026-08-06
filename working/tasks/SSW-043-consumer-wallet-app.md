@@ -55,7 +55,7 @@ Build a Next.js PWA for passkey, email, or OIDC onboarding, Safe/DID creation, a
 ```text
 Implement SSW-043: Build the modular consumer wallet application.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Build a Next.js PWA for passkey, email, or OIDC onboarding, Safe/DID creation, assets, credentials, consent, signers, recovery, export, and migration through the public React SDK.
 
 Mandatory start:

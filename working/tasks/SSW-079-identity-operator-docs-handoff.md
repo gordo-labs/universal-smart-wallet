@@ -52,7 +52,7 @@ Publish issuer, verifier, scanner, mobile, KMS/HSM, trust, offline, sector, EUDI
 ```text
 Implement SSW-079: Publish identity operator, sector, and final handoff documentation.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Publish issuer, verifier, scanner, mobile, KMS/HSM, trust, offline, sector, EUDI-boundary, runbook, and generated prompt documentation.
 
 Mandatory start:

@@ -54,7 +54,7 @@ Compare did:pkh and did:ethr for contract-account control, decide where DID is a
 ```text
 Implement SSW-019: Decide and implement DID control and holder binding.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Compare did:pkh and did:ethr for contract-account control, decide where DID is actually needed, and implement a privacy-aware holder-binding adapter that survives passkey rotation.
 
 Mandatory start:

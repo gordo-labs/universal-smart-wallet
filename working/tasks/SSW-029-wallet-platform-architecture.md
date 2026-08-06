@@ -54,7 +54,7 @@ Specify the provider-neutral SDK, self-hosted service, wallet app, admin console
 ```text
 Implement SSW-029: Define the modular Wallet Platform architecture.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Specify the provider-neutral SDK, self-hosted service, wallet app, admin console, authentication, signer, Safe, DID, credential, and portability boundaries before implementation.
 
 Mandatory start:

@@ -52,7 +52,7 @@ Verify bounded signed offline envelopes against cached trust/status and return i
 ```text
 Implement SSW-072: Implement signed offline QR verification and freshness policy.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Verify bounded signed offline envelopes against cached trust/status and return indeterminate when freshness is insufficient.
 
 Mandatory start:

@@ -2,7 +2,7 @@
 
 ## Outcome
 
-Expose Sovereign Smart Wallet through modular, provider-neutral surfaces:
+Expose Universal Smart Wallet through modular, provider-neutral surfaces:
 
 - a browser/server TypeScript SDK and React bindings;
 - a self-hostable wallet REST service;

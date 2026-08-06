@@ -1,18 +1,18 @@
 {
   "expo": {
-    "name": "Sovereign Smart Wallet",
-    "slug": "sovereign-smart-wallet",
+    "name": "Universal Smart Wallet",
+    "slug": "universal-smart-wallet",
     "version": "0.1.0",
     "orientation": "portrait",
     "scheme": "ssw-wallet",
     "userInterfaceStyle": "automatic",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "org.sovereignsmartwallet.mobile",
+      "bundleIdentifier": "org.universalsmartwallet.mobile",
       "associatedDomains": ["applinks:wallet.sovereign.example"]
     },
     "android": {
-      "package": "org.sovereignsmartwallet.mobile",
+      "package": "org.universalsmartwallet.mobile",
       "intentFilters": [
         {
           "action": "VIEW",

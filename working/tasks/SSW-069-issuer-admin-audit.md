@@ -52,7 +52,7 @@ Expose opaque signer health/rotation, trust/status configuration, and tenant-sco
 ```text
 Implement SSW-069: Build issuer signer, trust, and redacted audit administration.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Expose opaque signer health/rotation, trust/status configuration, and tenant-scoped redacted audit views.
 
 Mandatory start:

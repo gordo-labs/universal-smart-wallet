@@ -54,7 +54,7 @@ Authorize operational signers only within contract, selector, asset, amount, fre
 ```text
 Implement SSW-033: Implement scoped operational-signer policies.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Authorize operational signers only within contract, selector, asset, amount, frequency, chain, and TTL policies, with passkey or recovery step-up for sensitive changes.
 
 Mandatory start:

@@ -11,7 +11,7 @@
 | Dependencies | SSW-002, SSW-026 |
 | Primary paths | `CHANGELOG.md`, `README.md`, `SECURITY.md`, `PROJECT.json`, `STATUS.md`, `.github/**` |
 
-> Owner approval received in the current thread. External publication is now authorized, subject to the release checks below.
+> This task includes external writes. Confirm explicit owner authorization immediately before performing them.
 
 ## Active feature context
 
@@ -56,7 +56,7 @@ After explicit release approval, publish a signed alpha tag and GitHub release w
 ```text
 Implement SSW-027: Publish the first open-source alpha release.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: After explicit release approval, publish a signed alpha tag and GitHub release with accurate maturity warnings, reproducible checks, artifacts, limitations, and no production-security claim.
 
 Mandatory start:

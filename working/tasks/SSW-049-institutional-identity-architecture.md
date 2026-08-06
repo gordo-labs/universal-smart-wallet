@@ -52,7 +52,7 @@ Fix the issuer-holder-verifier architecture, assurance semantics, EUDI target, s
 ```text
 Implement SSW-049: Define institutional identity, assurance, and EUDI architecture.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Fix the issuer-holder-verifier architecture, assurance semantics, EUDI target, standards pins, and privacy boundaries.
 
 Mandatory start:

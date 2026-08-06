@@ -54,7 +54,7 @@ Provide typed prepare/preview/simulate actions for native assets, ERC-20, ERC-72
 ```text
 Implement SSW-039: Implement native, token, and NFT wallet actions.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Provide typed prepare/preview/simulate actions for native assets, ERC-20, ERC-721, ERC-1155, minting, transfers, approvals, and batches under signer policies.
 
 Mandatory start:

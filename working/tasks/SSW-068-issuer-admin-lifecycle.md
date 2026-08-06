@@ -52,7 +52,7 @@ Add evidence-reference review, dual approval, individual/bulk issue, reissue, su
 ```text
 Implement SSW-068: Build issuer review, issuance, and credential lifecycle administration.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Add evidence-reference review, dual approval, individual/bulk issue, reissue, suspend, and revoke workflows.
 
 Mandatory start:

@@ -3,8 +3,8 @@
 These files are the unmodified Markdown inputs extracted from the owner-supplied
 ZIP:
 
-- [Project concept](sovereign-smart-wallet-project.md)
-- [Original implementation prompt](prompt-open-sovereign-smart-wallet.md)
+- [Project concept](universal-smart-wallet-project.md)
+- [Original implementation prompt](prompt-open-universal-smart-wallet.md)
 
 Archive SHA-256:
 

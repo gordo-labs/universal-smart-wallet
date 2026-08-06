@@ -55,7 +55,7 @@ Implement the supported OpenID4VP 1.0 same-device request/response path using DC
 ```text
 Implement SSW-010: Implement the OpenID4VP and DCQL presentation flow.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Implement the supported OpenID4VP 1.0 same-device request/response path using DCQL, direct_post, state/nonce, audience, holder binding, and strict disclosure selection.
 
 Mandatory start:

@@ -52,7 +52,7 @@ Issue, reissue, suspend, and revoke institutional credentials through tenant-sco
 ```text
 Implement SSW-054: Build the institutional credential issuer service.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Issue, reissue, suspend, and revoke institutional credentials through tenant-scoped OpenID4VCI sessions.
 
 Mandatory start:

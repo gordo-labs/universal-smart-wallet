@@ -54,7 +54,7 @@ Compare Safe and Kernel, select the maintained base, pin deployments and EntryPo
 ```text
 Implement SSW-015: Select the smart-account base and build the Foundry harness.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Compare Safe and Kernel, select the maintained base, pin deployments and EntryPoint compatibility, and create a local Foundry/account-adapter harness without writing a custom account base.
 
 Mandatory start:

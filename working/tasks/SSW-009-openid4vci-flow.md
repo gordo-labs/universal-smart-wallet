@@ -54,7 +54,7 @@ Implement the bounded OpenID4VCI 1.0 pre-authorized-code flow needed by the demo
 ```text
 Implement SSW-009: Implement the OpenID4VCI issuance flow.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Implement the bounded OpenID4VCI 1.0 pre-authorized-code flow needed by the demo, with metadata validation, proof handling, and deterministic HTTP fixtures.
 
 Mandatory start:

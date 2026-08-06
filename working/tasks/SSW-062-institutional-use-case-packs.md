@@ -52,7 +52,7 @@ Ship synthetic enrollment, diploma, and professional-qualification templates, po
 ```text
 Implement SSW-062: Add the university credential use-case pack.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Ship synthetic enrollment, diploma, and professional-qualification templates, policies, fixtures, issuance, status, and verification journeys.
 
 Mandatory start:

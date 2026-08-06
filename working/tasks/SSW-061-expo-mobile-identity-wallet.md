@@ -52,7 +52,7 @@ Expose framework-neutral React Native ports for passkeys, secure storage, camera
 ```text
 Implement SSW-061: Build React Native identity capability ports.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Expose framework-neutral React Native ports for passkeys, secure storage, camera, lifecycle, and universal/app links.
 
 Mandatory start:

@@ -54,7 +54,7 @@ Turn the threat model into automated adversarial evidence across parsers, JOSE, 
 ```text
 Implement SSW-024: Add adversarial, property, fuzz, and redaction hardening.
 
-Project: sovereign-smart-wallet
+Project: universal-smart-wallet
 Objective: Turn the threat model into automated adversarial evidence across parsers, JOSE, replay, vault, recovery, consent, status, modules, and logs.
 
 Mandatory start:
