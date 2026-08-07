@@ -3,7 +3,7 @@
 **Date:** 2026-07-29  
 **Status:** Accepted for implementation spikes (not a conformance claim)  
 **Owners:** architecture lane  
-**Supersedes:** planning assumptions in `working/research/standards-baseline-2026-07-29.md`
+**Supersedes:** the owner's local planning assumptions from the initial project bootstrap.
 
 ## Decision
 
@@ -91,4 +91,3 @@ negative fixtures, a migration note, and updated version/code-hash records.
 - [EntryPoint releases and v0.8 address](https://github.com/eth-infinitism/account-abstraction)
 - [ERC-7579 reference implementation](https://github.com/erc7579/erc7579-implementation)
 - [WebAuthn Level 3](https://www.w3.org/TR/webauthn-3/)
-

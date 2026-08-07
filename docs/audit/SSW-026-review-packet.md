@@ -33,7 +33,7 @@ That result is a local gate, not alpha-testnet approval.
 | Threat controls | [`docs/threat-model/SSW-024-adversarial-hardening.md`](../threat-model/SSW-024-adversarial-hardening.md), [`docs/threat-model/SSW-022-consent-privacy-hardening.md`](../threat-model/SSW-022-consent-privacy-hardening.md) |
 | RC acceptance | [`docs/releases/SSW-025-acceptance-report.md`](../releases/SSW-025-acceptance-report.md) |
 | Deployment boundary | [`docs/releases/SSW-025-deployment-manifest.json`](../releases/SSW-025-deployment-manifest.json), [`contracts/README.md`](../../contracts/README.md) |
-| Protocol decisions | [`docs/decisions/`](../decisions/) and [`working/features/`](../../working/features/) |
+| Protocol decisions | [`docs/decisions/`](../decisions/) |
 | Automated security | [`tests/security/`](../../tests/security/), `contracts/test/AdversarialFuzz.t.sol` |
 | Recovery/vault | `packages/credential-vault`, `packages/account-adapter`, `contracts/test/RecoveryHarness.t.sol` |
 

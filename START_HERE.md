@@ -7,10 +7,9 @@
 | 1 | [PROJECT.json](PROJECT.json) |
 | 2 | [STATUS.md](STATUS.md) |
 | 3 | [DOCS-MAP.md](DOCS-MAP.md) |
-| 4 | [working/BACKLOG.md](working/BACKLOG.md) |
-| 5 | [working/orchestration/EXECUTION-PLAN.md](working/orchestration/EXECUTION-PLAN.md) |
-| 6 | The exact `working/tasks/SSW-*.md` assigned to the session |
-| 7 | [Today’s project memory](working/memory/2026/07/2026-07-29.md) |
+| 4 | [Public research](docs/research/README.md) |
+| 5 | [Identity platform docs](docs/identity-platform/README.md) |
+| 6 | [Wallet platform docs](docs/platform/README.md) |
 
 ## Before implementation
 
@@ -23,5 +22,4 @@ chains only.
 ## Workspace standards
 
 - [Project documentation standard](../../docs/PROJECT-STANDARDS.md)
-- [Agent orchestration procedure](working/procedures/AGENT-TASK-ORCHESTRATION.md)
-- [Git and publication procedure](working/procedures/GIT-AND-PUBLICATION.md)
+- Planning prompts and orchestration procedures are maintained outside the public checkout.

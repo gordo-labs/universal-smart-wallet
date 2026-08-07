@@ -109,7 +109,8 @@ record and must be reviewed before a testnet lane.
 ### Build versus adapter matrix
 
 The canonical dependency and license matrix is maintained in
-[`working/maps/WALLET-PLATFORM-ADAPTER-MATRIX.md`](../../working/maps/WALLET-PLATFORM-ADAPTER-MATRIX.md).
+The adapter matrix is maintained as local planning material; the public
+architecture boundary is captured in this ADR and the platform documentation.
 The project builds domain schemas, policies, lifecycle orchestration, storage
 ports, redaction, and tests. It adapts Safe/EntryPoint, WebAuthn, SMTP/OIDC,
 PostgreSQL, RPC/bundler/paymaster, KMS, OpenID, and credential formats. No

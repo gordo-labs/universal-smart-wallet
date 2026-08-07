@@ -39,4 +39,5 @@ pnpm verify:rc
 non-local configuration. This documentation is not an audit or release
 approval. Future-only formats, additional DIDs, general ZK predicates,
 Aztec/Noir, mobile SDKs and production KMS/MPC are listed in
-[identity-platform-expansions.md](../../working/roadmap/future/identity-platform-expansions.md).
+Future identity-platform expansions are tracked as local planning material;
+the supported public surface is documented in the identity-platform section.

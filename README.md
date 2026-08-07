@@ -28,9 +28,9 @@ security claims are allowed before the documented review gates are complete.
 1. [START_HERE.md](START_HERE.md)
 2. [STATUS.md](STATUS.md)
 3. [DOCS-MAP.md](DOCS-MAP.md)
-4. [Feasibility review](working/research/feasibility-review.md)
-5. [Execution plan](working/orchestration/EXECUTION-PLAN.md)
-6. [Atomic backlog](working/BACKLOG.md)
+4. [Public market landscape](docs/research/market-landscape.md)
+5. [Identity platform docs](docs/identity-platform/README.md)
+6. [Wallet platform docs](docs/platform/README.md)
 
 ### Deterministic local vertical slice
 
@@ -83,9 +83,11 @@ claim.
 
 ## Source material
 
-The two prompts supplied by the project owner are preserved under
-[`working/research/source-prompts/`](working/research/source-prompts/). The
-reviewed ZIP has SHA-256:
+The owner-provided planning prompts and orchestration history are maintained
+outside this public repository. Public architecture and implementation
+documentation is indexed in [`DOCS-MAP.md`](DOCS-MAP.md).
+
+The reviewed source ZIP has SHA-256:
 
 ```text
 db7af947ecb35e096a4095d7a626a1d5192bf1ee4422b040c3e2df6a2695756c

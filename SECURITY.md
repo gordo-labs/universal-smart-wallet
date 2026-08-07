@@ -26,5 +26,5 @@ depend on severity and project maturity.
   issue attachments.
 - No custom cryptographic primitives.
 - External network dependencies must be optional in tests.
-- Security claims require evidence and the review gates in
-  `working/procedures/SECURITY-REVIEW.md`.
+- Security claims require the evidence and review gates documented under
+  `docs/audit/`.

@@ -19,9 +19,8 @@ guide, an audit report, a legal opinion, or a certification statement.
 - A verifier may return `verified`, `rejected`, or `indeterminate`. Unknown or
   stale trust/status is never silently accepted.
 
-The canonical architecture and assurance rules are in
-[`working/features/institutional-identity-platform.md`](../../working/features/institutional-identity-platform.md).
-The typed API surface is in
+The canonical architecture and assurance rules are in the public identity
+architecture ADR. The typed API surface is in
 [`docs/identity-platform/sdk-reference.md`](sdk-reference.md).
 
 ## Operator journeys
