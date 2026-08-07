@@ -11,6 +11,7 @@
 ## Review and source material
 
 - [Public market landscape](docs/research/market-landscape.md)
+- [Composable compliance wallet thesis](docs/research/composable-compliance-wallet.md)
 
 ## Threat model
 
