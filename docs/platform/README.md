@@ -14,6 +14,7 @@ configured testnet), and every provider is an injected port.
 | Email onboarding | [Self-hosting](self-hosting.md#email-only-onboarding) | [`packages/auth-email/test`](../../packages/auth-email/test) |
 | Consumer/admin apps | [Apps and examples](apps-and-use-cases.md) | [`apps/use-case-gallery/test`](../../apps/use-case-gallery/test) |
 | Vendor migration | [Portability](self-hosting.md#migration-and-vendor-rotation) | [`packages/wallet-portability/test`](../../packages/wallet-portability/test) |
+| Enterprise compliance control plane | [Composable compliance platform](composable-compliance-platform.md) | Synthetic design boundary; provider adapters are opt-in |
 
 The generated OpenAPI contract is [`apps/wallet-service/openapi.json`](../../apps/wallet-service/openapi.json).
 The [SSW-029 ADR](../decisions/SSW-029-wallet-platform-architecture.md) is
@@ -38,6 +39,4 @@ pnpm verify:rc
 `verify:rc` reports `LOCAL_PASS_TESTNET_NOT_REQUESTED` without explicit
 non-local configuration. This documentation is not an audit or release
 approval. Future-only formats, additional DIDs, general ZK predicates,
-Aztec/Noir, mobile SDKs and production KMS/MPC are listed in
-Future identity-platform expansions are tracked as local planning material;
-the supported public surface is documented in the identity-platform section.
+Aztec/Noir, mobile SDKs and production KMS/MPC remain future work.

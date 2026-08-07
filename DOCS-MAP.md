@@ -33,6 +33,7 @@
 - [Modular passkey authentication package](packages/auth-passkey/src/index.ts)
 - [ERC-7579 compatibility ADR](docs/decisions/SSW-018-erc7579-compatibility.md)
 - [Wallet Platform architecture ADR](docs/decisions/SSW-029-wallet-platform-architecture.md)
+- [Composable enterprise compliance platform](docs/platform/composable-compliance-platform.md)
 - [Institutional identity and EUDI ADR](docs/decisions/SSW-049-institutional-identity-architecture.md)
 - [Identity and holder binding](docs/decisions/SSW-019-did-holder-binding.md)
 - [Verification, trust, and status](docs/identity-platform/protocols-formats.md)
